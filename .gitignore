@@ -1,0 +1,14 @@
+# Moodboard: full-page screenshots of other organisations' sites, kept locally for
+# reference during the rebuild. Not ours to publish from a team-branded public repo.
+inspiration/
+
+# Working backup of the mockups taken before the accessibility fix pass.
+.backup-pre-fix/
+
+# Dead Squarespace HLS manifest — its signed URLs expired 2026-08-25 09:06 EDT.
+hero_video.m3u8
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

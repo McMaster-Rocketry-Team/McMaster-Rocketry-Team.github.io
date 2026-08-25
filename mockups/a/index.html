@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A — Flight Data · MRT Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DIRECTION A — "FLIGHT DATA"
+   Mockup only. Tokens here preview src/styles/themes/default.css
+   ============================================================ */
+:root{
+  --maroon:#7A003C;          /* McMaster Heritage Maroon */
+  --maroon-bright:#E24C7C;   /* accessible tint for text/hairlines on dark */
+  --bg:#0A0A0C;
+  --bg-elev:#121216;
+  --surface:#191920;
+  --fg:#FFFFFF;
+  --fg-muted:#9A9AA4;
+  --border:#26262E;
+  --font-display:"Space Grotesk",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --dur:.5s;
+  --ease-snappy:cubic-bezier(.22,1,.36,1);
+  --gutter:clamp(20px,5vw,72px);
+  --max:1440px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+/* Focus ring: white inner + near-black outer. One of the two always contrasts,
+   on paper, on maroon and on near-black — and stays inside the brand palette. */
+:focus-visible{outline:3px solid #fff;outline-offset:0;box-shadow:0 0 0 6px #08080A}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--fg);color:var(--bg);
+  padding:12px 18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase}
+.skip:focus{left:0}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-display);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--maroon-bright)}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;
+  justify-content:space-between;
+  padding:18px max(var(--gutter),env(safe-area-inset-right)) 18px max(var(--gutter),env(safe-area-inset-left));
+  padding-top:max(18px,env(safe-area-inset-top));
+  background:linear-gradient(180deg,rgba(10,10,12,.92),rgba(10,10,12,0));
+  backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+.logo{width:24px;height:auto;color:var(--fg);flex:0 0 auto}
+.navlinks{display:flex;gap:28px;font-family:var(--font-mono);font-size:12px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted)}
+.navlinks a:hover,.navlinks a:focus-visible{color:var(--fg)}
+.navtoggle{display:none;background:none;border:1px solid var(--border);color:var(--fg);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  padding:11px 14px;min-height:44px;cursor:pointer;align-items:center;gap:9px}
+.navtoggle .bars{display:block;width:16px;height:10px;position:relative}
+.navtoggle .bars::before,.navtoggle .bars::after{content:"";position:absolute;left:0;right:0;
+  height:1.5px;background:currentColor;transition:transform var(--dur) var(--ease-snappy)}
+.navtoggle .bars::before{top:0}.navtoggle .bars::after{bottom:0}
+.navtoggle[aria-expanded="true"] .bars::before{transform:translateY(4.25px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] .bars::after{transform:translateY(-4.25px) rotate(-45deg)}
+@media(max-width:800px){
+  .navtoggle{display:inline-flex}
+  /* the panel is fixed from top:0 and paints after the toggle in DOM order, so
+     the brand and the close button have to be lifted above it */
+  .brand,.navtoggle{position:relative;z-index:2}
+  .navlinks{position:fixed;inset:0 0 auto 0;top:0;padding:calc(env(safe-area-inset-top) + 76px) var(--gutter) 28px;
+    flex-direction:column;gap:0;background:var(--bg-elev);border-bottom:1px solid var(--border);
+    font-size:15px;letter-spacing:.04em;transform:translateY(-100%);visibility:hidden;
+    transition:transform var(--dur) var(--ease-snappy),visibility var(--dur)}
+  .navlinks a{padding:15px 0;min-height:44px;display:flex;align-items:center;
+    border-bottom:1px solid var(--border);color:var(--fg)}
+  .navlinks a:last-child{border-bottom:0}
+  nav[data-open="true"] .navlinks{transform:translateY(0);visibility:visible}
+}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;
+  padding-bottom:clamp(104px,8vh,120px);overflow:hidden}
+/* video stand-in: animated exhaust plume */
+.bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.grain{position:absolute;inset:0;z-index:2;opacity:.16;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='3'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='.5'/></svg>")}
+.vignette{position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(10,10,12,.62) 0%,rgba(10,10,12,.10) 22%,rgba(10,10,12,.30) 52%,rgba(10,10,12,.88) 100%),
+    linear-gradient(90deg,rgba(10,10,12,.72) 0%,rgba(10,10,12,.18) 52%,transparent 78%)}
+.slot{position:absolute;top:84px;right:var(--gutter);z-index:6;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+  color:rgba(255,255,255,.82);background:rgba(10,10,12,.55);
+  border:1px solid rgba(255,255,255,.28);padding:7px 11px}
+@media(max-width:560px){.slot{display:none}}
+
+/* HUD */
+.hero-inner{position:relative;z-index:5;width:100%}
+.hud{display:flex;gap:clamp(24px,5vw,64px);align-items:flex-end;flex-wrap:wrap;
+  padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid rgba(255,255,255,.14)}
+.readout{min-width:150px}
+.readout .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px}
+.readout .val{font-family:var(--font-mono);font-weight:500;
+  font-size:clamp(28px,4vw,46px);line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+.readout .val .u{font-size:.42em;color:var(--fg-muted);margin-left:6px;letter-spacing:.1em}
+.track{flex:1 1 220px;height:2px;background:rgba(255,255,255,.14);position:relative;
+  margin-bottom:12px;min-width:160px}
+.track i{position:absolute;inset:0 auto 0 0;width:0;background:var(--maroon-bright)}
+h1{font-size:clamp(44px,9.5vw,132px);line-height:.92;letter-spacing:-.04em;
+  font-weight:700;margin:0 0 18px;max-width:15ch}
+.deck{font-size:clamp(15px,1.5vw,20px);color:var(--fg-muted);max-width:46ch;
+  line-height:1.5;margin:0}
+.scrollcue{position:absolute;left:var(--gutter);bottom:max(22px,env(safe-area-inset-bottom));z-index:4;
+  display:flex;align-items:center;gap:12px;font-family:var(--font-mono);
+  font-size:10px;letter-spacing:.2em;color:var(--fg-muted)}
+.scrollcue .rail{width:1px;height:44px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.scrollcue .rail::after{content:"";position:absolute;left:0;width:1px;height:14px;
+  background:var(--maroon-bright);animation:drop 1.8s var(--ease-snappy) infinite}
+@keyframes drop{0%{top:-14px}70%,100%{top:44px}}
+
+/* ---------- SECTION CHROME ---------- */
+section{padding:clamp(70px,11vh,140px) 0}
+.shead{display:flex;justify-content:space-between;align-items:baseline;
+  gap:24px;flex-wrap:wrap;margin-bottom:clamp(32px,5vh,60px)}
+.shead h2{font-size:clamp(28px,4.4vw,54px);line-height:1;letter-spacing:-.03em;
+  font-weight:700;margin:8px 0 0}
+.shead p{color:var(--fg-muted);max-width:38ch;margin:0;font-size:14px;line-height:1.6}
+
+/* ---------- FLEET ---------- */
+.fleet{background:var(--bg-elev);border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border)}
+.lineup{display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(10px,3.2vw,54px);padding:24px 0 12px;overflow-x:auto}
+
+@media(max-width:900px){
+  .lineup{justify-content:flex-start;padding-left:var(--gutter);padding-right:var(--gutter)}
+}
+
+.craft{position:relative;flex:0 0 auto;background:none;border:0;color:inherit;
+  padding:0 0 96px;display:flex;flex-direction:column;align-items:center}
+.craft .rise{transition:transform var(--dur) var(--ease-snappy)}
+.craft:hover .rise,.craft:focus-visible .rise{transform:translateY(-52px)}
+.craft svg{filter:drop-shadow(0 0 0 transparent);transition:filter var(--dur) var(--ease-snappy)}
+.craft:hover svg,.craft:focus-visible svg{filter:drop-shadow(0 6px 24px rgba(226,76,124,.35))}
+/* Competition year is always rendered — it used to be hover-only, which meant it
+   did not exist on touch. Now it is part of the layout at every size. */
+.craft .year{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:clamp(15px,1.6vw,20px);
+  letter-spacing:.06em;color:var(--maroon-bright);pointer-events:none}
+.craft .nm{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg-muted);white-space:nowrap;
+  transition:color var(--dur) var(--ease-snappy)}
+.craft:hover .nm,.craft:focus-visible .nm{color:var(--fg)}
+.lineup{scrollbar-width:thin;scrollbar-color:var(--maroon-bright) var(--bg-elev)}
+.lineup::-webkit-scrollbar{display:block;height:6px}
+.lineup::-webkit-scrollbar-thumb{background:var(--maroon-bright)}
+.lineup::-webkit-scrollbar-track{background:var(--surface)}
+.baseline{height:1px;background:var(--border);margin-top:-1px}
+.vidtoggle{position:absolute;right:var(--gutter);bottom:max(22px,env(safe-area-inset-bottom));
+  z-index:7;background:rgba(10,10,12,.62);border:1px solid rgba(255,255,255,.32);
+  color:var(--fg);font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;padding:11px 15px;min-height:44px;cursor:pointer}
+.vidtoggle:hover{background:rgba(10,10,12,.85);border-color:#fff}
+.fleetnote{display:flex;justify-content:space-between;color:var(--fg-muted);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;padding-top:18px;flex-wrap:wrap;gap:12px}
+
+/* ---------- SUBSYSTEMS ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1px;background:var(--border);border:1px solid var(--border)}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.cell.cta{background:var(--maroon);justify-content:flex-end}
+.cell.cta h3{margin-top:0}
+.cell.cta p{color:rgba(255,255,255,.82)}
+.cell.cta:hover,.cell.cta:focus-visible{background:var(--maroon-bright);color:#14000A}
+.cell.cta:hover p,.cell.cta:hover .idx,.cell.cta:focus-visible p,.cell.cta:focus-visible .idx{color:rgba(20,0,10,.78)}
+.cell{background:var(--bg);padding:clamp(22px,3vw,34px);min-height:210px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:background var(--dur) var(--ease-snappy)}
+.cell:hover,.cell:focus-visible{background:var(--maroon)}
+.cell .ico{width:46px;height:46px;color:var(--fg-muted);
+  transition:color var(--dur) var(--ease-snappy),transform var(--dur) var(--ease-snappy)}
+.cell:hover .ico,.cell:focus-visible .ico{color:#fff;transform:translateY(-4px)}
+.cell .ico [data-fill]{fill:transparent;transition:fill var(--dur) var(--ease-snappy)}
+.cell:hover .ico [data-fill],.cell:focus-visible .ico [data-fill]{fill:rgba(255,255,255,.18)}
+.cell h3{font-size:19px;letter-spacing:-.01em;margin:20px 0 6px;font-weight:700}
+.cell p{margin:0;font-size:12.5px;line-height:1.55;color:var(--fg-muted);
+  transition:color var(--dur) var(--ease-snappy)}
+.cell:hover p,.cell:focus-visible p{color:rgba(255,255,255,.82)}
+.cell .idx{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;
+  color:var(--fg-muted);transition:color var(--dur) var(--ease-snappy)}
+.cell:hover .idx,.cell:focus-visible .idx{color:rgba(255,255,255,.7)}
+
+footer{border-top:1px solid var(--border);padding:26px 0;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg-muted);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .bgvid{display:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav id="nav">
+  <div class="brand"><svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"fill="currentColor" stroke="none"><path d="M6666 16409 c-538 -132 -1053 -862 -1476 -2094 -608 -1773 -991-4503 -1015 -7245 -3 -300 -3 -540 -1 -535 3 6 169 822 371 1815 201 993 3691813 373 1823 4 11 380 -1490 961 -3838 525 -2120 956 -3853 958 -3851 3 3-1171 7655 -1181 7699 -3 11 13 2 44 -25 111 -98 3740 -3642 3740 -3652 -1-18 -2585 -4048 -2596 -4047 -5 0 -606 908 -1335 2016 -730 1109 -1330 2020-1335 2025 -5 5 -904 -1390 -2087 -3237 -1143 -1785 -2077 -3247 -2075 -32482 -2 894 827 1983 1842 1089 1014 2024 1885 2077 1934 l97 90 1133 -1027 c623-565 1134 -1031 1136 -1035 2 -3 -246 -395 -550 -870 -305 -475 -564 -882-577 -904 l-24 -40 39 36 c21 20 368 342 769 715 402 374 735 683 742 687 8 5301 -254 805 -712 436 -395 794 -717 796 -716 2 2 -265 411 -593 910 -329 499-593 910 -588 914 5 3 499 463 1098 1021 599 558 1092 1015 1095 1015 4 0 967-870 2140 -1933 1172 -1064 2133 -1932 2134 -1930 2 2 -959 1464 -2134 3250l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 17548 256 135 651 202 919 404 1614 921 2527 1479 2608 44 7 80 16 80 21 0 13114 -2 190 -25 391 -119 801 -612 1150 -1381 666 -1471 1093 -3708 1219 -63774 -96 9 -140 10 -97 1 91 -23 616 -44 967 -221 3548 -933 6353 -1854 7303-168 173 -341 283 -515 327 -103 26 -242 26 -350 -1z"/><path d="M9434 7560 c0 -74 1 -105 3 -67 2 37 2 97 0 135 -2 37 -3 6 -3 -68z"/><path d="M9443 7270 c0 -25 2 -35 4 -22 2 12 2 32 0 45 -2 12 -4 2 -4 -23z"/><path d="M9443 7145 c0 -22 2 -30 4 -17 2 12 2 30 0 40 -3 9 -5 -1 -4 -23z"/><path d="M9442 6980 c0 -19 2 -27 5 -17 2 9 2 25 0 35 -3 9 -5 1 -5 -18z"/></g></svg> McMaster Rocketry</div>
+  <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">
+    <span class="bars" aria-hidden="true"></span>Menu
+  </button>
+  <!-- TODO(robin): point these at the real routes once the Astro build exists -->
+  <div class="navlinks" id="navlinks">
+    <a href="#fleet">Rockets</a><a href="#subs">Subsystems</a>
+    <a href="../final/members.html">Members</a>
+    <a href="../final/sponsors.html">Sponsors</a>
+    <a href="../final/join.html">Join</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <video class="bgvid" id="bgvid" autoplay muted loop playsinline preload="metadata"
+         aria-hidden="true" tabindex="-1" poster="../../public/media/hero-poster.jpg" data-src-sm="../../public/media/hero-720.mp4" data-src-lg="../../public/media/hero.mp4">
+    <!-- media="" on <source> is ignored inside <video> (it only works in
+         <picture>), so the small file is the default and site.js upgrades
+         to the full cut on large screens when the connection allows. -->
+    <source src="../../public/media/hero-720.mp4" type="video/mp4">
+  </video>
+  <div class="grain"></div><div class="vignette"></div>
+  <div class="slot">LAUNCH CANADA 2025 · NIMBUS</div>
+
+  <div class="wrap hero-inner">
+    <div class="hud">
+      <div class="readout">
+        <div class="lbl">Apogee</div>
+        <div class="val" aria-hidden="true"><span id="alt">33,584</span><span class="u">FT</span></div>
+        <p class="vh">Apogee: 33,584 feet</p>
+      </div>
+      <div class="readout">
+        <div class="lbl">Max velocity</div>
+        <div class="val" aria-hidden="true">M<span id="mach">1.92</span></div>
+        <p class="vh">Maximum velocity: Mach 1.92</p>
+      </div>
+      <div class="track" aria-hidden="true"><i id="bar"></i></div>
+    </div>
+    <h1>Thirty&#8209;three thousand feet.</h1>
+    <p class="deck">Designed, built and flown by students at McMaster University.
+      Six vehicles in five years — and we are not finished climbing.</p>
+  </div>
+
+  <div class="scrollcue"><span class="rail"></span> SCROLL</div>
+  <button class="vidtoggle" id="vidtoggle">Pause video</button>
+</header>
+
+<main id="main">
+<section class="fleet" id="fleet">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <div class="eyebrow">01 — The Fleet</div>
+        <h2>Six rockets. Five years.</h2>
+      </div>
+      <p>Every vehicle the team has designed, built and flown, in order,
+         with the competition year it flew.</p>
+    </div>
+  </div>
+  <div class="lineup" id="lineup"></div>
+  <div class="baseline"></div>
+  <div class="wrap"><div class="fleetnote">
+    <span>LC — Launch Canada</span><span>SAC — Spaceport America Cup</span>
+    <span>Scaled to relative length</span>
+  </div></div>
+</section>
+
+<section id="subs">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <div class="eyebrow">02 — Subsystems</div>
+        <h2>Seven teams, one airframe.</h2>
+      </div>
+      <p>From carbon layup to flight software, every part of the vehicle is owned
+         by a student subteam.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+</main>
+
+<div class="wrap"><footer>
+  <span>Mockup — Direction A · Flight Data</span>
+  <span>McMaster Maroon #7A003C</span>
+  <span>Launch Canada 2025 footage</span>
+</footer></div>
+
+<script>
+/* ---------- data ---------- */
+const FLEET=[
+ {n:"Marauder I",  y:"2022", c:"LC",  h:150, v:1},
+ {n:"Marauder II", y:"2023", c:"SAC", h:172, v:2},
+ {n:"Luminis",     y:"2024", c:"SAC", h:196, v:1},
+ {n:"Luminis V2",  y:"2024", c:"LC",  h:214, v:3},
+ {n:"Nimbus",      y:"2025", c:"LC",  h:246, v:2},
+ {n:"Osiris",      y:"2026", c:"LC",  h:286, v:3}
+];
+const SUBS=[
+ {n:"Airframe",   d:"Structures, aerodynamics and the CAD model the whole vehicle is built from."},
+ {n:"Avionics",   d:"Flight computers, telemetry and the electronics that decide when things happen."},
+ {n:"Propulsion", d:"Motor integration and the thrust that gets everything off the pad."},
+ {n:"Recovery",   d:"Dual-deployment parachutes that bring the vehicle back intact."},
+ {n:"Payload",    d:"The experiment we fly — and the reason the rocket exists."},
+ {n:"Composites", d:"Carbon and fibreglass layup, tooling and finishing."},
+ {n:"Operations", d:"Launch procedure, range safety and everything on the day."}
+];
+
+/* ---------- rocket SVG ---------- */
+function rocket(h,variant){
+  const w=Math.round(h*0.17), cx=w/2;
+  const nose = variant===3 ? h*0.22 : variant===2 ? h*0.17 : h*0.13;
+  const finW = w*0.85;
+  const bodyTop = nose, bodyBot = h-h*0.13;
+  const ov=finW*0.55, sw=w+ov*2;
+  return `<svg width="${sw}" height="${h}" viewBox="${-ov} 0 ${sw} ${h}" fill="none" aria-hidden="true">
+    <defs><linearGradient id="g${h}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3A3A44"/><stop offset=".42" stop-color="#D8D8E0"/>
+      <stop offset=".62" stop-color="#9A9AA4"/><stop offset="1" stop-color="#2A2A32"/>
+    </linearGradient></defs>
+    <path d="M${cx} 0 L${w} ${nose} L${w} ${bodyBot} L0 ${bodyBot} L0 ${nose} Z" fill="url(#g${h})"/>
+    <path d="M0 ${bodyBot} L${-finW*0.55} ${h} L0 ${h} Z" fill="#4A4A55"/>
+    <path d="M${w} ${bodyBot} L${w+finW*0.55} ${h} L${w} ${h} Z" fill="#4A4A55"/>
+    <rect x="0" y="${bodyTop+h*0.10}" width="${w}" height="${Math.max(2,h*0.012)}" fill="#7A003C"/>
+    <rect x="0" y="${bodyTop+h*0.16}" width="${w}" height="${Math.max(1,h*0.006)}" fill="#7A003C" opacity=".6"/>
+    <rect x="${cx-w*0.09}" y="${h*0.55}" width="${w*0.18}" height="${h*0.05}" fill="#1A1A20" opacity=".8"/>
+  </svg>`;
+}
+/* Was a <button> with no handler — six keyboard stops that did nothing. It is
+   presentational, so it is a <div> now. Width was also pinned to the 124px floor
+   for every vehicle, which killed the proportional lineup; the floor is now 96px
+   and only catches the smallest airframe. */
+document.getElementById('lineup').innerHTML = FLEET.map(f=>`
+  <div class="craft" style="width:${Math.max(96,Math.round(f.h*0.17*1.94)+34)}px">
+    <span class="rise">${rocket(f.h,f.v)}</span>
+    <span class="year">${f.y}</span>
+    <span class="nm">${f.n} · ${f.c}</span>
+  </div>`).join('');
+
+/* ---------- subsystem icons ---------- */
+const ICONS={
+ Airframe:'<path data-fill d="M23 3 41 43 23 34 5 43Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+ Avionics:'<rect data-fill x="13" y="13" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2.2"/><path d="M23 5v8M23 33v8M5 23h8M33 23h8M13 8v5M33 8v5M13 33v5M33 33v5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+ Propulsion:'<path data-fill d="M16 5h14l-3 20 7 18H9l7-18Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M18 43c1.5-4 3-6 5-6s3.5 2 5 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+ Recovery:'<path data-fill d="M4 24a19 19 0 0 1 38 0Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M4 24 23 41 42 24M16 24l7 17M30 24l-7 17" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+ Payload:'<rect data-fill x="8" y="8" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2.2"/><circle cx="23" cy="23" r="7" stroke="currentColor" stroke-width="2.2"/>',
+ Composites:'<path data-fill d="M23 4 42 23 23 42 4 23Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 15h22M9 23h28M12 31h22" stroke="currentColor" stroke-width="1.6" opacity=".75"/>',
+ Operations:'<circle data-fill cx="23" cy="23" r="17" stroke="currentColor" stroke-width="2.2"/><path d="M23 2v10M23 34v10M2 23h10M34 23h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="23" r="4" fill="currentColor"/>'
+};
+document.getElementById('grid').innerHTML = SUBS.map((s,i)=>`
+  <a class="cell" href="../final/subteam.html">
+    <div>
+      <svg class="ico" viewBox="0 0 46 46">${ICONS[s.n]}</svg>
+      <h3>${s.n}</h3><p>${s.d}</p>
+    </div>
+    <div class="idx">${String(i+1).padStart(2,'0')}</div>
+  </a>`).join('') + `
+  <a class="cell cta" href="../final/join.html">
+    <div class="idx">Recruitment</div>
+    <div><h3>Join the team &rarr;</h3>
+    <p>No experience required. We hire first years, and we are not only engineers.</p></div>
+  </a>`;
+
+/* ---------- HUD counters ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ALT=33584, MACH=1.92;
+const altEl=document.getElementById('alt'), machEl=document.getElementById('mach'), bar=document.getElementById('bar');
+if(reduce){
+  altEl.textContent=ALT.toLocaleString(); machEl.textContent=MACH.toFixed(2); bar.style.width='100%';
+}else{
+  altEl.textContent='0'; machEl.textContent='0.00';
+  const DUR=2200, t0=performance.now();
+  const ease=t=>1-Math.pow(1-t,3);
+  (function tick(now){
+    const p=Math.min(1,(now-t0)/DUR), e=ease(p);
+    altEl.textContent=Math.round(ALT*e).toLocaleString();
+    machEl.textContent=(MACH*e).toFixed(2);
+    bar.style.width=(e*100)+'%';
+    if(p<1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+/* ---------- mobile navigation ---------- */
+const nav=document.getElementById('nav'), navToggle=document.getElementById('navtoggle');
+const setNav=open=>{
+  nav.dataset.open=String(open);
+  navToggle.setAttribute('aria-expanded',String(open));
+};
+navToggle.addEventListener('click',()=>setNav(nav.dataset.open!=='true'));
+addEventListener('keydown',e=>{
+  if(e.key==='Escape' && nav.dataset.open==='true'){ setNav(false); navToggle.focus(); }
+});
+document.getElementById('navlinks').addEventListener('click',e=>{
+  if(e.target.closest('a')) setNav(false);
+});
+matchMedia('(min-width:801px)').addEventListener('change',e=>{ if(e.matches) setNav(false); });
+
+
+/* The `media` attribute on <source> is ignored inside <video> — it only works in
+   <picture> — so the small cut is the default and we upgrade on large screens. */
+(function(){
+  var v=document.getElementById('bgvid'); if(!v||!v.dataset.srcLg) return;
+  var conn=navigator.connection||{};
+  var thrifty=conn.saveData===true||/^(slow-2g|2g|3g)$/.test(conn.effectiveType||'');
+  if(matchMedia('(min-width:701px)').matches && !thrifty
+     && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    v.src=v.dataset.srcLg; v.load();
+  }
+})();
+
+/* ---------- background video pause control (WCAG 2.2.2) ---------- */
+const vid=document.getElementById('bgvid'), vidToggle=document.getElementById('vidtoggle');
+if(reduce){ vid.pause(); vidToggle.textContent='Play video';  }
+vidToggle.addEventListener('click',()=>{
+  const paused=vid.paused;
+  if(paused) vid.play(); else vid.pause();
+  vidToggle.textContent = paused ? 'Pause video' : 'Play video';
+  
+});
+</script>
+</body>
+</html>

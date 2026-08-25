@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C.1 — Ascent · MRT Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   C.1 — "ASCENT"  (the camera climbs)
+   Scrolling is normal. What moves upward is the world: a fixed
+   sky behind everything crossfades through real atmospheric
+   bands as your altitude rises, the hero footage parallaxes and
+   falls away beneath you, and every panel floats on the sky
+   instead of covering it. You never leave the flight.
+   ============================================================ */
+:root{
+  --maroon:#7A003C;
+  --maroon-deep:#3E001F;
+  --maroon-bright:#F2274A;
+  --ink:#0B0B0E;
+  --paper:#F5F3EF;
+  --white:#FFFFFF;
+  --muted:#8A8A94;
+  --rule:rgba(255,255,255,.22);
+  --font-display:"Anton",Impact,system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --dur:.5s;
+  --ease-snappy:cubic-bezier(.22,1,.36,1);
+  --gutter:clamp(18px,4.5vw,68px);
+  --rail:104px;
+  --max:1500px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+/* Focus ring: white inner + near-black outer. One of the two always contrasts,
+   on paper, on maroon and on near-black — and stays inside the brand palette. */
+:focus-visible{outline:3px solid #fff;outline-offset:0;box-shadow:0 0 0 6px #08080A}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--white);color:var(--ink);
+  padding:12px 18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase}
+.skip:focus{left:0}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body{margin:0;background:var(--ink);color:var(--white);font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;padding-right:var(--rail)}
+svg{display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.mono{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase}
+@media(max-width:900px){body{padding-right:0}:root{--rail:0px}}
+
+/* ---------- THE SKY: fixed behind everything, crossfaded by altitude ---------- */
+.sky{position:fixed;inset:0;z-index:-2;background:#2E0518}
+.sky>div{position:absolute;inset:0;will-change:opacity}
+/* ground: warm dust and low sun on the desert pad */
+.sky .s0{background:linear-gradient(180deg,#6E0F35 0%,#8E1C3E 42%,#C56A4A 100%);opacity:1}
+/* lower troposphere: haze burns off, maroon deepens */
+.sky .s1{background:linear-gradient(180deg,#2A0414 0%,#5E0A2C 55%,#96234A 100%);opacity:0}
+/* mid troposphere: colour drains out of the horizon */
+.sky .s2{background:linear-gradient(180deg,#0D0208 0%,#2B0514 58%,#5A0C2B 100%);opacity:0}
+/* upper troposphere / tropopause: near-black with a thin maroon rim */
+.sky .s3{background:linear-gradient(180deg,#050508 0%,#0B0B12 62%,#2C0616 100%);opacity:0}
+/* horizon rim that thins as the atmosphere does */
+.sky .rim{background:radial-gradient(140% 46% at 50% 112%,rgba(242,120,90,.55),transparent 60%);opacity:1}
+
+/* ---------- ALTITUDE RAIL ---------- */
+.rail{position:fixed;top:0;right:0;bottom:0;width:var(--rail);z-index:80;
+  background:rgba(11,11,14,.72);backdrop-filter:blur(10px);
+  border-left:1px solid rgba(255,255,255,.14);
+  display:flex;flex-direction:column;align-items:center;padding:14px 0}
+.rail .cap{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;
+  color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);margin-bottom:10px}
+.rail .track{position:relative;flex:1;width:1px;background:rgba(255,255,255,.18)}
+.rail .tick{position:absolute;right:0;width:11px;height:1px;background:rgba(255,255,255,.3)}
+.rail .tick span{position:absolute;right:15px;top:-6px;font-family:var(--font-mono);
+  font-size:10px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+.rail .marker{position:absolute;left:50%;transform:translate(-50%,-50%);
+  width:13px;height:13px;background:var(--maroon-bright);border-radius:50%;
+  box-shadow:0 0 0 4px rgba(242,39,74,.22);transition:top .12s linear}
+.rail .fill{position:absolute;left:0;bottom:0;width:1px;background:var(--maroon-bright);
+  transition:height .12s linear}
+.rail .read{margin-top:12px;text-align:center;padding:0 6px}
+.rail .read .alt{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.04em;
+  color:var(--white);font-variant-numeric:tabular-nums}
+.rail .read .ph{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
+  color:rgba(255,255,255,.86);margin-top:7px;line-height:1.45}
+.rail .read .band{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.1em;
+  color:rgba(255,255,255,.72);margin-top:9px;line-height:1.5;
+  border-top:1px solid rgba(255,255,255,.14);padding-top:9px}
+@media(max-width:900px){.rail{display:none}}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:var(--rail);z-index:70;display:flex;
+  align-items:center;justify-content:space-between;
+  padding:15px max(var(--gutter),env(safe-area-inset-right)) 15px max(var(--gutter),env(safe-area-inset-left));
+  padding-top:max(15px,env(safe-area-inset-top));
+  background:rgba(11,11,14,.62);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.10)}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:15px}
+.logo{width:22px;height:auto;color:var(--white);flex:0 0 auto}
+.navlinks{display:flex;gap:26px}
+.navlinks a{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.62)}
+.navlinks a:hover,.navlinks a:focus-visible{color:var(--maroon-bright)}
+/* hover was colour-only; an underline carries the same state without relying on hue */
+.navlinks a{position:relative;padding-bottom:3px}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;
+  background:currentColor;transition:width var(--dur) var(--ease-snappy)}
+.navlinks a:hover::after,.navlinks a:focus-visible::after{width:100%}
+.navtoggle{display:none;background:none;border:1px solid rgba(255,255,255,.34);
+  color:var(--white);font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;padding:11px 14px;min-height:44px;cursor:pointer;
+  align-items:center;gap:9px}
+.navtoggle .bars{display:block;width:16px;height:10px;position:relative}
+.navtoggle .bars::before,.navtoggle .bars::after{content:"";position:absolute;left:0;right:0;
+  height:1.5px;background:currentColor;transition:transform var(--dur) var(--ease-snappy)}
+.navtoggle .bars::before{top:0}.navtoggle .bars::after{bottom:0}
+.navtoggle[aria-expanded="true"] .bars::before{transform:translateY(4.25px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] .bars::after{transform:translateY(-4.25px) rotate(-45deg)}
+@media(max-width:860px){
+  .navtoggle{display:inline-flex}
+  /* the panel is fixed from top:0 and paints after the toggle in DOM order, so
+     the brand and the close button have to be lifted above it */
+  .brand,.navtoggle{position:relative;z-index:2}
+  .navlinks{position:fixed;inset:0 0 auto 0;top:0;
+    padding:calc(env(safe-area-inset-top) + 72px) var(--gutter) 26px;
+    flex-direction:column;gap:0;background:var(--ink);
+    border-bottom:1px solid rgba(255,255,255,.16);
+    transform:translateY(-100%);visibility:hidden;
+    transition:transform var(--dur) var(--ease-snappy),visibility var(--dur)}
+  .navlinks a{padding:15px 0;min-height:44px;display:flex;align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.12);color:var(--white);font-size:13px}
+  .navlinks a::after{display:none}
+  .navlinks a:last-child{border-bottom:0}
+  nav[data-open="true"] .navlinks{transform:translateY(0);visibility:visible}
+}
+.vidtoggle{position:absolute;right:var(--gutter);bottom:max(20px,env(safe-area-inset-bottom));
+  z-index:9;background:rgba(11,11,14,.62);border:1px solid rgba(255,255,255,.34);
+  color:var(--white);font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;padding:11px 15px;min-height:44px;cursor:pointer}
+.vidtoggle:hover{background:rgba(11,11,14,.9);border-color:#fff}
+
+/* ---------- HERO — footage sits ON the sky and falls away ---------- */
+.hero{position:relative;min-height:100svh;overflow:hidden;background:transparent;
+  display:flex;align-items:flex-end;padding:96px 0 40px}
+.vidhold{position:absolute;inset:-14vh 0 -14vh 0;overflow:hidden;will-change:transform}
+.bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:url(#duo) contrast(1.06)}
+.heroveil{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(62,0,31,.60) 0%,rgba(62,0,31,.06) 34%,rgba(11,11,14,.72) 100%),
+    radial-gradient(120% 80% at 12% 92%, rgba(11,11,14,.68), transparent 62%)}
+.hero-in{position:relative;z-index:3;width:100%}
+.phase{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.phase b{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--white);font-weight:400}
+.phase i{height:1px;flex:1;max-width:180px;background:var(--rule)}
+.bignum{display:flex;align-items:flex-end;gap:clamp(10px,2vw,26px);flex-wrap:wrap;
+  padding-bottom:clamp(14px,2.2vw,30px)}
+.bignum .n{font-family:var(--font-display);font-size:clamp(88px,20vw,290px);
+  line-height:.84;letter-spacing:0;color:var(--white);font-variant-numeric:tabular-nums}
+.bignum .u{font-family:var(--font-display);font-size:clamp(26px,4.4vw,64px);
+  line-height:1;color:rgba(255,255,255,.72);padding-bottom:clamp(8px,1.6vw,26px)}
+.subline{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+  flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--rule)}
+.subline p{margin:0;max-width:46ch;font-size:17px;line-height:1.62;color:rgba(255,255,255,.92)}
+.subline .who{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;line-height:1.7;
+  text-transform:uppercase;color:rgba(255,255,255,.72);text-align:right}
+.slot{position:absolute;top:78px;right:var(--gutter);z-index:4;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+/* ---------- SECTIONS float on the sky ---------- */
+section{padding:clamp(70px,11vh,140px) 0;position:relative}
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(30px,5vh,56px)}
+@media(max-width:840px){.shead{grid-template-columns:1fr}}
+.tag{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--maroon-bright)}
+.shead h2{font-family:var(--font-display);font-size:clamp(34px,5.4vw,72px);
+  line-height:1.04;letter-spacing:.005em;margin:14px 0 0;text-transform:uppercase}
+.shead p{margin:0;font-size:16px;line-height:1.72;max-width:46ch;color:rgba(255,255,255,.76)}
+
+/* a glass panel, so the sky keeps showing through — no opaque slabs */
+.glass{background:rgba(11,11,14,.46);backdrop-filter:blur(18px) saturate(.8);
+  border:1px solid rgba(255,255,255,.13);
+  padding:clamp(26px,4vw,56px);border-radius:2px}
+
+/* ---------- FLEET AS AN APOGEE CHART (real data, honest gaps) ---------- */
+.chart{position:relative;height:440px;margin-top:20px;
+  border-bottom:2px solid rgba(255,255,255,.55)}
+.gridline{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.16)}
+.gridline span{position:absolute;left:0;top:-16px;font-family:var(--font-mono);
+  font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.74)}
+.bars{position:absolute;inset:0;display:flex;align-items:flex-end;
+  justify-content:space-around;gap:clamp(6px,1.6vw,26px);padding:0 8px}
+.bar{position:relative;flex:1 1 0;max-width:132px;display:flex;
+  flex-direction:column;align-items:center;justify-content:flex-end;height:100%;
+  background:none;border:0;padding:0;cursor:pointer;font-family:inherit;color:inherit}
+.bar .col{width:100%;height:calc(var(--pct,10) * 1%);background:var(--maroon);
+  position:relative;display:block;
+  transition:background var(--dur) var(--ease-snappy);transform-origin:bottom}
+.bar:hover .col,.bar:focus-visible .col{background:var(--maroon-bright)}
+.bar.nodata .col{background:none;border:1.5px dashed rgba(255,255,255,.28)}
+.bar.nodata:hover .col{border-color:var(--maroon-bright)}
+.bar .val{position:absolute;bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%);font-family:var(--font-mono);font-size:12.5px;
+  letter-spacing:.04em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar.nodata .val{color:rgba(255,255,255,.45)}
+.bar .nm{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  text-align:center;white-space:nowrap}
+.bar .nm b{display:block;font-family:var(--font-display);font-size:15px;
+  letter-spacing:.03em;text-transform:uppercase;font-weight:400}
+.bar .nm span{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.13em;color:rgba(255,255,255,.74);margin-top:6px}
+
+/* ---------- CHART: mobile-first rebuild ----------
+   The vertical chart put ~77px of nowrap label into a ~40px column below 600px,
+   so every label overlapped its neighbours and the outermost were clipped. Below
+   700px the chart becomes horizontal bars, one row per vehicle, so each label
+   gets a full line. --pct is emitted by the renderer. */
+@media(max-width:700px){
+  .chart{height:auto;border-bottom:0;margin-top:26px}
+  .gridline{display:none}
+  .bars{position:static;display:flex;flex-direction:column;align-items:stretch;
+    gap:0;padding:0}
+  .bar{flex:none;max-width:none;height:auto;display:block;text-align:left;
+    padding:15px 0;border-bottom:1px solid rgba(11,11,14,.16)}
+  .bar:last-child{border-bottom:0}
+  .bar .nm{position:static;transform:none;text-align:left;display:flex;
+    align-items:baseline;gap:10px;flex-wrap:wrap}
+  .bar .nm b{display:inline;font-size:17px}
+  .bar .nm span{display:inline;margin:0;font-size:11px}
+  /* .val is a child of .col, so it has to escape it: .col goes static and .val
+     resolves against .bar instead of rendering inside a 10px-tall bar. */
+  .bar{position:relative;padding:15px 0 17px}
+  .bar .col{position:static;width:calc(var(--pct,10) * 1%);min-width:3px;height:10px;
+    margin-top:13px;display:block;transform:none}
+  .bar .val{position:absolute;top:15px;right:0;left:auto;transform:none;
+    font-size:13px;text-align:right;white-space:nowrap}
+  .bar .nm{padding-right:96px}
+  .chartfoot{margin-top:26px}
+}
+.chartfoot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  margin-top:80px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.74)}
+
+/* ---------- SUBSYSTEMS KEYED TO FLIGHT PHASE ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.cell{background:rgba(11,11,14,.72);backdrop-filter:blur(14px);
+  padding:clamp(24px,3vw,36px);min-height:270px;
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;
+  overflow:hidden;transition:background var(--dur) var(--ease-snappy)}
+.cell::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;
+  background:var(--maroon);transition:height var(--dur) var(--ease-snappy)}
+.cell:hover::before,.cell:focus-visible::before{height:100%}
+.cell>*{position:relative;z-index:1}
+.ph .flag{display:inline-block;background:#FFD166;color:#241A00;font-size:9.5px;
+  letter-spacing:.1em;padding:2px 6px;margin-left:7px;border-radius:2px;vertical-align:middle}
+.cell .ph{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--maroon-bright);
+  transition:color var(--dur) var(--ease-snappy)}
+.cell:hover .ph,.cell:focus-visible .ph{color:rgba(255,255,255,.82)}
+.cell h3{font-family:var(--font-display);font-size:26px;letter-spacing:.03em;
+  text-transform:uppercase;margin:16px 0 11px;font-weight:400;line-height:1.1}
+.cell p{margin:0;font-size:14px;line-height:1.66;color:rgba(255,255,255,.68);
+  transition:color var(--dur) var(--ease-snappy)}
+.cell:hover p,.cell:focus-visible p{color:rgba(255,255,255,.9)}
+.cell .idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;
+  color:rgba(255,255,255,.62);transition:color var(--dur) var(--ease-snappy)}
+.cell:hover .idx,.cell:focus-visible .idx{color:rgba(255,255,255,.7)}
+.cell.cta{background:var(--maroon)}
+.cell.cta::before{background:var(--maroon-bright)}
+.cell.cta p{color:rgba(255,255,255,.86)}
+.cell.cta .ph{color:rgba(255,255,255,.86)}
+.cell.cta:hover,.cell.cta:focus-visible{color:var(--ink)}
+.cell.cta:hover p,.cell.cta:hover .idx,.cell.cta:hover .ph,.cell.cta:focus-visible p,.cell.cta:focus-visible .idx,.cell.cta:focus-visible .ph{color:rgba(11,11,14,.8)}
+
+/* band caption that crosses the page as you climb */
+.bandmark{position:fixed;left:var(--gutter);bottom:26px;z-index:60;pointer-events:none;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.72);display:flex;align-items:center;gap:12px}
+.bandmark i{display:block;width:52px;height:1px;background:rgba(255,255,255,.28)}
+@media(max-width:900px){.bandmark{display:none}}
+
+footer{border-top:1px solid rgba(255,255,255,.14);padding:24px 0;
+  color:rgba(255,255,255,.74);display:flex;justify-content:space-between;
+  gap:16px;flex-wrap:wrap}
+/* Below 900px the sky no longer animates, so the eight blurred cells and the
+   blurred glass panel buy nothing and cost a lot of compositing on mobile. */
+@media(max-width:900px){
+  .cell,.glass{backdrop-filter:none}
+  .cell{background:rgba(11,11,14,.86)}
+  .glass{background:rgba(11,11,14,.80)}
+  .sky>div{will-change:auto}
+  .vidhold{will-change:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .bgvid{display:none}
+  .vidhold{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sky" aria-hidden="true">
+  <div class="s0"></div><div class="s1" id="s1"></div>
+  <div class="s2" id="s2"></div><div class="s3" id="s3"></div>
+  <div class="rim" id="rim"></div>
+</div>
+
+<aside class="rail" aria-hidden="true">
+  <div class="cap">Altitude</div>
+  <div class="track" id="track">
+    <div class="fill" id="fill"></div>
+    <div class="marker" id="marker" style="top:100%"></div>
+  </div>
+  <div class="read">
+    <div class="alt" id="alt">0 ft</div>
+    <div class="ph" id="ph">On pad</div>
+    <div class="band" id="bandmini">Ground</div>
+  </div>
+</aside>
+
+<nav id="nav">
+  <div class="brand"><svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"fill="currentColor" stroke="none"><path d="M6666 16409 c-538 -132 -1053 -862 -1476 -2094 -608 -1773 -991-4503 -1015 -7245 -3 -300 -3 -540 -1 -535 3 6 169 822 371 1815 201 993 3691813 373 1823 4 11 380 -1490 961 -3838 525 -2120 956 -3853 958 -3851 3 3-1171 7655 -1181 7699 -3 11 13 2 44 -25 111 -98 3740 -3642 3740 -3652 -1-18 -2585 -4048 -2596 -4047 -5 0 -606 908 -1335 2016 -730 1109 -1330 2020-1335 2025 -5 5 -904 -1390 -2087 -3237 -1143 -1785 -2077 -3247 -2075 -32482 -2 894 827 1983 1842 1089 1014 2024 1885 2077 1934 l97 90 1133 -1027 c623-565 1134 -1031 1136 -1035 2 -3 -246 -395 -550 -870 -305 -475 -564 -882-577 -904 l-24 -40 39 36 c21 20 368 342 769 715 402 374 735 683 742 687 8 5301 -254 805 -712 436 -395 794 -717 796 -716 2 2 -265 411 -593 910 -329 499-593 910 -588 914 5 3 499 463 1098 1021 599 558 1092 1015 1095 1015 4 0 967-870 2140 -1933 1172 -1064 2133 -1932 2134 -1930 2 2 -959 1464 -2134 3250l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 17548 256 135 651 202 919 404 1614 921 2527 1479 2608 44 7 80 16 80 21 0 13114 -2 190 -25 391 -119 801 -612 1150 -1381 666 -1471 1093 -3708 1219 -63774 -96 9 -140 10 -97 1 91 -23 616 -44 967 -221 3548 -933 6353 -1854 7303-168 173 -341 283 -515 327 -103 26 -242 26 -350 -1z"/><path d="M9434 7560 c0 -74 1 -105 3 -67 2 37 2 97 0 135 -2 37 -3 6 -3 -68z"/><path d="M9443 7270 c0 -25 2 -35 4 -22 2 12 2 32 0 45 -2 12 -4 2 -4 -23z"/><path d="M9443 7145 c0 -22 2 -30 4 -17 2 12 2 30 0 40 -3 9 -5 -1 -4 -23z"/><path d="M9442 6980 c0 -19 2 -27 5 -17 2 9 2 25 0 35 -3 9 -5 1 -5 -18z"/></g></svg> McMaster Rocketry</div>
+  <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">
+    <span class="bars" aria-hidden="true"></span>Menu
+  </button>
+  <!-- TODO(robin): point these at the real routes once the Astro build exists -->
+  <div class="navlinks" id="navlinks">
+    <a href="#fleet">Rockets</a><a href="#subs">Subsystems</a>
+    <a href="../final/members.html">Members</a>
+    <a href="../final/sponsors.html">Sponsors</a>
+    <a href="../final/join.html">Join</a>
+  </div>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="duo" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix"
+      values="0.2126 0.7152 0.0722 0 0
+              0.2126 0.7152 0.0722 0 0
+              0.2126 0.7152 0.0722 0 0
+              0 0 0 1 0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.10 0.66"/>
+      <feFuncG type="table" tableValues="0.00 0.09"/>
+      <feFuncB type="table" tableValues="0.04 0.25"/>
+    </feComponentTransfer>
+  </filter>
+</defs></svg>
+
+<main id="main">
+<header class="hero">
+  <div class="vidhold" id="vidhold">
+    <video class="bgvid" id="bgvid" autoplay muted loop playsinline preload="metadata"
+           aria-hidden="true" tabindex="-1" poster="../../public/media/hero-poster.jpg" data-src-sm="../../public/media/hero-720.mp4" data-src-lg="../../public/media/hero.mp4">
+    <!-- media="" on <source> is ignored inside <video> (it only works in
+         <picture>), so the small file is the default and site.js upgrades
+         to the full cut on large screens when the connection allows. -->
+    <source src="../../public/media/hero-720.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="heroveil"></div>
+  <div class="slot">Launch Canada 2025 · Nimbus</div>
+
+  <div class="wrap hero-in">
+    <div class="phase"><b>Apogee · Osiris · Launch Canada 2026</b><i></i></div>
+    <h1 class="bignum"><span class="n">33,584</span><span class="u">FT</span></h1>
+    <div class="subline">
+      <p>That is how high a rocket built by undergraduates went. Mach 1.92, six vehicles
+         in five years, every part designed and flown by students.</p>
+      <div class="who">McMaster University<br>Hamilton, Ontario</div>
+    </div>
+  </div>
+  <button class="vidtoggle" id="vidtoggle">Pause video</button>
+</header>
+
+<section id="fleet">
+  <div class="wrap">
+    <div class="glass">
+      <div class="shead">
+        <div><div class="tag">Phase 01 — The Fleet</div>
+          <h2>Every rocket,<br>by how high it got.</h2></div>
+        <p>Six vehicles, plotted against their measured apogee. Three of them flew before
+           we kept records this good — those are drawn as gaps, not guesses.</p>
+      </div>
+      <div class="chart" id="chart"></div>
+      <div class="chartfoot">
+        <span>Measured apogee, feet</span><span>Dashed = no verified record</span>
+        <span>LC · Launch Canada &nbsp; SAC · Spaceport America Cup</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="subs">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Phase 02 — Subsystems</div>
+        <h2>Seven teams,<br>one flight.</h2></div>
+      <p>Each subteam owns a moment of the ascent. Together they are the reason the
+         vehicle leaves the pad — and the reason it comes back.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<div class="bandmark" aria-hidden="true"><i></i><span id="bandbig">Pad · ground effect</span></div>
+
+</main>
+
+<div class="wrap"><footer class="mono">
+  <span>Mockup — C.1 · Ascent</span>
+  <span>McMaster Maroon #7A003C</span>
+  <span>Launch Canada 2025 footage</span>
+</footer></div>
+
+<script>
+const APOGEE_MAX=33584;
+const FLEET=[
+ {n:"Marauder I",  y:"2022 · LC",  ft:null},
+ {n:"Marauder II", y:"2023 · SAC", ft:null},
+ {n:"Luminis",     y:"2024 · SAC", ft:null},
+ {n:"Luminis V2",  y:"2024 · LC",  ft:10456},
+ /* TODO(robin): 18,000 is rounded, in a chart captioned "Measured apogee". Replace
+    with the measured figure, or set ft:null so it draws as a no-data bar. */
+ {n:"Nimbus",      y:"2025 · LC",  ft:18000},
+ {n:"Osiris",      y:"2026 · LC",  ft:33584}
+];
+/* TODO(robin): these T+ figures do not survive a sanity check — coast to apogee from
+   Mach 1.92 is ~63s, not 8s, and 10,236 m in 138 s averages 74 m/s under canopy.
+   Recompute from a real flight profile before this ships. */
+const SUBS=[
+ {n:"Propulsion", ph:"T-0 · Ignition",      d:"Motor integration and the thrust that gets everything off the pad."},
+ {n:"Airframe",   ph:"T+6s · Max-Q",        d:"Structures and aerodynamics — the airframe survives peak loading here."},
+ {n:"Composites", ph:"T+6s · Max-Q",        d:"Carbon and fibreglass layup, tooling and finishing."},
+ {n:"Avionics",   ph:"T+15s · Burnout<span class='flag'>unverified</span>",     d:"Flight computers and telemetry deciding when every event fires."},
+ {n:"Payload",    ph:"T+23s · Apogee<span class='flag'>unverified</span>",      d:"The experiment we fly — and the reason the rocket exists."},
+ {n:"Recovery",   ph:"T+24s · Drogue<span class='flag'>unverified</span>",      d:"Dual-deployment parachutes that bring the vehicle back intact."},
+ {n:"Operations", ph:"T+162s · Touchdown<span class='flag'>unverified</span>",  d:"Launch procedure, range safety and everything on the day."}
+];
+
+/* ---- fleet as an apogee chart ---- */
+const chart=document.getElementById('chart');
+let html='';
+[10000,20000,30000].forEach(v=>{
+  html+=`<div class="gridline" style="bottom:${v/APOGEE_MAX*100}%"><span>${v.toLocaleString()} ft</span></div>`;
+});
+html+='<div class="bars">';
+FLEET.forEach(f=>{
+  const pct = f.ft ? (f.ft/APOGEE_MAX*100) : 14;
+  /* was a <button> with no handler — six keyboard stops that did nothing */
+  html+=`<div class="bar${f.ft?'':' nodata'}" style="--pct:${pct}">
+    <span class="col"><span class="val">${f.ft?f.ft.toLocaleString()+' ft':'no data'}</span></span>
+    <span class="nm"><b>${f.n}</b><span>${f.y}</span></span>
+  </div>`;
+});
+html+='</div>';
+chart.innerHTML=html;
+
+/* ---- subsystems keyed to phase ---- */
+document.getElementById('grid').innerHTML = SUBS.map((s,i)=>`
+  <a class="cell" href="../final/subteam.html">
+    <div><div class="ph">${s.ph}</div><h3>${s.n}</h3><p>${s.d}</p></div>
+    <div class="idx">${String(i+1).padStart(2,'0')} / 07</div>
+  </a>`).join('') + `
+  <a class="cell cta" href="../final/join.html">
+    <div><div class="ph">Recruitment</div><h3>Join the team &rarr;</h3>
+    <p>No experience required. We hire first years, and we are not only engineers.</p></div>
+    <div class="idx">Applications</div>
+  </a>`;
+
+/* ---- the climb ---- */
+const PHASES=[
+ [0,     "On pad"],      [900,  "Ignition"],  [4000, "Powered flight"],
+ [9000,  "Max-Q"],       [15000,"Burnout"],   [24000,"Coasting"],
+ [31000, "Apogee"],      [33000,"Drogue out"]
+];
+/* real atmosphere, not sci-fi: 33,584 ft is ~10.2 km — high troposphere, not space */
+const BANDS=[
+ [0,     "Pad · ground effect", "Ground"],
+ [1000,  "Lower troposphere",   "Lower trop."],
+ [10000, "Mid troposphere",     "Mid trop."],
+ [25000, "Upper troposphere · tropopause approach", "Upper trop."]
+];
+const track=document.getElementById('track'), fill=document.getElementById('fill'),
+      marker=document.getElementById('marker'), altEl=document.getElementById('alt'),
+      phEl=document.getElementById('ph'), bandMini=document.getElementById('bandmini'),
+      bandBig=document.getElementById('bandbig'), vidhold=document.getElementById('vidhold'),
+      s1=document.getElementById('s1'), s2=document.getElementById('s2'),
+      s3=document.getElementById('s3'), rim=document.getElementById('rim');
+[0,10000,20000,30000].forEach(v=>{
+  const d=document.createElement('div'); d.className='tick';
+  d.style.bottom=(v/APOGEE_MAX*100)+'%';
+  d.innerHTML=`<span>${v?(v/1000)+'k':'0'}</span>`;
+  track.appendChild(d);
+});
+/* linear ramp helper: 0 below a, 1 above b */
+const ramp=(p,a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
+let ticking=false;
+/* Ambient motion — the crossfading sky and the video parallax — is a desktop
+   gesture. On touch it fights momentum scrolling, and under reduced motion it is
+   exactly the full-viewport colour shift the setting exists to stop. The readouts
+   still update; only the ambient layers are gated. */
+const ambient=()=>matchMedia('(min-width:901px)').matches
+  && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function onScroll(){
+  if(ticking) return; ticking=true;
+  requestAnimationFrame(()=>{
+    const max=document.documentElement.scrollHeight-innerHeight;
+    const p=max>0?Math.min(1,Math.max(0,scrollY/max)):0;
+    const alt=Math.round(APOGEE_MAX*p);
+
+    altEl.textContent=alt.toLocaleString()+' ft';
+    let name=PHASES[0][1];
+    for(const [a,n] of PHASES) if(alt>=a) name=n;
+    phEl.textContent=name;
+    let big=BANDS[0][1], mini=BANDS[0][2];
+    for(const [a,l,s] of BANDS) if(alt>=a){ big=l; mini=s; }
+    bandBig.textContent=big; bandMini.textContent=mini;
+
+    marker.style.top=(100-p*100)+'%';
+    fill.style.height=(p*100)+'%';
+
+    if(ambient()){
+      /* the sky crossfades through the bands — this is the climb */
+      s1.style.opacity=ramp(p,.04,.30);
+      s2.style.opacity=ramp(p,.26,.58);
+      s3.style.opacity=ramp(p,.52,.90);
+      rim.style.opacity=1-ramp(p,.10,.72)*.86;
+
+      /* footage drifts down and away beneath you as you rise past it */
+      vidhold.style.transform='translate3d(0,'+(scrollY*.34)+'px,0)';
+    }
+    ticking=false;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',onScroll,{passive:true});
+onScroll();
+
+/* ---------- mobile navigation ---------- */
+const nav=document.getElementById('nav'), navToggle=document.getElementById('navtoggle');
+const setNav=open=>{ nav.dataset.open=String(open); navToggle.setAttribute('aria-expanded',String(open)); };
+navToggle.addEventListener('click',()=>setNav(nav.dataset.open!=='true'));
+addEventListener('keydown',e=>{ if(e.key==='Escape'&&nav.dataset.open==='true'){setNav(false);navToggle.focus();} });
+document.getElementById('navlinks').addEventListener('click',e=>{ if(e.target.closest('a')) setNav(false); });
+matchMedia('(min-width:861px)').addEventListener('change',e=>{ if(e.matches) setNav(false); });
+
+
+/* The `media` attribute on <source> is ignored inside <video> — it only works in
+   <picture> — so the small cut is the default and we upgrade on large screens. */
+(function(){
+  var v=document.getElementById('bgvid'); if(!v||!v.dataset.srcLg) return;
+  var conn=navigator.connection||{};
+  var thrifty=conn.saveData===true||/^(slow-2g|2g|3g)$/.test(conn.effectiveType||'');
+  if(matchMedia('(min-width:701px)').matches && !thrifty
+     && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    v.src=v.dataset.srcLg; v.load();
+  }
+})();
+
+/* ---------- background video pause control (WCAG 2.2.2) ---------- */
+const _reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const vid=document.getElementById('bgvid'), vidToggle=document.getElementById('vidtoggle');
+if(vid&&vidToggle){
+  if(_reduce){ vid.pause(); vidToggle.textContent='Play video';  }
+  vidToggle.addEventListener('click',()=>{
+    const paused=vid.paused;
+    if(paused) vid.play(); else vid.pause();
+    vidToggle.textContent = paused ? 'Pause video' : 'Play video';
+    
+  });
+}
+</script>
+</body>
+</html>
