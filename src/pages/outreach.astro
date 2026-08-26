@@ -30,7 +30,7 @@ import outreach from '../data/outreach.json';
       <div><div class="tag">On campus</div><h2>What we've done.</h2></div>
     </div>
     <div class="event-blocks">
-      {outreach.events.map((e) => <OutreachEvent {...e} />)}
+      {outreach.events.filter((e) => !('hidden' in e && e.hidden)).map((e) => <OutreachEvent {...e} />)}
     </div>
 
     <div class="btnrow">

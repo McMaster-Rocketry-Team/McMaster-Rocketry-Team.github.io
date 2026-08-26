@@ -16,7 +16,8 @@
       "detail": null,
       "todo": "date, and what the evening actually was",
       "photo": null,
-      "photoAlt": null
+      "photoAlt": null,
+      "hidden": true
     },
     {
       "slug": "fall-preview",
@@ -25,7 +26,8 @@
       "detail": null,
       "todo": null,
       "photo": null,
-      "photoAlt": null
+      "photoAlt": null,
+      "hidden": true
     },
     {
       "slug": "first-robotics",
@@ -43,7 +45,8 @@
       "detail": null,
       "todo": "date, and what the evening actually was",
       "photo": null,
-      "photoAlt": null
+      "photoAlt": null,
+      "hidden": true
     },
     {
       "slug": "info-nights",

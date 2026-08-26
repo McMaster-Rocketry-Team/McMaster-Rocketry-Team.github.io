@@ -220,6 +220,8 @@ a.card:hover .ico,a.card:focus-visible .ico{color:var(--white)}
 .card .ico{width:42px;height:42px;color:var(--fog-300);
   transition:color var(--dur) var(--ease)}
 section.paper .card .ico{color:var(--ignition)}
+.card.card-cta h3{color:var(--ignition)}
+a.card.card-cta:hover h3,a.card.card-cta:focus-visible h3{color:var(--white)}
 
 /* ---------- CTA PANEL (from C.2's Stage 04 — the only block that asked) ---------- */
 .cta{background:var(--graphite-700);padding:clamp(56px,11vh,132px) 0;position:relative}
@@ -253,6 +255,7 @@ footer.site{background:var(--graphite-900);border-top:1px solid rgba(255,255,255
   gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
 section.paper .dl{background:var(--rule-light);border-color:var(--rule-light)}
 .dl div{background:var(--graphite-900);padding:20px}
+.dl>a.card{min-height:0;padding:20px;border-radius:0}
 section.paper .dl div{background:var(--paper)}
 .dl dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--muted-on-ink);margin:0 0 9px}
@@ -567,7 +570,17 @@ h1,h2,h3,h4,p,dd,dt,td,th,li,.card,.tier,.roster .person{overflow-wrap:break-wor
 /* .dl tracks had a fixed 150px minimum while holding clamp(24px,3vw,34px)
    display type, so a real motor designation overflowed the cell. */
 .dl{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}
+.dl.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1000px){.dl.c4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.dl.c4{grid-template-columns:1fr}}
+@media(min-width:1001px){.dl.c4>.dl-cta{grid-column:span 3}}
 .dl dd{font-size:clamp(20px,2.4vw,30px);overflow-wrap:break-word;hyphens:auto}
+.dl-cta{padding:0;display:flex;flex-direction:column}
+.dl-cta dt{position:absolute;left:-9999px;top:0}
+.dl-cta dd{margin:0;padding:0;flex:1;font-size:inherit;font-weight:inherit;letter-spacing:inherit;
+  font-variant-numeric:inherit;line-height:inherit}
+.dl-cta .card{min-height:100%;border-radius:0}
+.dl-cta .card h3{margin-top:0}
 
 /* Empty grid cells used to show the container's rule colour through, reading as a
    failed load. auto-fit was the wrong fix — it gave 5 columns for 8 cards at wide
@@ -582,9 +595,10 @@ section.paper .cards,section.paper .tiers{border-right-color:var(--rule-light);
   border-bottom-color:var(--rule-light)}
 .dl{background:none;gap:0;border-right:1px solid var(--rule-dark);
   border-bottom:1px solid var(--rule-dark)}
-.dl>div{border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}
+.dl>div,.dl>a.card,.dl-cta{border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}
 section.paper .dl{border-right-color:var(--rule-light);border-bottom-color:var(--rule-light)}
-section.paper .dl>div{border-top-color:var(--rule-light);border-left-color:var(--rule-light)}
+section.paper .dl>div,section.paper .dl>a.card,section.paper .dl-cta{border-top-color:var(--rule-light);
+  border-left-color:var(--rule-light)}
 
 /* The join steps spent 66px of a 324px phone viewport on a two-character
    counter. */

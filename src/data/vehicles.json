@@ -7,6 +7,11 @@
     "comp": "Launch Canada",
     "status": "flew",
     "image": "/media/rockets/marauder-i.png",
+    "photos": [
+      { "src": "/media/rockets/marauder-i-gallery-team.webp", "alt": "The Marauder I team stands with the completed red airframe under the Launch Canada tent, McMaster 23 lettering visible." },
+      { "src": "/media/rockets/marauder-i-gallery-pad.webp", "alt": "Marauder I stands vertical on the rail in the sandy clearing before launch." },
+      { "src": "/media/rockets/marauder-i-gallery-liftoff.webp", "alt": "A rocket leaves the pad with a visible exhaust plume at Launch Canada 2022." }
+    ],
     "apogee": null,
     "mach": null,
     "lengthIn": 100.6,
@@ -22,6 +27,11 @@
     "comp": "Spaceport America Cup",
     "status": "flew",
     "image": "/media/rockets/marauder-ii.png",
+    "photos": [
+      { "src": "/media/rockets/marauder-ii-gallery-team.webp", "alt": "The Marauder II team holds the airframe at Spaceport America Cup 2023, bib 55 and McMaster lettering readable." },
+      { "src": "/media/rockets/marauder-ii-gallery-pad.webp", "alt": "Marauder II stands vertical on the desert launch rail, bib 55." },
+      { "src": "/media/rockets/marauder-ii-gallery-recovery.webp", "alt": "The recovered Marauder II airframe lies on the desert floor after landing." }
+    ],
     "apogee": null,
     "mach": null,
     "lengthIn": 105,
@@ -37,6 +47,12 @@
     "comp": "Spaceport America Cup",
     "status": "flew",
     "image": "/media/rockets/luminis.png",
+    "photos": [
+      { "src": "/media/rockets/luminis-gallery-team.webp", "alt": "The Luminis team holds the completed airframe under a tent at the Spaceport America Cup pad area." },
+      { "src": "/media/rockets/luminis-gallery-pad.webp", "alt": "Luminis lies horizontal on the rail cradle, bib 58 legible, while the team makes final checks before launch." },
+      { "src": "/media/rockets/luminis-gallery-liftoff.webp", "alt": "A rocket climbs from the pad with a smoke trail, spectators watching from the range." },
+      { "src": "/media/rockets/luminis-gallery-recovery.webp", "alt": "A team member kneels beside the recovered Luminis airframe, bib 58 visible, with parachute and hardware laid out on the ground." }
+    ],
     "apogee": null,
     "mach": null,
     "lengthIn": 110,
@@ -52,6 +68,12 @@
     "comp": "Launch Canada",
     "status": "flew",
     "image": "/media/rockets/luminis-v2.png",
+    "photos": [
+      { "src": "/media/rockets/luminis-v2-gallery-team.webp", "alt": "The full Luminis V2 team holds the completed airframe at the Launch Canada 2024 site, LUMINIS lettering and sponsor logos legible." },
+      { "src": "/media/rockets/luminis-v2-gallery-pad.webp", "alt": "Luminis V2 stands vertical on the pad against clear sky, team members beside it for scale." },
+      { "src": "/media/rockets/luminis-v2-gallery-liftoff.webp", "alt": "Luminis V2 climbs from the pad with a visible exhaust trail against the treeline." },
+      { "src": "/media/rockets/luminis-v2-gallery-recovery.webp", "alt": "The team gathers around the recovered Luminis V2 airframe on the ground after landing." }
+    ],
     "apogee": 10564,
     "mach": null,
     "lengthIn": null,
@@ -67,6 +89,11 @@
     "comp": "Launch Canada",
     "status": "flew",
     "image": "/media/rockets/nimbus.png",
+    "photos": [
+      { "src": "/media/rockets/nimbus-gallery-team.webp", "alt": "Team members hold the yellow Nimbus airframe outdoors at Launch Canada 2025, NIMBUS lettering visible." },
+      { "src": "/media/rockets/nimbus-gallery-pad.webp", "alt": "A team member works on Nimbus at the rail against a clear sky before launch." },
+      { "src": "/media/rockets/nimbus-gallery-liftoff.webp", "alt": "A smoke trail rises over the treeline after Nimbus clears the pad." }
+    ],
     "apogee": 17862,
     "mach": null,
     "lengthIn": 106.3,

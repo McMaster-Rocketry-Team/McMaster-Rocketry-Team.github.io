@@ -1,11 +1,20 @@
 ---
+import { getCollection } from 'astro:content';
 import Logo from './Logo.astro';
 import site from '../data/site.json';
+import { sortVehicles } from '../lib/fleet';
 
 interface Props {
   current: string; // e.g. "/rockets"
 }
 const { current } = Astro.props;
+const subteams = await getCollection('subteams');
+const vehicles = sortVehicles(await getCollection('vehicles'));
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const onRocketsIndex = path === '/rockets';
+const onRocketsSection = path === '/rockets' || path.startsWith('/rockets/');
+const onSubteamsIndex = path === '/subteams';
+const onSubteamsSection = path === '/subteams' || path.startsWith('/subteams/');
 ---
 
 <a class="skip" href="#main">Skip to content</a>
@@ -22,8 +31,54 @@ const { current } = Astro.props;
     <span class="bars" aria-hidden="true"></span>Menu
   </button>
   <div class="navlinks" id="navlinks">
-    {site.nav.map((item) => (
-      <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>
-    ))}
+    {site.nav.map((item) => {
+      if (item.href === '/rockets') {
+        return (
+          <div class="navitem">
+            <a
+              href={item.href}
+              class:list={['navitem-top', onRocketsSection && 'is-section']}
+              aria-current={onRocketsIndex ? 'page' : undefined}
+              aria-haspopup="true"
+            >{item.label}</a>
+            <ul class="navmenu" aria-label="Rockets">
+              {vehicles.map(({ data: v }) => (
+                <li>
+                  <a
+                    href={`/rockets/${v.slug}`}
+                    aria-current={path === `/rockets/${v.slug}` ? 'page' : undefined}
+                  >{v.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+      if (item.href === '/subteams') {
+        return (
+          <div class="navitem">
+            <a
+              href={item.href}
+              class:list={['navitem-top', onSubteamsSection && 'is-section']}
+              aria-current={onSubteamsIndex ? 'page' : undefined}
+              aria-haspopup="true"
+            >{item.label}</a>
+            <ul class="navmenu" aria-label="Subteams">
+              {subteams.map(({ data: s }) => (
+                <li>
+                  <a
+                    href={`/subteams/${s.slug}`}
+                    aria-current={path === `/subteams/${s.slug}` ? 'page' : undefined}
+                  >{s.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+      return (
+        <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>
+      );
+    })}
   </div>
 </nav>

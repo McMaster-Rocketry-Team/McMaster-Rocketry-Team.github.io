@@ -1,6 +1,44 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 (docs + review lock-in) · branch `dev` (ahead of `origin/dev`; see latest check-in)
+**Last updated:** 2026-08-26 (sponsors, galleries, nav) · branch `dev` (ahead of `origin/dev`; see latest check-in)
+
+## 2026-08-26 sponsors, galleries, nav flyout
+
+Working tree since `b1267c2` (docs + ReviewMode lock-in). Sections below that
+still say "budget figures and contact names still TODO", "Vehicle galleries
+not wired", or "four fixed slots" are historical; this section is current.
+
+### What landed this session
+
+- **Sponsorship budget:** all nine line items from the 2026–27 Budget sheet
+  transcribed into `src/data/sponsorship.json` and `mockups/final/data.js`
+  ($50,034 total). Budget grid uses `.dl.c4` with a "Get package" CTA cell.
+- **Sponsorship contacts:** Robin Anderson (President) and Christina Zhou
+  (Project manager) in `sponsorship.json`. Footer CTA and budget CTA link to
+  `/docs/sponsorship-package-2026-2027.pdf` (also copied to `mockups/final/docs/`).
+- **Vehicle galleries:** `photos[]` arrays wired in `vehicles.json` for
+  Marauder I/II, Luminis, Luminis V2, and Nimbus (25 webps under
+  `public/media/rockets/`). `[slug].astro` renders a variable list when
+  `photos` is non-empty; Osiris was already wired. Empty fallback still shows
+  four TODO slots for vehicles with no photos.
+- **Outreach:** three thin events (Space Industry night, Fall preview, Isaac
+  dinner) marked `hidden: true` in `outreach.json` so the page shows six real
+  events, not nine placeholders.
+- **Nav:** Subteams flyout on desktop (hover/focus-within); nested list on
+  mobile. Section highlight when on any `/subteams/*` route.
+- **Copy:** subteams index headline → "Seven teams, one rocket." (Astro +
+  mockup). Subteams index ReviewMode locked 0–25.
+
+### Still open after this session
+
+- Mockup vehicle galleries still use four hardcoded TODO slots (`rocket.html` /
+  `render.js`); Astro is ahead here.
+- Partner logos on `/sponsors` still TODO.
+- Three liftoff frames (Marauder I, Luminis, Nimbus) need Robin to confirm
+  the airframe is readable before captions ship.
+- Luminis V2 `lengthIn`; member programmes/years; four missing lead portraits.
+- Finish ReviewMode on outreach / sponsors / members / other vehicles.
+- `check:todo` gate before prod deploy.
 
 ## 2026-08-26 docs + ReviewMode lock-in
 

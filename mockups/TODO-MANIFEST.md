@@ -12,8 +12,14 @@ Nimbus apogee `17862` from the flight computer; apply URL + Clubsfest /
 Facultyfest / application dates in `join.json`; Instagram / Discord /
 LinkedIn in `site.json`; weekly time commitment answered in the join FAQ;
 sponsorship **tier amounts** Bronze `$500+` / Silver `$2,000+` / Gold
-`$3,000+`; Nimbus `lengthIn` + `build`; Marauder I/II, Luminis, and Osiris
-`lengthIn` also set; all six fleet cutouts shipped (including Luminis V2).
+`$3,000+`; **season budget figures** ($50,034 total, nine line items from
+Budget.xlsx); **two named sponsorship contacts** (Robin Anderson, Christina
+Zhou); **sponsorship package PDF** at `/docs/sponsorship-package-2026-2027.pdf`;
+Nimbus `lengthIn` + `build`; Marauder I/II, Luminis, and Osiris
+`lengthIn` also set; all six fleet cutouts shipped (including Luminis V2);
+**vehicle gallery photos** wired in Astro for five of six vehicles (Osiris +
+Marauder I/II, Luminis, Luminis V2, Nimbus); outreach thinned to six visible
+events (three hidden pending detail).
 
 ## Blocks a real launch
 
@@ -21,8 +27,8 @@ sponsorship **tier amounts** Bronze `$500+` / Silver `$2,000+` / Gold
 |---|---|---|
 | ~~**Team email address**~~ | done, `rocketry@mcmaster.ca` | |
 | ~~**Three sponsorship amounts**~~ | done in `src/data/sponsorship.json` tiers | |
-| **Two named contacts** | `final/sponsors.html` → `src/data/sponsorship.json` | "A named human" was a sponsor blocker. The slot exists, the name does not. |
-| **Season budget figures** | `final/sponsors.html` → `src/data/sponsorship.json` | The most persuasive content on the page per the sponsor review. |
+| ~~**Two named contacts**~~ | done in `src/data/sponsorship.json` | Robin Anderson, Christina Zhou. |
+| ~~**Season budget figures**~~ | done in `src/data/sponsorship.json` | Nine line items, $50,034 total. |
 | ~~**Application form URL**~~ | done, real Microsoft Forms URL in `join.json` `applyHref` | |
 | ~~**Clubsfest / Facultyfest dates + application window**~~ | done, real dates in `join.json` `dates` | |
 | ~~**Nimbus apogee**~~ | done, `17862`, sourced from the flight computer | |
@@ -38,9 +44,9 @@ sponsorship **tier amounts** Bronze `$500+` / Silver `$2,000+` / Gold
 | Real subteam description and first-term detail | `src/data/subteams.json` (`detail` / `first` / `skills` still null except Avionics) |
 | Vehicle specs — mass, motor, recovery, result; Luminis V2 length | `src/data/vehicles.json` (`lengthIn` set on five of six; Luminis V2 still null) |
 | Build narrative per vehicle | `src/data/vehicles.json` `build` (Nimbus and Osiris have one, the other four do not) |
-| Photographs + captions | `src/pages/rockets/[slug].astro` gallery, still four hardcoded TODO slots. Shortlists exist under `rockets/<slug>/SHORTLIST.md` for all six vehicles, none wired in. Osiris has gallery webps on disk already. |
+| ~~Photographs + captions~~ — five of six wired in Astro | `src/data/vehicles.json` `photos[]` + `[slug].astro` variable gallery. Mockup still four fixed slots. Confirm three unconfirmed liftoff frames before launch. |
 | Partner logos, linked, with company-name alt text | `src/pages/sponsors.astro` |
-| Sponsorship package PDF | `src/pages/sponsors.astro` |
+| ~~Sponsorship package PDF~~ | done, `/docs/sponsorship-package-2026-2027.pdf` |
 | ~~Social handles (Instagram, Discord, LinkedIn)~~ | done, all three set in `src/data/site.json` `social` |
 | Answer to "do I need to pay anything?" | **removed** from `join.json`. $600 / $65 figures from minutes were not published. Say if the FAQ should come back. |
 | Outreach TODOs | `src/data/outreach.json` — STEM name/when, Space Industry night, Isaac dinner, info nights, whether LC bingo runs every Launch Canada |

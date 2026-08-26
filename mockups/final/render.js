@@ -207,7 +207,10 @@
       var dd = b.amount ? '<dd>' + b.amount + '<small>' + b.note + '</small></dd>'
                          : '<dd class="nodata">TODO<small>' + b.note + '</small></dd>';
       return '<div><dt>' + b.label + '</dt>' + dd + '</div>';
-    }).join('');
+    }).join('') +
+      '<div class="dl-cta"><dt>Sponsor</dt><dd>' +
+      '<a class="card card-cta" href="' + D.sponsorship.packagePdf + '" download>' +
+      '<div><h3>Get package</h3><p>The 2026&ndash;27 sponsorship package: tiers, benefits, and what we fly.</p></div></a></dd></div>';
   }
   var tiersHost = document.querySelector('[data-sponsor-tiers]');
   if(tiersHost){

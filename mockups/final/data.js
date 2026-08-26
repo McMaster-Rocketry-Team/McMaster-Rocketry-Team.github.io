@@ -110,17 +110,24 @@ window.MRT = {
   ],
 
   sponsorship: {
+    packagePdf: "docs/sponsorship-package-2026-2027.pdf",
     budget: [
-      { label:"Airframe &amp; composites", note:"carbon, tooling, consumables", amount:null },
-      { label:"Motors &amp; propulsion",   note:"per vehicle, per season",       amount:null },
-      { label:"Avionics &amp; payload",    note:"boards, sensors, telemetry",    amount:null },
-      { label:"Competition travel",        note:"getting the team and the rocket there", amount:null }
+      { label:"Airframe", note:"commercial motor fuel and casing assembly, stock metal and fasteners for structural components", amount:"$7,882" },
+      { label:"Payload", note:"technical experiment, control PCBs, metal stock and fasteners, workspace equipment", amount:"$5,875" },
+      { label:"Recovery", note:"parachutes, recovery harness lines and hardware, commercial recovery electronics, airbrake structure", amount:"$2,849" },
+      { label:"Controls and avionics bay", note:"recovery control PCBs, flight data acquisition, avionics bay structure", amount:"$3,429" },
+      { label:"Composite manufacturing", note:"fibreglass and carbon fibre, epoxy, jigs, PPE", amount:"$1,845" },
+      { label:"Operations", note:"outreach activities, Ad Astra magazine printing, food for events", amount:"$2,759" },
+      { label:"Propulsion", note:"engine assembly, pressure testing setup, fill system, engine testing, fuel casting setup", amount:"$9,445" },
+      { label:"Competition expenses 2027", note:"Launch Canada fees, accommodation, travel", amount:"$15,950" },
+      { label:"Total", note:"2026–27 season projected expenses", amount:"$50,034" }
     ],
     /* Tiers, amounts and benefit lists are transcribed from "Rocketry
        Sponsorship Package 2026-2027.pdf" (gitignored, see PLAN.md and
-       .gitignore), treated as source of truth per Robin, 2026-08-25. The
-       PDF itself has no budget figures or named contacts, so those two
-       sections below stay TODO. */
+       .gitignore), treated as source of truth per Robin, 2026-08-25. Season
+       budget figures are from "McMaster Rocketry 2026-2027 Budget.xlsx"
+       (2026-08-26), transcribed line for line from the Budget sheet. Named
+       contacts below transcribed from team records, 2026-08-26. */
     tiers: [
       { name:"Bronze", amount:"$500+", lead:false, benefits:[
         "Small logo placement on the website and T-shirts",
@@ -153,10 +160,10 @@ window.MRT = {
       { name:null, tier:"Bronze" }
     ],
     contacts: [
-      { role:"Sponsorship", title:"Operations lead", name:null,
+      { role:"Sponsorship", title:"President", name:"Robin Anderson",
         blurb:"The person who will answer your email and follow through." },
-      { role:"Technical questions", title:"Chief engineer", name:null,
-        blurb:"For questions about the vehicle, the flight data or the competition." }
+      { role:"Sponsorship", title:"Project manager", name:"Christina Zhou",
+        blurb:"Partnership coordination and follow-up. We both monitor the team inbox." }
     ]
   },
 
