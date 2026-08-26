@@ -1,6 +1,99 @@
 # MRT site rebuild — progress and handoff
 
-**Last updated:** 2026-08-25 (check-in) · branch `dev` @ `42970d2`
+**Last updated:** 2026-08-26 (overnight check-in) · branch `dev` @ `5227156`
+
+## 2026-08-26 overnight check-in
+
+Worked overnight while Robin was away, per her go-ahead. Two things landed,
+each its own commit on `dev`:
+
+**`065cdec`: content-mechanics pass.** Every `&mdash;`/em dash across all 8
+mockup pages plus `data.js`/`render.js`/`site.js` (35+ occurrences, prose and
+code comments both) is gone, replaced with a period, comma, colon or
+parentheses per CLAUDE.md rule 2. Several repeated "X, not Y" clipped-negation
+sentences varied. Five of the fifteen two-beat `<br>` headlines flattened to
+plain phrases to break the site-wide formula; the rest kept as the display-type
+device. **Fixed a real fabrication, not just style**: `join.html`/`data.js`
+asserted "we run two info sessions in the first two weeks of term" and "fifteen
+minutes with the lead of whichever subteam you picked" as settled fact. Neither
+was true. Robin corrected this directly: recruitment is via Clubsfest and
+Facultyfest, applications stay open until a TBD date, then each subteam runs
+its own 30-minute-to-an-hour interview. `data.js`'s `join.steps`/`join.dates`
+now say that, with real `todo` flags on the two things still unconfirmed
+(whether Clubsfest/Facultyfest happens every term, the close date). Also cut
+`safety.html` from the deadline scope per Robin's call: delinked from nav
+(`data.js`'s `nav` array) and the footer (`render.js`) on all 7 shipped pages,
+verified no other page still links to it. The file and its `data.js` `safety:`
+object are untouched in the repo for a post-launch add.
+
+**`076487f` + `5227156`: started and finished the Astro port**, all six items
+from this file's old "Astro port notes" section below. Scaffolded Astro at the
+repo root (pnpm; no Tailwind/GSAP, see the note in that section below for why).
+`vehicles` and `subteams` are content collections (`src/content.config.ts`,
+backed by `src/data/vehicles.json`/`subteams.json`) with every field that was
+`null` in `data.js` kept optional/nullable in the Zod schema, so the build
+does not fail on placeholders that are meant to stay empty pre-launch. Added
+the `status: flew | failed | scrubbed | in-build` field this file asked for
+(all six currently `flew`; no vehicle needed a different value yet). All 7
+shipped pages ported to `.astro`, rendering at build time instead of
+`render.js`'s runtime DOM writes: `/`, `/rockets`, `/rockets/[slug]`,
+`/subteams`, `/subteams/[slug]`, `/members`, `/join`, `/sponsors`. Subteam lead
+cards now read from `members.json` by role match instead of carrying a second
+hardcoded "TODO: name", one less place to fill in later. `pnpm astro build`
+succeeds, 19 pages, zero errors. Added `.github/workflows/build-check.yml`
+(build-only sanity check on every branch but `main`, no TODO gate) and
+`deploy.yml` (push to `main` → build → `scripts/check-todo.mjs` as a hard
+go-live gate → deploy to Pages). **Neither workflow has run on GitHub yet**:
+nothing has been pushed. The TODO gate currently fails, correctly: 267
+placeholder occurrences across the built site right now, all real and all
+already tracked below.
+
+**Not done, on purpose** (see "Explicitly out of scope" in the plan this
+session worked from): the ~7 per-subteam `/members/<slug>` roster pages that
+`macrocketry-urls.txt` implies, and a separate `/contact` route. Neither
+exists anywhere in `mockups/final/` either, so building them would be new scope
+during a week already tight on time, not a port of existing work.
+
+**Verification still needed, could not do it here**: no browser was
+available this session (headless, no Chrome extension connected) to visually
+click through the built site. Structural/content checks all pass (every
+route responds 200 via `pnpm astro preview`, every vehicle/subteam link
+resolves, TODO badges render where expected, no leaked HTML entities,
+Nimbus's "rounded, source it" flag survived the port) but nobody has looked
+at a rendered page yet. **First thing to do on review**: `pnpm install &&
+pnpm astro preview`, click through all 8 routes (7 ported + `/safety` if
+curious), compare against `mockups/final/*.html` in a second tab.
+
+**Questions queued for Robin**, ranked, not yet asked in chat because she
+had already stepped out when this check-in was written. See the bottom of
+this section.
+
+### Quick, no files needed
+
+1. **Nimbus apogee** (`src/data/vehicles.json`, `nimbus.apogee`): publish the
+   real flight-computer figure, or set to `null` so it renders "No verified
+   record" like the other unpublished three? Four of eight review-panel
+   readers called the current rounded `18,000` the single most damaging
+   number on the site.
+2. **Member count**: `src/data/members.json` says `"100+"`. Still accurate?
+3. **Application form URL and Discord invite**: do these exist yet
+   (`join.applyHref` and the `discord.gg/TODO` link), or genuinely not set up?
+4. **Clubsfest/Facultyfest dates, application open/close dates**: known yet
+   for this term, or still TBD?
+5. **Do members pay anything** (join FAQ: membership fee, travel cost to
+   competition, what the team covers)?
+
+### Needs digging up files or names, whenever there's time
+
+- Sponsorship budget figures (4 line items) and two named contacts
+  (sponsorship lead, chief engineer).
+- Nine leads' names, programme and year (`src/data/members.json`).
+- Founded year, faculties represented, first-years count (member stats).
+- Social handles (Instagram, Discord, LinkedIn).
+- One team photo, plus member roster portraits.
+- Confirm the drafted "about six hours a week" time commitment is real.
+- Whether the per-subteam `/members/<slug>` pages and `/contact` route
+  (flagged above as skipped tonight) should get built before launch or after.
 
 ## 2026-08-25 check-in
 
