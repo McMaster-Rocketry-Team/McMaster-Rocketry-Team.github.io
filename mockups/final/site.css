@@ -32,6 +32,7 @@
   --paper:#F7F7F6;
   --altimeter:#2F7D5B;
   --amber:#D98A2B;
+  --amber-on-ink:#E8B471;   /* 7.8:1 on graphite-900 tinted amber, status-tag label ink so amber itself stays off text per spec.md */
   --white:#FFFFFF;
   --muted-on-paper:var(--graphite-700);   /* 10.13:1 on paper */
   --muted-on-ink:var(--fog-500);          /* 5.38:1 on graphite-900 */
@@ -95,14 +96,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:cent
   justify-content:space-between;min-height:var(--navh);
   padding:12px max(var(--gutter),env(safe-area-inset-right)) 12px max(var(--gutter),env(safe-area-inset-left));
   padding-top:max(12px,env(safe-area-inset-top));
-  /* Resting state is a top-down fade, not a solid bar — every page opens on a
-     dark hero/header so this reads fine at scroll:0. site.js flips
-     data-scrolled once that dark section has passed under the nav, swapping
-     in a flat --graphite-900 so nav text stays legible over paper sections. */
-  background:linear-gradient(180deg,rgba(26,26,26,.88) 0%,rgba(26,26,26,0) 100%);
-  border-bottom:1px solid transparent;
-  transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease)}
-nav[data-scrolled="true"]{background:var(--graphite-900);border-bottom-color:rgba(255,255,255,.12)}
+  /* A top-down scrim at every scroll position, never a flat solid bar and
+     no blur. data-scrolled only deepens the same gradient so nav text stays
+     legible once a paper section is behind it; it never swaps to a solid
+     fill and there is no border-bottom to read as a hard line. */
+  background:linear-gradient(180deg,rgba(26,26,26,.85) 0%,rgba(26,26,26,.55) 45%,rgba(26,26,26,0) 100%);
+  transition:background var(--dur) var(--ease)}
+nav[data-scrolled="true"]{
+  background:linear-gradient(180deg,rgba(26,26,26,.92) 0%,rgba(26,26,26,.65) 50%,rgba(26,26,26,0) 100%)}
 .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-display);
   font-weight:700;font-size:16px;letter-spacing:-.01em;min-height:44px}
 .brand .logo{width:22px;height:auto;color:var(--white);flex:0 0 auto}
@@ -178,15 +179,12 @@ section.paper .shead p{color:var(--muted-on-paper)}
   transition:background var(--dur) var(--ease),color var(--dur) var(--ease),
              border-color var(--dur) var(--ease)}
 .btn:hover,.btn:focus-visible{background:var(--white);color:var(--graphite-900);border-color:var(--white)}
-/* white ground + ignition ink = 6.09:1 */
-.btn.solid{background:var(--white);border-color:var(--white);color:var(--ignition)}
-.btn.solid:hover,.btn.solid:focus-visible{background:var(--paper);color:var(--ignition-deep)}
+/* ignition ground + white ink = 4.72:1, primary button per spec.md, same on paper or dark grounds */
+.btn.solid{background:var(--ignition);border-color:var(--ignition);color:var(--white)}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--ignition-deep);border-color:var(--ignition-deep);color:var(--white)}
 section.paper .btn{border-color:rgba(26,26,26,.60);color:var(--graphite-900)}
 section.paper .btn:hover,section.paper .btn:focus-visible{background:var(--graphite-900);color:var(--paper);
   border-color:var(--graphite-900)}
-section.paper .btn.solid{background:var(--ignition);border-color:var(--ignition);color:var(--white)}
-section.paper .btn.solid:hover,section.paper .btn.solid:focus-visible{background:var(--ignition-deep);
-  border-color:var(--ignition-deep);color:var(--white)}
 
 /* ---------- CARD GRID ---------- */
 .cards{display:grid;gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
@@ -314,9 +312,34 @@ tbody tr:last-child td{border-bottom:0}
    overflow trap above at the first and last craft. */
 .craft{position:relative;flex:0 0 auto;min-width:150px;padding:0 0 100px;display:flex;
   flex-direction:column;align-items:center;text-decoration:none;color:inherit}
+/* Contact shadow at the baseline: a sibling of .rise, not a child of it, so
+   it does not ride the hover-lift transform below. The rocket rises off the
+   shadow instead of carrying it along, which is the whole point of pinning
+   it here. bottom:100px matches .craft's own bottom padding, so it lands on
+   the shared baseline line regardless of a vehicle's rise height. Kept to a
+   neutral, low-opacity graphite blur, not a colour or a stock card shadow:
+   the rest of the site carries no decorative shadow at all. */
+.craft::after{content:"";position:absolute;bottom:100px;left:50%;
+  width:44px;height:9px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(26,26,26,.28),transparent 75%);
+  filter:blur(1.5px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.craft:hover::after,.craft:focus-visible::after{opacity:.55;transform:translateX(-50%) scaleX(.8)}
 .craft .rise{transition:transform var(--dur) var(--ease)}
 .craft:hover .rise,.craft:focus-visible .rise{transform:translateY(-22px)}
 .craft.nodata .rise{opacity:.45}
+/* A photo's own airframe can sit within a few RGB steps of --paper (the
+   osiris.png stand-in measures ~231,221,216 against #F7F7F6), so the rocket
+   nearly disappears into the page rather than the page having no background
+   at all. Four 1px drop-shadows trace the alpha silhouette itself — nose
+   taper, fins, body — with a thin graphite rim, plus one soft blurred pass
+   for a slight contact-lit edge. Both read from the image's own transparency,
+   so they hold regardless of how light or dark a given vehicle's photo is.
+   Left off the procedural .rise svg, which already carries its own dark
+   nose/fin tones and needs no help separating from paper. */
+.craft .rise img{filter:
+  drop-shadow(1px 0 0 rgba(26,26,26,.32)) drop-shadow(-1px 0 0 rgba(26,26,26,.32))
+  drop-shadow(0 1px 0 rgba(26,26,26,.32)) drop-shadow(0 -1px 0 rgba(26,26,26,.32))
+  drop-shadow(0 6px 8px rgba(26,26,26,.14))}
 /* .val's top edge sits ~30px clear of the rocket base above it — the fins
    flare to their full width exactly at that base, and anything tighter here
    let the widest fin tips touch the value text on the tallest vehicles
@@ -329,8 +352,8 @@ tbody tr:last-child td{border-bottom:0}
   color:var(--graphite-900);font-variant-numeric:tabular-nums;text-align:center}
 .craft.nodata .val{color:var(--muted-on-paper)}
 .craft .val .flag{display:inline-flex;align-items:center;gap:4px;margin-left:6px;
-  padding:1px 6px 1px 5px;border-radius:2px;background:rgba(217,138,43,.18);
-  color:var(--graphite-900);font-size:10.5px;letter-spacing:.06em;vertical-align:1px}
+  padding:1px 6px 1px 5px;border-radius:2px;background:rgba(217,138,43,.14);
+  color:var(--amber-on-ink);font-size:10.5px;letter-spacing:.06em;vertical-align:1px}
 .craft .val .flag::before{content:"";width:5px;height:5px;border-radius:50%;
   background:var(--amber);flex:0 0 auto}
 .craft .nm{position:absolute;bottom:10px;left:0;right:0;text-align:center;
@@ -369,6 +392,7 @@ tbody tr:last-child td{border-bottom:0}
   .craft{flex:none;width:100%;padding:14px 0;flex-direction:row;align-items:center;
     gap:14px;border-bottom:1px solid var(--rule-light)}
   .craft:last-child{border-bottom:0}
+  .craft::after{display:none}
   .craft .rise svg{width:30px;height:40px}
   .craft .rise img{width:auto;height:40px}
   .craft:hover .rise,.craft:focus-visible .rise{transform:none}

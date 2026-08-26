@@ -28,7 +28,7 @@
   };
   var mailBadge = function(){ return D.site.email ? '' : ' ' + todo('real team email'); };
 
-  /* Repeated "Email us" CTAs across every page — wire every one to the same
+  /* Repeated "Email us" CTAs across every page: wire every one to the same
      address so there is one place to fix it instead of five. */
   document.querySelectorAll('[data-mail]').forEach(function(a){
     a.setAttribute('href', mailHref(a.getAttribute('data-mail-subject') || ''));
@@ -67,7 +67,8 @@
           '<p style="margin:16px 0 0;font-size:14.5px"><a href="' + mailHref() + '">' +
           (D.site.email || 'TODO@macrocketry.ca') + '</a>' + mailBadge() + '</p></div>' +
         '<div><h2 class="fh">The team</h2><ul role="list">' +
-          '<li><a href="rockets.html">Rockets</a></li><li><a href="subteam.html">Subteams</a></li>' +
+          '<li><a href="rockets.html">Rockets</a></li>' +
+          '<li><a href="subteam.html">Subteams</a></li>' +
           '<li><a href="members.html">Members</a></li><li><a href="join.html">Join us</a></li></ul></div>' +
         '<div><h2 class="fh">Get in touch</h2><ul role="list">' +
           '<li><a href="sponsors.html">Sponsorship</a></li>' +
@@ -78,13 +79,13 @@
   /* ---------------- fleet lineup (index + rockets index) ----------------
      Rockets on a shared baseline, sized to relative apogee, ported from
      mockups/ds-fleet.html. Each vehicle is a real link with real text
-     content — the rocket art is aria-hidden, since the name and apogee are
+     content: the rocket art is aria-hidden, since the name and apogee are
      already in .nm/.val as text. */
   var maxRiseH = 460, minRiseH = 200, noDataH = 110;
 
   /* Procedural placeholder rocket, ported from ds-fleet.html and recoloured
      onto the ignition/graphite tokens. Swap for a real PNG per vehicle by
-     giving that entry an `image` field in data.js — this renders an <img>
+     giving that entry an `image` field in data.js. This renders an <img>
      at the same computed height instead, no other change needed. */
   var rocketGlyph = function(h){
     var w = Math.round(h * 0.17), cx = w / 2, nose = h * 0.16, finW = w * 0.85;
@@ -101,6 +102,18 @@
       ' Z" fill="#3D2E2F"/>' +
       '<rect x="0" y="' + (nose + h * 0.09) + '" width="' + w + '" height="' + Math.max(2, h * 0.012) +
       '" fill="#BF2026"/></svg>';
+  };
+
+  /* Generic silhouette, used anywhere a real photo (a member portrait, a
+     range-day shot) is not in yet: a visible placeholder rather than a
+     blank box, so the layout can be judged before the photos exist. */
+  var personGlyph = function(){
+    return '<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" ' +
+      'style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true">' +
+      '<rect width="100" height="100" fill="var(--fog-100)"/>' +
+      '<circle cx="50" cy="38" r="17" fill="var(--fog-300)"/>' +
+      '<path d="M15 100 C15 71 30 60 50 60 C70 60 85 71 85 100 Z" fill="var(--fog-300)"/>' +
+      '</svg>';
   };
 
   var buildFleetLineup = function(host){
@@ -154,7 +167,7 @@
     fleetTableHost.innerHTML = D.vehicles.map(function(v){
       var apo = v.apogee
         ? '<span' + (v.apogeeUnverified ? '' : '') + '>' + v.apogee.toLocaleString() + ' ft' +
-          (v.apogeeUnverified ? ' <span class="todo" aria-hidden="true">rounded — source it</span>' : '') + '</span>'
+          (v.apogeeUnverified ? ' <span class="todo" aria-hidden="true">rounded, source it</span>' : '') + '</span>'
         : '<span style="color:var(--muted-on-paper)">No verified record</span>';
       var detailCell = withDetail
         ? '<td><a href="rocket.html?v=' + v.slug + '" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for ' + v.name + '</span></a></td>'
@@ -218,7 +231,7 @@
   var contactsHost = document.querySelector('[data-sponsor-contacts]');
   if(contactsHost){
     contactsHost.innerHTML = D.sponsorship.contacts.map(function(c){
-      /* c.name falls back to plain "TODO: name" text, not todo() — that
+      /* c.name falls back to plain "TODO: name" text, not todo(): that
          helper's span is aria-hidden, and as the only content of an <h3>
          it would leave the heading with no accessible name at all. */
       return '<div class="card"><div><div class="tag">' + c.role + '</div>' +
@@ -271,7 +284,7 @@
   var rosterHost = document.querySelector('[data-member-roster]');
   if(rosterHost){
     rosterHost.innerHTML = D.members.leads.map(function(m){
-      /* Fallbacks are plain text, not todo() — that helper's span is
+      /* Fallbacks are plain text, not todo(): that helper's span is
          aria-hidden, and .role/.prog are the only accessible content these
          cards have; hiding them would leave nothing for a screen reader
          to announce instead of a placeholder. */
@@ -279,9 +292,34 @@
         ? '<p class="prog">' + m.year + ' &middot; ' + m.programme + '</p>'
         : '<p class="prog nodata-inline">TODO: programme &amp; year</p>';
       return '<div class="person"><div class="shot" aria-hidden="true">' +
-        '<span>Portrait slot<br>TODO: photo + alt text</span></div>' +
+        personGlyph() +
+        '<span style="position:relative;background:rgba(247,247,246,.88);padding:4px 8px;border-radius:2px">' +
+        'Portrait slot<br>TODO: photo + alt text</span></div>' +
         '<h3>' + m.role + '</h3><p class="role">' + (m.name || 'TODO: name') + '</p>' + prog + '</div>';
     }).join('');
+  }
+
+  /* ---------------- safety page ---------------- */
+  var pillarsHost = document.querySelector('[data-safety-pillars]');
+  if(pillarsHost){
+    pillarsHost.innerHTML = D.safety.pillars.map(function(p){
+      return '<div class="card"><div><div class="tag">' + p.tag + '</div><h3>' + p.title + '</h3>' +
+        '<p>' + (p.body || todo(p.todo)) + '</p></div></div>';
+    }).join('');
+  }
+  var credsHost = document.querySelector('[data-safety-creds]');
+  if(credsHost){
+    credsHost.innerHTML = D.safety.credentials.map(function(c){
+      var dd = c.value ? '<dd>' + c.value + '<small>' + c.note + '</small></dd>'
+                        : '<dd class="nodata">TODO<small>' + c.note + '</small></dd>';
+      return '<div><dt>' + c.label + '</dt>' + dd + '</div>';
+    }).join('');
+  }
+  var groundTestHost = document.querySelector('[data-safety-groundtest]');
+  if(groundTestHost){
+    groundTestHost.innerHTML = D.safety.groundTest.body
+      ? '<p>' + D.safety.groundTest.body + '</p>'
+      : '<p>' + todo(D.safety.groundTest.todo) + '</p>';
   }
 
   /* ---------------- vehicle page ---------------- */
@@ -297,7 +335,7 @@
     set('#v-summary', v.summary || todo('one-paragraph summary, written each year'));
 
     var apo = v.apogee
-      ? v.apogee.toLocaleString() + (v.apogeeUnverified ? ' <span class="todo" aria-hidden="true">rounded — source it</span>' : '')
+      ? v.apogee.toLocaleString() + (v.apogeeUnverified ? ' <span class="todo" aria-hidden="true">rounded, source it</span>' : '')
       : '<span class="nodata-inline">No verified record</span>';
     var rows = [
       ['Apogee', apo, v.apogee ? 'feet above ground level' : 'flew, but no instrumented figure'],

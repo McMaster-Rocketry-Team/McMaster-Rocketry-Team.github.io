@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rockets · McMaster Rocketry</title>
-<meta name="description" content="Every vehicle the McMaster Rocketry Team has designed, built and flown.">
+<title>Safety · McMaster Rocketry</title>
+<meta name="description" content="How the McMaster Rocketry Team keeps launches safe: sign-off chain, range safety and ground testing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav id="nav" data-page="rockets">
+<nav id="nav" data-page="safety">
   <a class="brand" href="index.html">
     <svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
@@ -45,7 +45,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">
     <span class="bars" aria-hidden="true"></span>Menu
   </button>
-  <div class="navlinks" id="navlinks"><a href="rockets.html" aria-current="page">Rockets</a><a href="subteam.html">Subteams</a><a href="members.html">Members</a><a href="sponsors.html">Sponsors</a><a href="join.html">Join us</a></div>
+  <div class="navlinks" id="navlinks"><a href="rockets.html">Rockets</a><a href="safety.html" aria-current="page">Safety</a><a href="subteam.html">Subteams</a><a href="members.html">Members</a><a href="sponsors.html">Sponsors</a><a href="join.html">Join us</a></div>
 </nav>
 
 <noscript>
@@ -60,44 +60,50 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="tag">The fleet</div>
-    <h1><span data-vehicle-count>Six</span> rockets.<br><span data-year-span>Five</span> years.</h1>
-    <p class="lede">Every vehicle the team has designed, built and flown, in order.
-      <span data-norecord-count>Three</span> of them flew before we kept instrumented
-      records, and we say so rather than guessing.</p>
+    <div class="tag">Safety</div>
+    <h1>Nothing flies<br>without sign-off.</h1>
+    <p class="lede">Who has authority on launch day, who supervises the design before that, and what gets
+       tested on the ground before anything leaves the pad. Three questions a faculty advisor, a
+       competition judge and a parent each asked us for, independently.</p>
   </div>
 </header>
 
-<section class="paper fleet">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
+<section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">By year</div><h2>Apogee, every flight.</h2></div>
-      <p>Launch Canada scores against a declared target, so the tallest rocket
-         does not automatically win.</p>
-      <div class="statline" data-fleet-stat></div>
+      <div><div class="tag">Sign-off chain</div><h2>Who&rsquo;s<br>responsible.</h2></div>
+      <p>One named person per role, not a policy document nobody can point to.</p>
     </div>
-    <div data-fleet-chart></div>
+    <dl class="dl" data-safety-creds></dl>
+    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+      <span class="todo" aria-hidden="true">TODO(robin)</span> Names, certification levels and the
+      sanctioning body. This is the credibility case three independent reviewers asked for
+      (see PLAN.md &sect;0/&sect;7).
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">How we operate</div><h2>Before it flies.</h2></div>
+      <p>Every vehicle goes through the same three checks, regardless of how the season is going.</p>
+    </div>
+    <div class="cards c3" data-safety-pillars></div>
   </div>
 </section>
 
 <section class="paper">
   <div class="wrap">
-    <div class="tablewrap">
-      <table>
-        <caption class="vh">All vehicles with year, competition and measured apogee</caption>
-        <thead><tr><th scope="col">Vehicle</th><th scope="col">Year</th>
-          <th scope="col">Competition</th><th scope="col">Measured apogee</th>
-          <th scope="col">Detail</th></tr></thead>
-        <tbody data-fleet-table="detail"></tbody>
-      </table>
+    <div class="shead">
+      <div><div class="tag">Ground testing</div><h2>Tested before<br>it&rsquo;s trusted.</h2></div>
+      <p>What happens in the weeks before a launch, not just on launch day.</p>
     </div>
-    <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
-      Apogee is the highest altitude the vehicle reached, measured by the onboard flight
-      computer. Where we have no instrumented figure we publish nothing rather than an
-      estimate.
-    </p>
+    <div class="prose" data-safety-groundtest></div>
+    <div class="gallery" style="margin-top:28px">
+      <figure><div class="ph"><span>Photo slot: range day<br>TODO</span></div>
+        <figcaption>TODO: describe who is pictured and what they are doing, not what is visible.</figcaption></figure>
+    </div>
   </div>
 </section>
 

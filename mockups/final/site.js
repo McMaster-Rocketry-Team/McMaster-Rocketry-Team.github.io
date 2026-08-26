@@ -1,4 +1,4 @@
-/* MRT — shared behaviour for the hybrid direction.
+/* MRT: shared behaviour for the hybrid direction.
    Everything here degrades to a working page if JS never runs. */
 (function(){
   'use strict';
@@ -27,10 +27,11 @@
     });
   }
 
-  /* ---------- nav background: fade-to-solid on scroll ----------
-     nav rests as a transparent gradient over the page's dark hero/header;
-     past that it needs a solid background to stay legible over paper
-     sections. 24px covers the gradient's own height with margin. */
+  /* ---------- nav scrim: deepen gradient on scroll ----------
+     nav is a top-down transparent gradient at every scroll position (see
+     site.css); data-scrolled only deepens that same gradient past the hero
+     so text stays legible over paper sections. 24px covers the gradient's
+     own height with margin. */
   if(nav){
     var setScrolled = function(){ nav.dataset.scrolled = String(window.scrollY > 24); };
     setScrolled();
@@ -41,8 +42,8 @@
   var vid = document.getElementById('bgvid');
   var vidToggle = document.getElementById('vidtoggle');
 
-  /* The `media` attribute on <source> is ignored inside <video> — it only works
-     in <picture> — so the markup ships the small cut as the default and we
+  /* The `media` attribute on <source> is ignored inside <video> (it only works
+     in <picture>), so the markup ships the small cut as the default and we
      upgrade to the full file only on a large screen with a willing connection. */
   if(vid && vid.dataset.srcLg){
     var wide = matchMedia('(min-width:701px)').matches;
@@ -56,7 +57,7 @@
 
   if(vid && vidToggle){
     if(reduce){ vid.pause(); vidToggle.textContent = 'Play video'; }
-    /* The label carries the state, so no aria-pressed — a button reading
+    /* The label carries the state, so no aria-pressed: a button reading
        "Play video" that reports itself as "pressed" contradicts itself. */
     vidToggle.addEventListener('click', function(){
       var paused = vid.paused;
@@ -66,7 +67,7 @@
   }
 
   /* ---------- fleet lineup reveal ----------
-     render.js ships every lineup with .reveal-pending already on it — that
+     render.js ships every lineup with .reveal-pending already on it. That
      class is the only thing hiding the rockets, and nothing here ever adds
      it. So a page with this script blocked, or an IntersectionObserver that
      never fires, is left showing the finished lineup rather than a stuck-empty

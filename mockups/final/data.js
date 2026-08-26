@@ -1,11 +1,11 @@
 /* ==========================================================================
-   MRT — the site's content data.
+   MRT: the site's content data.
    This is the file the team edits each year. Nothing else should need touching
    to add a vehicle, a subteam, a sponsor tier or a roster name: every page
    renders itself from here, so every link resolves to the right thing and
    there is one place to update instead of one per page.
 
-   Use null for anything not yet known — it renders as a visible TODO badge or
+   Use null for anything not yet known: it renders as a visible TODO badge or
    "No verified record" rather than a guess. Never invent a value to fill a
    gap; an invented programme or year is worse than an empty one, because it
    reads as fact. See PLAN.md decision 2.
@@ -30,14 +30,14 @@ window.MRT = {
   ],
 
   /* Six vehicles today. The fleet lineup and every grid it feeds are built to
-     hold at least nine without a layout change — see the FLEET LINEUP section
-     of site.css, in particular the .craft min-width note.
+     hold at least nine without a layout change (see the FLEET LINEUP section
+     of site.css, in particular the .craft min-width note).
 
      image: a PNG of the vehicle, nose pointing up, transparent background,
      tall rather than square (the fleet lineup renders it at a height between
-     200px and 460px, scaled to relative apogee — the whole point of the
+     200px and 460px, scaled to relative apogee, which is the whole point of the
      component). Until it's set, the lineup draws a placeholder rocket glyph
-     in its place — see render.js. Suggested path:
+     in its place (see render.js). Suggested path:
      ../../public/media/rockets/<slug>.png
 
      TODO(robin): the five vehicles below are temporarily pointed at
@@ -69,10 +69,10 @@ window.MRT = {
       /* TODO(robin): 18,000 is rounded, in a column headed "Measured apogee".
          Publish the flight-computer figure, or set this to null so it renders
          as "No verified record" like the three above. Four of eight reviewers
-         called this the single most damaging item on the site — see PLAN.md §4. */
+         called this the single most damaging item on the site (see PLAN.md §4). */
       apogee:18000, apogeeUnverified:true, mach:null,
-      summary:"First place in the Payload Challenge at Launch Canada 2025.",
-      specs:{ length:null, mass:null, motor:null, recovery:null, result:"1st, Payload Challenge", accel:null },
+      summary:"First place in the Payload Challenge and third in the Basic Launch Category at Launch Canada 2025.",
+      specs:{ length:null, mass:null, motor:null, recovery:null, result:"1st, Payload Challenge &middot; 3rd, Basic Launch Category", accel:null },
       build:null },
     { slug:"osiris",      name:"Osiris",      year:2026, comp:"Launch Canada", image:"../../public/media/rockets/osiris.png",
       apogee:33584, mach:1.92,
@@ -83,7 +83,7 @@ window.MRT = {
 
   subteams: [
     { slug:"airframe",   name:"Airframe",
-      blurb:"Structures and aerodynamics — the airframe has to survive peak loading and come back straight.",
+      blurb:"Structures and aerodynamics. The airframe has to survive peak loading and come back straight.",
       detail:null, first:null, skills:null, hours:null },
     { slug:"avionics",   name:"Avionics",
       blurb:"Flight computers and telemetry. This subteam decides when every event on the flight fires.",
@@ -98,7 +98,7 @@ window.MRT = {
       blurb:"Dual-deployment parachutes and the sequencing that brings the vehicle back intact.",
       detail:null, first:null, skills:null, hours:null },
     { slug:"payload",    name:"Payload",
-      blurb:"The experiment we fly — and, most years, the reason the rocket exists at all.",
+      blurb:"The experiment we fly, and most years the reason the rocket exists at all.",
       detail:null, first:null, skills:null, hours:null },
     { slug:"composites", name:"Composites",
       blurb:"Carbon and fibreglass layup, tooling, and the finishing that makes it fly straight.",
@@ -115,36 +115,41 @@ window.MRT = {
       { label:"Avionics &amp; payload",    note:"boards, sensors, telemetry",    amount:null },
       { label:"Competition travel",        note:"getting the team and the rocket there", amount:null }
     ],
+    /* Tiers, amounts and benefit lists are transcribed from "Rocketry
+       Sponsorship Package 2026-2027.pdf" (gitignored, see PLAN.md and
+       .gitignore), treated as source of truth per Robin, 2026-08-25. The
+       PDF itself has no budget figures or named contacts, so those two
+       sections below stay TODO. */
     tiers: [
-      { name:"Supporter", amount:null, lead:false, benefits:[
-        "Name on the sponsors page and in the season report",
-        "Invitation to the end-of-season showcase",
-        "Post-season technical report"
+      { name:"Bronze", amount:"$500+", lead:false, benefits:[
+        "Small logo placement on the website and T-shirts",
+        "Logo in all team videos and presentations",
+        "Featured social media posts"
       ]},
-      { name:"Partner", amount:null, lead:true, benefits:[
-        "Everything in Supporter",
-        "Logo on the airframe and on the team&rsquo;s competition banner",
-        "Logo on this site at partner size",
-        "One recruiting session with the team",
-        "Launch-day invitation"
+      { name:"Silver", amount:"$2,000+", lead:true, benefits:[
+        "Medium logo placement on the website, banner, T-shirts and rocket",
+        "Logo in all team videos and presentations",
+        "Featured social media posts",
+        "Short write-up on the sponsorship page"
       ]},
-      { name:"Title", amount:null, lead:false, benefits:[
-        "Everything in Partner",
-        "Naming rights on the season&rsquo;s vehicle",
-        "Prominent logo placement on airframe and site",
-        "Named in every press mention we place"
-        /* "Access to the full team resume book" removed — the advisor's review
-           flagged bulk access to ~60 students' personal data as paid
-           consideration the team cannot promise. Replace with an opt-in book
-           once one exists. See PLAN.md §4. */
+      { name:"Gold", amount:"$3,000+", lead:false, benefits:[
+        "Large logo placement on the website, banner, T-shirt and rocket",
+        "Logo in all team videos and presentations",
+        "Featured social media posts",
+        "Long write-up on the sponsorship page",
+        "Sponsor outreach events with rockets",
+        "Customized promotion as requested"
+        /* The PDF's own resume-book style bulk access to member contact
+           info never appears in its tier lists, so there is nothing to strip here,
+           unlike the drafted tiers this replaces. See PLAN.md §4. */
       ]}
     ],
     /* Logo slots, in display order. slug/name null renders an empty slot. */
     partners: [
-      { name:null, tier:"Title" },
-      { name:null, tier:"Partner" },
-      { name:null, tier:"Partner" },
-      { name:null, tier:"Supporter" }
+      { name:null, tier:"Gold" },
+      { name:null, tier:"Silver" },
+      { name:null, tier:"Silver" },
+      { name:null, tier:"Bronze" }
     ],
     contacts: [
       { role:"Sponsorship", title:"Operations lead", name:null,
@@ -157,33 +162,33 @@ window.MRT = {
   join: {
     applyHref: null,
     steps: [
-      { title:"Come to an info session",
-        body:"We run two in the first two weeks of term. You will meet the subteam leads, see the current vehicle, and get a straight answer about time commitment.",
-        todo:"dates, time and room" },
+      { title:"Meet us at Clubsfest or Facultyfest",
+        body:"We have a table at both events at the start of term.",
+        todo:"confirm we run this every term" },
       { title:"Fill in the form",
         body:"It asks what you are interested in and how much time you have. It does not ask for a resume and there is no minimum GPA.",
-        todo:"link the real application form" },
-      { title:"Have a chat",
-        body:"Fifteen minutes with the lead of whichever subteam you picked. This is us working out where you would enjoy yourself, not a test." },
+        todo:"link the real application form, confirm the close date" },
+      { title:"Interview with a subteam",
+        body:"Every subteam runs its own interview, usually 30 minutes to an hour, about what you would want to work on." },
       { title:"Start building",
-        body:"You are on the team. First-term members shadow a build, take on one small deliverable, and are on the range crew by the spring if they want to be." }
+        body:"You are on the team. First-term members shadow a build and take on one small deliverable." }
     ],
     dates: [
-      { label:"Info sessions",      note:"first two weeks of term" },
-      { label:"Applications open",  note:"date" },
-      { label:"Applications close", note:"date" },
-      { label:"First build night",  note:"date" }
+      { label:"Clubsfest / Facultyfest", note:"date" },
+      { label:"Applications open",       note:"date" },
+      { label:"Applications close",      note:"date" },
+      { label:"Interviews",              note:"per subteam, after applications close" }
     ],
     faq: [
       { q:"I have never built anything. Can I still join?",
         a:"Yes, and most of us started there. First-term members are paired with someone who has done the job before, and your first deliverable is deliberately small. The team exists to teach this." },
       { q:"I am not in engineering. Is there a place for me?",
-        a:"Yes. Operations is a full subteam, not an afterthought — it runs sponsorship, the budget, and everything we do on campus. Commerce, communications, humanities and science students all sit on it. Payload also takes science students most years." },
+        a:"Yes. Operations is a full subteam: it runs sponsorship, the budget, and everything we do on campus. Commerce, communications, humanities and science students all sit on it. Payload also takes science students most years." },
       { q:"How much time does it actually take?",
         a:"About six hours a week for most members, rising in the four weeks before a launch and dropping to almost nothing over exams. We plan around the academic term.",
         todo:"confirm the real figure" },
       { q:"Do I need to pay anything?", a:null,
-        todo:"answer this — membership fee, travel costs to competition, and what the team covers" },
+        todo:"answer this: membership fee, travel costs to competition, and what the team covers" },
       { q:"Can I join partway through the year?",
         a:"Usually yes. Email us and we will tell you honestly whether a subteam has room right now, rather than putting you on a list." },
       { q:"What if I want to try a different subteam later?",
@@ -191,14 +196,39 @@ window.MRT = {
     ]
   },
 
+  /* Requested by the review panel: three reviewers (faculty advisor, Launch
+     Canada judge, parent) independently called safety/supervision content
+     the site's biggest missing credibility asset (see PLAN.md §0/§7). Every
+     field below is a safety claim or a named credential, so none of it is
+     drafted here. Claude writes the page structure and labels; Robin fills
+     in every value. See CLAUDE.md: "Claude drafts non-technical prose only,
+     never invent specs, numbers, or safety claims." */
+  safety: {
+    pillars: [
+      { tag:"Sanctioning", title:"Sanctioned launches", body:null,
+        todo:"which organisation sanctions our launches, and what that review covers" },
+      { tag:"Supervision", title:"Faculty supervision", body:null,
+        todo:"named faculty advisor, their role, and how design sign-off works" },
+      { tag:"Range safety", title:"Range safety officer", body:null,
+        todo:"who holds this role on launch day, and their certification" }
+    ],
+    credentials: [
+      { label:"Faculty advisor",          value:null, note:"name and department" },
+      { label:"Range safety officer",     value:null, note:"name and certifying body" },
+      { label:"Team certification level", value:null, note:"highest level held, and who holds it" },
+      { label:"Sanctioning body",         value:null, note:"e.g. CAR, Tripoli: whichever applies" }
+    ],
+    groundTest: { body:null, todo:"the team's ground-test practice before a vehicle flies" }
+  },
+
   members: {
     stats: [
-      { label:"Active members",         value:"~60", note:"across seven subteams" },
+      { label:"Active members",         value:"100+", note:"across seven subteams" },
       { label:"Faculties represented",  value:null,  note:"engineering, science, commerce, humanities" },
       { label:"First years",            value:null,  note:"every year, no experience needed" },
       { label:"Founded",                value:null,  note:"year the team started" }
     ],
-    /* Programme and year are deliberately absent, not TODO-badged — the round-
+    /* Programme and year are deliberately absent, not TODO-badged. The round-
        two review's most dangerous placeholder was a fake programme/year paired
        with a TODO name (grep TODO will never catch it, and a real name would
        silently inherit the invented degree). Fill name + programme + year
