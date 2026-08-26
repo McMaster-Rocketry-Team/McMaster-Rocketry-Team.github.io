@@ -1,12 +1,10 @@
 name: Build check
 
-# Sanity check for every push/PR that isn't the production deploy: does the
-# Astro build still succeed? No TODO gate here (see deploy.yml) - dev is the
-# working branch and is expected to carry placeholder content until launch.
+# Manual only until the built site passes check:todo (no TODO strings in dist/).
+# Do not add push/PR triggers back while placeholder content remains — see
+# .cursor/rules/ci.mdc and scripts/check-todo.mjs.
 on:
-  push:
-    branches-ignore: [main]
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,3 +23,4 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm astro build
+      - run: pnpm check:todo

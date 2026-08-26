@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-// Fails the build if the literal string "TODO" reaches the built HTML. This
-// is the go-live gate, not a merge check on every push to dev: the site is
-// expected to carry visible TODO badges until Robin fills in real content,
-// per PLAN.md decision 2. Run this before flipping a production deploy live,
-// not as a blocker on iterative work.
+// Fails the build if the literal string "TODO" reaches the built HTML.
+// GitHub Actions must not run on push until this passes — see .cursor/rules/ci.mdc.
+// deploy.yml runs this on main; build-check.yml runs it on manual dispatch only.
 
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';

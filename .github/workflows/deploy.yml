@@ -1,8 +1,8 @@
 name: Deploy to GitHub Pages
 
 # Runs on push to main (the production branch) and by hand. dev is the
-# working branch and is not deployed from, so iterative content work there
-# never trips the TODO gate below.
+# working branch and is not deployed from. Automatic build-check on dev is
+# disabled until check:todo passes — see .cursor/rules/ci.mdc.
 on:
   push:
     branches: [main]

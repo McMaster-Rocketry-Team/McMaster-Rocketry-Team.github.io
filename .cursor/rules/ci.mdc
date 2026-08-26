@@ -1,0 +1,19 @@
+# CI and GitHub Actions
+
+Do **not** push to `origin` or open/merge PRs that would trigger GitHub Actions until the
+built site is TODO-free.
+
+Before any push that would hit CI:
+
+1. Run `pnpm astro build && pnpm check:todo` locally.
+2. If `check:todo` fails, stop. Do not push. Fix content or wait for Robin to supply facts.
+
+## Workflow policy
+
+- **Deploy** (`.github/workflows/deploy.yml`): runs on push to `main` only, and always runs
+  `pnpm check:todo` after build. Production must be clean.
+- **Build check** (`.github/workflows/build-check.yml`): **manual only** (`workflow_dispatch`).
+  Do not re-enable push/PR triggers until `check:todo` passes on `dev`.
+
+When Robin says the site is ready to go live, run `check:todo` once more, then push/merge to
+`main` or manually dispatch build check if a sanity run is wanted.
