@@ -370,6 +370,7 @@ tbody tr:last-child td{border-bottom:0}
     gap:14px;border-bottom:1px solid var(--rule-light)}
   .craft:last-child{border-bottom:0}
   .craft .rise svg{width:30px;height:40px}
+  .craft .rise img{width:auto;height:40px}
   .craft:hover .rise,.craft:focus-visible .rise{transform:none}
   .craft .nm{position:static;transform:none;flex:1 1 auto;text-align:left}
   .craft .nm b,.craft .nm span{display:inline}

@@ -35,32 +35,37 @@ window.MRT = {
 
      image: a PNG of the vehicle, nose pointing up, transparent background,
      tall rather than square (the fleet lineup renders it at a height between
-     120px and 280px, scaled to relative apogee — the whole point of the
+     200px and 460px, scaled to relative apogee — the whole point of the
      component). Until it's set, the lineup draws a placeholder rocket glyph
      in its place — see render.js. Suggested path:
-     ../../public/media/rockets/<slug>.png */
+     ../../public/media/rockets/<slug>.png
+
+     TODO(robin): the five vehicles below are temporarily pointed at
+     osiris.png, standing in for their own photos so the enlarged fleet
+     lineup can be judged at real scale. Revert each to image:null (its own
+     placeholder glyph) once that vehicle has a real cutout. */
   vehicles: [
-    { slug:"marauder-i",  name:"Marauder I",  year:2022, comp:"Launch Canada", image:null,
+    { slug:"marauder-i",  name:"Marauder I",  year:2022, comp:"Launch Canada", image:"../../public/media/rockets/osiris.png",
       apogee:null, mach:null,
       summary:"The first vehicle the team ever flew, and the one that proved we could get off the pad at all.",
       specs:{ length:null, mass:null, motor:null, recovery:null, result:null, accel:null },
       build:null },
-    { slug:"marauder-ii", name:"Marauder II", year:2023, comp:"Spaceport America Cup", image:null,
+    { slug:"marauder-ii", name:"Marauder II", year:2023, comp:"Spaceport America Cup", image:"../../public/media/rockets/osiris.png",
       apogee:null, mach:null,
       summary:"Our first international competition vehicle.",
       specs:{ length:null, mass:null, motor:null, recovery:null, result:null, accel:null },
       build:null },
-    { slug:"luminis",     name:"Luminis",     year:2024, comp:"Spaceport America Cup", image:null,
+    { slug:"luminis",     name:"Luminis",     year:2024, comp:"Spaceport America Cup", image:"../../public/media/rockets/osiris.png",
       apogee:null, mach:null,
       summary:"The first airframe designed around its payload rather than the other way round.",
       specs:{ length:null, mass:null, motor:null, recovery:null, result:null, accel:null },
       build:null },
-    { slug:"luminis-v2",  name:"Luminis V2",  year:2024, comp:"Launch Canada", image:null,
+    { slug:"luminis-v2",  name:"Luminis V2",  year:2024, comp:"Launch Canada", image:"../../public/media/rockets/osiris.png",
       apogee:10456, mach:null,
       summary:"The first vehicle we flew with a flight computer we trusted enough to publish the numbers from.",
       specs:{ length:null, mass:null, motor:null, recovery:null, result:null, accel:null },
       build:null },
-    { slug:"nimbus",      name:"Nimbus",      year:2025, comp:"Launch Canada", image:null,
+    { slug:"nimbus",      name:"Nimbus",      year:2025, comp:"Launch Canada", image:"../../public/media/rockets/osiris.png",
       /* TODO(robin): 18,000 is rounded, in a column headed "Measured apogee".
          Publish the flight-computer figure, or set this to null so it renders
          as "No verified record" like the three above. Four of eight reviewers

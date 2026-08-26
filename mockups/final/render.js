@@ -63,7 +63,7 @@
         '<div><h2 class="fh">' + D.site.name + '</h2>' +
           '<p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">' +
           'A student team at ' + D.site.org + ' in ' + D.site.city + '. We design, build and ' +
-          'fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>' +
+          'fly our own rockets, and we compete at Launch Canada.</p>' +
           '<p style="margin:16px 0 0;font-size:14.5px"><a href="' + mailHref() + '">' +
           (D.site.email || 'TODO@macrocketry.ca') + '</a>' + mailBadge() + '</p></div>' +
         '<div><h2 class="fh">The team</h2><ul role="list">' +
@@ -80,7 +80,7 @@
      mockups/ds-fleet.html. Each vehicle is a real link with real text
      content — the rocket art is aria-hidden, since the name and apogee are
      already in .nm/.val as text. */
-  var maxRiseH = 280, minRiseH = 120, noDataH = 70;
+  var maxRiseH = 460, minRiseH = 200, noDataH = 110;
 
   /* Procedural placeholder rocket, ported from ds-fleet.html and recoloured
      onto the ignition/graphite tokens. Swap for a real PNG per vehicle by
