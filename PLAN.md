@@ -52,6 +52,15 @@ they conflict with or add numbers beyond what is already drafted:
 - Committed `rockets/osiris/` raw photos and the sponsorship-PDF/spec-md
   gitignore entries alongside the `mockups/final/` refactor.
 
+**Second pass, same day:** removed the six rejected mockup directions and the
+chooser page (`mockups/a b c c.1 c.2 c.3`, `mockups/index.html`) from the
+working tree — still in git history at `42970d2` if needed again. Deleted the
+local `.backup-pre-fix/` (never in git; superseded by the verified `final/`
+fixes). `public/brand/logo-mark.svg` and its two PNG exports are currently
+unreferenced by any page (the header logo is an inline SVG instead) — not
+dead weight, just unwired until a favicon or social-card image needs them.
+`readme.md` is still just "init"; low priority until the site is live.
+
 This is the *progress* doc. The original spec — content audit of the 15 live URLs,
 page-by-page migration plan, day-by-day sequencing — is at
 `~/.claude/plans/iterative-riding-oasis.md` and is still valid. Read that for the
@@ -199,7 +208,10 @@ reintroduce a standalone business/outreach/finance subteam.
 
 - Deployment. Repo is `*.github.io` with no root `index.html` — publishes nothing today.
   Decide: Pages from `main` root, or a build workflow.
-- Whether `mockups/` stays in the repo long-term or moves to a tag once Astro starts.
+- ~~Whether `mockups/` stays in the repo long-term~~ — resolved 2026-08-25: the six
+  rejected directions (`a/ b/ c/ c.1/ c.2/ c.3/`) and the chooser page are removed from
+  the working tree, still recoverable from git history at commit `42970d2`. `final/`
+  stays as the active build.
 - Whether the moodboard (`inspiration/`) goes in — currently gitignored.
 - Sponsorship: the advisor wants the "resume book" tier benefit removed or made opt-in,
   a named legal recipient for money, and tax wording from Financial Affairs.
