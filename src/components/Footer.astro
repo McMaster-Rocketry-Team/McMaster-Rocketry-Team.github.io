@@ -1,0 +1,55 @@
+---
+import site from '../data/site.json';
+import TodoBadge from './TodoBadge.astro';
+import { mailHref, hasRealEmail } from '../lib/site';
+
+const socials = [
+  ['Instagram', site.social.instagram],
+  ['Discord', site.social.discord],
+  ['LinkedIn', site.social.linkedin],
+] as const;
+---
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h2 class="fh">{site.name}</h2>
+        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
+          A student team at {site.org} in {site.city}. We design, build and
+          fly our own rockets, and we compete at Launch Canada.
+        </p>
+        <p style="margin:16px 0 0;font-size:14.5px">
+          <a href={mailHref()}>{site.email || 'TODO@macrocketry.ca'}</a>
+          {!hasRealEmail() && <> <TodoBadge label="real team email" /></>}
+        </p>
+      </div>
+      <div>
+        <h2 class="fh">The team</h2>
+        <ul role="list">
+          <li><a href="/rockets">Rockets</a></li>
+          <li><a href="/subteams">Subteams</a></li>
+          <li><a href="/members">Members</a></li>
+          <li><a href="/join">Join us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="fh">Get in touch</h2>
+        <ul role="list">
+          <li><a href="/sponsors">Sponsorship</a></li>
+          <li>
+            <a href={mailHref()}>Email</a>
+            {!hasRealEmail() && <> <TodoBadge label="real team email" /></>}
+          </li>
+          {socials.map(([label, href]) => (
+            <li>
+              <a href={href || `https://${label.toLowerCase()}.com/TODO`}>{label}</a>
+              {!href && <> <TodoBadge label="link" /></>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note"><span>{site.org} · {site.city}</span></div>
+  </div>
+</footer>

@@ -1,0 +1,19 @@
+{
+  "stats": [
+    { "label": "Active members", "value": "100+", "note": "across seven subteams" },
+    { "label": "Faculties represented", "value": null, "note": "engineering, science, commerce, humanities" },
+    { "label": "First years", "value": null, "note": "every year, no experience needed" },
+    { "label": "Founded", "value": null, "note": "year the team started" }
+  ],
+  "leads": [
+    { "role": "Team lead", "name": null, "programme": null, "year": null },
+    { "role": "Chief engineer", "name": null, "programme": null, "year": null },
+    { "role": "Avionics lead", "name": null, "programme": null, "year": null },
+    { "role": "Propulsion lead", "name": null, "programme": null, "year": null },
+    { "role": "Airframe lead", "name": null, "programme": null, "year": null },
+    { "role": "Recovery lead", "name": null, "programme": null, "year": null },
+    { "role": "Payload lead", "name": null, "programme": null, "year": null },
+    { "role": "Composites lead", "name": null, "programme": null, "year": null },
+    { "role": "Operations lead", "name": null, "programme": null, "year": null }
+  ]
+}

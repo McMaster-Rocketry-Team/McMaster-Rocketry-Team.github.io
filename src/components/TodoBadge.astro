@@ -1,0 +1,10 @@
+---
+// Mirrors render.js's todo() helper: a visible amber badge so nothing ships
+// silently. See PLAN.md decision 2.
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<span class="todo" aria-hidden="true">TODO: {label}</span>

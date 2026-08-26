@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+
+const vehicles = await getCollection('vehicles');
+const best = vehicles.reduce<(typeof vehicles)[number]['data'] | null>((m, { data: v }) => {
+  return v.apogee && (!m || v.apogee > (m.apogee ?? 0)) ? v : m;
+}, null);
+---
+
+{best ? (
+  <>
+    <div class="lbl">Highest flown</div>
+    <div class="num">{best.apogee!.toLocaleString()}</div>
+    <div class="unit">ft · {best.name}, {best.year}</div>
+  </>
+) : (
+  <>
+    <div class="lbl">Highest flown</div>
+    <div class="unit">No verified record yet</div>
+  </>
+)}

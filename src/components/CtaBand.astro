@@ -1,0 +1,21 @@
+---
+import TodoBadge from './TodoBadge.astro';
+import { mailHref, hasRealEmail } from '../lib/site';
+---
+
+<section class="cta">
+  <div class="wrap">
+    <div class="tag" style="color:rgba(255,255,255,.78)">Build the next one</div>
+    <h2>We hire first years.</h2>
+    <p>We hire people who have never touched a rocket. The only thing we ask is that
+      you want to find out how high this one goes.</p>
+    <p class="fine">Find us at Clubsfest or Facultyfest at the start of term, or apply any
+      time. You do not need to be an engineer: we need people on operations as much as on airframe.</p>
+    <div class="btnrow">
+      <a class="btn solid" href="/join">How to join</a>
+      <a class="btn" href="/sponsors">Sponsor the team</a>
+      <a class="btn" href={mailHref()}>Email us</a>
+      {!hasRealEmail() && <TodoBadge label="real team email" />}
+    </div>
+  </div>
+</section>

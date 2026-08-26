@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import { rocketGlyph, riseHeight, shortComp } from '../lib/fleet';
+
+const vehicles = await getCollection('vehicles');
+const maxApogee = vehicles.reduce((m, { data: v }) => (v.apogee ? Math.max(m, v.apogee) : m), 1);
+---
+
+<div class="lineup reveal-pending">
+  {vehicles.map(({ data: v }) => {
+    const h = riseHeight(v.apogee, maxApogee);
+    const rise = v.image ? `<img src="${v.image}" alt="" style="height:${h}px;width:auto">` : rocketGlyph(h);
+    return (
+      <a class={'craft' + (!v.apogee ? ' nodata' : '')} href={`/rockets/${v.slug}`}>
+        <span class="rise" set:html={rise} />
+        <span class="val">
+          {v.apogee ? (
+            <>{v.apogee.toLocaleString()} ft{v.apogeeUnverified && <span class="flag">unverified</span>}</>
+          ) : 'No verified record'}
+        </span>
+        <span class="nm"><b>{v.name}</b><span>{shortComp(v.comp)} · {v.year}</span></span>
+      </a>
+    );
+  })}
+</div>
+<div class="wrap"><div class="baseline"></div></div>
+<div class="wrap">
+  <div class="fleetnote">
+    <span>LC = Launch Canada · SAC = Spaceport America Cup</span>
+    <span>Rocket size = relative apogee · grey = no verified record</span>
+  </div>
+</div>

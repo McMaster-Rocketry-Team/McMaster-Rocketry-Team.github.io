@@ -1,0 +1,56 @@
+{
+  "budget": [
+    { "label": "Airframe & composites", "note": "carbon, tooling, consumables", "amount": null },
+    { "label": "Motors & propulsion", "note": "per vehicle, per season", "amount": null },
+    { "label": "Avionics & payload", "note": "boards, sensors, telemetry", "amount": null },
+    { "label": "Competition travel", "note": "getting the team and the rocket there", "amount": null }
+  ],
+  "tiers": [
+    {
+      "name": "Bronze",
+      "amount": "$500+",
+      "lead": false,
+      "benefits": [
+        "Small logo placement on the website and T-shirts",
+        "Logo in all team videos and presentations",
+        "Featured social media posts"
+      ]
+    },
+    {
+      "name": "Silver",
+      "amount": "$2,000+",
+      "lead": true,
+      "benefits": [
+        "Medium logo placement on the website, banner, T-shirts and rocket",
+        "Logo in all team videos and presentations",
+        "Featured social media posts",
+        "Short write-up on the sponsorship page"
+      ]
+    },
+    {
+      "name": "Gold",
+      "amount": "$3,000+",
+      "lead": false,
+      "benefits": [
+        "Large logo placement on the website, banner, T-shirt and rocket",
+        "Logo in all team videos and presentations",
+        "Featured social media posts",
+        "Long write-up on the sponsorship page",
+        "Sponsor outreach events with rockets",
+        "Customized promotion as requested"
+      ]
+    }
+  ],
+  "partners": [
+    { "name": null, "tier": "Gold" },
+    { "name": null, "tier": "Silver" },
+    { "name": null, "tier": "Silver" },
+    { "name": null, "tier": "Bronze" }
+  ],
+  "contacts": [
+    { "role": "Sponsorship", "title": "Operations lead", "name": null,
+      "blurb": "The person who will answer your email and follow through." },
+    { "role": "Technical questions", "title": "Chief engineer", "name": null,
+      "blurb": "For questions about the vehicle, the flight data or the competition." }
+  ]
+}

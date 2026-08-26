@@ -1,0 +1,17 @@
+{
+  "pillars": [
+    { "tag": "Sanctioning", "title": "Sanctioned launches", "body": null,
+      "todo": "which organisation sanctions our launches, and what that review covers" },
+    { "tag": "Supervision", "title": "Faculty supervision", "body": null,
+      "todo": "named faculty advisor, their role, and how design sign-off works" },
+    { "tag": "Range safety", "title": "Range safety officer", "body": null,
+      "todo": "who holds this role on launch day, and their certification" }
+  ],
+  "credentials": [
+    { "label": "Faculty advisor", "value": null, "note": "name and department" },
+    { "label": "Range safety officer", "value": null, "note": "name and certifying body" },
+    { "label": "Team certification level", "value": null, "note": "highest level held, and who holds it" },
+    { "label": "Sanctioning body", "value": null, "note": "e.g. CAR, Tripoli: whichever applies" }
+  ],
+  "groundTest": { "body": null, "todo": "the team's ground-test practice before a vehicle flies" }
+}

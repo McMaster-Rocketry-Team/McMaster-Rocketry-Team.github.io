@@ -1,0 +1,36 @@
+{
+  "applyHref": null,
+  "steps": [
+    { "title": "Meet us at Clubsfest or Facultyfest",
+      "body": "We have a table at both events at the start of term.",
+      "todo": "confirm we run this every term" },
+    { "title": "Fill in the form",
+      "body": "It asks what you are interested in and how much time you have. It does not ask for a resume and there is no minimum GPA.",
+      "todo": "link the real application form, confirm the close date" },
+    { "title": "Interview with a subteam",
+      "body": "Every subteam runs its own interview, usually 30 minutes to an hour, about what you would want to work on." },
+    { "title": "Start building",
+      "body": "You are on the team. First-term members shadow a build and take on one small deliverable." }
+  ],
+  "dates": [
+    { "label": "Clubsfest / Facultyfest", "note": "date" },
+    { "label": "Applications open", "note": "date" },
+    { "label": "Applications close", "note": "date" },
+    { "label": "Interviews", "note": "per subteam, after applications close" }
+  ],
+  "faq": [
+    { "q": "I have never built anything. Can I still join?",
+      "a": "Yes, and most of us started there. First-term members are paired with someone who has done the job before, and your first deliverable is deliberately small. The team exists to teach this." },
+    { "q": "I am not in engineering. Is there a place for me?",
+      "a": "Yes. Operations is a full subteam: it runs sponsorship, the budget, and everything we do on campus. Commerce, communications, humanities and science students all sit on it. Payload also takes science students most years." },
+    { "q": "How much time does it actually take?",
+      "a": "About six hours a week for most members, rising in the four weeks before a launch and dropping to almost nothing over exams. We plan around the academic term.",
+      "todo": "confirm the real figure" },
+    { "q": "Do I need to pay anything?", "a": null,
+      "todo": "answer this: membership fee, travel costs to competition, and what the team covers" },
+    { "q": "Can I join partway through the year?",
+      "a": "Usually yes. Email us and we will tell you honestly whether a subteam has room right now, rather than putting you on a list." },
+    { "q": "What if I want to try a different subteam later?",
+      "a": "Normal, and encouraged. Plenty of people move once they have seen what the other subteams actually do." }
+  ]
+}

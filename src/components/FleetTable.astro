@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  withDetail?: boolean;
+}
+const { withDetail = false } = Astro.props;
+const vehicles = await getCollection('vehicles');
+---
+
+<table>
+  <caption class="vh">All vehicles with year, competition and measured apogee</caption>
+  <thead>
+    <tr>
+      <th scope="col">Vehicle</th>
+      <th scope="col">Year</th>
+      <th scope="col">Competition</th>
+      <th scope="col">Measured apogee</th>
+      {withDetail && <th scope="col">Detail</th>}
+    </tr>
+  </thead>
+  <tbody>
+    {vehicles.map(({ data: v }) => (
+      <tr>
+        {withDetail ? (
+          <th scope="row">{v.name}</th>
+        ) : (
+          <th scope="row"><a href={`/rockets/${v.slug}`} style="text-decoration:underline;text-underline-offset:3px">{v.name}</a></th>
+        )}
+        <td class="num">{v.year}</td>
+        <td>{v.comp}</td>
+        <td class="num">
+          {v.apogee ? (
+            <span>
+              {v.apogee.toLocaleString()} ft
+              {v.apogeeUnverified && <span class="todo" aria-hidden="true"> rounded, source it</span>}
+            </span>
+          ) : (
+            <span style="color:var(--muted-on-paper)">No verified record</span>
+          )}
+        </td>
+        {withDetail && (
+          <td><a href={`/rockets/${v.slug}`} style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for {v.name}</span></a></td>
+        )}
+      </tr>
+    ))}
+  </tbody>
+</table>
