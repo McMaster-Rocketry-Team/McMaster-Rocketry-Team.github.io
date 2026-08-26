@@ -127,7 +127,10 @@ nav[data-scrolled="true"]{
 .navtoggle .bars::before{top:0}.navtoggle .bars::after{bottom:0}
 .navtoggle[aria-expanded="true"] .bars::before{transform:translateY(4.25px) rotate(45deg)}
 .navtoggle[aria-expanded="true"] .bars::after{transform:translateY(-4.25px) rotate(-45deg)}
-@media(max-width:860px){
+/* Sixth nav item (Outreach) overflows the 860px desktop row before the
+   original hamburger kicked in. Raise the panel so six labels never collide
+   with the brand. Other 860px layout queries stay where they are. */
+@media(max-width:980px){
   .navtoggle{display:inline-flex}
   /* the panel is fixed from top:0 and paints after the toggle in DOM order, so
      the brand and the close button have to be lifted above it */
@@ -154,6 +157,16 @@ nav[data-scrolled="true"]{
   margin:14px 0 0;color:var(--white)}
 .phead .lede{margin:22px 0 0;max-width:56ch;font-size:clamp(16px,1.7vw,19px);
   line-height:1.62;color:rgba(255,255,255,.90)}
+/* Full colour by Robin's call, unlike .hero's grayscale treatment. */
+.phead.has-hero::before{content:"";position:absolute;inset:0;z-index:0;
+  background-image:var(--hero-img);background-size:cover;background-position:center}
+.phead.has-hero .wrap{position:relative;z-index:2}
+/* Translucent panel behind the hero text, same graphite-fill-plus-hairline
+   treatment as .vidtoggle, sized to the text rather than the full header. */
+.phead.has-hero .herobox{display:inline-block;max-width:100%;
+  background:rgba(26,26,26,.62);border:1px solid rgba(255,255,255,.38);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  padding:clamp(20px,4vw,40px) clamp(22px,4vw,44px)}
 
 /* ---------- SECTIONS ---------- */
 section{padding:clamp(56px,10vh,124px) 0}
@@ -220,6 +233,8 @@ a.card:hover .ico,a.card:focus-visible .ico{color:var(--white)}
 .card .ico{width:42px;height:42px;color:var(--fog-300);
   transition:color var(--dur) var(--ease)}
 section.paper .card .ico{color:var(--ignition)}
+.card.card-cta h3{color:var(--ignition)}
+a.card.card-cta:hover h3,a.card.card-cta:focus-visible h3{color:var(--white)}
 
 /* ---------- CTA PANEL (from C.2's Stage 04 — the only block that asked) ---------- */
 .cta{background:var(--graphite-700);padding:clamp(56px,11vh,132px) 0;position:relative}
@@ -278,15 +293,11 @@ tbody tr:last-child td{border-bottom:0}
 
 /* ---------- FLEET LINEUP ----------
    Rebuilt from mockups/ds-fleet.html: rockets standing on a shared baseline,
-   sized to relative apogee, rising 22px on hover/focus rather than a bar
-   chart. Two fixes on top of the wireframe:
-
-   1. --fog-500 measures 2.50:1 on --paper (below the 4.5:1 floor for text).
-      .craft .yr, .craft.nodata .val and .fleetnote used it for caption copy in
-      the wireframe; here they use --muted-on-paper (--graphite-700, 11.92:1).
-   2. .craft .val .flag (the Nimbus "unverified" marker) rendered amber text
-      directly — 2.55:1 on paper. It's now the spec's own status-tag device:
-      a dot plus a mono label on a tinted background, not the raw accent.
+   sized to relative length tip-to-tail, rising 22px on hover/focus rather
+   than a bar chart. One fix on top of the wireframe: --fog-500 measures
+   2.50:1 on --paper (below the 4.5:1 floor for text). .craft .yr and
+   .fleetnote used it for caption copy in the wireframe; here they use
+   --muted-on-paper (--graphite-700, 11.92:1).
 
    .lineup gets 26px of top padding the wireframe didn't have: overflow-x:auto
    forces overflow-y to a clipping value too (the same trap noted below on the
@@ -307,9 +318,9 @@ tbody tr:last-child td{border-bottom:0}
    that point with nowrap (as in the ds-fleet.html wireframe) let
    neighbouring labels overlap — the same collision the old bar chart's block
    comment already documents fixing once. min-width wide enough to hold the
-   longest real label ("No verified record") without bleeding past the
-   craft's own box is that fix, ported — a bleed would clip against the
-   overflow trap above at the first and last craft. */
+   longest real label without bleeding past the craft's own box is that fix,
+   ported — a bleed would clip against the overflow trap above at the first
+   and last craft. */
 .craft{position:relative;flex:0 0 auto;min-width:150px;padding:0 0 100px;display:flex;
   flex-direction:column;align-items:center;text-decoration:none;color:inherit}
 /* Contact shadow at the baseline: a sibling of .rise, not a child of it, so
@@ -326,7 +337,6 @@ tbody tr:last-child td{border-bottom:0}
 .craft:hover::after,.craft:focus-visible::after{opacity:.55;transform:translateX(-50%) scaleX(.8)}
 .craft .rise{transition:transform var(--dur) var(--ease)}
 .craft:hover .rise,.craft:focus-visible .rise{transform:translateY(-22px)}
-.craft.nodata .rise{opacity:.45}
 /* A photo's own airframe can sit within a few RGB steps of --paper (the
    osiris.png stand-in measures ~231,221,216 against #F7F7F6), so the rocket
    nearly disappears into the page rather than the page having no background
@@ -340,6 +350,15 @@ tbody tr:last-child td{border-bottom:0}
   drop-shadow(1px 0 0 rgba(26,26,26,.32)) drop-shadow(-1px 0 0 rgba(26,26,26,.32))
   drop-shadow(0 1px 0 rgba(26,26,26,.32)) drop-shadow(0 -1px 0 rgba(26,26,26,.32))
   drop-shadow(0 6px 8px rgba(26,26,26,.14))}
+/* .pale-art (Osiris and the shared osiris.png stand-in): a white-dominant
+   airframe has almost no body colour to give it visual weight next to a
+   colour-blocked vehicle like Nimbus, so the standard 1px rim above still
+   reads as thin. Widened to 1.5px and darkened rather than recolouring the
+   photo, which would misrepresent the actual paint. */
+.craft.pale-art .rise img{filter:
+  drop-shadow(1.5px 0 0 rgba(26,26,26,.5)) drop-shadow(-1.5px 0 0 rgba(26,26,26,.5))
+  drop-shadow(0 1.5px 0 rgba(26,26,26,.5)) drop-shadow(0 -1.5px 0 rgba(26,26,26,.5))
+  drop-shadow(0 6px 10px rgba(26,26,26,.22))}
 /* .val's top edge sits ~30px clear of the rocket base above it — the fins
    flare to their full width exactly at that base, and anything tighter here
    let the widest fin tips touch the value text on the tallest vehicles
@@ -350,12 +369,6 @@ tbody tr:last-child td{border-bottom:0}
 .craft .val{position:absolute;bottom:52px;left:0;right:0;
   font-family:var(--font-mono);font-size:12.5px;line-height:1.3;letter-spacing:.02em;
   color:var(--graphite-900);font-variant-numeric:tabular-nums;text-align:center}
-.craft.nodata .val{color:var(--muted-on-paper)}
-.craft .val .flag{display:inline-flex;align-items:center;gap:4px;margin-left:6px;
-  padding:1px 6px 1px 5px;border-radius:2px;background:rgba(217,138,43,.14);
-  color:var(--amber-on-ink);font-size:10.5px;letter-spacing:.06em;vertical-align:1px}
-.craft .val .flag::before{content:"";width:5px;height:5px;border-radius:50%;
-  background:var(--amber);flex:0 0 auto}
 .craft .nm{position:absolute;bottom:10px;left:0;right:0;text-align:center;
   line-height:1.25}
 .craft .nm b{display:block;font-family:var(--font-display);font-weight:600;font-size:14px;
@@ -502,7 +515,7 @@ tbody tr:last-child td{border-bottom:0}
 .steps li{counter-increment:s;position:relative;padding:26px 0 26px 66px;
   border-bottom:1px solid var(--rule-light)}
 .steps li:last-child{border-bottom:0}
-.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:26px;
+.steps li::before{content:counter(s);position:absolute;left:0;top:26px;
   font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--ignition);
   font-weight:500}
 .steps h3{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.005em;
@@ -530,13 +543,40 @@ tbody tr:last-child td{border-bottom:0}
 section.paper .prose p{color:var(--graphite-900)}
 .callout{border-left:3px solid var(--ignition);padding:4px 0 4px 20px;margin:26px 0;
   font-size:15px;line-height:1.65;color:var(--muted-on-paper)}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .gallery figure{margin:0}
+@media(max-width:620px){.gallery{grid-template-columns:1fr}}
 .gallery .ph{aspect-ratio:3/2;background:var(--fog-100);display:grid;place-items:center;
-  border:1px solid var(--rule-light)}
+  border:1px solid var(--rule-light);overflow:hidden}
+.gallery .ph img{width:100%;height:100%;object-fit:cover;display:block}
 .gallery .ph span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
 .gallery figcaption{margin-top:9px;font-size:13px;color:var(--muted-on-paper);line-height:1.5}
+
+/* Outreach split rows. Not .card (hover-fill tile) and not a 3-up grid of
+   unnamed past events. Each kind of day is one full-width block: photo on
+   the left, copy on the right, hairlines on the block not the container.
+   Compound name so a later .event or .block cannot collide. */
+.event-blocks{border-right:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark)}
+section.paper .event-blocks{border-right-color:var(--rule-light);border-bottom-color:var(--rule-light)}
+.event-block{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  min-width:0;border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}
+section.paper .event-block{border-top-color:var(--rule-light);border-left-color:var(--rule-light)}
+.event-block .ph{aspect-ratio:4/3;background:var(--fog-100);display:grid;place-items:center;
+  min-height:100%}
+.event-block .ph span{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
+.event-block img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.event-block .event-body{padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;
+  justify-content:center;gap:12px}
+.event-block h3{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(22px,2.4vw,32px);letter-spacing:-.005em;margin:0;line-height:1.15}
+.event-block p{margin:0;font-size:15px;line-height:1.65;color:rgba(255,255,255,.72);max-width:52ch}
+section.paper .event-block p{color:var(--muted-on-paper)}
+@media(max-width:760px){
+  .event-block{grid-template-columns:1fr}
+  .event-block .ph,.event-block img{aspect-ratio:3/2;min-height:0}
+}
 
 /* footer column headings are h2 within the contentinfo landmark — styled as labels */
 .foot-grid h2.fh{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;
@@ -561,7 +601,7 @@ section.paper .nodata-inline{color:var(--muted-on-paper)}
 
 /* No wrap guards existed anywhere. Long real content — a motor designation, a
    34-character name, a single-token vehicle name — overflowed its container. */
-h1,h2,h3,h4,p,dd,dt,td,th,li,.card,.tier,.roster .person{overflow-wrap:break-word}
+h1,h2,h3,h4,p,dd,dt,td,th,li,.card,.tier,.roster .person,.event-block{overflow-wrap:break-word}
 .bignum .n{overflow-wrap:normal}
 
 /* .dl tracks had a fixed 150px minimum while holding clamp(24px,3vw,34px)
@@ -598,7 +638,7 @@ section.paper .dl>div{border-top-color:var(--rule-light);border-left-color:var(-
 /* Floor the small mono type at 12px. Deliberately NOT .navlinks a — that rule
    would land after the mobile nav block and shrink the touch targets back to 12px
    from the 13.5px they were raised to. The nav is floored at its own declaration. */
-.mono,.tag,.dl dt,.roster .person .role,.gallery .ph span,.roster .shot span,
+.mono,.tag,.dl dt,.roster .person .role,.gallery .ph span,.roster .shot span,.event-block .ph span,
 .foot-grid h2.fh,.foot-note,th,.btn,.phase b,.subline .who,.hero .vidtoggle,
 .skip,.navtoggle{font-size:12px;letter-spacing:.12em}
 .card .idx{font-size:12px}

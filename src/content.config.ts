@@ -29,8 +29,23 @@ const vehicles = defineCollection({
     // reasons instead of three identical hedges.
     status: z.enum(['flew', 'failed', 'scrubbed', 'in-build']).default('flew'),
     image: z.string().nullable(),
+    // Full-bleed background photo for the vehicle page header. Most vehicles
+    // don't have one yet and fall back to the plain graphite header.
+    heroImage: z.string().nullable().optional(),
+    // Gallery photos, most vehicles don't have any yet and fall back to the
+    // TODO placeholder slots.
+    photos: z.array(z.object({ src: z.string(), alt: z.string() })).optional(),
+    // data-review indices Robin has confirmed for good on this vehicle's page.
+    reviewLocked: z.array(z.number()).optional(),
+    // True when `image` is white/light-dominant (the shared osiris.png
+    // stand-in, or Osiris's own genuinely white finish). The fleet lineup
+    // gives these a wider rim so they don't read as duller than colour-
+    // blocked vehicles like Nimbus purely from lacking body colour.
+    paleArt: z.boolean().optional(),
     apogee: z.number().nullable(),
-    apogeeUnverified: z.boolean().optional(),
+    // Overall length in inches, tip to tail. Drives the fleet lineup's
+    // relative sizing (real physical size, not a proxy like apogee).
+    lengthIn: z.number().nullable(),
     mach: z.number().nullable(),
     summary: z.string(),
     specs: vehicleSpecs,

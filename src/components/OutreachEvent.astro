@@ -1,0 +1,29 @@
+---
+import TodoBadge from './TodoBadge.astro';
+
+interface Props {
+  name: string;
+  blurb: string;
+  detail: string | null;
+  todo: string | null;
+  photo: string | null;
+  photoAlt: string | null;
+}
+const { name, blurb, detail, todo, photo, photoAlt } = Astro.props;
+---
+
+<article class="event-block">
+  {photo ? (
+    <img src={photo} alt={photoAlt || ''} />
+  ) : (
+    <div class="ph"><span>Photo slot: {name}<br />TODO</span></div>
+  )}
+  <div class="event-body">
+    <h3>{name}</h3>
+    <p>
+      {blurb}
+      {detail ? <> {detail}</> : todo ? <> <TodoBadge label={todo} /></> : null}
+    </p>
+    {photo && !photoAlt && <TodoBadge label="photo alt text" />}
+  </div>
+</article>

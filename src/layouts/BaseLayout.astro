@@ -2,13 +2,15 @@
 import '../styles/site.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ReviewMode from '../components/ReviewMode.astro';
 
 interface Props {
   title: string;
   description: string;
   current: string; // active nav path, e.g. "/rockets"
+  reviewLocked?: number[]; // data-review indices Robin has confirmed for good; ReviewMode skips these permanently
 }
-const { title, description, current } = Astro.props;
+const { title, description, current, reviewLocked = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,10 +28,11 @@ const { title, description, current } = Astro.props;
 </head>
 <body>
 <Nav current={current} />
-<main id="main" tabindex="-1">
+<main id="main" tabindex="-1" data-rv-locked={JSON.stringify(reviewLocked)}>
 <slot />
 </main>
 <Footer />
+<ReviewMode />
 <script src="/js/site.js" is:inline></script>
 </body>
 </html>

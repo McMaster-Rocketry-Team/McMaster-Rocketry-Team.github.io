@@ -23,8 +23,8 @@ import members from '../data/members.json';
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">2025&ndash;26 leadership</div><h2>Leads.</h2></div>
-      <p>Nine leads. Every photograph needs a real alt description before this ships.</p>
+      <div><div class="tag">2026&ndash;27 leadership</div><h2>Leads.</h2></div>
+      <p>Portraits, programmes and years still need filling. Every photograph needs a real alt description before this ships.</p>
     </div>
     <div class="roster">
       {members.leads.map((m) => (
@@ -36,7 +36,7 @@ import members from '../data/members.json';
             </span>
           </div>
           <h3>{m.role}</h3>
-          <p class="role">{m.name || 'TODO: name'}</p>
+          <p class="role">{m.names.join(', ')}</p>
           {m.programme && m.year ? (
             <p class="prog">{m.year} · {m.programme}</p>
           ) : (
@@ -46,11 +46,10 @@ import members from '../data/members.json';
       ))}
     </div>
     <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
-      <span class="todo" aria-hidden="true">TODO(robin)</span> Names, portraits, programmes and years. Alt text
+      <span class="todo" aria-hidden="true">TODO(robin)</span> Portraits, programmes and years. Alt text
       should describe the person: &ldquo;Priya Shah, avionics lead,&rdquo; not
       &ldquo;a student smiling.&rdquo; If a member would rather not be pictured, the card
-      works without one. Fill programme and year from the person, never a guess (see
-      the note in <code>src/data/members.json</code>).
+      works without one. Fill programme and year from the person, never a guess.
     </p>
   </div>
 </section>

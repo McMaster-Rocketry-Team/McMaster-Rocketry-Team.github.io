@@ -6,14 +6,16 @@
     { "label": "Founded", "value": null, "note": "year the team started" }
   ],
   "leads": [
-    { "role": "Team lead", "name": null, "programme": null, "year": null },
-    { "role": "Chief engineer", "name": null, "programme": null, "year": null },
-    { "role": "Avionics lead", "name": null, "programme": null, "year": null },
-    { "role": "Propulsion lead", "name": null, "programme": null, "year": null },
-    { "role": "Airframe lead", "name": null, "programme": null, "year": null },
-    { "role": "Recovery lead", "name": null, "programme": null, "year": null },
-    { "role": "Payload lead", "name": null, "programme": null, "year": null },
-    { "role": "Composites lead", "name": null, "programme": null, "year": null },
-    { "role": "Operations lead", "name": null, "programme": null, "year": null }
+    { "role": "President", "subteam": null, "names": ["Robin Anderson"], "programme": null, "year": null },
+    { "role": "Project manager", "subteam": null, "names": ["Christina Zhou"], "programme": null, "year": null },
+    { "role": "Airframe lead", "subteam": "airframe", "names": ["Blake Wang", "Kiran Suresh"], "programme": null, "year": null },
+    { "role": "Payload lead", "subteam": "payload", "names": ["Joud Al Mowesati", "Owen Martin"], "programme": null, "year": null },
+    { "role": "Recovery lead", "subteam": "recovery", "names": ["Abigail Rosehart", "Erik Filippetti"], "programme": null, "year": null },
+    { "role": "Avionics lead", "subteam": "avionics", "names": ["Ilyaseen Nimji", "Krish Patel"], "programme": null, "year": null },
+    { "role": "Composites lead", "subteam": "composites", "names": ["Jase McClure", "Julia Da Silva"], "programme": null, "year": null },
+    { "role": "Propulsion lead", "subteam": "propulsion", "names": ["Ella Chow", "Sebastian Carter", "Timothy Manukian"], "programme": null, "year": null },
+    { "role": "Operations lead", "subteam": "operations", "names": ["Kendra Osa Nayanka", "Lea Tejeda"], "programme": null, "year": null },
+    { "role": "VP finance", "subteam": null, "names": ["Jia Agarwal"], "programme": null, "year": null },
+    { "role": "Chief safety officer", "subteam": null, "names": ["Callum Williams"], "programme": null, "year": null }
   ]
 }

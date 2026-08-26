@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import OutreachEvent from '../components/OutreachEvent.astro';
+import TodoBadge from '../components/TodoBadge.astro';
+import { mailHref } from '../lib/site';
+import outreach from '../data/outreach.json';
+
+---
+
+<BaseLayout
+  title="Outreach"
+  description="STEM days, industry nights, Clubsfest, Facultyfest, high-school visits, Launch Canada youth outreach and a sponsor dinner from the McMaster Rocketry Team."
+  current="/outreach"
+>
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Outreach</div>
+    <h1>See us on campus.</h1>
+    <p class="lede">STEM days, industry nights, Clubsfest, Facultyfest, high-school visits, youth outreach at Launch Canada, and a dinner a sponsor put on for the team. Gold sponsors can put their name on the day.</p>
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">On campus</div><h2>What we've done.</h2></div>
+      <p>Operations runs this. It is not a subteam of its own.</p>
+    </div>
+    <div class="event-blocks">
+      {outreach.events.map((e) => <OutreachEvent {...e} />)}
+    </div>
+
+    <div class="btnrow">
+      <a class="btn" href="/subteams/operations">Operations</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">For sponsors</div><h2>Put your name on the day.</h2></div>
+      <p>Gold already includes sponsoring outreach events with rockets.</p>
+    </div>
+    <div class="prose" style="color:rgba(255,255,255,.86)">
+      <p>Isaac Operations already put their name on a dinner for the team. Your logo sits in a room of students who have not yet decided where they work, not only on the airframe at a competition they did not attend.</p>
+      <p>If you would rather fund a single event than a season tier, email us and we will tell you honestly whether that is useful this year. <TodoBadge label="whether one-off event funding exists, and at what amount" /></p>
+    </div>
+    <div class="btnrow">
+      <a class="btn solid" href="/sponsors">See the tiers</a>
+      <a class="btn" href={mailHref('Outreach event')}>Email about an event</a>
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

@@ -4,11 +4,12 @@
   "org": "McMaster University",
   "city": "Hamilton, Ontario",
   "email": "rocketry@mcmaster.ca",
-  "social": { "instagram": null, "discord": null, "linkedin": null },
+  "social": { "instagram": "https://www.instagram.com/mcmasterrocketry/?hl=en", "discord": "https://discord.gg/tsQq8byCy8", "linkedin": "https://ca.linkedin.com/company/mcmaster-rocketry-team" },
   "nav": [
     { "label": "Rockets", "href": "/rockets" },
     { "label": "Subteams", "href": "/subteams" },
     { "label": "Members", "href": "/members" },
+    { "label": "Outreach", "href": "/outreach" },
     { "label": "Sponsors", "href": "/sponsors" },
     { "label": "Join us", "href": "/join" }
   ]

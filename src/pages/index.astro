@@ -10,10 +10,8 @@ import { numberWord } from '../lib/site';
 const vehicles = await getCollection('vehicles');
 const years = vehicles.map((v) => v.data.year);
 const yearSpan = Math.max(...years) - Math.min(...years) + 1;
-const noRecordCount = vehicles.filter((v) => !v.data.apogee).length;
 const vCountWord = numberWord(vehicles.length);
 const yearSpanWord = numberWord(yearSpan);
-const noRecordWord = numberWord(noRecordCount);
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 ---
 
@@ -21,6 +19,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   title="Higher"
   description="McMaster Rocketry Team: student-built rockets from Hamilton, Ontario. 33,584 feet and climbing."
   current="/"
+  reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]}
 >
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <filter id="duo" color-interpolation-filters="sRGB">
@@ -54,7 +53,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
     <div class="phase"><b>Osiris · Launch Canada 2026</b><i></i></div>
     <h1 class="bignum"><span class="vh">McMaster Rocketry Team, highest flight to date: </span><span class="n">33,584</span> <span class="u">ft</span></h1>
     <div class="subline">
-      <p>That is how high a rocket built by undergraduates went. Mach 1.92, {vCountWord} vehicles in {yearSpanWord} years: airframe, avionics and recovery designed and built by students, flown on commercial motors.</p>
+      <p>Our highest flight ever. {cap(vCountWord)} vehicles in {yearSpanWord} years: airframe, avionics and recovery designed and built by students, flown on commercial motors.</p>
       <div class="who">McMaster University<br>Hamilton, Ontario</div>
     </div>
     <div class="btnrow">
@@ -72,17 +71,12 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
     <div class="shead">
       <div>
         <div class="tag">The fleet</div>
-        <h2>Every rocket,<br>by how high it got.</h2>
+        <h2>Every rocket,<br>built and flown, in order.</h2>
       </div>
-      <p>{vCountWord} vehicles in {yearSpanWord} years. {cap(noRecordWord)} of them flew before we kept records this good (drawn as gaps on the chart, not filled in with a guess).</p>
+      <p>{cap(vCountWord)} vehicles in {yearSpanWord} years.</p>
       <div class="statline"><FleetStat /></div>
     </div>
     <FleetLineup />
-    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper)">
-      &ldquo;No verified record&rdquo; means exactly that: the vehicle flew, but we
-      have no instrumented figure we are willing to publish. The flag is a
-      published figure we have not been able to verify.
-    </p>
     <div class="btnrow"><a class="btn" href="/rockets">All {vCountWord} vehicles</a></div>
   </div>
 </section>
@@ -92,7 +86,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
     <div class="shead">
       <div>
         <div class="tag">Subteams</div>
-        <h2>One airframe, seven subteams.</h2>
+        <h2>One rocket, seven subteams.</h2>
       </div>
       <p>Every part of the vehicle, and everything around it, is owned by a student subteam.
          One of them needs no engineering background at all.</p>

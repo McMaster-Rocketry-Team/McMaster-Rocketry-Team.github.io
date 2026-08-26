@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { sortVehicles } from '../lib/fleet';
 
 interface Props {
   withDetail?: boolean;
 }
 const { withDetail = false } = Astro.props;
-const vehicles = await getCollection('vehicles');
+const vehicles = sortVehicles(await getCollection('vehicles'));
 ---
 
 <table>
@@ -30,14 +31,7 @@ const vehicles = await getCollection('vehicles');
         <td class="num">{v.year}</td>
         <td>{v.comp}</td>
         <td class="num">
-          {v.apogee ? (
-            <span>
-              {v.apogee.toLocaleString()} ft
-              {v.apogeeUnverified && <span class="todo" aria-hidden="true"> rounded, source it</span>}
-            </span>
-          ) : (
-            <span style="color:var(--muted-on-paper)">No verified record</span>
-          )}
+          {v.apogee && <span>{v.apogee.toLocaleString()} ft</span>}
         </td>
         {withDetail && (
           <td><a href={`/rockets/${v.slug}`} style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for {v.name}</span></a></td>

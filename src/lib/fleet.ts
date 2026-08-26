@@ -2,9 +2,18 @@
 // height math, same procedural placeholder glyph for vehicles with no photo
 // yet, same ignition/graphite recolouring.
 
-export const maxRiseH = 460;
-export const minRiseH = 200;
-export const noDataH = 110;
+export const maxRiseH = 620;
+export const minRiseH = 260;
+// Fallback height while a vehicle has no lengthIn yet: neither the tallest
+// nor the shortest, so an unfilled slot doesn't read as "smallest rocket."
+export const unsizedH = Math.round((minRiseH + maxRiseH) / 2);
+
+// The file() content loader keys vehicles by id and returns them
+// alphabetically, not in JSON array order, so every fleet-order view needs
+// an explicit chronological sort.
+export function sortVehicles<T extends { data: { year: number } }>(vehicles: T[]): T[] {
+  return [...vehicles].sort((a, b) => a.data.year - b.data.year);
+}
 
 export function rocketGlyph(h: number): string {
   const w = Math.round(h * 0.17), cx = w / 2, nose = h * 0.16, finW = w * 0.85;
@@ -32,8 +41,8 @@ export function personGlyphSvg(): string {
     '</svg>';
 }
 
-export function riseHeight(apogee: number | null, maxApogee: number): number {
-  return apogee ? Math.round(minRiseH + (apogee / maxApogee) * (maxRiseH - minRiseH)) : noDataH;
+export function riseHeight(lengthIn: number | null, maxLengthIn: number): number {
+  return lengthIn ? Math.round(minRiseH + (lengthIn / maxLengthIn) * (maxRiseH - minRiseH)) : unsizedH;
 }
 
 export function shortComp(comp: string): string {

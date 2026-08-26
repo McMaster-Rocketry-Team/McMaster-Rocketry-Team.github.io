@@ -1,6 +1,410 @@
-# MRT site rebuild — progress and handoff
+# MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 (repo hygiene check-in) · branch `dev` @ `52ec9f3`
+**Last updated:** 2026-08-26 (Marauder I ogive restore) · branch `dev` @ `bb3f987` (origin in sync; working tree dirty)
+
+## 2026-08-26 Marauder I ogive restore (Cursor)
+
+The nose was still a vertical chord on the left after the BiRefNet recut.
+Cause was not the model: `--erase 400,170,193,1380` ran through the ogive at
+the tube's left edge (x=593), and the shaded black cone against dark grass
+leaves leftover matte on that side. Recut from `m1b-bire-rot.png` with
+nose-safe boxes (keep from the real tip at y=168; erase only y>=450), then
+`restore --until 400`, which mirrors each ogive row's solid lit half across
+the body centreline. Per-row `|L-R|` on the cone is 0 and the tip sits on
+axis. Generative fill still not used.
+
+## 2026-08-26 PARALLEL.md deleted (Claude Code)
+
+Robin's call: Cursor's role narrowed to image manipulation only (fleet
+cutouts, cropping), so the Claude Code/Cursor page-work split `PARALLEL.md`
+documented no longer applies. Deleted the file and updated its references in
+`readme.md` and the "Working notes for the next session" section below.
+Earlier dated entries in this file (including the one directly below) still
+mention `PARALLEL.md` where it was accurate at the time; left as historical
+record rather than rewritten.
+
+## 2026-08-26 live ReviewMode check-in (Claude Code)
+
+Reused the dev server already running on 4321 and a fresh Chrome tab, per
+`PARALLEL.md`. No prior review progress existed in this browser profile:
+home has 1 unlocked block left (index 36, the Nimbus apogee figure below),
+every other target page (`/join` 39, `/sponsors` 60, `/outreach` 42,
+`/members` 56, `/subteams` 26, `/subteams/avionics` 44, `/rockets` 27,
+`/rockets/osiris` 42) is fully unreviewed. Session with Robin starting now.
+
+**Nimbus apogee, resolved by Robin from the flight computer:** `18,000` was a
+placeholder. Real figures: max altitude 17,862.26 ft, max velocity
+1,254.98 ft/sec. This is the number four of eight review-panel readers
+called the single most damaging item on the site (§4 above).
+
+**`src/data/vehicles.json` hard lock lifted for Claude Code, this session
+only** (Robin's call 2026-08-26: Cursor is only doing image-gen/cropping
+work right now, not data). Written directly rather than staged in this file:
+- `nimbus.apogee` → `17862` (rounded to match every other vehicle's
+  unrounded whole-number apogee, e.g. Osiris `33584`, Luminis V2 `10456`).
+- `nimbus.lengthIn` → `106.3` (2.7 m airframe length, converted to inches —
+  this was `null` on all six vehicles, the reason every rocket drew at the
+  same fallback height in the fleet lineup; Nimbus is now the first with a
+  real value).
+- `nimbus.specs.length` → `"2.7 m (106.3 in)"`, `specs.mass` →
+  `"14.2 kg dry / 23.4 kg wet"` (no established dry/wet convention existed,
+  so both numbers went in one string), `specs.motor` → `"CTI N1800"`.
+- The page's "Max velocity" stat card is not a dead slot: read it
+  (`src/pages/rockets/[slug].astro:17`, hard-locked, did not edit) and it
+  renders `v.mach` as `Mach {n}`, not a raw ft/sec field — mislabeled or
+  repurposed, one or the other. Converting 1,254.98 ft/sec to a Mach number
+  would need the local speed of sound at Nimbus's actual altitude/
+  temperature, which nobody gave me, so `mach` stays `null` for Nimbus (the
+  card correctly shows "Not published") rather than publish a computed
+  guess. No schema field exists for total impulse or average thrust either.
+  Folded all three into `nimbus.build` as prose instead of adding dead
+  schema fields nothing renders: single-stage, COTS propulsion, 101.6 mm
+  (4 in) diameter, 3.11 calibers stability, CTI N1800 at 10,366.9 Ns total
+  impulse / 1,759.8 N average thrust, 1,254.98 ft/sec peak velocity. `build`
+  was `null` before this, same field Osiris already uses for its narrative.
+- Not written: fin span (101.6 mm, same as diameter — redundant to restate),
+  configuration/propulsion type beyond what's in the `build` prose now.
+
+**Osiris `mach` unpublished again, Robin's call.** Robin downloaded
+`~/Downloads/Team 25 - McMaster Rocketry Osiris - FDR.pdf`, McMaster
+Rocketry's Osiris Final Design Report (Revision R0, effective 2026-07-08,
+entirely pre-flight — this is a design report, not a flight-data-recorder
+file). Its Table 6 predicted trajectory (OpenRocket simulation) lists max
+velocity as 642.5 m/s, **Mach 1.92** — identical to the Mach 1.92 already
+published on the site as Osiris's flown number. Since this document predates
+the flight, it cannot be where a real flown Mach reading came from, and
+nobody could confirm the published 1.92 was ever a real flight-computer
+readout rather than this predicted figure republished as measured. Robin's
+call: unpublish it. Set `osiris.mach` to `null` in `vehicles.json` (was
+`1.92`) and removed the hardcoded "Our highest and fastest flight ever, Mach
+1.92" claim from the home hero (`src/pages/index.astro:56`, now "Our highest
+flight ever."). The "Max velocity" stat card on `/rockets/osiris` now
+correctly shows "Not published." `apogee: 33584` is untouched: the FDR's
+predicted apogee (31,300 ft with airbrakes, 31,386 ft without) is well below
+the published flown 33,584 ft, so that number did not come from this
+document and nothing here contradicts it.
+
+**Unused, worth coming back to:** the same FDR gives a real predicted-vs-
+flown apogee delta (31,300 ft predicted with airbrakes → 33,584 ft flown,
++2,284 ft) that matches what the review panel asked for in §8 below
+("31,200 predicted. 33,584 flown. We publish the gap."). Not written into
+any page yet — Robin hasn't said whether she wants it on `/rockets/osiris`.
+
+**`/join` fully reviewed and locked** (38/38 blocks, `reviewLocked` set in
+`join.astro`). Fixes made at Robin's direction: lede rewritten (passion/
+desire-to-learn instead of "how high this one goes"), Discord invite wired
+to `https://discord.gg/tsQq8byCy8` in both `site.json` and the page's own
+button, LinkedIn added to `site.json` (`https://ca.linkedin.com/company/
+mcmaster-rocketry-team`), apply form wired to the real Microsoft Forms URL
+with matching step copy, "Start building" step rewritten, Key Dates section
+rebuilt around real dates (Facultyfest Aug 31 09:00, Clubsfest Sept 14,
+applications close Sept 18 23:59, Interviews row dropped), "How much time"
+FAQ rewritten to six hours/week without mentioning summer work per Robin
+(team works into the summer but she doesn't want that stated, as it reads
+as offputting to applicants), and the matching FAQ answer on "join partway
+through the year" brought in line with the same Key Dates wording. Also
+fixed two pre-existing template bugs while in here: `join.astro`'s date
+rendering always showed the literal string "TODO" regardless of real data,
+and a second hardcoded `discord.gg/TODO` placeholder button existed
+alongside the one driven by `site.json`.
+
+**`/rockets` fully reviewed and locked** (22/22). Removed the "Launch Canada
+scores against a declared target" line and the entire second section below
+the fleet lineup graphic (the `<FleetTable>` + its "apogee is the highest
+altitude..." caption), both per Robin: the table duplicated data already on
+the page. `FleetTable` import removed from `rockets/index.astro` since it's
+now unused; the component file itself (hard-locked) is untouched.
+
+**`/rockets/osiris` build narrative rewritten, Robin's call — corrects the
+carbon-tube claim.** The previous `build` text ("laid up our own carbon
+tubes... lighter and straighter than Nimbus... recovery sequence rewritten
+... voted decision across three sensors") is superseded: Robin's real
+answer is fiberglass tubes rolled in-house plus carbon fiber tip-to-tip fin
+layups, and the two headline firsts are functional airbrakes and a
+student-designed flight computer that had already been flight-tested before
+competition (flown as a backup with confidence, not the primary). New
+`vehicles.json` osiris `summary` trimmed to "Our highest and fastest vehicle
+to date." (dropped the recovery-sequence claim along with the rest).
+
+**Exception to my own hard lock: edited `src/pages/rockets/[slug].astro`
+this session, at Robin's explicit live instruction.** Removed two
+placeholder/template-author notes that were shipping as real page content
+on every vehicle page: "Written by the subteam leads each year. Keep it
+concrete..." under The Build heading, and the "Every vehicle gets a page
+like this one..." callout box. This is the shared per-vehicle template
+(normally locked to me, and normally Cursor's file under the lock table) —
+flagging here so Cursor doesn't read the diff as a merge conflict. Verified
+live on `/rockets/osiris`; the same two blocks are gone from every other
+vehicle page too since they share this template.
+
+## 2026-08-26 uncommitted site pass (Cursor)
+
+Everything below this heading is in the working tree and **not committed**.
+`origin/dev` is at `bb3f987` (the hygiene check-in). Notes further down that
+say "`dev` is 9 commits ahead" or "nothing has been pushed since `init`" are
+stale; that push happened. The dirty tree is still local only.
+
+### What landed
+
+**New route: `/outreach`.** Nine events in `src/data/outreach.json`, sourced
+from FACT-CANDIDATES and Robin. Wired into `site.json` nav and the footer.
+Mech industry night (23 Oct 2025), Fall preview (25 Oct 2025), and FIRST
+Robotics (21–22 Mar 2026) have dates. The other six still carry `todo` flags
+(STEM program name, Space Industry night, Isaac dinner, info nights, whether
+Clubsfest runs every term, which year the Launch Canada bingo was). Gold-tier
+one-off event funding is also a TODO. `OutreachEvent.astro` is the card.
+
+**ReviewMode overlay** on every page (`src/components/ReviewMode.astro`,
+mounted from `BaseLayout.astro`). Dashed amber markers on prose; click to
+check off; state in `localStorage` per path. Home has `reviewLocked` for
+indices 0–35 and 37–42 (36 is left unlocked). Delete the component and its
+layout line before launch.
+
+**2026–27 leads typed in.** `members.json` now uses `names: []` (co-leads).
+Roles on `/members`: President, Project manager, seven subteam leads, VP
+finance, Chief safety officer. Programmes, years, and portraits still empty.
+`/subteams/[slug]` matches by `subteam` slug and renders one card per name.
+**Avionics includes Krish Patel**, who was not on the OneDrive 2026-05-26
+minutes list; the rest match FACT-CANDIDATES. Page tag is "2026–27
+leadership", not 2025–26.
+
+**Join.** The "Do I need to pay anything?" FAQ was **removed**, not answered.
+The $600 travel / $65 entry figures from FACT-CANDIDATES were not published.
+CtaBand now says "apply ASAP" instead of "apply any time".
+
+**Fleet.** Lineup height is `lengthIn` (tip to tail), not apogee. All six
+`lengthIn` values are still `null`, so every rocket currently draws at the
+mid fallback height (`unsizedH` in `src/lib/fleet.ts`). `sortVehicles` forces
+chronological order because Astro's `file()` loader returns ids
+alphabetically. `paleArt: true` on the five vehicles still using
+`osiris.png` (including Osiris) so a white airframe gets a wider rim next to
+Nimbus. **Nimbus has its own cutout:** `public/media/rockets/nimbus.png`
+(187×1895). Working-tree `osiris.png` is now 305×3530 / 436 KB (the hygiene
+check-in below recorded 631 KB; that version did not last).
+
+**`apogeeUnverified` is gone** from the Zod schema, the fleet table, the
+vehicle page, and Nimbus in `vehicles.json`. Nimbus still publishes
+**18,000 ft with no "rounded, source it" badge.** That is a credibility
+regression until Robin sources the flight-computer figure or sets `apogee`
+to `null`.
+
+**Copy tweaks Robin allowed:** home headline "One rocket, seven subteams";
+Operations blurb is merch / marketing / sponsorship / budget (launch-day and
+range-safety dropped from the card); Airframe / Avionics / Payload blurbs
+gained discipline tags. Subteam 8th-tile copy is now "Want to learn more?
+Come to Clubsfest or Facultyfest and talk with the team." (supersedes the
+"Not sure which one? Come to a meeting…" wording in the ragged-grid
+check-in). `.gitignore` now excludes `.onedrive-extract/`.
+
+### Fleet cutouts, and how to make one
+
+`nimbus.png` and `osiris.png` were cut by hand with **no record of how**, in
+two sessions that left only intermediates (`rockets/osiris/cropped.png`,
+`osiris_rocket.png`). Reading the artifacts back: both were cut from the
+repo's own 2000px webp, straightened, and trimmed tight to their alpha, and
+Nimbus came from `nimbus-02.webp`, a **cluttered indoor lab shot**, not a
+plain background. So a busy background was never the blocker it looked like.
+
+That method is now a script: `scripts/cut-fleet-cutout.py`, run under a rembg
+venv at `/home/robin/.cache/mrt-rembg`. `mask` runs the matting model,
+`measure` prints the alpha's per-row extent so you can read the airframe's
+own bounding box off it, `finish` isolates, straightens, trims and feathers,
+`restore` rebuilds an ogive from its well-lit half, and `patch` reclones
+uniform paint along the axis. Background removal only: every surviving pixel
+is from the photograph. Rotation, and the ogive mirror (same row, same
+vehicle, across a measured centreline), are the only geometry changes.
+Nothing is scaled on one axis, because lineup height is a claim about real
+length.
+
+**Three shipped: Luminis, Marauder I, Marauder II.** Only Luminis V2 still
+borrows `osiris.png`. Per-vehicle sources, commands and caveats are in each
+`rockets/<slug>/SHORTLIST.md`, including two rejected first attempts that
+should not be retried.
+
+**The single biggest lever was the model, not the boxes.** The first Marauder
+cuts used rembg's `isnet-general-use` and Robin correctly called both messy.
+Switching to **`birefnet-general`** on the identical frame took the matte from
+17.7% partially-transparent to 1.1%, recovered both of Marauder I's
+carbon-weave fins (one against a tent, one against grass, which isnet had
+dissolved into a ragged grey smear), held the aft ring and rail buttons, and
+dropped a guy wire that isnet had fused to the nose. It is a ~900MB one-time
+download and ~15s per frame on CPU. It is now the script default. If a cutout
+looks ragged, check the model before touching the geometry.
+
+**Second lever: how big the airframe is in the source frame.** Marauder II
+was rejected twice from `marauder-ii-04.webp`, the vertical pad shot, and the
+mask was never the problem: in that frame the airframe is only **~40px wide**,
+so the cutout came out 65px where the other vehicles are 148 to 305px. At
+that scale every scrap of residue is proportionally huge and there is no
+detail to recover. The fix was a frame the shortlist never imported,
+`IMG_2861.HEIC` (sheet 17-15), the full airframe horizontal on its cradle at
+4032x3024 with the airframe ~2850px long, now `marauder-ii-13.webp`. Cutting
+that took no `--keep` and no `--erase` at all. **Before fixing a bad cutout,
+check how many pixels of real airframe the source actually contains, and go
+back to `_sheets/` for a closer frame.** Robin asked for generative cleanup on
+the 40px version; the reason not to is that at that size it would be
+inventing what the vehicle looks like, which is the Nimbus 18,000 ft problem
+in pixel form. `PARALLEL.md` already bans it.
+
+**Third lever: a stand is not a rail.** Nimbus, Osiris and Luminis were each
+an airframe with a *stand underneath*, so a box ending above the hardware
+separates them. Both Marauder frames have a *launch rail alongside*, touching
+the airframe for its full length. For both Marauders the answer was a
+different frame: `marauder-i-02` (horizontal on tripods, confirmed the same
+vehicle) and `marauder-ii-13`. Note the pattern — **both rescues were the
+airframe lying horizontal on a cradle, rotated 90deg.** That is the setup to
+look for first.
+
+Five things worth not re-deriving:
+
+- The **stand comes with the rocket.** Whatever an airframe rests on touches
+  it, so it lands in the same connected region and survives largest-region
+  filtering. The first attempt rendered 96px wide instead of 42 because the
+  red stand and its cast shadow were still attached. Fix is `--keep` with the
+  airframe's own bbox, ending a few px above the stand's top rail.
+- The matte carries a **~12px low-alpha halo** (6% of the canvas partially
+  transparent, against 2-3% on the hand-cut pair). It matters more here than
+  it would elsewhere: `.craft .rise img` builds its graphite rim from four
+  1px drop-shadows *of the alpha silhouette*, so a halo gets traced as the
+  outline. `tighten()` clips it back to a 2px band off the solid core.
+- **A launch rail is harder than a stand**, because it runs against the
+  airframe for its full height instead of sitting under it. No bounding box
+  separates them while the vehicle is tilted, so straighten first and cut
+  second. Colour-keying the rail out (it is far less saturated than a painted
+  airframe) is tempting and wrong: it also eats an unpainted nose cone and
+  punches holes through white decals on the body edge.
+
+- **Hardware beside the airframe is a masking job; hardware in front of it is
+  not.** Marauder I's tripod saddles are both: where a saddle breaks past the
+  tube's edge, cutting the alpha at the tube's own edge removes it, and the
+  tube's edges are stable to ~1px so that boundary is measurable rather than
+  guessed. But the padded rollers overlap the tube's *face* from that angle,
+  so cutting them would punch a hole in the airframe. For those, and nothing
+  else, `scripts/cut-fleet-cutout.py patch` refills a box with the airframe's
+  own pixels from further along its own axis: a painted tube is a cylinder of
+  revolution, so colour barely changes along its length, which reconstructs
+  the surface from this photograph of this vehicle with no model involved.
+  **Rules:** uniform paint only, never a shape or an edge or a marking; verify
+  the source window is clear of lettering, seams and rivets first (a first
+  attempt cloned the MES logo into the tube); and re-check for dark
+  desaturated blobs afterwards. Robin asked for a Google-Photos-style magic
+  eraser and this is the honest equivalent — generative fill remains banned.
+- **Check the silhouette's edges against physics, not against a screenshot.**
+  Both failures were provable from the alpha alone before anyone looked at
+  the page: a nose cone tapers symmetrically about its axis, so a frozen
+  left edge beside a diverging right edge means hardware is fused on, and a
+  constant maximum width that runs for 50 rows and stops means a flat slice
+  through pad structure. `measure` prints exactly this.
+
+- **Do not force every vehicle to the same width.**   Rendered widths at the
+  lineup's 440px height are Marauder I 68, Marauder II 53, Nimbus 43,
+  Luminis 42, Osiris 38. The spread is real: Marauder I is a stubby 2022 airframe
+  with fins spanning ~2.7 body diameters, and the Spaceport vehicles are
+  slender. A cutout much *wider* than its neighbours is worth a look, but
+  measure the fin span in the photo before deciding it is wrong.
+
+**Open, for Robin:** `marauder-i-08` and `-09` show a **bare chrome nose**
+where `-02` and `-05` show navy with a silver tip. Either a nose was swapped
+between sessions or that is a different airframe. Settle it before frames
+from the two sets share a gallery.
+
+### Still not done
+
+- Vehicle galleries: still four hardcoded TODO slots in `[slug].astro`. All
+  six `SHORTLIST.md` files exist; nothing is wired. The four-slot template
+  still does not match the albums (see photo-ingest check-in).
+- **Luminis V2 is the last vehicle still showing another rocket's photo.** Its
+  shortlist says no cutout candidate exists and that is roughly right:
+  `luminis-v2-08` is occluded by a painted tube in the foreground, and
+  `luminis-v2-05` is a pale airframe against pale cloud with bystanders at
+  the base. If it cannot be cut cleanly, `image: null` renders the
+  procedural glyph, which is more honest than Osiris standing in for it.
+  **Robin's call 2026-08-26: leave the stand-in for now**, so the home page
+  still shows Osiris's airframe in the Luminis V2 slot. Revisit before launch.
+- **`lengthIn` is null on all six**, so every rocket renders at the same 440px
+  fallback while the caption underneath says "Rocket size = relative length,
+  tip to tail." The field is inches, in `src/data/vehicles.json`. Six numbers
+  from Robin makes the lineup mean what it says.
+- Missing files referenced by shortlists: `luminis-v2-02`, `luminis-v2-03`,
+  `marauder-i-11`. Listed as rejected/backup picks but not in the folders.
+- Robin-only facts (Nimbus apogee, apply URL, term dates, sponsor amounts)
+  and the `check:todo` gate.
+- `readme.md` was still the word "init"; rewritten this pass to say how to
+  run the site.
+
+Dev server: `pnpm astro dev --host 127.0.0.1 --port 4321`.
+
+## 2026-08-26 photo ingest (Cursor)
+
+Remaining vehicle zips, after Claude's `PHOTO-HANDOFF.md`. Did not re-extract
+albums already in `MRT-photo-review/`. Script is `scripts/ingest-rocket-photos.py`
+(ImageMagick 2000px webp, contact sheets, stills-only unzip).
+
+- **Marauder I** from `LC2022-photos.zip`: 12 numbered webps + `SHORTLIST.md`. No recovery shot. Liftoff is medium-confidence.
+- **Marauder II** from `SA Cup 2023-photos.zip` stills: 12 numbered webps + `SHORTLIST.md`. Bib 55 / MARAUDER. No liftoff shot. An AltosUI screenshot in that album (13,025 ft) is **not** in `vehicles.json`.
+- **Nimbus** leftovers folded to `nimbus-10`/`-11`; new `SHORTLIST.md`. Did not re-unzip LC 2025.
+- **Osiris** new `SHORTLIST.md` from existing numbered files only. Leftover raws/cutouts still in the folder.
+- Luminis / Luminis V2 / Rocketry 2025-2026 (unmapped outreach) not touched.
+- Still not wiring galleries or fleet PNGs. Robin confirms shortlists first.
+
+**Real finding, and it changes the template:** the four fixed photo slots in
+`src/pages/rockets/[slug].astro` (integration / on the pad / liftoff / recovery)
+do not survive contact with the actual albums. Marauder I and Nimbus have **no
+recovery shot**; Marauder II and Osiris have **no liftoff shot**; Luminis V2 has
+two onboard-camera frames with no slot at all. Four of six vehicles cannot fill
+the grid. Wiring this as-is would ship two amber TODO placeholders per page
+forever. The gallery needs to render 2 to 5 real photos and simply be shorter
+when a beat does not exist, which is also the honest version: an empty slot beats
+a guess, but a *silent* omission beats an empty slot when the photo was never
+taken. Decide the fifth-slot question (Luminis V2 onboard) at the same time.
+
+**Two liftoff picks have unconfirmed vehicle identity** (`marauder-i-07.webp`,
+`nimbus-09.webp`): real launch frames from the right album and window, but the
+airframe is too small to read lettering, and these are shared ranges. Same class
+of problem as the Nimbus apogee. Do not caption either as "X clears the pad"
+until Robin confirms.
+
+**Scratch space:** `/home/robin/Downloads/MRT-photo-review/` is now 17 GB
+(extracted stills plus contact sheets for seven albums). It is outside the repo
+and safe to delete **after** the fleet cutouts are cut, since every
+`SHORTLIST.md` points into it for full-res sources. The zips in
+`photos_rocketry/` are the real backup. Do not rebuild the contact sheets; they
+are in `_sheets/` and took about 3½ minutes of ImageMagick.
+
+## 2026-08-26 ragged-grid fix
+
+Both places that render the 7 subteams in a 4-column grid (`/subteams` and the
+home page's `SubteamCards` component) left the last row at 4+3, one empty
+slot. Built a scratchpad artifact rendering the real 7 subteam cards under
+four options: a CTA tile in the 8th slot, an invisible filler cell, centering
+the ragged row with flex instead of grid, and changing the column count to
+divide evenly. Robin picked the CTA tile.
+
+Added an 8th tile, "Not sure which one? Come to a meeting and try a few
+before you pick.", linking to `/join`, to both `src/pages/subteams/index.astro`
+and `src/components/SubteamCards.astro`.
+
+**First attempt had a real bug, caught by Robin looking at the live page, not
+by review**: the tile's modifier class was named `cta`, which collided with
+the pre-existing bare `.cta` selector at `site.css:227` (the `<CtaBand>`
+section's own styling, `padding:clamp(56px,11vh,132px) 0`). Same specificity,
+later in the file, so it silently overrode the card's own
+`padding:clamp(22px,3vw,34px)`, making the tile's row up to 25% taller than
+every row above it. Renamed the modifier to `card-cta` in `site.css` and both
+`.astro` files. Confirmed via `getComputedStyle` in a live Chrome tab at
+several widths (900px, 1568px) that all 8 cards now report identical padding
+and height, not just eyeballed from a screenshot.
+
+**Lesson for next time a card variant gets added:** grep the class name
+against all of `site.css` first. `.card`, `.cta`, `.tag`, and a few others are
+reused as both card-grid classes and unrelated section/component classes
+elsewhere in the file, and two single-class selectors at equal specificity
+resolve by file order, not by which one "looks like" it should apply.
+
+**Found while checking this, unrelated:** a dev server from before this
+session was already running on port 4321, serving a stale build with none of
+today's edits. If a local check of this fix looks unchanged, that stale
+server is why. Kill it and restart `pnpm astro dev`.
 
 ## 2026-08-26 repo hygiene check-in
 
@@ -126,7 +530,8 @@ this section.
 
 - Sponsorship budget figures (4 line items) and two named contacts
   (sponsorship lead, chief engineer).
-- Nine leads' names, programme and year (`src/data/members.json`).
+- ~~Nine leads' names~~ — 2026–27 names are in `src/data/members.json`.
+  Programme and year still empty. Confirm Krish Patel (avionics).
 - Founded year, faculties represented, first-years count (member stats).
 - Social handles (Instagram, Discord, LinkedIn).
 - One team photo, plus member roster portraits.
@@ -200,7 +605,54 @@ page-by-page migration plan, day-by-day sequencing — is at
 
 ---
 
+## 0a. Google Analytics: not set up yet
+
+No analytics exist anywhere in the repo today (checked `src/`, `public/`,
+`astro.config.mjs`, both workflows). Steps to add GA4, in order:
+
+1. **Robin creates the GA4 property** in Google Analytics and gets the
+   measurement ID (`G-XXXXXXXXXX`). This is the one step nobody else can do.
+2. **Add `PUBLIC_GA_ID` as a repo variable**, not a secret, in GitHub repo
+   settings under Actions. A measurement ID is meant to be public (it ships
+   in every visitor's page source), and secrets render as `***` in some
+   Actions contexts, which would break debugging. Astro only inlines
+   `import.meta.env` values prefixed `PUBLIC_` into client-shipped code, so
+   the variable name has to keep that prefix.
+3. **Read the ID in `src/layouts/BaseLayout.astro`**, the single layout all
+   19 pages already share (line 33 currently ends the `<body>` with
+   `site.js`). Add the GA4 snippet as a conditional block that renders
+   nothing when the variable is unset, so a `pnpm astro build` run without
+   the variable (every `dev`-branch build, per the deploy workflow's
+   branch filter) ships with no tracking code and no broken script tag.
+4. **Pass the variable into the build step** in
+   `.github/workflows/deploy.yml` (the `pnpm astro build` step, line 37) as
+   `env: PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}`. Astro's `PUBLIC_` vars are
+   read at build time, so the value has to be present exactly there, not at
+   the deploy job further down.
+5. **Set `site:` in `astro.config.mjs`** (currently `defineConfig({})`, no
+   site URL at all) to the real production URL. Without it there is no
+   canonical URL for GA's referrer/campaign attribution to anchor to, and
+   the sitemap idea in the features list below needs the same field.
+6. **Verify after the first real push to `main`.** `dev` and `origin/dev`
+   are both `bb3f987` as of the uncommitted-site-pass check-in at the top;
+   the dirty tree is local only. GA's Realtime report will show nothing
+   until `main` gets a push through the deploy workflow. Check Realtime
+   after that, not before.
+
+One open question for the §4 list below: McMaster may already have a
+required analytics or privacy policy for club-affiliated sites (cookie
+notice, data retention), given the "reads as an official university
+publication" concern already flagged there. Worth confirming before GA
+goes live, not after.
+
+---
+
 ## 0. Where we are
+
+> **Superseded 2026-08-26.** This section and its table describe the state before
+> the Astro port. The port is done (19 pages, zero errors) and photo ingest is
+> done. Read the dated check-ins at the top of this file for current state; keep
+> this section only for the deadline and branch facts.
 
 Design exploration and review are **done**. The Astro build has **not started**.
 Everything on disk is self-contained static HTML.
@@ -349,6 +801,8 @@ reintroduce a standalone business/outreach/finance subteam.
   a named legal recipient for money, and tax wording from Financial Affairs.
 - Affiliation line + whether to differentiate the palette so the site stops reading as an
   official university publication.
+- Whether McMaster has a required analytics/privacy policy for club sites (cookie notice,
+  data retention) that Google Analytics needs to comply with. See §0a.
 
 ---
 
@@ -366,7 +820,7 @@ Full list in `mockups/TODO-MANIFEST.md` (per-file counts there are now stale, se
 | Application form URL, info-session dates, application window | `join.html` |
 | Answer to "do I need to pay anything?" | `join.html` FAQ |
 | Nimbus apogee — real figure or mark unverified | `data.js` |
-| Member names, programmes, portraits + alt text | `members.html` |
+| ~~Member names~~ — in. Programmes, portraits + alt text | `src/data/members.json` |
 
 ⚠️ **Most dangerous placeholder class:** the 12 roster cards pair `TODO: name` with
 **fully invented** programmes and years. `grep TODO` will never find those. Strip the
@@ -403,10 +857,23 @@ Do not re-derive these:
 - **`section.paper` inversion needs 19 paired overrides.** Every new component needs a
   paper variant or it renders invisibly. The designer argued light-first would be mostly
   a deletion — worth considering before the Astro port hardens this.
+- **Generic single-word classes collide across unrelated components.** `.card`, `.cta`,
+  and `.tag` each get reused: `.cta` is both `CtaBand`'s section wrapper
+  (`padding:clamp(56px,11vh,132px) 0`) and, briefly, a card-grid modifier that shipped
+  with the wrong name. Two single-class selectors at equal specificity resolve by file
+  order, not by which one looks like it should apply, so the later one silently won and
+  blew up a card's padding. Grep the exact class name against all of `site.css` before
+  reusing one, and prefer a compound name (`card-cta`, not `cta`) for any new card
+  variant.
 
 ---
 
 ## 7. Next steps, in order
+
+> **Partly superseded 2026-08-26.** Item 6 (the Astro port) is done, and the
+> "Astro port notes" subsection below is now a record of what was built, not a
+> plan. Items 1, 2, 4, 5 and 7 are still open. Current ordering lives in the
+> dated check-ins at the top of this file.
 
 1. **Answer the two overturn questions** (§4) — 30 seconds each, unblocks credibility.
 2. **Write the safety / operations page.** Three reviewers, independently. Sanctioned
@@ -463,6 +930,12 @@ Do not re-derive these:
 ---
 
 ## 9. Working notes for the next session
+
+**No longer two agents in parallel.** `PARALLEL.md` (the split, file locks,
+and "go" instructions for Claude Code and Cursor) is deleted as of
+2026-08-26: Cursor's role narrowed to image manipulation only (fleet
+cutouts, cropping), so the page/content work that file split between two
+agents is Claude Code's alone now.
 
 Robin is moving to a Sonnet + Opus-advisor pattern for token efficiency.
 

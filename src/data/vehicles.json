@@ -6,9 +6,10 @@
     "year": 2022,
     "comp": "Launch Canada",
     "status": "flew",
-    "image": "/media/rockets/osiris.png",
+    "image": "/media/rockets/marauder-i.png",
     "apogee": null,
     "mach": null,
+    "lengthIn": null,
     "summary": "The first vehicle the team ever flew, and the one that proved we could get off the pad at all.",
     "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
     "build": null
@@ -20,9 +21,10 @@
     "year": 2023,
     "comp": "Spaceport America Cup",
     "status": "flew",
-    "image": "/media/rockets/osiris.png",
+    "image": "/media/rockets/marauder-ii.png",
     "apogee": null,
     "mach": null,
+    "lengthIn": null,
     "summary": "Our first international competition vehicle.",
     "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
     "build": null
@@ -34,9 +36,10 @@
     "year": 2024,
     "comp": "Spaceport America Cup",
     "status": "flew",
-    "image": "/media/rockets/osiris.png",
+    "image": "/media/rockets/luminis.png",
     "apogee": null,
     "mach": null,
+    "lengthIn": null,
     "summary": "The first airframe designed around its payload rather than the other way round.",
     "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
     "build": null
@@ -49,8 +52,10 @@
     "comp": "Launch Canada",
     "status": "flew",
     "image": "/media/rockets/osiris.png",
+    "paleArt": true,
     "apogee": 10456,
     "mach": null,
+    "lengthIn": null,
     "summary": "The first vehicle we flew with a flight computer we trusted enough to publish the numbers from.",
     "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
     "build": null
@@ -62,13 +67,13 @@
     "year": 2025,
     "comp": "Launch Canada",
     "status": "flew",
-    "image": "/media/rockets/osiris.png",
-    "apogee": 18000,
-    "apogeeUnverified": true,
+    "image": "/media/rockets/nimbus.png",
+    "apogee": 17862,
     "mach": null,
+    "lengthIn": 106.3,
     "summary": "First place in the Payload Challenge and third in the Basic Launch Category at Launch Canada 2025.",
-    "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": "1st, Payload Challenge · 3rd, Basic Launch Category", "accel": null },
-    "build": null
+    "specs": { "length": "2.7 m (106.3 in)", "mass": "14.2 kg dry / 23.4 kg wet", "motor": "CTI N1800", "recovery": null, "result": "1st, Payload Challenge · 3rd, Basic Launch Category", "accel": null },
+    "build": "Nimbus flew as a single-stage, commercial-motor airframe: 101.6 mm (4 in) in diameter, with a stability margin of 3.11 calibers. It flew on a CTI N1800, rated for 10,366.9 Ns of total impulse and 1,759.8 N of average thrust, and reached a peak velocity of 1,254.98 ft/sec."
   },
   {
     "id": "osiris",
@@ -78,10 +83,20 @@
     "comp": "Launch Canada",
     "status": "flew",
     "image": "/media/rockets/osiris.png",
+    "heroImage": "/media/rockets/osiris-hero.webp",
+    "photos": [
+      { "src": "/media/rockets/osiris-gallery-display.webp", "alt": "Four team members hold the assembled Osiris airframe, OSIRIS lettering and bib number 25 visible, at the competition venue." },
+      { "src": "/media/rockets/osiris-gallery-avionics.webp", "alt": "The open airframe before final assembly: left to right, the airbrake actuator, the avionics bay, and the payload section." },
+      { "src": "/media/rockets/osiris-gallery-crew.webp", "alt": "The team stands beside Osiris, vertical on the rail, before launch." },
+      { "src": "/media/rockets/osiris-gallery-recovery-crew.webp", "alt": "The recovery team in the bush, holding the recovered airframe sections beside the caught parachute." }
+    ],
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 27, 28, 29, 30, 31, 32, 33, 34],
+    "paleArt": true,
     "apogee": 33584,
-    "mach": 1.92,
-    "summary": "Our highest and fastest vehicle to date, and the first to fly a student-designed recovery sequence end to end.",
-    "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
-    "build": "Osiris was the first airframe where we laid up our own carbon tubes rather than buying them, which is why it is both lighter and straighter than Nimbus. The recovery sequence was rewritten from scratch after the Nimbus flight, moving from a single barometric trigger to a voted decision across three sensors."
+    "mach": null,
+    "lengthIn": null,
+    "summary": "Our highest and fastest vehicle to date.",
+    "specs": { "length": null, "mass": null, "motor": null, "recovery": null, "result": "1st, Payload Challenge", "accel": null },
+    "build": "Osiris introduced two firsts for the team: functional airbrakes, and a student-designed flight computer that had already been flight-tested before competition, letting us fly it with confidence as a backup. The airframe used fiberglass tubes rolled in-house, with carbon fiber tip-to-tip fin layups."
   }
 ]

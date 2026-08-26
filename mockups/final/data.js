@@ -40,10 +40,11 @@ window.MRT = {
      in its place (see render.js). Suggested path:
      ../../public/media/rockets/<slug>.png
 
-     TODO(robin): the five vehicles below are temporarily pointed at
-     osiris.png, standing in for their own photos so the enlarged fleet
-     lineup can be judged at real scale. Revert each to image:null (its own
-     placeholder glyph) once that vehicle has a real cutout. */
+     TODO(robin): marauder-i, marauder-ii, luminis, and luminis-v2 are
+     still temporarily pointed at osiris.png, standing in for their own
+     photos so the enlarged fleet lineup can be judged at real scale.
+     Revert each to image:null (its own placeholder glyph) once that
+     vehicle has a real cutout. Nimbus now has its own cutout. */
   vehicles: [
     { slug:"marauder-i",  name:"Marauder I",  year:2022, comp:"Launch Canada", image:"../../public/media/rockets/osiris.png",
       apogee:null, mach:null,
@@ -65,7 +66,7 @@ window.MRT = {
       summary:"The first vehicle we flew with a flight computer we trusted enough to publish the numbers from.",
       specs:{ length:null, mass:null, motor:null, recovery:null, result:null, accel:null },
       build:null },
-    { slug:"nimbus",      name:"Nimbus",      year:2025, comp:"Launch Canada", image:"../../public/media/rockets/osiris.png",
+    { slug:"nimbus",      name:"Nimbus",      year:2025, comp:"Launch Canada", image:"../../public/media/rockets/nimbus.png",
       /* TODO(robin): 18,000 is rounded, in a column headed "Measured apogee".
          Publish the flight-computer figure, or set this to null so it renders
          as "No verified record" like the three above. Four of eight reviewers

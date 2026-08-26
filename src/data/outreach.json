@@ -1,0 +1,85 @@
+{
+  "events": [
+    {
+      "slug": "stem-outreach",
+      "name": "STEM outreach",
+      "blurb": "On campus, for girls and gender-diverse youth.",
+      "detail": null,
+      "todo": "program name, who ran it, and when",
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "space-industry-night",
+      "name": "Space Industry night",
+      "blurb": "On campus. Operations runs it.",
+      "detail": null,
+      "todo": "date, and what the evening actually was",
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "mech-industry-night",
+      "name": "Mech industry night",
+      "blurb": "Meet industry representatives and talk about the team. 23 October 2025, 17:15 to 20:00.",
+      "detail": null,
+      "todo": null,
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "fall-preview",
+      "name": "Fall preview",
+      "blurb": "Talk to high school students about McMaster and the team. 25 October 2025, 9:30 to 16:00.",
+      "detail": null,
+      "todo": null,
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "first-robotics",
+      "name": "FIRST Robotics",
+      "blurb": "Volunteered at a campus event for 30 high school robotics teams from across Ontario. 21 and 22 March 2026, 12:00 to 16:00, David Bradley Athletic Centre.",
+      "detail": null,
+      "todo": null,
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "isaac-dinner",
+      "name": "Isaac Operations dinner",
+      "blurb": "A networking dinner for members, sponsored by Isaac Operations.",
+      "detail": null,
+      "todo": "date, and what the evening actually was",
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "info-nights",
+      "name": "Info nights",
+      "blurb": "On campus.",
+      "detail": null,
+      "todo": "what they cover, who they are for, and when",
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "clubsfest",
+      "name": "Clubsfest and Facultyfest",
+      "blurb": "We take a table at both, at the start of term.",
+      "detail": null,
+      "todo": "confirm we run this every term",
+      "photo": null,
+      "photoAlt": null
+    },
+    {
+      "slug": "launch-canada-youth",
+      "name": "Youth outreach at Launch Canada",
+      "blurb": "On conference days. This past year, kids filled in a rocketry bingo. Prizes were candy rockets. The grand prize was a McMaster Rocketry bucket hat.",
+      "detail": null,
+      "todo": "which year this bingo was, and whether it runs every Launch Canada",
+      "photo": null,
+      "photoAlt": null
+    }
+  ]
+}

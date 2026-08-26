@@ -31,3 +31,12 @@ npm-debug.log*
 pnpm-debug.log*
 .env
 .env.production
+
+# Local OneDrive document extract. Not for the public repo.
+.onedrive-extract/
+
+# Python bytecode cache from the fleet-cutout scripts.
+__pycache__/
+
+# Staged photo imports not yet sorted into a rockets/<slug>/ folder.
+temp osiris images/

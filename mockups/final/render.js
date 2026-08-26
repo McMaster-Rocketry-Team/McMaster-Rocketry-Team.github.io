@@ -341,7 +341,7 @@
       ['Apogee', apo, v.apogee ? 'feet above ground level' : 'flew, but no instrumented figure'],
       ['Max velocity', v.mach ? 'Mach ' + v.mach : null, 'at burnout'],
       ['Max acceleration', v.specs.accel, 'peak, from flight data'],
-      ['Length', v.specs.length, 'overall, nose to tail'],
+      ['Length', v.specs.length, 'overall, tip to tail'],
       ['Liftoff mass', v.specs.mass, 'fuelled, with payload'],
       ['Motor', v.specs.motor, 'designation and impulse class'],
       ['Recovery', v.specs.recovery, 'drogue and main configuration'],
