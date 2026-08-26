@@ -7,14 +7,14 @@
 <meta name="description" content="The students who build and fly McMaster Rocketry's vehicles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav id="nav">
+<nav id="nav" data-page="members">
   <a class="brand" href="index.html">
     <svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
@@ -48,13 +48,21 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <div class="navlinks" id="navlinks"><a href="rockets.html">Rockets</a><a href="subteam.html">Subteams</a><a href="members.html" aria-current="page">Members</a><a href="sponsors.html">Sponsors</a><a href="join.html">Join us</a></div>
 </nav>
 
+<noscript>
+  <div class="noscript-banner">
+    This page is rendered from <code>data.js</code> in the mockup. In the real Astro build
+    it will be generated at build time and will work without JavaScript.
+  </div>
+</noscript>
 <main id="main" tabindex="-1">
 
 <header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="tag">Members</div>
     <h1>The people<br>who build it.</h1>
-    <p class="lede">Around 60 students across eight subteams and every faculty on campus. These are the leads &mdash; the rest of the team is on the subteam pages.</p>
+    <p class="lede">Around 60 students across seven subteams and every faculty on campus. These are the leads &mdash; the rest of the team is on the subteam pages.</p>
   </div>
 </header>
 
@@ -62,88 +70,15 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">2025&ndash;26 leadership</div><h2>Leads.</h2></div>
-      <p>Twelve leads, four of whom are not in engineering. Every photograph needs a real
-         alt description before this ships.</p>
+      <p>Nine leads. Every photograph needs a real alt description before this ships.</p>
     </div>
-    <div class="roster">
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Team lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">4th yr &middot; Mechanical Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Chief engineer</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">4th yr &middot; Mechatronics</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Avionics lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">3rd yr &middot; Software Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Propulsion lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">3rd yr &middot; Chemical Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Airframe lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">3rd yr &middot; Mechanical Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Recovery lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">2nd yr &middot; Engineering Physics</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Payload lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">4th yr &middot; Materials Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Composites lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">3rd yr &middot; Mechanical Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Operations lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">4th yr &middot; Civil Engineering</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Business lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">3rd yr &middot; Commerce</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Outreach lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">2nd yr &middot; Communications</p>
-      </div>
-      <div class="person">
-        <div class="shot" aria-hidden="true"><span>Portrait slot<br>TODO: photo + alt text</span></div>
-        <h3>Finance lead</h3>
-        <p class="role">TODO: name</p>
-        <p class="prog">3rd yr &middot; Commerce</p>
-      </div>
-    </div>
+    <div class="roster" data-member-roster></div>
     <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
-      <span class="todo" aria-hidden="true">TODO(robin)</span> Names, portraits and programmes. Alt text should
-      describe the person, not the photograph &mdash; &ldquo;Priya Shah, avionics lead&rdquo;,
+      <span class="todo" aria-hidden="true">TODO(robin)</span> Names, portraits, programmes and years. Alt text
+      should describe the person, not the photograph &mdash; &ldquo;Priya Shah, avionics lead&rdquo;,
       not &ldquo;a student smiling&rdquo;. If a member would rather not be pictured, the card
-      works without one.
+      works without one. Fill programme and year from the person, never a guess &mdash; see
+      the note in <code>data.js</code>.
     </p>
   </div>
 </section>
@@ -154,16 +89,11 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <div><div class="tag">Who we are</div><h2>Not only engineers.</h2></div>
       <p>The team runs on more than airframes. These are the numbers behind the roster.</p>
     </div>
-    <dl class="dl">
-      <div><dt>Active members</dt><dd>~60<small>across eight subteams</small></dd></div>
-      <div><dt>Faculties represented</dt><dd class="nodata">TODO<small>engineering, science, commerce, humanities</small></dd></div>
-      <div><dt>First years</dt><dd class="nodata">TODO<small>every year, no experience needed</small></dd></div>
-      <div><dt>Founded</dt><dd class="nodata">TODO<small>year the team started</small></dd></div>
-    </dl>
+    <dl class="dl" data-member-stats></dl>
     <div class="prose" style="color:rgba(255,255,255,.86);margin-top:clamp(30px,5vh,52px)">
       <p>Most of the people on this page had never touched a rocket before joining. Several
-        are not in engineering at all &mdash; the business, outreach and finance leads run
-        sponsorship, the budget and everything we do on campus.</p>
+        are not in engineering at all &mdash; the operations lead runs sponsorship, the
+        budget and everything we do on campus.</p>
     </div>
     <div class="btnrow"><a class="btn solid" href="join.html">Join them</a></div>
   </div>
@@ -176,58 +106,21 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <p>We hire people who have never touched a rocket. The only thing we ask is that
       you want to find out how high this one goes.</p>
     <p class="fine">Applications open at the start of each term and we run an info session
-      in the first two weeks. You do not need to be an engineer &mdash; we need people on
-      business, outreach and finance as much as on airframe.</p>
+      in the first two weeks. You do not need to be an engineer &mdash; we need people on operations as much as on airframe.</p>
     <div class="btnrow">
       <a class="btn solid" href="join.html">How to join</a>
       <a class="btn" href="sponsors.html">Sponsor the team</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca">Email us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca" data-mail>Email us</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h2 class="fh">McMaster Rocketry Team</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
-          A student team at McMaster University in Hamilton, Ontario. We design, build and
-          fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>
-        <p style="margin:16px 0 0;font-size:14.5px">
-          <a href="mailto:TODO@macrocketry.ca">TODO@macrocketry.ca</a>
-          <span class="todo" aria-hidden="true">TODO: real address</span>
-        </p>
-      </div>
-      <div>
-        <h2 class="fh">The team</h2>
-        <ul role="list">
-          <li><a href="rockets.html">Rockets</a></li>
-          <li><a href="subteam.html">Subteams</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="join.html">Join us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="fh">Get in touch</h2>
-        <ul role="list">
-          <li><a href="sponsors.html">Sponsorship</a></li>
-          <li><a href="mailto:TODO@macrocketry.ca">Email</a></li>
-          <li><a href="https://instagram.com/TODO">Instagram</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://discord.gg/TODO">Discord</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://linkedin.com/company/TODO">LinkedIn</a> <span class="todo" aria-hidden="true">TODO</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-note">
-      <span>McMaster University &middot; Hamilton, Ontario</span>
-      <span>Heritage Maroon #7A003C</span>
-    </div>
-  </div>
-</footer>
+<footer class="site" id="site-footer"></footer>
 
+<script src="data.js"></script>
+<script src="render.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

@@ -7,14 +7,14 @@
 <meta name="description" content="Sponsor the McMaster Rocketry Team — tiers, what your support buys, and who to contact.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav id="nav">
+<nav id="nav" data-page="sponsors">
   <a class="brand" href="index.html">
     <svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
@@ -48,9 +48,17 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <div class="navlinks" id="navlinks"><a href="rockets.html">Rockets</a><a href="subteam.html">Subteams</a><a href="members.html">Members</a><a href="sponsors.html" aria-current="page">Sponsors</a><a href="join.html">Join us</a></div>
 </nav>
 
+<noscript>
+  <div class="noscript-banner">
+    This page is rendered from <code>data.js</code> in the mockup. In the real Astro build
+    it will be generated at build time and will work without JavaScript.
+  </div>
+</noscript>
 <main id="main" tabindex="-1">
 
 <header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="tag">Sponsors</div>
     <h1>Put your name<br>on a rocket.</h1>
@@ -65,12 +73,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <p>We publish this because sponsors ask, and because a team that will not say where
          the money goes is not a team worth funding.</p>
     </div>
-    <dl class="dl">
-      <div><dt>Airframe &amp; composites</dt><dd class="nodata">TODO<small>carbon, tooling, consumables</small></dd></div>
-      <div><dt>Motors &amp; propulsion</dt><dd class="nodata">TODO<small>per vehicle, per season</small></dd></div>
-      <div><dt>Avionics &amp; payload</dt><dd class="nodata">TODO<small>boards, sensors, telemetry</small></dd></div>
-      <div><dt>Competition travel</dt><dd class="nodata">TODO<small>getting the team and the rocket there</small></dd></div>
-    </dl>
+    <dl class="dl" data-sponsor-budget></dl>
     <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
       <span class="todo" aria-hidden="true">TODO(robin)</span> Real figures here are the single most persuasive
       thing on this page. A sponsor who can see the budget can see what their tier actually
@@ -88,42 +91,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     </div>
   </div>
   <div class="wrap">
-    <div class="tiers">
-      <div class="tier">
-        <h3>Supporter</h3>
-        <div class="amount">TODO</div>
-        <ul role="list">
-          <li>Name on the sponsors page and in the season report</li>
-          <li>Invitation to the end-of-season showcase</li>
-          <li>Post-season technical report</li>
-        </ul>
-        <span class="todo" aria-hidden="true">TODO: amount</span>
-      </div>
-      <div class="tier lead">
-        <h3>Partner</h3>
-        <div class="amount">TODO</div>
-        <ul role="list">
-          <li>Everything in Supporter</li>
-          <li>Logo on the airframe and on the team&rsquo;s competition banner</li>
-          <li>Logo on this site at partner size</li>
-          <li>One recruiting session with the team</li>
-          <li>Launch-day invitation</li>
-        </ul>
-        <span class="todo" style="align-self:flex-start">TODO: amount</span>
-      </div>
-      <div class="tier">
-        <h3>Title</h3>
-        <div class="amount">TODO</div>
-        <ul role="list">
-          <li>Everything in Partner</li>
-          <li>Naming rights on the season&rsquo;s vehicle</li>
-          <li>Prominent logo placement on airframe and site</li>
-          <li>Access to the full team resume book</li>
-          <li>Named in every press mention we place</li>
-        </ul>
-        <span class="todo" aria-hidden="true">TODO: amount</span>
-      </div>
-    </div>
+    <div class="tiers" data-sponsor-tiers></div>
   </div>
   <div class="wrap">
     <div class="prose" style="color:rgba(255,255,255,.86);margin-top:clamp(30px,5vh,52px)">
@@ -133,8 +101,8 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
         use it.</p>
     </div>
     <div class="btnrow">
-      <a class="btn solid" href="mailto:TODO@macrocketry.ca">Talk to us</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca?subject=Sponsorship%20package">Request the package</a> <span class="todo" aria-hidden="true">TODO: swap for PDF</span>
+      <a class="btn solid" href="mailto:TODO@macrocketry.ca" data-mail>Talk to us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca?subject=Sponsorship%20package" data-mail data-mail-subject="Sponsorship package">Request the package</a> <span class="todo" aria-hidden="true">TODO: swap for PDF</span>
     </div>
   </div>
 </section>
@@ -146,16 +114,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <p>Logo placement is deliberate and consistent &mdash; greyscale on dark, full colour
          on paper, at a size set by tier.</p>
     </div>
-    <div class="cards c4">
-      <div class="card" style="min-height:150px;align-items:center;justify-content:center">
-        <span class="mono" style="color:var(--muted-on-paper)">Logo slot<br>Title</span></div>
-      <div class="card" style="min-height:150px;align-items:center;justify-content:center">
-        <span class="mono" style="color:var(--muted-on-paper)">Logo slot<br>Partner</span></div>
-      <div class="card" style="min-height:150px;align-items:center;justify-content:center">
-        <span class="mono" style="color:var(--muted-on-paper)">Logo slot<br>Partner</span></div>
-      <div class="card" style="min-height:150px;align-items:center;justify-content:center">
-        <span class="mono" style="color:var(--muted-on-paper)">Logo slot<br>Supporter</span></div>
-    </div>
+    <div class="cards c4" data-sponsor-partners></div>
     <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper)">
       <span class="todo" aria-hidden="true">TODO(robin)</span> Real partner logos, each linked, each with the
       company name as alt text.
@@ -169,21 +128,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <div><div class="tag">Contact</div><h2>Who to ask.</h2></div>
       <p>One named person, not an inbox nobody reads.</p>
     </div>
-    <div class="cards c2">
-      <div class="card"><div>
-        <div class="tag">Sponsorship</div>
-        <h3>TODO: name</h3>
-        <p>Business lead. The person who will answer your email and follow through.<br>
-          <a href="mailto:TODO@macrocketry.ca" style="text-decoration:underline;text-underline-offset:3px">TODO@macrocketry.ca</a></p>
-      </div></div>
-      <div class="card"><div>
-        <div class="tag">Technical questions</div>
-        <h3>TODO: name</h3>
-        <p>Chief engineer, for questions about the vehicle, the flight data or the
-          competition.<br>
-          <a href="mailto:TODO@macrocketry.ca" style="text-decoration:underline;text-underline-offset:3px">TODO@macrocketry.ca</a></p>
-      </div></div>
-    </div>
+    <div class="cards c2" data-sponsor-contacts></div>
   </div>
 </section>
 
@@ -194,58 +139,21 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <p>We hire people who have never touched a rocket. The only thing we ask is that
       you want to find out how high this one goes.</p>
     <p class="fine">Applications open at the start of each term and we run an info session
-      in the first two weeks. You do not need to be an engineer &mdash; we need people on
-      business, outreach and finance as much as on airframe.</p>
+      in the first two weeks. You do not need to be an engineer &mdash; we need people on operations as much as on airframe.</p>
     <div class="btnrow">
       <a class="btn solid" href="join.html">How to join</a>
       <a class="btn" href="sponsors.html">Sponsor the team</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca">Email us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca" data-mail>Email us</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h2 class="fh">McMaster Rocketry Team</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
-          A student team at McMaster University in Hamilton, Ontario. We design, build and
-          fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>
-        <p style="margin:16px 0 0;font-size:14.5px">
-          <a href="mailto:TODO@macrocketry.ca">TODO@macrocketry.ca</a>
-          <span class="todo" aria-hidden="true">TODO: real address</span>
-        </p>
-      </div>
-      <div>
-        <h2 class="fh">The team</h2>
-        <ul role="list">
-          <li><a href="rockets.html">Rockets</a></li>
-          <li><a href="subteam.html">Subteams</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="join.html">Join us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="fh">Get in touch</h2>
-        <ul role="list">
-          <li><a href="sponsors.html">Sponsorship</a></li>
-          <li><a href="mailto:TODO@macrocketry.ca">Email</a></li>
-          <li><a href="https://instagram.com/TODO">Instagram</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://discord.gg/TODO">Discord</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://linkedin.com/company/TODO">LinkedIn</a> <span class="todo" aria-hidden="true">TODO</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-note">
-      <span>McMaster University &middot; Hamilton, Ontario</span>
-      <span>Heritage Maroon #7A003C</span>
-    </div>
-  </div>
-</footer>
+<footer class="site" id="site-footer"></footer>
 
+<script src="data.js"></script>
+<script src="render.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

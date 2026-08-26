@@ -7,14 +7,14 @@
 <meta name="description" content="Every vehicle the McMaster Rocketry Team has designed, built and flown.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav id="nav">
+<nav id="nav" data-page="rockets">
   <a class="brand" href="index.html">
     <svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
@@ -48,15 +48,39 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <div class="navlinks" id="navlinks"><a href="rockets.html" aria-current="page">Rockets</a><a href="subteam.html">Subteams</a><a href="members.html">Members</a><a href="sponsors.html">Sponsors</a><a href="join.html">Join us</a></div>
 </nav>
 
+<noscript>
+  <div class="noscript-banner">
+    This page is rendered from <code>data.js</code> in the mockup. In the real Astro build
+    it will be generated at build time and will work without JavaScript.
+  </div>
+</noscript>
 <main id="main" tabindex="-1">
 
 <header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="tag">The fleet</div>
-    <h1>Six rockets.<br>Five years.</h1>
-    <p class="lede">Every vehicle the team has designed, built and flown, in order. Three of them flew before we kept instrumented records &mdash; we say so rather than guessing.</p>
+    <h1><span data-vehicle-count>Six</span> rockets.<br><span data-year-span>Five</span> years.</h1>
+    <p class="lede">Every vehicle the team has designed, built and flown, in order.
+      <span data-norecord-count>Three</span> of them flew before we kept instrumented
+      records &mdash; we say so rather than guessing.</p>
   </div>
 </header>
+
+<section class="paper fleet">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">By year</div><h2>Apogee,<br>every flight.</h2></div>
+      <p>Tallest rocket is not the point &mdash; both competitions we fly score against a
+         declared target, not maximum altitude.</p>
+      <div class="statline" data-fleet-stat></div>
+    </div>
+    <div data-fleet-chart></div>
+  </div>
+</section>
 
 <section class="paper">
   <div class="wrap">
@@ -66,20 +90,13 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
         <thead><tr><th scope="col">Vehicle</th><th scope="col">Year</th>
           <th scope="col">Competition</th><th scope="col">Measured apogee</th>
           <th scope="col">Detail</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Marauder I</th><td class="num">2022</td><td>Launch Canada</td><td class="num"><span style="color:var(--muted-on-paper)">No verified record</span></td><td><a href="rocket.html?v=marauder-i" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for Marauder I</span></a></td></tr>
-          <tr><th scope="row">Marauder II</th><td class="num">2023</td><td>Spaceport America Cup</td><td class="num"><span style="color:var(--muted-on-paper)">No verified record</span></td><td><a href="rocket.html?v=marauder-ii" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for Marauder II</span></a></td></tr>
-          <tr><th scope="row">Luminis</th><td class="num">2024</td><td>Spaceport America Cup</td><td class="num"><span style="color:var(--muted-on-paper)">No verified record</span></td><td><a href="rocket.html?v=luminis" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for Luminis</span></a></td></tr>
-          <tr><th scope="row">Luminis V2</th><td class="num">2024</td><td>Launch Canada</td><td class="num">10,456 ft</td><td><a href="rocket.html?v=luminis-v2" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for Luminis V2</span></a></td></tr>
-          <tr><th scope="row">Nimbus</th><td class="num">2025</td><td>Launch Canada</td><td class="num">18,000 ft</td><td><a href="rocket.html?v=nimbus" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for Nimbus</span></a></td></tr>
-          <tr><th scope="row">Osiris</th><td class="num">2026</td><td>Launch Canada</td><td class="num">33,584 ft</td><td><a href="rocket.html?v=osiris" style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for Osiris</span></a></td></tr>
-        </tbody>
+        <tbody data-fleet-table="detail"></tbody>
       </table>
     </div>
     <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
       Apogee is the highest altitude the vehicle reached, measured by the onboard flight
       computer. Where we have no instrumented figure we publish nothing rather than an
-      estimate. <span class="todo" aria-hidden="true">TODO: source Nimbus, or mark it unverified</span>
+      estimate.
     </p>
   </div>
 </section>
@@ -91,58 +108,21 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <p>We hire people who have never touched a rocket. The only thing we ask is that
       you want to find out how high this one goes.</p>
     <p class="fine">Applications open at the start of each term and we run an info session
-      in the first two weeks. You do not need to be an engineer &mdash; we need people on
-      business, outreach and finance as much as on airframe.</p>
+      in the first two weeks. You do not need to be an engineer &mdash; we need people on operations as much as on airframe.</p>
     <div class="btnrow">
       <a class="btn solid" href="join.html">How to join</a>
       <a class="btn" href="sponsors.html">Sponsor the team</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca">Email us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca" data-mail>Email us</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h2 class="fh">McMaster Rocketry Team</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
-          A student team at McMaster University in Hamilton, Ontario. We design, build and
-          fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>
-        <p style="margin:16px 0 0;font-size:14.5px">
-          <a href="mailto:TODO@macrocketry.ca">TODO@macrocketry.ca</a>
-          <span class="todo" aria-hidden="true">TODO: real address</span>
-        </p>
-      </div>
-      <div>
-        <h2 class="fh">The team</h2>
-        <ul role="list">
-          <li><a href="rockets.html">Rockets</a></li>
-          <li><a href="subteam.html">Subteams</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="join.html">Join us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="fh">Get in touch</h2>
-        <ul role="list">
-          <li><a href="sponsors.html">Sponsorship</a></li>
-          <li><a href="mailto:TODO@macrocketry.ca">Email</a></li>
-          <li><a href="https://instagram.com/TODO">Instagram</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://discord.gg/TODO">Discord</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://linkedin.com/company/TODO">LinkedIn</a> <span class="todo" aria-hidden="true">TODO</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-note">
-      <span>McMaster University &middot; Hamilton, Ontario</span>
-      <span>Heritage Maroon #7A003C</span>
-    </div>
-  </div>
-</footer>
+<footer class="site" id="site-footer"></footer>
 
+<script src="data.js"></script>
+<script src="render.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

@@ -27,6 +27,16 @@
     });
   }
 
+  /* ---------- nav background: fade-to-solid on scroll ----------
+     nav rests as a transparent gradient over the page's dark hero/header;
+     past that it needs a solid background to stay legible over paper
+     sections. 24px covers the gradient's own height with margin. */
+  if(nav){
+    var setScrolled = function(){ nav.dataset.scrolled = String(window.scrollY > 24); };
+    setScrolled();
+    addEventListener('scroll', setScrolled, { passive: true });
+  }
+
   /* ---------- background video: pause control (WCAG 2.2.2 Pause, Stop, Hide) ---------- */
   var vid = document.getElementById('bgvid');
   var vidToggle = document.getElementById('vidtoggle');
@@ -53,5 +63,30 @@
       if(paused){ vid.play(); } else { vid.pause(); }
       vidToggle.textContent = paused ? 'Pause video' : 'Play video';
     });
+  }
+
+  /* ---------- fleet lineup reveal ----------
+     render.js ships every lineup with .reveal-pending already on it — that
+     class is the only thing hiding the rockets, and nothing here ever adds
+     it. So a page with this script blocked, or an IntersectionObserver that
+     never fires, is left showing the finished lineup rather than a stuck-empty
+     one. Reduced motion (or no observer support) removes the class outright,
+     instant and un-animated; otherwise each lineup reveals once, the first
+     time it's a third of the way into view. */
+  var charts = document.querySelectorAll('.lineup.reveal-pending');
+  if(charts.length){
+    if(reduce || !('IntersectionObserver' in window)){
+      charts.forEach(function(c){ c.classList.remove('reveal-pending'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.remove('reveal-pending');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      charts.forEach(function(c){ io.observe(c); });
+    }
   }
 })();

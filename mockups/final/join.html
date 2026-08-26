@@ -7,14 +7,14 @@
 <meta name="description" content="How to join the McMaster Rocketry Team. No experience required.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav id="nav">
+<nav id="nav" data-page="join">
   <a class="brand" href="index.html">
     <svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
@@ -48,9 +48,17 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <div class="navlinks" id="navlinks"><a href="rockets.html">Rockets</a><a href="subteam.html">Subteams</a><a href="members.html">Members</a><a href="sponsors.html">Sponsors</a><a href="join.html" aria-current="page">Join us</a></div>
 </nav>
 
+<noscript>
+  <div class="noscript-banner">
+    This page is rendered from <code>data.js</code> in the mockup. In the real Astro build
+    it will be generated at build time and will work without JavaScript.
+  </div>
+</noscript>
 <main id="main" tabindex="-1">
 
 <header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="tag">Join us</div>
     <h1>No experience<br>required.</h1>
@@ -65,32 +73,9 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <p>The whole process takes about two weeks and there is no interview panel &mdash;
          just a conversation about what you want to work on.</p>
     </div>
-    <ol class="steps" role="list">
-      <li>
-        <h3>Come to an info session</h3>
-        <p>We run two in the first two weeks of term. You will meet the subteam leads,
-          see the current vehicle, and get a straight answer about time commitment.
-          <span class="todo" aria-hidden="true">TODO: dates, time and room</span></p>
-      </li>
-      <li>
-        <h3>Fill in the form</h3>
-        <p>It asks what you are interested in and how much time you have. It does not ask
-          for a resume and there is no minimum GPA.
-          <span class="todo" aria-hidden="true">TODO: link the real application form</span></p>
-      </li>
-      <li>
-        <h3>Have a chat</h3>
-        <p>Fifteen minutes with the lead of whichever subteam you picked. This is us
-          working out where you would enjoy yourself, not a test.</p>
-      </li>
-      <li>
-        <h3>Start building</h3>
-        <p>You are on the team. First-term members shadow a build, take on one small
-          deliverable, and are on the range crew by the spring if they want to be.</p>
-      </li>
-    </ol>
+    <ol class="steps" role="list" data-join-steps></ol>
     <div class="btnrow">
-      <a class="btn solid" href="mailto:TODO@macrocketry.ca?subject=Application">Apply now</a> <span class="todo" aria-hidden="true">TODO: swap for form URL</span>
+      <a class="btn solid" href="mailto:TODO@macrocketry.ca?subject=Application" data-join-apply>Apply now</a>
       <a class="btn" href="https://discord.gg/TODO">Join the Discord</a> <span class="todo" aria-hidden="true">TODO</span>
     </div>
   </div>
@@ -103,12 +88,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <p>Applications open every term. If you have missed a window, come anyway &mdash; we
          take people on a rolling basis when a subteam has room.</p>
     </div>
-    <dl class="dl">
-      <div><dt>Info sessions</dt><dd class="nodata">TODO<small>first two weeks of term</small></dd></div>
-      <div><dt>Applications open</dt><dd class="nodata">TODO<small>date</small></dd></div>
-      <div><dt>Applications close</dt><dd class="nodata">TODO<small>date</small></dd></div>
-      <div><dt>First build night</dt><dd class="nodata">TODO<small>date</small></dd></div>
-    </dl>
+    <dl class="dl" data-join-dates></dl>
   </div>
 </section>
 
@@ -119,42 +99,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <p>If your question is not here, email us. We would rather answer it than have you
          talk yourself out of applying.</p>
     </div>
-    <div class="faq">
-      <details>
-        <summary><h3>I have never built anything. Can I still join?</h3></summary>
-        <p class="a">Yes, and most of us started there. First-term members are paired with
-          someone who has done the job before, and your first deliverable is deliberately
-          small. The team exists to teach this.</p>
-      </details>
-      <details>
-        <summary><h3>I am not in engineering. Is there a place for me?</h3></summary>
-        <p class="a">Yes. Business, Outreach and Finance are full subteams, not afterthoughts
-          &mdash; they run sponsorship, the budget, and everything we do on campus. Commerce,
-          communications, humanities and science students all sit on them. Payload also takes
-          science students most years.</p>
-      </details>
-      <details>
-        <summary><h3>How much time does it actually take?</h3></summary>
-        <p class="a">About six hours a week for most members, rising in the four weeks before
-          a launch and dropping to almost nothing over exams. We plan around the academic
-          term. <span class="todo" aria-hidden="true">TODO: confirm the real figure</span></p>
-      </details>
-      <details>
-        <summary><h3>Do I need to pay anything?</h3></summary>
-        <p class="a"><span class="todo" aria-hidden="true">TODO(robin): answer this — membership fee, travel
-          costs to competition, and what the team covers.</span></p>
-      </details>
-      <details>
-        <summary><h3>Can I join partway through the year?</h3></summary>
-        <p class="a">Usually yes. Email us and we will tell you honestly whether a subteam has
-          room right now, rather than putting you on a list.</p>
-      </details>
-      <details>
-        <summary><h3>What if I want to try a different subteam later?</h3></summary>
-        <p class="a">Normal, and encouraged. Plenty of people move once they have seen what the
-          other subteams actually do.</p>
-      </details>
-    </div>
+    <div class="faq" data-join-faq></div>
   </div>
 </section>
 
@@ -165,58 +110,21 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <p>We hire people who have never touched a rocket. The only thing we ask is that
       you want to find out how high this one goes.</p>
     <p class="fine">Applications open at the start of each term and we run an info session
-      in the first two weeks. You do not need to be an engineer &mdash; we need people on
-      business, outreach and finance as much as on airframe.</p>
+      in the first two weeks. You do not need to be an engineer &mdash; we need people on operations as much as on airframe.</p>
     <div class="btnrow">
       <a class="btn solid" href="join.html">How to join</a>
       <a class="btn" href="sponsors.html">Sponsor the team</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca">Email us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca" data-mail>Email us</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h2 class="fh">McMaster Rocketry Team</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
-          A student team at McMaster University in Hamilton, Ontario. We design, build and
-          fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>
-        <p style="margin:16px 0 0;font-size:14.5px">
-          <a href="mailto:TODO@macrocketry.ca">TODO@macrocketry.ca</a>
-          <span class="todo" aria-hidden="true">TODO: real address</span>
-        </p>
-      </div>
-      <div>
-        <h2 class="fh">The team</h2>
-        <ul role="list">
-          <li><a href="rockets.html">Rockets</a></li>
-          <li><a href="subteam.html">Subteams</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="join.html">Join us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="fh">Get in touch</h2>
-        <ul role="list">
-          <li><a href="sponsors.html">Sponsorship</a></li>
-          <li><a href="mailto:TODO@macrocketry.ca">Email</a></li>
-          <li><a href="https://instagram.com/TODO">Instagram</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://discord.gg/TODO">Discord</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://linkedin.com/company/TODO">LinkedIn</a> <span class="todo" aria-hidden="true">TODO</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-note">
-      <span>McMaster University &middot; Hamilton, Ontario</span>
-      <span>Heritage Maroon #7A003C</span>
-    </div>
-  </div>
-</footer>
+<footer class="site" id="site-footer"></footer>
 
+<script src="data.js"></script>
+<script src="render.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

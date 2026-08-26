@@ -7,25 +7,38 @@
    the inverted scroll. All three were display:none below 900px in the mockups,
    which was the design admitting they were desktop-only.
 
-   Palette is McMaster Heritage Maroon + white/grey/black only. --maroon-tint is
-   used for text and hairlines on DARK grounds only, never on maroon — on maroon
-   it measures 2.73:1. On maroon, use white at opacity.
+   Rebuilt onto McMaster_Rocketry_Design_System_Spec.md v1.0. Neutrals are
+   true grayscale now (R=G=B on every graphite/fog step) rather than the
+   red-leaning warm graphite the spec first called for — that warmth,
+   stacked under --paper's own slight cream, was reading as brown across
+   large surfaces. Robin's call: red, white and black only, nothing else
+   should carry a hue. Ignition is a fill/accent colour, not a wash —
+   full-bleed grounds (.hero, .phead, .cta, .tier.lead) use graphite, and
+   ignition is reserved for buttons, hairline accents, icons on paper and the
+   corner-crosshair device. --fog-500 measures 3.02:1 on --paper, below the
+   4.5:1 floor for text, so caption-weight copy on paper uses --graphite-700
+   (10.13:1) instead — see --muted-on-paper below. Fog stays for hairlines
+   and captions on dark grounds, where it clears 5.38:1.
    ========================================================================== */
 :root{
-  --maroon:#7A003C;
-  --maroon-deep:#3E001F;
-  --maroon-tint:#E24C7C;      /* dark grounds only */
-  --ink:#0B0B0E;
-  --ink-2:#17171C;
-  --paper:#F5F3EF;
-  --paper-2:#E9E5DE;
+  --ignition:#BF2026;
+  --ignition-deep:#8C171F;
+  --ignition-tint:#F4E7E5;
+  --graphite-900:#1A1A1A;
+  --graphite-700:#3D3D3D;
+  --fog-500:#8F8F8F;
+  --fog-300:#CCCCCC;
+  --fog-100:#E8E8E8;
+  --paper:#F7F7F6;
+  --altimeter:#2F7D5B;
+  --amber:#D98A2B;
   --white:#FFFFFF;
-  --muted-on-paper:#5F5F6B;   /* 5.68:1 on paper */
-  --muted-on-ink:#9A9AA4;     /* 7.10:1 on ink   */
+  --muted-on-paper:var(--graphite-700);   /* 10.13:1 on paper */
+  --muted-on-ink:var(--fog-500);          /* 5.38:1 on graphite-900 */
   --rule-dark:rgba(255,255,255,.20);
-  --rule-light:rgba(11,11,14,.16);
-  --font-display:"Anton",Impact,system-ui,sans-serif;
-  --font-body:"Inter",system-ui,sans-serif;
+  --rule-light:rgba(26,26,26,.16);
+  --font-display:"Space Grotesk",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,monospace;
   --dur:.45s;
   --ease:cubic-bezier(.22,1,.36,1);
@@ -35,7 +48,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--navh) + 16px)}
-body{margin:0;background:var(--ink);color:var(--white);font-family:var(--font-body);
+body{margin:0;background:var(--graphite-900);color:var(--white);font-family:var(--font-body);
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 svg{display:block}
 img{display:block;max-width:100%;height:auto}
@@ -43,9 +56,10 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{text-wrap:balance}
 
 /* Focus ring: white inner + near-black outer. One of the two always contrasts —
-   on paper, on maroon and on near-black — and it stays inside the brand palette. */
+   on paper, on ignition and on graphite — and it stays outside the hue palette on
+   purpose, so it never gets mistaken for a status or brand colour. */
 :focus-visible{outline:3px solid #fff;outline-offset:0;box-shadow:0 0 0 6px #08080A}
-.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--white);color:var(--ink);
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--white);color:var(--graphite-900);
   padding:13px 18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;
   text-transform:uppercase}
 .skip:focus{left:0}
@@ -54,15 +68,43 @@ h1,h2,h3,h4{text-wrap:balance}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter);width:100%}
 .mono{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase}
 
+/* ---------- corner registration crosshairs ----------
+   Signature device #2: thin open-corner brackets framing a hero section or key
+   block. Used once per page — .phead on every interior page, .fleet on the two
+   pages that host the rocket lineup. On dark grounds the lines pick up
+   ignition; everywhere else they stay graphite-700, since a decorative 1px line
+   carries no text-contrast requirement either way. */
+.crosshair{position:absolute;width:18px;height:18px;pointer-events:none}
+.crosshair::before,.crosshair::after{content:"";position:absolute;background:var(--graphite-700)}
+.crosshair::before{width:100%;height:1px;top:0;left:0}
+.crosshair::after{width:1px;height:100%;top:0;left:0}
+.crosshair.tl{top:14px;left:calc(var(--gutter) - 4px)}
+.crosshair.br{bottom:14px;right:calc(var(--gutter) - 4px);transform:rotate(180deg)}
+.phead .crosshair::before,.phead .crosshair::after,
+.hero .crosshair::before,.hero .crosshair::after{background:var(--ignition)}
+/* .phead and .hero are the first element after the fixed nav and pad
+   themselves down by --navh so their content clears it — but that padding
+   doesn't move their own top edge, which still starts at the same point the
+   nav covers. A plain top:14px crosshair.tl landed underneath the nav,
+   invisible. */
+.phead .crosshair.tl,.hero .crosshair.tl{top:calc(var(--navh) + 14px)}
+.fleet{position:relative}
+
 /* ---------- NAV ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;
   justify-content:space-between;min-height:var(--navh);
   padding:12px max(var(--gutter),env(safe-area-inset-right)) 12px max(var(--gutter),env(safe-area-inset-left));
   padding-top:max(12px,env(safe-area-inset-top));
-  background:rgba(11,11,14,.86);backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(255,255,255,.12)}
-.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:15px;
-  letter-spacing:-.01em;min-height:44px}
+  /* Resting state is a top-down fade, not a solid bar — every page opens on a
+     dark hero/header so this reads fine at scroll:0. site.js flips
+     data-scrolled once that dark section has passed under the nav, swapping
+     in a flat --graphite-900 so nav text stays legible over paper sections. */
+  background:linear-gradient(180deg,rgba(26,26,26,.88) 0%,rgba(26,26,26,0) 100%);
+  border-bottom:1px solid transparent;
+  transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+nav[data-scrolled="true"]{background:var(--graphite-900);border-bottom-color:rgba(255,255,255,.12)}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--font-display);
+  font-weight:700;font-size:16px;letter-spacing:-.01em;min-height:44px}
 .brand .logo{width:22px;height:auto;color:var(--white);flex:0 0 auto}
 .navlinks{display:flex;gap:26px}
 .navlinks a{position:relative;font-family:var(--font-mono);font-size:12px;
@@ -91,7 +133,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:cent
   .brand,.navtoggle{position:relative;z-index:2}
   .navlinks{position:fixed;inset:0 0 auto 0;top:0;
     padding:calc(env(safe-area-inset-top) + var(--navh) + 12px) var(--gutter) 26px;
-    flex-direction:column;gap:0;background:var(--ink);
+    flex-direction:column;gap:0;background:var(--graphite-900);
     border-bottom:1px solid rgba(255,255,255,.18);
     transform:translateY(-100%);visibility:hidden;
     transition:transform var(--dur) var(--ease),visibility var(--dur)}
@@ -103,29 +145,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:cent
 }
 
 /* ---------- PAGE HEAD (interior pages) ---------- */
-.phead{background:var(--maroon);padding:calc(var(--navh) + clamp(46px,9vh,104px)) 0 clamp(38px,7vh,84px);
+.phead{background:var(--graphite-900);padding:calc(var(--navh) + clamp(46px,9vh,104px)) 0 clamp(38px,7vh,84px);
   position:relative;overflow:hidden}
 .phead .tag{color:rgba(255,255,255,.78)}
-.phead h1{font-family:var(--font-display);font-weight:400;
-  font-size:clamp(44px,9vw,116px);line-height:.92;letter-spacing:.01em;
-  text-transform:uppercase;margin:14px 0 0;color:var(--white)}
+.phead h1{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(44px,9vw,116px);line-height:.92;letter-spacing:-.01em;
+  margin:14px 0 0;color:var(--white)}
 .phead .lede{margin:22px 0 0;max-width:56ch;font-size:clamp(16px,1.7vw,19px);
   line-height:1.62;color:rgba(255,255,255,.90)}
 
 /* ---------- SECTIONS ---------- */
 section{padding:clamp(56px,10vh,124px) 0}
-section.paper{background:var(--paper);color:var(--ink)}
-section.paper .tag{color:var(--maroon)}
+section.paper{background:var(--paper);color:var(--graphite-900)}
+section.paper .tag{color:var(--ignition)}
 .shead{display:flex;justify-content:space-between;align-items:baseline;gap:24px;
   flex-wrap:wrap;margin-bottom:clamp(28px,5vh,54px)}
-.shead h2{font-family:var(--font-display);font-weight:400;
-  font-size:clamp(30px,5vw,64px);line-height:.98;letter-spacing:.02em;
-  text-transform:uppercase;margin:10px 0 0}
+.shead h2{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(30px,5vw,64px);line-height:1;letter-spacing:-.01em;
+  margin:10px 0 0}
 .shead p{margin:0;max-width:44ch;font-size:15px;line-height:1.65;
   color:var(--muted-on-ink)}
 section.paper .shead p{color:var(--muted-on-paper)}
 .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--maroon-tint)}
+  text-transform:uppercase;color:var(--fog-300)}
 
 /* ---------- BUTTONS ---------- */
 .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
@@ -135,16 +177,16 @@ section.paper .shead p{color:var(--muted-on-paper)}
   color:var(--white);background:none;cursor:pointer;
   transition:background var(--dur) var(--ease),color var(--dur) var(--ease),
              border-color var(--dur) var(--ease)}
-.btn:hover,.btn:focus-visible{background:var(--white);color:var(--ink);border-color:var(--white)}
-/* white ground + maroon ink = 11.09:1. The previous tint-on-maroon was 4.07:1. */
-.btn.solid{background:var(--white);border-color:var(--white);color:var(--maroon)}
-.btn.solid:hover,.btn.solid:focus-visible{background:var(--paper);color:var(--maroon-deep)}
-section.paper .btn{border-color:rgba(11,11,14,.60);color:var(--ink)}
-section.paper .btn:hover,section.paper .btn:focus-visible{background:var(--ink);color:var(--paper);
-  border-color:var(--ink)}
-section.paper .btn.solid{background:var(--maroon);border-color:var(--maroon);color:var(--white)}
-section.paper .btn.solid:hover,section.paper .btn.solid:focus-visible{background:var(--maroon-deep);
-  border-color:var(--maroon-deep);color:var(--white)}
+.btn:hover,.btn:focus-visible{background:var(--white);color:var(--graphite-900);border-color:var(--white)}
+/* white ground + ignition ink = 6.09:1 */
+.btn.solid{background:var(--white);border-color:var(--white);color:var(--ignition)}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--paper);color:var(--ignition-deep)}
+section.paper .btn{border-color:rgba(26,26,26,.60);color:var(--graphite-900)}
+section.paper .btn:hover,section.paper .btn:focus-visible{background:var(--graphite-900);color:var(--paper);
+  border-color:var(--graphite-900)}
+section.paper .btn.solid{background:var(--ignition);border-color:var(--ignition);color:var(--white)}
+section.paper .btn.solid:hover,section.paper .btn.solid:focus-visible{background:var(--ignition-deep);
+  border-color:var(--ignition-deep);color:var(--white)}
 
 /* ---------- CARD GRID ---------- */
 .cards{display:grid;gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
@@ -155,16 +197,16 @@ section.paper .btn.solid:hover,section.paper .btn.solid:focus-visible{background
 @media(max-width:860px){.cards.c3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.cards.c4,.cards.c3,.cards.c2{grid-template-columns:1fr}}
 section.paper .cards{background:var(--rule-light);border-color:var(--rule-light)}
-.card{background:var(--ink);padding:clamp(22px,3vw,34px);min-height:200px;
+.card{background:var(--graphite-900);padding:clamp(22px,3vw,34px);min-height:200px;
   display:flex;flex-direction:column;justify-content:space-between;gap:16px;
   position:relative;overflow:hidden;transition:background var(--dur) var(--ease)}
 section.paper .card{background:var(--paper)}
 .card::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;
-  background:var(--maroon);transition:height var(--dur) var(--ease);z-index:0}
+  background:var(--ignition);transition:height var(--dur) var(--ease);z-index:0}
 a.card:hover::before,a.card:focus-visible::before{height:100%}
 .card>*{position:relative;z-index:1}
-.card h3{font-family:var(--font-display);font-weight:400;font-size:23px;letter-spacing:.03em;
-  text-transform:uppercase;margin:12px 0 9px;line-height:1.12}
+.card h3{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.005em;
+  margin:12px 0 9px;line-height:1.15}
 .card p{margin:0;font-size:14px;line-height:1.62;color:rgba(255,255,255,.72);
   transition:color var(--dur) var(--ease)}
 section.paper .card p{color:var(--muted-on-paper)}
@@ -177,21 +219,21 @@ a.card:hover p,a.card:focus-visible p,
 a.card:hover .idx,a.card:focus-visible .idx,
 a.card:hover .tag,a.card:focus-visible .tag{color:rgba(255,255,255,.88)}
 a.card:hover .ico,a.card:focus-visible .ico{color:var(--white)}
-.card .ico{width:42px;height:42px;color:var(--maroon-tint);
+.card .ico{width:42px;height:42px;color:var(--fog-300);
   transition:color var(--dur) var(--ease)}
-section.paper .card .ico{color:var(--maroon)}
+section.paper .card .ico{color:var(--ignition)}
 
 /* ---------- CTA PANEL (from C.2's Stage 04 — the only block that asked) ---------- */
-.cta{background:var(--maroon-deep);padding:clamp(56px,11vh,132px) 0;position:relative}
-.cta h2{font-family:var(--font-display);font-weight:400;
-  font-size:clamp(34px,6.5vw,86px);line-height:.96;letter-spacing:.02em;
-  text-transform:uppercase;margin:14px 0 0}
+.cta{background:var(--graphite-700);padding:clamp(56px,11vh,132px) 0;position:relative}
+.cta h2{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(34px,6.5vw,86px);line-height:.98;letter-spacing:-.01em;
+  margin:14px 0 0}
 .cta p{margin:20px 0 0;max-width:52ch;font-size:clamp(16px,1.7vw,19px);line-height:1.62;
   color:rgba(255,255,255,.90)}
 .cta .fine{margin-top:22px;font-size:14px;color:rgba(255,255,255,.74);max-width:52ch}
 
 /* ---------- FOOTER ---------- */
-footer.site{background:var(--ink);border-top:1px solid rgba(255,255,255,.14);
+footer.site{background:var(--graphite-900);border-top:1px solid rgba(255,255,255,.14);
   padding:clamp(34px,6vh,64px) 0 calc(clamp(28px,5vh,52px) + env(safe-area-inset-bottom))}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(24px,4vw,64px)}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:32px}}
@@ -212,13 +254,13 @@ footer.site{background:var(--ink);border-top:1px solid rgba(255,255,255,.14);
 .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
 section.paper .dl{background:var(--rule-light);border-color:var(--rule-light)}
-.dl div{background:var(--ink);padding:20px}
+.dl div{background:var(--graphite-900);padding:20px}
 section.paper .dl div{background:var(--paper)}
 .dl dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--muted-on-ink);margin:0 0 9px}
 section.paper .dl dt{color:var(--muted-on-paper)}
-.dl dd{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(24px,3vw,34px);
-  letter-spacing:.02em;line-height:1;font-variant-numeric:tabular-nums}
+.dl dd{margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3vw,34px);
+  letter-spacing:0;line-height:1;font-variant-numeric:tabular-nums}
 .dl dd small{display:block;font-family:var(--font-body);font-size:12.5px;letter-spacing:0;
   color:var(--muted-on-ink);margin-top:9px;line-height:1.5;text-transform:none}
 section.paper .dl dd small{color:var(--muted-on-paper)}
@@ -227,19 +269,120 @@ section.paper .dl dd small{color:var(--muted-on-paper)}
 section.paper .dl dd.nodata{color:var(--muted-on-paper)}
 
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;scrollbar-color:var(--maroon) transparent}
+  scrollbar-width:thin;scrollbar-color:var(--ignition) transparent}
 table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
 th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--rule-light)}
 th{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted-on-paper);font-weight:400;border-bottom-width:2px;
-  border-bottom-color:rgba(11,11,14,.5)}
+  border-bottom-color:rgba(26,26,26,.5)}
 td.num{font-variant-numeric:tabular-nums;font-family:var(--font-mono);font-size:13.5px}
 tbody tr:last-child td{border-bottom:0}
 
+/* ---------- FLEET LINEUP ----------
+   Rebuilt from mockups/ds-fleet.html: rockets standing on a shared baseline,
+   sized to relative apogee, rising 22px on hover/focus rather than a bar
+   chart. Two fixes on top of the wireframe:
+
+   1. --fog-500 measures 2.50:1 on --paper (below the 4.5:1 floor for text).
+      .craft .yr, .craft.nodata .val and .fleetnote used it for caption copy in
+      the wireframe; here they use --muted-on-paper (--graphite-700, 11.92:1).
+   2. .craft .val .flag (the Nimbus "unverified" marker) rendered amber text
+      directly — 2.55:1 on paper. It's now the spec's own status-tag device:
+      a dot plus a mono label on a tinted background, not the raw accent.
+
+   .lineup gets 26px of top padding the wireframe didn't have: overflow-x:auto
+   forces overflow-y to a clipping value too (the same trap noted below on the
+   old chart), and the hover-lift transform needs headroom above the tallest
+   rocket or it clips against that forced edge. */
+/* overflow-x:auto forces the computed overflow-y to auto too (the UA can't
+   mix 'visible' with a non-visible axis) — the exact trap site.css already
+   names once, below, for the old chart. That makes .lineup a clipping box on
+   both axes between 700 and 820px, where it still scrolls: 10px of
+   horizontal padding here is real headroom for the focus ring's box-shadow
+   on the first and last craft, not decoration. */
+.lineup{display:flex;align-items:flex-end;justify-content:center;gap:clamp(20px,3vw,40px);
+  padding:26px 10px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:var(--ignition) transparent}
+@media(max-width:820px){.lineup{justify-content:flex-start}}
+/* min-width is load-bearing: a craft's own box is only as wide as its rocket
+   art, which for the shortest vehicles is under 30px. Centering .val/.nm on
+   that point with nowrap (as in the ds-fleet.html wireframe) let
+   neighbouring labels overlap — the same collision the old bar chart's block
+   comment already documents fixing once. min-width wide enough to hold the
+   longest real label ("No verified record") without bleeding past the
+   craft's own box is that fix, ported — a bleed would clip against the
+   overflow trap above at the first and last craft. */
+.craft{position:relative;flex:0 0 auto;min-width:150px;padding:0 0 100px;display:flex;
+  flex-direction:column;align-items:center;text-decoration:none;color:inherit}
+.craft .rise{transition:transform var(--dur) var(--ease)}
+.craft:hover .rise,.craft:focus-visible .rise{transform:translateY(-22px)}
+.craft.nodata .rise{opacity:.45}
+/* .val's top edge sits ~30px clear of the rocket base above it — the fins
+   flare to their full width exactly at that base, and anything tighter here
+   let the widest fin tips touch the value text on the tallest vehicles
+   (Nimbus, Osiris). Confirmed by screenshot, not by eye: an 8px bump to both
+   this offset and the padding above together left the gap between them
+   unchanged, since both moved by the same amount — the padding has to grow
+   faster than this offset does. */
+.craft .val{position:absolute;bottom:52px;left:0;right:0;
+  font-family:var(--font-mono);font-size:12.5px;line-height:1.3;letter-spacing:.02em;
+  color:var(--graphite-900);font-variant-numeric:tabular-nums;text-align:center}
+.craft.nodata .val{color:var(--muted-on-paper)}
+.craft .val .flag{display:inline-flex;align-items:center;gap:4px;margin-left:6px;
+  padding:1px 6px 1px 5px;border-radius:2px;background:rgba(217,138,43,.18);
+  color:var(--graphite-900);font-size:10.5px;letter-spacing:.06em;vertical-align:1px}
+.craft .val .flag::before{content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--amber);flex:0 0 auto}
+.craft .nm{position:absolute;bottom:10px;left:0;right:0;text-align:center;
+  line-height:1.25}
+.craft .nm b{display:block;font-family:var(--font-display);font-weight:600;font-size:14px;
+  letter-spacing:-.005em}
+.craft .nm span{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted-on-paper);margin-top:4px}
+/* No .fleet .tag override: the spec's updated altimeter rule restricts it to
+   a single chart series or the GO dot, never an eyebrow, so this eyebrow
+   falls through to the same ignition section.paper .tag already sets. */
+.baseline{height:1px;background:var(--graphite-900)}
+.fleetnote{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  padding-top:16px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;
+  color:var(--muted-on-paper)}
+
+/* ---------- statline: real telemetry only, next to a .shead ---------- */
+.statline{font-family:var(--font-mono);text-align:right}
+.statline .lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted-on-paper)}
+.statline .num{font-family:var(--font-display);font-weight:700;font-size:clamp(26px,3.2vw,38px);
+  color:var(--graphite-900);line-height:1.05;margin-top:2px;font-variant-numeric:tabular-nums}
+.statline .unit{font-size:12px;color:var(--muted-on-paper)}
+
+.lineup.reveal-pending .craft{opacity:0;transform:translateY(8px)}
+.craft{transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+
+/* Below 700px: a single rocket-icon-plus-label row per vehicle, not a scroller
+   with absolutely positioned labels — the same failure mode the round-one
+   review already caught once (apogee chart unreadable below 600px). The svg's
+   width/height are set inline per vehicle by render.js so it can size art to
+   apogee on desktop; a plain CSS rule overrides those presentation attributes
+   without !important, so this is enough to floor every icon at a fixed size. */
+@media(max-width:700px){
+  .lineup{flex-direction:column;align-items:stretch;overflow-x:visible;padding:6px 0 0;gap:0}
+  .craft{flex:none;width:100%;padding:14px 0;flex-direction:row;align-items:center;
+    gap:14px;border-bottom:1px solid var(--rule-light)}
+  .craft:last-child{border-bottom:0}
+  .craft .rise svg{width:30px;height:40px}
+  .craft:hover .rise,.craft:focus-visible .rise{transform:none}
+  .craft .nm{position:static;transform:none;flex:1 1 auto;text-align:left}
+  .craft .nm b,.craft .nm span{display:inline}
+  .craft .nm span{margin-left:8px}
+  .craft .val{position:static;transform:none;flex:0 0 auto;text-align:right;padding-left:12px}
+}
+
 /* ---------- TODO marker: visible in the mockup, obvious to strip ---------- */
 .todo{display:inline-block;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;background:#FFD166;color:#241A00;padding:3px 7px;
+  text-transform:uppercase;background:var(--amber);color:var(--graphite-900);padding:3px 7px;
   margin-left:8px;vertical-align:middle;border-radius:2px}
+.noscript-banner{background:var(--amber);color:var(--graphite-900);padding:14px 18px;
+  font-size:14px;line-height:1.5}
 
 /* ---------- MOTION ---------- */
 @media(prefers-reduced-motion:reduce){
@@ -249,28 +392,33 @@ tbody tr:last-child td{border-bottom:0}
 }
 
 /* ---------- HOME HERO ---------- */
-.hero{position:relative;min-height:100svh;overflow:hidden;background:var(--maroon);
+.hero{position:relative;min-height:100svh;overflow:hidden;background:var(--graphite-900);
   display:flex;align-items:flex-end;
   padding:calc(var(--navh) + 40px) 0 calc(96px + env(safe-area-inset-bottom))}
 .bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:grayscale(1) contrast(1.08);mix-blend-mode:luminosity;opacity:.55}
+  /* Was a two-stop duotone mapping every pixel into a single red/black ramp —
+     it read as a flat colour wash rather than footage, and stacked with
+     .heroveil's own red/black gradient it went muddy. <filter id="duo"> in
+     index.html is now a straight grayscale (the luminance matrix with an
+     identity component-transfer on top), so the footage itself stays
+     legible. The red/black palette comes from .heroveil below instead. */
+  filter:url(#duo) contrast(1.06)}
 .heroveil{position:absolute;inset:0;pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(62,0,31,.72) 0%,rgba(62,0,31,.16) 34%,rgba(11,11,14,.70) 100%),
-    radial-gradient(120% 80% at 10% 92%, rgba(11,11,14,.66), transparent 60%)}
+    linear-gradient(180deg,rgba(140,23,31,.42) 0%,rgba(140,23,31,.08) 34%,rgba(26,26,26,.70) 100%),
+    radial-gradient(120% 80% at 10% 92%, rgba(26,26,26,.55), transparent 60%)}
 .hero-in{position:relative;z-index:3}
 .phase{display:flex;align-items:center;gap:14px;margin-bottom:18px}
 .phase b{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--white);font-weight:400}
 .phase i{height:1px;flex:1;max-width:200px;background:rgba(255,255,255,.4)}
 .bignum{display:flex;align-items:flex-end;gap:clamp(8px,2vw,22px);flex-wrap:wrap;margin:0}
-.bignum .n{font-family:var(--font-display);font-weight:400;
+.bignum .n{font-family:var(--font-display);font-weight:700;
   font-size:clamp(74px,19vw,268px);line-height:.84;color:var(--white);
-  font-variant-numeric:tabular-nums;letter-spacing:.01em}
-/* was the maroon tint on maroon at 2.73:1 — below even the large-text bar */
-.bignum .u{font-family:var(--font-display);font-weight:400;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.bignum .u{font-family:var(--font-display);font-weight:600;
   font-size:clamp(24px,4.2vw,60px);line-height:1;color:rgba(255,255,255,.72);
-  padding-bottom:clamp(8px,1.6vw,26px);text-transform:uppercase}
+  padding-bottom:clamp(8px,1.6vw,26px)}
 .subline{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
   flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.32)}
 .subline p{margin:0;max-width:46ch;font-size:clamp(15px,1.6vw,17.5px);line-height:1.62;
@@ -280,44 +428,48 @@ tbody tr:last-child td{border-bottom:0}
 @media(max-width:620px){.subline .who{text-align:left}}
 .hero .vidtoggle{position:absolute;right:var(--gutter);
   bottom:max(20px,env(safe-area-inset-bottom));z-index:9;
-  background:rgba(11,11,14,.62);border:1px solid rgba(255,255,255,.38);color:var(--white);
+  background:rgba(26,26,26,.62);border:1px solid rgba(255,255,255,.38);color:var(--white);
   font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   padding:12px 15px;min-height:44px;cursor:pointer}
-.hero .vidtoggle:hover,.hero .vidtoggle:focus-visible{background:rgba(11,11,14,.92);border-color:#fff}
+.hero .vidtoggle:hover,.hero .vidtoggle:focus-visible{background:rgba(26,26,26,.92);border-color:#fff}
 
 /* ---------- ROSTER ---------- */
 .roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
   gap:1px;background:var(--rule-light);border:1px solid var(--rule-light)}
 .roster .person{background:var(--paper);padding:0 0 18px;display:flex;flex-direction:column}
-.roster .shot{aspect-ratio:4/5;background:var(--paper-2);position:relative;
+.roster .shot{aspect-ratio:4/5;background:var(--fog-100);position:relative;
   display:grid;place-items:center;overflow:hidden}
 .roster .shot span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 12px}
 .roster .person h3{font-family:var(--font-body);font-weight:600;font-size:16px;
-  letter-spacing:-.01em;margin:16px 18px 4px;text-transform:none}
+  letter-spacing:-.01em;margin:16px 18px 4px}
 .roster .person .role{margin:0 18px;font-family:var(--font-mono);font-size:10.5px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ignition)}
 .roster .person .prog{margin:8px 18px 0;font-size:13px;color:var(--muted-on-paper);line-height:1.5}
 
 /* ---------- TIERS ---------- */
 .tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
   background:var(--rule-light);border:1px solid var(--rule-light)}
 @media(max-width:860px){.tiers{grid-template-columns:1fr}}
-.tier{background:var(--paper);padding:clamp(24px,3vw,36px);display:flex;
+/* The tiers section isn't section.paper, so a bare .tier card would inherit
+   white body text onto its own paper ground — invisible headings on
+   Supporter and Title. .tier sets its own colour rather than relying on an
+   ancestor, since it can be dropped into a dark or paper section either way. */
+.tier{background:var(--paper);color:var(--graphite-900);padding:clamp(24px,3vw,36px);display:flex;
   flex-direction:column;gap:16px}
-.tier.lead{background:var(--maroon);color:var(--white)}
+.tier.lead{background:var(--graphite-900);color:var(--white);border-top:3px solid var(--ignition)}
 .tier.lead .amount,.tier.lead h3{color:var(--white)}
 .tier.lead li{color:rgba(255,255,255,.90)}
 .tier.lead li::before{background:var(--white)}
-.tier h3{font-family:var(--font-display);font-weight:400;font-size:26px;letter-spacing:.03em;
-  text-transform:uppercase;margin:0}
-.tier .amount{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,4vw,46px);
-  line-height:1;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.tier h3{font-family:var(--font-display);font-weight:600;font-size:25px;letter-spacing:-.005em;
+  margin:0}
+.tier .amount{font-family:var(--font-display);font-weight:600;font-size:clamp(30px,4vw,46px);
+  line-height:1;letter-spacing:0;font-variant-numeric:tabular-nums}
 .tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;flex:1}
 .tier li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.55;
   color:var(--muted-on-paper)}
 .tier li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:1.5px;
-  background:var(--maroon)}
+  background:var(--ignition)}
 
 /* ---------- STEPS ---------- */
 .steps{list-style:none;counter-reset:s;padding:0;margin:0;display:flex;
@@ -326,10 +478,10 @@ tbody tr:last-child td{border-bottom:0}
   border-bottom:1px solid var(--rule-light)}
 .steps li:last-child{border-bottom:0}
 .steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:26px;
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--maroon);
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--ignition);
   font-weight:500}
-.steps h3{font-family:var(--font-display);font-weight:400;font-size:23px;letter-spacing:.03em;
-  text-transform:uppercase;margin:0 0 8px}
+.steps h3{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.005em;
+  margin:0 0 8px}
 .steps p{margin:0;font-size:15px;line-height:1.65;color:var(--muted-on-paper);max-width:60ch}
 
 /* ---------- FAQ ---------- */
@@ -350,12 +502,12 @@ tbody tr:last-child td{border-bottom:0}
 .prose{max-width:66ch}
 .prose p{font-size:16px;line-height:1.72;margin:0 0 18px}
 .prose p:last-child{margin-bottom:0}
-section.paper .prose p{color:var(--ink)}
-.callout{border-left:3px solid var(--maroon);padding:4px 0 4px 20px;margin:26px 0;
+section.paper .prose p{color:var(--graphite-900)}
+.callout{border-left:3px solid var(--ignition);padding:4px 0 4px 20px;margin:26px 0;
   font-size:15px;line-height:1.65;color:var(--muted-on-paper)}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .gallery figure{margin:0}
-.gallery .ph{aspect-ratio:3/2;background:var(--paper-2);display:grid;place-items:center;
+.gallery .ph{aspect-ratio:3/2;background:var(--fog-100);display:grid;place-items:center;
   border:1px solid var(--rule-light)}
 .gallery .ph span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}

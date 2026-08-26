@@ -42,13 +42,12 @@ footer{margin-top:44px;color:var(--muted);font-size:12px;line-height:1.7;max-wid
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
-<div class="mono" style="color:var(--bright)">Day 1 · Design exploration</div>
-<h1>Three directions.</h1>
+<div class="mono" style="color:var(--bright)">Design review · direction chosen</div>
+<h1>The Hybrid.</h1>
 <p class="lead">Same content, same palette — McMaster Maroon with white, grey and black.
-The only variable is treatment. Each direction comps a hero, the six-rocket fleet lineup,
-and the seven-subsystem grid, and all six run your <b>real logo</b> and <b>real Launch
-Canada 2025 footage</b>. <b>A, B and C</b> are the three primary directions; <b>C.1, C.2
-and C.3</b> push C in three different ways. Open them and compare.</p>
+The Hybrid carries forward C&rsquo;s editorial voice and honest data treatment, on
+B&rsquo;s structural discipline. <b>A</b> and <b>B</b> stay below as the primary
+directions it was built from and reviewed against.</p>
 
 <div class="cards">
   <a class="card" href="final/index.html" style="border-color:var(--bright)">
@@ -83,49 +82,6 @@ and C.3</b> push C in three different ways. Open them and compare.</p>
     <div class="go">Open →</div>
   </a>
 
-  <a class="card" href="c/index.html">
-    <div class="mono tag">Direction C</div>
-    <h2>Flight Profile</h2>
-    <p class="sub">Maroon as the dominant surface, not an accent. Poster-weight
-      condensed type, and the page is structured as the flight itself.</p>
-    <div class="hero-note"><b>Hero:</b> 33,584 set enormous over maroon-duotoned
-      footage, with a live altitude rail pinned to the edge — scroll position is
-      altitude, and every section sits at a phase of the ascent.</div>
-    <div class="go">Open →</div>
-  </a>
-
-  <a class="card" href="c.1/index.html">
-    <div class="mono tag">Direction C.1</div>
-    <h2>Ascent</h2>
-    <p class="sub">C with an atmosphere. The ground behind the page climbs with you,
-      from warm pad light to near-black at altitude.</p>
-    <div class="hero-note"><b>Hero:</b> the same 33,584, but the sky crossfades
-      through flight bands as you scroll and the footage drifts away beneath you.
-      Ambient motion is desktop-only.</div>
-    <div class="go">Open →</div>
-  </a>
-
-  <a class="card" href="c.2/index.html">
-    <div class="mono tag">Direction C.2</div>
-    <h2>Staging</h2>
-    <p class="sub">C cut into four full-screen stages that pin and hand off as you
-      scroll. The only direction that closes by asking for something.</p>
-    <div class="hero-note"><b>Hero:</b> Stage 01 is the number; the page separates
-      into Fleet, Subsystems and a closing Apogee panel carrying the join and
-      sponsor calls to action.</div>
-    <div class="go">Open →</div>
-  </a>
-
-  <a class="card" href="c.3/index.html">
-    <div class="mono tag">Direction C.3</div>
-    <h2>Inverted</h2>
-    <p class="sub">The document runs bottom-to-top: you land on the pad and scroll
-      upward to climb. A genuine risk, and the least robust on a phone.</p>
-    <div class="hero-note"><b>Hero:</b> you arrive at T&#8209;0 on the pad at the
-      document's end and fly up through the fleet to apogee. Deep links and the
-      back button now survive the landing.</div>
-    <div class="go">Open →</div>
-  </a>
 </div>
 
 <div class="swatches">
@@ -138,18 +94,22 @@ and C.3</b> push C in three different ways. Open them and compare.</p>
 
 <footer>
   <b>Real assets are in.</b> Logo vectorised to a 1.8&nbsp;KB SVG that recolours via
-  <code>currentColor</code> (white on A and C, maroon on B). Hero video cut from your
-  Launch Canada 2025 clip &mdash; 12&nbsp;s from ignition, cropped to remove the
-  &ldquo;LAUNCH CANADA 2025&rdquo; watermark, silent, 2.8&nbsp;MB.
-  Fleet rockets in A and B are still SVG placeholders; C plots real measured apogees
-  and draws the three vehicles with no verified record as dashed gaps rather than guesses.
-  Every animation respects <code>prefers-reduced-motion</code>.
+  <code>currentColor</code>. Hero video cut from your Launch Canada 2025 clip &mdash;
+  12&nbsp;s from ignition, cropped to remove the &ldquo;LAUNCH CANADA 2025&rdquo;
+  watermark, silent, 2.8&nbsp;MB. The Hybrid's fleet chart plots real measured apogees
+  and draws vehicles with no verified record as dashed gaps rather than guesses. Every
+  animation respects <code>prefers-reduced-motion</code>.
   <br><br>
-  <b>All six have been through an accessibility and mobile pass.</b> Each now has a real
-  mobile menu, a skip link, a visible focus ring, a pause control on the background video,
-  a 720p cut served to small screens, and an apogee chart that reflows to horizontal bars
-  below 700px. Remaining <code>TODO(robin)</code> markers flag the content only you can
-  supply — real contact routes, and the two flight figures that need sourcing.
+  <b>Both directions have been through an accessibility and mobile pass.</b> The Hybrid
+  has a real mobile menu, a skip link, a visible focus ring, a pause control on the
+  background video, a 720p cut served to small screens, and an apogee chart that
+  reflows to horizontal bars on narrow screens. Remaining <code>TODO(robin)</code>
+  markers flag the content only you can supply &mdash; real contact routes, and the
+  flight figures that still need sourcing.
+  <br><br>
+  <code>c/</code>, <code>c.1/</code>, <code>c.2/</code> and <code>c.3/</code> stay on
+  disk as the source of the Hybrid's hero treatment and fleet chart, but are no longer
+  linked from this chooser.
 </footer>
 </main>
 </body>

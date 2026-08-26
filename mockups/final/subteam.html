@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Subteams · McMaster Rocketry</title>
-<meta name="description" content="The eight subteams that build and fly a McMaster Rocketry vehicle.">
+<meta name="description" content="The seven subteams that build and fly a McMaster Rocketry vehicle.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav id="nav">
+<nav id="nav" data-page="subteam">
   <a class="brand" href="index.html">
     <svg class="logo" viewBox="0 0 1374 1643" aria-hidden="true"><g transform="translate(0.000000,1643.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
@@ -49,7 +49,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
 </nav>
 
 <noscript>
-  <div style="background:#FFD166;color:#241A00;padding:14px 18px;font-size:14px;line-height:1.5">
+  <div class="noscript-banner">
     This page is rendered from <code>data.js</code> in the mockup. In the real Astro build
     it will be generated at build time and will work without JavaScript.
   </div>
@@ -58,10 +58,12 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
 <div id="subteam" hidden></div>
 
 <header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="tag">Subteams</div>
-    <h1>Eight teams,<br>one airframe.</h1>
-    <p class="lede">Every part of the vehicle &mdash; and everything around it &mdash; is owned by a student subteam. Two of them need no engineering background at all.</p>
+    <h1>Seven teams,<br>one airframe.</h1>
+    <p class="lede">Every part of the vehicle &mdash; and everything around it &mdash; is owned by a student subteam. One of them needs no engineering background at all.</p>
   </div>
 </header>
 
@@ -72,64 +74,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <p>Each one owns a real part of the vehicle, and each one takes members with no
          experience every term.</p>
     </div>
-    <div class="cards c4">
-      <a class="card" href="subteam.html?t=airframe">
-        <div>
-          <div class="tag">01</div>
-          <h3>Airframe</h3>
-          <p>Structures and aerodynamics — the airframe has to survive peak loading and come back straight.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=avionics">
-        <div>
-          <div class="tag">02</div>
-          <h3>Avionics</h3>
-          <p>Flight computers and telemetry. This subteam decides when every event on the flight fires.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=propulsion">
-        <div>
-          <div class="tag">03</div>
-          <h3>Propulsion</h3>
-          <p>Motor integration, thrust curves and the plumbing that gets everything off the pad.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=recovery">
-        <div>
-          <div class="tag">04</div>
-          <h3>Recovery</h3>
-          <p>Dual-deployment parachutes and the sequencing that brings the vehicle back intact.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=payload">
-        <div>
-          <div class="tag">05</div>
-          <h3>Payload</h3>
-          <p>The experiment we fly — and, most years, the reason the rocket exists at all.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=composites">
-        <div>
-          <div class="tag">06</div>
-          <h3>Composites</h3>
-          <p>Carbon and fibreglass layup, tooling, and the finishing that makes it fly straight.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=operations">
-        <div>
-          <div class="tag">07</div>
-          <h3>Operations</h3>
-          <p>Launch procedure, range safety, logistics and everything that happens on the day.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=business">
-        <div>
-          <div class="tag">08</div>
-          <h3>Business &amp; Outreach</h3>
-          <p>Sponsorship, budget, outreach and the team&rsquo;s public face. No engineering background needed.</p>
-        </div>
-      </a>
-    </div>
+    <div class="cards c4" data-subteam-cards></div>
   </div>
 </section>
 
@@ -181,7 +126,7 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
       <div class="card"><div>
         <div class="tag">Subteam lead</div><h3>TODO: name</h3>
         <p>Year and programme. One sentence on what they work on.
-          <a href="mailto:TODO@macrocketry.ca" style="text-decoration:underline;text-underline-offset:3px">Email</a></p>
+          <a href="mailto:TODO@macrocketry.ca" style="text-decoration:underline;text-underline-offset:3px" data-mail>Email</a></p>
       </div></div>
       <div class="card"><div>
         <div class="tag">Deputy lead</div><h3>TODO: name</h3>
@@ -203,57 +148,18 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <p>We hire people who have never touched a rocket. The only thing we ask is that
       you want to find out how high this one goes.</p>
     <p class="fine">Applications open at the start of each term and we run an info session
-      in the first two weeks. You do not need to be an engineer &mdash; we need people on
-      business, outreach and finance as much as on airframe.</p>
+      in the first two weeks. You do not need to be an engineer &mdash; we need people on operations as much as on airframe.</p>
     <div class="btnrow">
       <a class="btn solid" href="join.html">How to join</a>
       <a class="btn" href="sponsors.html">Sponsor the team</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca">Email us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca" data-mail>Email us</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h2 class="fh">McMaster Rocketry Team</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
-          A student team at McMaster University in Hamilton, Ontario. We design, build and
-          fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>
-        <p style="margin:16px 0 0;font-size:14.5px">
-          <a href="mailto:TODO@macrocketry.ca">TODO@macrocketry.ca</a>
-          <span class="todo" aria-hidden="true">TODO: real address</span>
-        </p>
-      </div>
-      <div>
-        <h2 class="fh">The team</h2>
-        <ul role="list">
-          <li><a href="rockets.html">Rockets</a></li>
-          <li><a href="subteam.html">Subteams</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="join.html">Join us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="fh">Get in touch</h2>
-        <ul role="list">
-          <li><a href="sponsors.html">Sponsorship</a></li>
-          <li><a href="mailto:TODO@macrocketry.ca">Email</a></li>
-          <li><a href="https://instagram.com/TODO">Instagram</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://discord.gg/TODO">Discord</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://linkedin.com/company/TODO">LinkedIn</a> <span class="todo" aria-hidden="true">TODO</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-note">
-      <span>McMaster University &middot; Hamilton, Ontario</span>
-      <span>Heritage Maroon #7A003C</span>
-    </div>
-  </div>
-</footer>
+<footer class="site" id="site-footer"></footer>
 
 <script src="data.js"></script>
 <script src="render.js"></script>

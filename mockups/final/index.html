@@ -7,7 +7,7 @@
 <meta name="description" content="McMaster Rocketry Team — student-built rockets from Hamilton, Ontario. 33,584 feet and climbing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -48,9 +48,37 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <div class="navlinks" id="navlinks"><a href="rockets.html">Rockets</a><a href="subteam.html">Subteams</a><a href="members.html">Members</a><a href="sponsors.html">Sponsors</a><a href="join.html">Join us</a></div>
 </nav>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="duo" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix"
+      values="0.2126 0.7152 0.0722 0 0
+              0.2126 0.7152 0.0722 0 0
+              0.2126 0.7152 0.0722 0 0
+              0 0 0 1 0"/>
+    <!-- Straight identity table on top of the luminance matrix above: true
+         grayscale, not a duotone remap. The two-stop red/black ramp this
+         used to carry compressed the whole video into one flat colour wash —
+         the footage itself needs to read as footage; the red/black palette
+         comes from .heroveil sitting on top of it instead. -->
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0 1"/>
+      <feFuncG type="table" tableValues="0 1"/>
+      <feFuncB type="table" tableValues="0 1"/>
+    </feComponentTransfer>
+  </filter>
+</defs></svg>
+
+<noscript>
+  <div class="noscript-banner">
+    This page is rendered from <code>data.js</code> in the mockup. In the real Astro build
+    it will be generated at build time and will work without JavaScript.
+  </div>
+</noscript>
 <main id="main" tabindex="-1">
 
 <header class="hero">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <video class="bgvid" id="bgvid" autoplay muted loop playsinline preload="metadata"
          aria-hidden="true" tabindex="-1" poster="../../public/media/hero-poster.jpg" data-src-sm="../../public/media/hero-720.mp4" data-src-lg="../../public/media/hero.mp4">
     <!-- media="" on <source> is ignored inside <video> (it only works in
@@ -63,8 +91,9 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <div class="phase"><b>Osiris &middot; Launch Canada 2026</b><i></i></div>
     <h1 class="bignum"><span class="vh">McMaster Rocketry Team &mdash; highest flight to date: </span><span class="n">33,584</span> <span class="u">ft</span></h1>
     <div class="subline">
-      <p>That is how high a rocket built by undergraduates went. Mach 1.92, six vehicles
-         in five years, every part designed, built and flown by students.</p>
+      <p>That is how high a rocket built by undergraduates went. Mach 1.92,
+         <span data-vehicle-count-lc>six</span> vehicles in <span data-year-span>five</span> years,
+         every part designed, built and flown by students.</p>
       <div class="who">McMaster University<br>Hamilton, Ontario</div>
     </div>
     <div class="btnrow">
@@ -75,37 +104,27 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
   <button class="vidtoggle" id="vidtoggle">Pause video</button>
 </header>
 
-<section class="paper" id="fleet">
+<section class="paper fleet" id="fleet">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="shead">
       <div>
         <div class="tag">The fleet</div>
         <h2>Every rocket,<br>by how high it got.</h2>
       </div>
-      <p>Six vehicles in five years. Three of them flew before we kept records this good
+      <p><span data-vehicle-count-lc>six</span> vehicles in <span data-year-span>five</span> years.
+         <span data-norecord-count>Three</span> of them flew before we kept records this good
          &mdash; those are drawn as gaps, not guesses.</p>
+      <div class="statline" data-fleet-stat></div>
     </div>
-    <div class="tablewrap">
-      <table>
-        <caption class="vh">Measured apogee for every vehicle the team has flown</caption>
-        <thead><tr><th scope="col">Vehicle</th><th scope="col">Year</th>
-          <th scope="col">Competition</th><th scope="col">Measured apogee</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="rocket.html?v=marauder-i" style="text-decoration:underline;text-underline-offset:3px">Marauder I</a></th><td class="num">2022</td><td>Launch Canada</td><td class="num"><span style="color:var(--muted-on-paper)">No verified record</span></td></tr>
-          <tr><th scope="row"><a href="rocket.html?v=marauder-ii" style="text-decoration:underline;text-underline-offset:3px">Marauder II</a></th><td class="num">2023</td><td>Spaceport America Cup</td><td class="num"><span style="color:var(--muted-on-paper)">No verified record</span></td></tr>
-          <tr><th scope="row"><a href="rocket.html?v=luminis" style="text-decoration:underline;text-underline-offset:3px">Luminis</a></th><td class="num">2024</td><td>Spaceport America Cup</td><td class="num"><span style="color:var(--muted-on-paper)">No verified record</span></td></tr>
-          <tr><th scope="row"><a href="rocket.html?v=luminis-v2" style="text-decoration:underline;text-underline-offset:3px">Luminis V2</a></th><td class="num">2024</td><td>Launch Canada</td><td class="num">10,456 ft</td></tr>
-          <tr><th scope="row"><a href="rocket.html?v=nimbus" style="text-decoration:underline;text-underline-offset:3px">Nimbus</a></th><td class="num">2025</td><td>Launch Canada</td><td class="num">18,000 ft</td></tr>
-          <tr><th scope="row"><a href="rocket.html?v=osiris" style="text-decoration:underline;text-underline-offset:3px">Osiris</a></th><td class="num">2026</td><td>Launch Canada</td><td class="num">33,584 ft</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div data-fleet-chart></div>
     <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper)">
       &ldquo;No verified record&rdquo; means exactly that &mdash; the vehicle flew, but we
-      have no instrumented figure we are willing to publish.
-      <span class="todo" aria-hidden="true">TODO: Nimbus 18,000 ft is rounded &mdash; source it or mark it unverified</span>
+      have no instrumented figure we are willing to publish. The flag is a
+      published figure we have not been able to verify.
     </p>
-    <div class="btnrow"><a class="btn" href="rockets.html">All six vehicles</a></div>
+    <div class="btnrow"><a class="btn" href="rockets.html">All <span data-vehicle-count-lc>six</span> vehicles</a></div>
   </div>
 </section>
 
@@ -114,69 +133,12 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <div class="shead">
       <div>
         <div class="tag">Subteams</div>
-        <h2>Eight teams,<br>one airframe.</h2>
+        <h2>Seven teams,<br>one airframe.</h2>
       </div>
       <p>Every part of the vehicle &mdash; and everything around it &mdash; is owned by a
-         student subteam. Two of them need no engineering background at all.</p>
+         student subteam. One of them needs no engineering background at all.</p>
     </div>
-    <div class="cards c4">
-      <a class="card" href="subteam.html?t=airframe">
-        <div>
-          <div class="tag">01</div>
-          <h3>Airframe</h3>
-          <p>Structures and aerodynamics — the airframe has to survive peak loading and come back straight.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=avionics">
-        <div>
-          <div class="tag">02</div>
-          <h3>Avionics</h3>
-          <p>Flight computers and telemetry. This subteam decides when every event on the flight fires.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=propulsion">
-        <div>
-          <div class="tag">03</div>
-          <h3>Propulsion</h3>
-          <p>Motor integration, thrust curves and the plumbing that gets everything off the pad.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=recovery">
-        <div>
-          <div class="tag">04</div>
-          <h3>Recovery</h3>
-          <p>Dual-deployment parachutes and the sequencing that brings the vehicle back intact.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=payload">
-        <div>
-          <div class="tag">05</div>
-          <h3>Payload</h3>
-          <p>The experiment we fly — and, most years, the reason the rocket exists at all.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=composites">
-        <div>
-          <div class="tag">06</div>
-          <h3>Composites</h3>
-          <p>Carbon and fibreglass layup, tooling, and the finishing that makes it fly straight.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=operations">
-        <div>
-          <div class="tag">07</div>
-          <h3>Operations</h3>
-          <p>Launch procedure, range safety, logistics and everything that happens on the day.</p>
-        </div>
-      </a>
-      <a class="card" href="subteam.html?t=business">
-        <div>
-          <div class="tag">08</div>
-          <h3>Business &amp; Outreach</h3>
-          <p>Sponsorship, budget, outreach and the team&rsquo;s public face. No engineering background needed.</p>
-        </div>
-      </a>
-    </div>
+    <div class="cards c4" data-subteam-cards></div>
   </div>
 </section>
 
@@ -187,58 +149,21 @@ l-2137 3247 -2200 2728 c-1209 1500 -2196 2730 -2193 2733 4 3 21 82 39 175
     <p>We hire people who have never touched a rocket. The only thing we ask is that
       you want to find out how high this one goes.</p>
     <p class="fine">Applications open at the start of each term and we run an info session
-      in the first two weeks. You do not need to be an engineer &mdash; we need people on
-      business, outreach and finance as much as on airframe.</p>
+      in the first two weeks. You do not need to be an engineer &mdash; we need people on operations as much as on airframe.</p>
     <div class="btnrow">
       <a class="btn solid" href="join.html">How to join</a>
       <a class="btn" href="sponsors.html">Sponsor the team</a>
-      <a class="btn" href="mailto:TODO@macrocketry.ca">Email us</a>
+      <a class="btn" href="mailto:TODO@macrocketry.ca" data-mail>Email us</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h2 class="fh">McMaster Rocketry Team</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
-          A student team at McMaster University in Hamilton, Ontario. We design, build and
-          fly our own rockets, and we compete at Launch Canada and the Spaceport America Cup.</p>
-        <p style="margin:16px 0 0;font-size:14.5px">
-          <a href="mailto:TODO@macrocketry.ca">TODO@macrocketry.ca</a>
-          <span class="todo" aria-hidden="true">TODO: real address</span>
-        </p>
-      </div>
-      <div>
-        <h2 class="fh">The team</h2>
-        <ul role="list">
-          <li><a href="rockets.html">Rockets</a></li>
-          <li><a href="subteam.html">Subteams</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="join.html">Join us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="fh">Get in touch</h2>
-        <ul role="list">
-          <li><a href="sponsors.html">Sponsorship</a></li>
-          <li><a href="mailto:TODO@macrocketry.ca">Email</a></li>
-          <li><a href="https://instagram.com/TODO">Instagram</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://discord.gg/TODO">Discord</a> <span class="todo" aria-hidden="true">TODO</span></li>
-          <li><a href="https://linkedin.com/company/TODO">LinkedIn</a> <span class="todo" aria-hidden="true">TODO</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-note">
-      <span>McMaster University &middot; Hamilton, Ontario</span>
-      <span>Heritage Maroon #7A003C</span>
-    </div>
-  </div>
-</footer>
+<footer class="site" id="site-footer"></footer>
 
+<script src="data.js"></script>
+<script src="render.js"></script>
 <script src="site.js"></script>
 </body>
 </html>
