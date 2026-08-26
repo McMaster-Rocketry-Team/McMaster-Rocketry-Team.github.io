@@ -1,6 +1,45 @@
 # MRT site rebuild — progress and handoff
 
-**Last updated:** 2026-08-26 (overnight check-in) · branch `dev` @ `5227156`
+**Last updated:** 2026-08-26 (repo hygiene check-in) · branch `dev` @ `52ec9f3`
+
+## 2026-08-26 repo hygiene check-in
+
+Two commits landed after the overnight check-in below, both already on `dev`:
+`3c55dbd` fixed a real rendering bug (Astro collapses whitespace at a line
+break next to a `{expression}`, caught by an actual Chrome check, not a source
+read) and `52ec9f3` corrected three copy claims Robin flagged as wrong
+(resume requirement, rolling admission, "everything is student-built") and
+added real hardware detail (Blue Raven/Featherweight GPS as the
+competition-required primary, the in-house Icarus hybrid engine in
+development). Rebuilt from clean after both: still 19 pages, zero errors.
+
+Ran a full git/repo audit, nothing destructive:
+
+- **Secrets and history**: no API keys, tokens, or credentials in tracked
+  files or in `.env*` anywhere. The sponsorship PDF and the old design-system
+  spec (both gitignored) were never committed before the ignore rule landed,
+  confirmed via `git log --all` on each path, so there is no leaked copy
+  sitting in history to scrub.
+- **Lockfile**: `pnpm install --frozen-lockfile` reports already up to date,
+  no drift against `package.json`.
+- **Working tree vs. gitignore**: nothing ignored is tracked, nothing tracked
+  should be ignored. `dist/`, `.astro/`, `node_modules/` all correctly excluded.
+- **Stale note fixed**: §1 below said `public/brand/logo-mark.svg` was
+  "unreferenced by any page." Not true anymore, it is wired into
+  `src/layouts/BaseLayout.astro`. The other two brand exports,
+  `logo-mark-white-512.png` and `mcmaster_rocketry_logo_white.png`, are still
+  unreferenced by anything in `src/`.
+- **One real open item**: `public/media/rockets/osiris.png` has an uncommitted
+  working-tree change, same 305×3530 dimensions as the committed version but
+  5.5% of pixels differ and the file grew 504 KB → 631 KB. Visually near
+  identical at normal size, most likely an edge/alpha-matte touch-up on the
+  cutout, but nothing records what produced it or whether it is finished.
+  Needs Robin's call: commit with a real message, or discard.
+- `readme.md` is still just the word "init". Unchanged from the 2026-08-25
+  check-in, still low priority pre-launch, noting again so it does not get
+  lost.
+- `dev` is 9 commits ahead of `origin/dev`. Nothing has been pushed since
+  `225df11` (`init`), so neither GitHub Actions workflow has run for real yet.
 
 ## 2026-08-26 overnight check-in
 
