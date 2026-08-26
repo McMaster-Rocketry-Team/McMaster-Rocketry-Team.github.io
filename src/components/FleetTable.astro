@@ -26,7 +26,7 @@ const vehicles = sortVehicles(await getCollection('vehicles'));
         {withDetail ? (
           <th scope="row">{v.name}</th>
         ) : (
-          <th scope="row"><a href={`/rockets/${v.slug}`} style="text-decoration:underline;text-underline-offset:3px">{v.name}</a></th>
+          <th scope="row"><a class="link-underline" href={`/rockets/${v.slug}`}>{v.name}</a></th>
         )}
         <td class="num">{v.year}</td>
         <td>{v.comp}</td>
@@ -34,7 +34,7 @@ const vehicles = sortVehicles(await getCollection('vehicles'));
           {v.apogee && <span>{v.apogee.toLocaleString()} ft</span>}
         </td>
         {withDetail && (
-          <td><a href={`/rockets/${v.slug}`} style="text-decoration:underline;text-underline-offset:3px">View<span class="vh"> details for {v.name}</span></a></td>
+          <td><a class="link-underline" href={`/rockets/${v.slug}`}>View<span class="vh"> details for {v.name}</span></a></td>
         )}
       </tr>
     ))}

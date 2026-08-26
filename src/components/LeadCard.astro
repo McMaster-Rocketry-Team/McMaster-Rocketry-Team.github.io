@@ -19,7 +19,7 @@ const { name, role, programme, year, photo } = Astro.props;
   ) : (
     <div class="shot" aria-hidden="true">
       <Fragment set:html={personGlyphSvg()} />
-      <span style="position:relative;background:rgba(247,247,246,.88);padding:4px 8px;border-radius:2px">
+      <span class="shot-placeholder">
         Portrait slot<br>TODO: photo + alt text
       </span>
     </div>

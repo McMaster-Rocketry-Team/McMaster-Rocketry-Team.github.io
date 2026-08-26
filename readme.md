@@ -21,6 +21,7 @@ Open http://127.0.0.1:4321/. `pnpm astro build` writes `dist/`. `pnpm astro prev
 | Pages | `src/pages/` |
 | Data the team edits | `src/data/*.json` |
 | Tokens, layout, hero pattern | `src/styles/site.css` (header comment) + `.cursor/rules/design.mdc` |
+| Design system spec (v1.2) | `McMaster_Rocketry_Design_System_Spec.md` (gitignored) · `docs/design-system.md` (pointer + sync steps) |
 | Vehicle photos (source) | `rockets/<slug>/` + `SHORTLIST.md` |
 | Fleet cutouts (shipped) | `public/media/rockets/` |
 | Lead portraits (shipped) | `public/media/leads/` |
@@ -28,5 +29,7 @@ Open http://127.0.0.1:4321/. `pnpm astro build` writes `dist/`. `pnpm astro prev
 | Fleet cutout script | `scripts/cut-fleet-cutout.py` |
 | Progress and open questions | `PLAN.md` |
 | Content only Robin can supply | `mockups/TODO-MANIFEST.md` |
+
+**Mockups (`mockups/final/`):** deprecated visual reference. The Astro site in `src/` is canonical — mockups still carry the old hero veil/duotone, apogee-scaled fleet, and flat nav. Do not treat mockup HTML/CSS as source of truth when they disagree with `src/`.
 
 A ReviewMode overlay is mounted on every page in dev (`src/components/ReviewMode.astro`). Checked blocks are locked via `reviewLocked` on each page (or `vehicles.json` for per-vehicle pages). Delete the component and its import in `src/layouts/BaseLayout.astro` before launch.

@@ -8,7 +8,8 @@ Astro equivalent.
 **Resolved since this file was written:** team email `rocketry@mcmaster.ca`;
 2026–27 lead **names** (and 15/19 portraits) in `members.json`; `/outreach`
 exists; join FAQ "do I need to pay anything?" removed rather than answered;
-Nimbus apogee `17862` from the flight computer; apply URL + Clubsfest /
+Nimbus apogee `17862` from the flight computer; **Nimbus `mach` 1.14, `specs.accel`
+9.5 G, `specs.recovery` from LC25 Blue Raven log**; apply URL + Clubsfest /
 Facultyfest / application dates in `join.json`; Instagram / Discord /
 LinkedIn in `site.json`; weekly time commitment answered in the join FAQ;
 sponsorship **tier amounts** Bronze `$500+` / Silver `$2,000+` / Gold
@@ -32,6 +33,7 @@ events (three hidden pending detail).
 | ~~**Application form URL**~~ | done, real Microsoft Forms URL in `join.json` `applyHref` | |
 | ~~**Clubsfest / Facultyfest dates + application window**~~ | done, real dates in `join.json` `dates` | |
 | ~~**Nimbus apogee**~~ | done, `17862`, sourced from the flight computer | |
+| ~~**Nimbus flight record**~~ | done, `mach` 1.14, `accel` 9.5 G, recovery deploy altitudes | LC25 Blue Raven primary |
 | **T+ flight timeline** | `c/` family only; not in the Astro site | Physically impossible as written. Dropped with the rejected C variants. |
 
 ## Needed before launch, not blocking design review
@@ -42,7 +44,7 @@ events (three hidden pending detail).
 | Subteam lead programmes / years / one-line bios | `src/pages/subteams/[slug].astro` (names already render from `members.json`) |
 | Roster statistics (faculties, first years, founded) | `src/data/members.json` `stats` (`Active members` is `100+`; the other three are null) |
 | Real subteam description and first-term detail | `src/data/subteams.json` (`detail` / `first` / `skills` still null except Avionics) |
-| Vehicle specs — mass, motor, recovery, result; Luminis V2 length | `src/data/vehicles.json` (`lengthIn` set on five of six; Luminis V2 still null) |
+| Vehicle specs — mass, motor, recovery, result; Luminis V2 length | `src/data/vehicles.json` (`lengthIn` set on five of six; Luminis V2 still null). Nimbus recovery/accel/mach done; other vehicles mostly null. |
 | Build narrative per vehicle | `src/data/vehicles.json` `build` (Nimbus and Osiris have one, the other four do not) |
 | ~~Photographs + captions~~ — five of six wired in Astro | `src/data/vehicles.json` `photos[]` + `[slug].astro` variable gallery. Mockup still four fixed slots. Confirm three unconfirmed liftoff frames before launch. |
 | Partner logos, linked, with company-name alt text | `src/pages/sponsors.astro` |

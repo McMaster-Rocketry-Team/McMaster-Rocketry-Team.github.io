@@ -1,6 +1,44 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 (sponsors, galleries, nav) · branch `dev` (ahead of `origin/dev`; see latest check-in)
+**Last updated:** 2026-08-26 (Nimbus flight record, fleet heroes, /rockets trim) · branch `dev`
+
+## 2026-08-26 Nimbus flight record + /rockets trim
+
+LC25 flight data from OneDrive export (`OneDrive_1_2026-08-26.zip`, Blue Raven
+primary) wired into `vehicles.json`:
+
+- **Nimbus:** `mach` **1.14**, `specs.accel` **9.5 G**, `specs.recovery`
+  **drogue @ apogee · main @ 1496 ft**; `build` expanded (Blue Raven / EasyMini /
+  Void Lake, deploy altitudes, peak velocity). Apogee **17,862 ft** unchanged.
+- **ReviewMode:** `/rockets/nimbus` fully locked (**0–34**). `/rockets` partial
+  (**0–22** of 26 blocks after table removal).
+- **`/rockets`:** dropped the **`FleetTable`** section — page is **fleet lineup
+  + CTA only**. `FleetTable.astro` remains in the repo but is not mounted on any
+  route. Rhythm: `.phead` → `.paper.fleet` → `.cta`.
+- **Vehicle heroes:** `heroImage` set for Marauder I/II, Luminis, Luminis V2,
+  and Nimbus (webp under `public/media/rockets/`). Nimbus gallery swapped to
+  integration / pad / avionics / recovery (liftoff frame removed).
+
+## 2026-08-26 design spec v1.2
+
+Local `McMaster_Rocketry_Design_System_Spec.md` bumped to **v1.2** (tagline
+lockup rules, conditional `.herobox`, page rhythm, nav flyout, fleet length-scale,
+gallery captions, CSS utilities, mockups deprecated). `.cursor/rules/design.mdc`
+and `docs/design-system.md` updated. **Sync owed:** push to claude.ai/design
+project `3fe61467-ca14-4c72-80a1-d4bd7fe18e79` via Claude Code `/design-sync`.
+
+## 2026-08-26 design consistency pass
+
+Audit fixes on Astro (mockups/final/ remain deprecated — see readme):
+
+- Vehicle pageheads: `.herobox` only when `heroImage` is set (Osiris only today).
+- Dark-ground `.prose`, `.cta .tag`, `.link-underline`, `.note`, footer intro
+  classes replace inline colour/spacing hacks across pages.
+- Gallery: figcaption omitted when no `caption` field (alt is not duplicated).
+- `/subteams/[slug]`: paper section for detail + first-term cards; dark for others/leads.
+- ~~`/rockets`: fleet table restored (`FleetTable`) for screen-reader parity.~~
+  Superseded same day: table removed; lineup + craft links only (see section above).
+- Home subteams headline aligned with `/subteams`: "Seven teams, one rocket."
 
 ## 2026-08-26 sponsors, galleries, nav flyout
 
@@ -53,7 +91,8 @@ section is current.
 |---|---|
 | `/` | Fully locked (0–42) |
 | `/join` | Fully locked (0–37) |
-| `/rockets` | Fully locked (0–21) |
+| `/rockets` | Partial (**0–22** of 26); table section removed |
+| `/rockets/nimbus` | Fully locked via `vehicles.json` `reviewLocked` (**0–34**) |
 | `/rockets/osiris` | Fully locked via `vehicles.json` `reviewLocked` |
 | `/outreach` | 4 unlocked left (Space Industry night blurb, Isaac photo slot, "For sponsors", CtaBand tag) |
 | `/sponsors` | Partial; tier amounts in, budget figures and contact names still TODO |
@@ -67,8 +106,9 @@ section is current.
 - **`lengthIn`:** set on Marauder I (100.6), Marauder II (105), Luminis (110),
   Nimbus (106.3), Osiris (124.8). **Luminis V2 still `null`** (only remaining
   unsized airframe in the lineup).
-- **Nimbus apogee** `17862` (flight computer). Osiris `mach` unpublished
-  (`null`). Luminis V2 apogee `10564`.
+- **Nimbus apogee** `17862` (flight computer). **Nimbus `mach` 1.14**, **`specs.accel`
+  9.5 G**, **`specs.recovery`** set from LC25 Blue Raven log. Osiris `mach`
+  unpublished (`null`). Luminis V2 apogee `10564`.
 - **Sponsorship tiers:** Bronze `$500+` / Silver `$2,000+` / Gold `$3,000+`
   in `sponsorship.json`. Season **budget amounts** and **two named contacts**
   still null.
@@ -205,12 +245,15 @@ rendering always showed the literal string "TODO" regardless of real data,
 and a second hardcoded `discord.gg/TODO` placeholder button existed
 alongside the one driven by `site.json`.
 
-**`/rockets` fully reviewed and locked** (22/22). Removed the "Launch Canada
-scores against a declared target" line and the entire second section below
-the fleet lineup graphic (the `<FleetTable>` + its "apogee is the highest
-altitude..." caption), both per Robin: the table duplicated data already on
-the page. `FleetTable` import removed from `rockets/index.astro` since it's
-now unused; the component file itself (hard-locked) is untouched.
+**`/rockets` trimmed to fleet lineup only** (historical note from same session;
+re-confirmed 2026-08-26 evening). Robin removed the second section below the
+lineup — the `<FleetTable>` and its apogee footnote duplicated data already in
+the graphic. `FleetTable` import removed from `rockets/index.astro`; component
+file kept but unused. ReviewMode on `/rockets`: **0–22 locked** of **26**
+blocks after trim.
+
+**`/rockets/nimbus` fully locked** (35/35) after LC25 flight record published
+(`mach`, accel, recovery, build). Source: `OneDrive_1_2026-08-26.zip`.
 
 **`/rockets/osiris` build narrative rewritten, Robin's call — corrects the
 carbon-tube claim.** The previous `build` text ("laid up our own carbon
@@ -398,7 +441,8 @@ Five things worth not re-deriving:
   through pad structure. `measure` prints exactly this.
 
 - **Do not force every vehicle to the same width.**   Rendered widths at the
-  lineup's 440px height are Marauder I 68, Marauder II 53, Nimbus 43,
+  lineup's 440px height are Marauder I ~74 (was 68 until the 2026-08-26 re-cut
+  widened its `--keep` box to stop clipping the fin tips), Marauder II 53, Nimbus 43,
   Luminis 42, Osiris 38. The spread is real: Marauder I is a stubby 2022 airframe
   with fins spanning ~2.7 body diameters, and the Spaceport vehicles are
   slender. A cutout much *wider* than its neighbours is worth a look, but
@@ -822,16 +866,16 @@ Carried from the day-1 plan and still binding:
    a new system, tracked live at claude.ai/design ("McMaster Rocketry Design System",
    project id `3fe61467-ca14-4c72-80a1-d4bd7fe18e79`). Local
    `McMaster_Rocketry_Design_System_Spec.md` (gitignored) is the sync source for that
-   project's `spec.md` — currently at **v1.1**. Current tokens: `--ignition #BF2026`
+   project's `spec.md` — currently at **v1.2** (2026-08-26). Current tokens: `--ignition #BF2026`
    plus a **true grayscale** scale (`--graphite-900 #1A1A1A` down to `--paper #F7F7F6`,
    every step R=G=B). Photographic/video heroes stay full colour with copy in `.herobox`
-   (same panel as Osiris). Tagline is **"Get blasted"** (`site.json` `tagline`): home
-   hero `.tag`, home document title, footer once — not on Join/Sponsors.
+   **only when a photo/video hero exists** (Osiris + home video). Plain `.phead` for
+   all other interior pages. Tagline is **"Get blasted"** as a `.lockup` in nav, footer,
+   and home hero — not on Join/Sponsors or section eyebrows.
    `--altimeter` (green) and `--amber` are narrow utility colors (chart series/status
    dot, caution accent) restricted to non-text, non-decorative use.
-   **Sync owed:** push local v1.1 `spec.md` into the claude.ai/design project (Claude
-   Code `DesignSync` / `/design-sync`). Cursor cannot reach `api.anthropic.com` from
-   this sandbox.
+   **Sync owed:** push local v1.2 into the claude.ai/design project (Claude
+   Code `/design-sync`). See `docs/design-system.md`.
 7. Accurate flight data, never marketing rounding.
 8. Claude drafts non-technical prose only. Robin writes every spec, number and safety
    claim.

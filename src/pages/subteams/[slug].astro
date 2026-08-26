@@ -27,13 +27,13 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
   </div>
 </header>
 
-<section id="detail-section">
+<section class="paper">
   <div class="wrap">
-    <div class="prose" style="color:rgba(255,255,255,.86)">
+    <div class="prose">
       {t.detail ? <p>{t.detail}</p> : <><p>{t.blurb}</p><p><TodoBadge label="full subteam description" /></p></>}
     </div>
 
-    <div class="cards c3" style="margin-top:clamp(30px,5vh,54px)">
+    <div class="cards c3 cards--follow">
       <div class="card">
         <div>
           <div class="tag">What you'd do</div>
@@ -58,8 +58,12 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="shead" style="margin-top:clamp(40px,7vh,80px)">
+<section>
+  <div class="wrap">
+    <div class="shead">
       <div><div class="tag">The others</div><h2>Every other subteam.</h2></div>
       <p>Each one takes members with no experience every term.</p>
     </div>
@@ -71,7 +75,7 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
       ))}
     </div>
 
-    <div class="shead" style="margin-top:clamp(40px,7vh,80px)">
+    <div class="shead shead--follow">
       <div><div class="tag">Leads</div><h2>Who runs it.</h2></div>
       <p>Named leads, so you know who to ask.</p>
     </div>
@@ -86,7 +90,7 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
             ) : (
               <TodoBadge label="programme, year, and what they work on" />
             )}
-            {' '}<a href={mailHref()} style="text-decoration:underline;text-underline-offset:3px">Email</a>
+            {' '}<a class="link-underline" href={mailHref()}>Email</a>
           </p>
         </div></div>
       )) : (

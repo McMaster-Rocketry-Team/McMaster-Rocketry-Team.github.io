@@ -1,28 +1,36 @@
 ---
-description: McMaster Rocketry visual identity — heroes, colour, tagline
+description: McMaster Rocketry visual identity — heroes, colour, tagline, nav, page rhythm
 alwaysApply: true
 ---
 
 # Visual identity
 
-Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video.
+Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video. Full spec: `McMaster_Rocketry_Design_System_Spec.md` v1.2 (sync to claude.ai/design via `/design-sync`).
 
 ## Heroes
 
 Photographic and video heroes are **full colour**. Do not grayscale the media, do not map it through a duotone filter, and do not cover it with a red or black gradient veil.
 
-Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel, hairline, slight blur), sized to the text — same treatment as `/rockets/osiris`. Interior pages without a photo stay a solid graphite `.phead` and do not grow a box.
+Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel, hairline, slight blur), sized to the text — same treatment as `/rockets/osiris`. Interior pages **without** a photo stay a solid graphite `.phead` and do **not** grow a box.
 
-The home hero is full-viewport colour video plus `.herobox`. Vehicle pages with `heroImage` use `.phead.has-hero` plus `.herobox`.
+| Context | Pattern |
+|---|---|
+| Home | `.hero` + `.bgvid` + `.herobox` |
+| Vehicle with `heroImage` | `.phead.has-hero` + `.herobox` |
+| Everything else (Join, Sponsors, vehicles without hero photo) | `.phead` only — tag, h1, lede in `.wrap` |
 
 ```html
-<!-- ✅ -->
-<header class="hero">
-  <video class="bgvid" ...></video>
-  <div class="wrap hero-in"><div class="herobox">...</div></div>
+<!-- ✅ photo hero -->
+<header class="phead has-hero" style="--hero-img:url(...)">
+  <div class="wrap"><div class="herobox">...</div></div>
 </header>
 
-<!-- ❌ grayscale filter, colour veil, or type sitting on the footage -->
+<!-- ✅ interior page -->
+<header class="phead">
+  <div class="wrap"><div class="tag">...</div><h1>...</h1><p class="lede">...</p></div>
+</header>
+
+<!-- ❌ herobox without heroImage; grayscale/duotone/veil on footage -->
 ```
 
 ## Tagline
@@ -35,4 +43,24 @@ The home hero is full-viewport colour video plus `.herobox`. Vehicle pages with 
 
 Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the tagline on section eyebrows, interior pageheads, Join, or Sponsors.
 
-Tokens and the rest of the system live in the header comment of `src/styles/site.css`.
+## Page rhythm
+
+Alternate `section.paper` (light) and plain `<section>` (dark). Every page ends with `CtaBand`. Prefer CSS utilities (`.prose`, `.prose--follow`, `.note`, `.link-underline`) over inline colour/spacing.
+
+`/rockets` is **lineup only**: `.phead` → `.paper.fleet` → `CtaBand` (no table section).
+
+## Crosshairs
+
+One pair on `.phead` / `.hero`. Home and `/rockets` add a second pair on `.paper.fleet`.
+
+## Nav
+
+Fixed gradient scrim (never a solid bar). **Rockets** and **Subteams** are `.navitem` flyouts; other links are direct `.navlinks > a`.
+
+Desktop row: `.navlinks { align-items: baseline }` and `.navitem { display: flex; align-items: baseline }`. Do not use `align-items: center` on the desktop link row — flyout wrappers sit lower than plain links.
+
+Flyout on desktop: hover / focus-within. Mobile (≤980px): nested list, `align-items: stretch`.
+
+## Canonical source
+
+Shipped CSS: `src/styles/site.css`. Mockups in `mockups/final/` are deprecated when they disagree with Astro.

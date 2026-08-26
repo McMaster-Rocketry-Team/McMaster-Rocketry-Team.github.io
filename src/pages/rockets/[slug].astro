@@ -33,11 +33,19 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="herobox">
-      <div class="tag">Vehicle · {v.year} · {v.comp}</div>
-      <h1>{v.name}</h1>
-      <p class="lede">{v.summary}</p>
-    </div>
+    {v.heroImage ? (
+      <div class="herobox">
+        <div class="tag">Vehicle · {v.year} · {v.comp}</div>
+        <h1>{v.name}</h1>
+        <p class="lede">{v.summary}</p>
+      </div>
+    ) : (
+      <>
+        <div class="tag">Vehicle · {v.year} · {v.comp}</div>
+        <h1>{v.name}</h1>
+        <p class="lede">{v.summary}</p>
+      </>
+    )}
   </div>
 </header>
 
@@ -70,7 +78,7 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
     <div class="shead">
       <div><div class="tag">The build</div><h2>How it was made.</h2></div>
     </div>
-    <div class="prose" style="color:rgba(255,255,255,.86)">
+    <div class="prose">
       {v.build ? <p>{v.build}</p> : <p>No build write-up for this vehicle yet. <TodoBadge label="build narrative" /></p>}
     </div>
   </div>
@@ -79,12 +87,12 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Gallery</div><h2>On the pad.</h2></div>
+      <div><div class="tag">Gallery</div><h2>At competition.</h2></div>
     </div>
     <div class="gallery">
       {v.photos && v.photos.length > 0 ? v.photos.map((photo) => (
         <figure><div class="ph"><img src={photo.src} alt={photo.alt} loading="lazy" /></div>
-          <figcaption>{photo.alt}</figcaption></figure>
+          {photo.caption && <figcaption>{photo.caption}</figcaption>}</figure>
       )) : (<>
         <figure><div class="ph"><span>Photo slot: integration<br>TODO</span></div>
           <figcaption>TODO: describe what is happening, not what is visible.</figcaption></figure>

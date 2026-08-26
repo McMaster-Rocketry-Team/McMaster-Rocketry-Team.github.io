@@ -34,7 +34,11 @@ const vehicles = defineCollection({
     heroImage: z.string().nullable().optional(),
     // Gallery photos, most vehicles don't have any yet and fall back to the
     // TODO placeholder slots.
-    photos: z.array(z.object({ src: z.string(), alt: z.string() })).optional(),
+    photos: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+      caption: z.string().optional(),
+    })).optional(),
     // data-review indices Robin has confirmed for good on this vehicle's page.
     reviewLocked: z.array(z.number()).optional(),
     // True when `image` is white/light-dominant (the shared osiris.png
