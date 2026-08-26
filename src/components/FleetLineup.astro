@@ -1,28 +1,57 @@
 ---
 import { getCollection } from 'astro:content';
-import { rocketGlyph, riseHeight, shortComp, sortVehicles } from '../lib/fleet';
+import { rocketGlyph, riseHeight, scaleTickTop, scaleTicks, shortComp, sortVehicles, maxRiseH } from '../lib/fleet';
 
 const vehicles = sortVehicles(await getCollection('vehicles'));
 const maxLengthIn = vehicles.reduce((m, { data: v }) => (v.lengthIn ? Math.max(m, v.lengthIn) : m), 1);
+const ticks = scaleTicks(maxLengthIn);
 ---
 
-<div class="lineup reveal-pending">
-  {vehicles.map(({ data: v }) => {
-    const h = riseHeight(v.lengthIn, maxLengthIn);
-    const rise = v.image ? `<img src="${v.image}" alt="" style="height:${h}px;width:auto">` : rocketGlyph(h);
-    return (
-      <a class={`craft${v.paleArt ? ' pale-art' : ''}`} href={`/rockets/${v.slug}`}>
-        <span class="rise" set:html={rise} />
-        <span class="val">{v.apogee && <>{v.apogee.toLocaleString()} ft</>}</span>
-        <span class="nm"><b>{v.name}</b><span>{shortComp(v.comp)} · {v.year}</span></span>
-      </a>
-    );
-  })}
+<div class="fleet-stage">
+  <div class="fleet-scale" style={`height:${maxRiseH}px`} aria-hidden="true">
+    <div class="fleet-scale-rail"></div>
+    {ticks.map((inches) => {
+      const top = scaleTickTop(inches, maxLengthIn);
+      const m = (inches * 0.0254).toFixed(inches >= 100 ? 2 : 1);
+      return (
+        <span class="fleet-scale-tick" style={`top:${top}px`}>
+          <i></i>
+          <span>
+            {inches === 0 ? '0' : (
+              <>
+                {inches}&nbsp;in
+                <span class="u">{m}&nbsp;m</span>
+              </>
+            )}
+          </span>
+        </span>
+      );
+    })}
+  </div>
+  <div class="lineup reveal-pending">
+    {vehicles.map(({ data: v }) => {
+      const h = riseHeight(v.lengthIn, maxLengthIn);
+      const rise = v.image
+        ? `<img src="${v.image}" alt="" style="--rise:${h}px">`
+        : rocketGlyph(h);
+      return (
+        <a class={`craft${v.paleArt ? ' pale-art' : ''}${!v.lengthIn ? ' unsized' : ''}`} href={`/rockets/${v.slug}`}>
+          <span class="rise" set:html={rise} />
+          <span class="val">{v.apogee && <>{v.apogee.toLocaleString()} ft</>}</span>
+          <span class="nm">
+            <b>{v.name}</b>
+            <span class="meta">{shortComp(v.comp)} · {v.year}</span>
+            <span class="go" aria-hidden="true">View →</span>
+          </span>
+        </a>
+      );
+    })}
+  </div>
 </div>
 <div class="wrap"><div class="baseline"></div></div>
 <div class="wrap">
   <div class="fleetnote">
     <span>LC = Launch Canada · SAC = Spaceport America Cup</span>
-    <span>Rocket size = relative length, tip to tail</span>
+    <span>Rocket height to scale, tip to tail</span>
   </div>
 </div>

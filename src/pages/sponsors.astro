@@ -10,6 +10,7 @@ import sponsorship from '../data/sponsorship.json';
   title="Sponsors"
   description="Sponsor the McMaster Rocketry Team: tiers, what your support buys, and who to contact."
   current="/sponsors"
+  reviewLocked={[0, 1, 2, 3, 4, 6, 8, 10, 13, 15, 19, 24, 31, 33, 34, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 54, 55]}
 >
 <header class="phead">
   <span class="crosshair tl" aria-hidden="true"></span>
@@ -17,7 +18,7 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="tag">Sponsors</div>
     <h1>Put your name<br>on a rocket.</h1>
-    <p class="lede">We are a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting a hundred students to a launch site, and it puts your company in front of them while they decide where to work.</p>
+    <p class="lede">We're a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting our roughly 20-person competition crew to a launch site. It also puts your company in front of them while they decide where to work.</p>
   </div>
 </header>
 
@@ -25,8 +26,8 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">What it buys</div><h2>Where the money goes.</h2></div>
-      <p>We publish this because sponsors ask, and because a team that will not say where
-         the money goes is not a team worth funding.</p>
+      <p>We publish this because sponsors ask. A team that won't say where the money
+         goes isn't a team worth funding.</p>
     </div>
     <dl class="dl">
       {sponsorship.budget.map((b) => (
@@ -36,7 +37,7 @@ import sponsorship from '../data/sponsorship.json';
         </div>
       ))}
     </dl>
-    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+    <p style="margin:22px 0 0;font-size:15px;color:var(--muted-on-paper);max-width:66ch">
       <span class="todo" aria-hidden="true">TODO(robin)</span> Real figures here are the single most persuasive
       thing on this page. A sponsor who can see the budget can see what their tier actually
       pays for.
@@ -48,8 +49,6 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">Tiers</div><h2>What you get.</h2></div>
-      <p>Three tiers, and a fourth option if you would rather give materials or machine time
-         than money. That is often more useful to us.</p>
     </div>
   </div>
   <div class="wrap">
@@ -68,10 +67,9 @@ import sponsorship from '../data/sponsorship.json';
   </div>
   <div class="wrap">
     <div class="prose" style="color:rgba(255,255,255,.86);margin-top:clamp(30px,5vh,52px)">
-      <p><b>In-kind support.</b> Machine time, carbon, connectors, test equipment, PCB runs,
-        or an afternoon of an engineer&rsquo;s time are frequently worth more to us than the
-        equivalent cash. Tell us what you have and we will tell you honestly whether we can
-        use it.</p>
+      <p><b>In-kind support.</b> We'll take materials, machine shop CNC time, PCBs, connectors,
+        test equipment, or an afternoon of an engineer&rsquo;s time in place of cash. Tell us
+        what you have and we'll say whether we can use it.</p>
     </div>
     <div class="btnrow">
       <a class="btn solid" href={mailHref()}>Talk to us</a>
@@ -85,8 +83,6 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">Current partners</div><h2>Who backs us.</h2></div>
-      <p>Logo placement is deliberate and consistent: greyscale on dark, full colour
-         on paper, at a size set by tier.</p>
     </div>
     <div class="cards c4">
       {sponsorship.partners.map((p) => (
@@ -95,7 +91,7 @@ import sponsorship from '../data/sponsorship.json';
         </div>
       ))}
     </div>
-    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper)">
+    <p style="margin:22px 0 0;font-size:15px;color:var(--muted-on-paper)">
       <span class="todo" aria-hidden="true">TODO(robin)</span> Real partner logos, each linked, each with the
       company name as alt text.
     </p>
@@ -106,7 +102,7 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">Contact</div><h2>Who to ask.</h2></div>
-      <p>Email a person, and get a reply from a person.</p>
+      <p>Email someone, and hear back from someone.</p>
     </div>
     <div class="cards c2">
       {sponsorship.contacts.map((c) => (

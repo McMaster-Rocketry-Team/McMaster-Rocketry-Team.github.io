@@ -1,0 +1,34 @@
+---
+import { personGlyphSvg } from '../lib/fleet';
+
+interface Props {
+  name: string;
+  role: string;
+  programme: string | null;
+  year: string | null;
+  photo: string | null;
+}
+const { name, role, programme, year, photo } = Astro.props;
+---
+
+<div class="person">
+  {photo ? (
+    <div class="shot">
+      <img src={photo} alt={`${name}, ${role.toLowerCase()}`} loading="lazy" width="480" height="600" />
+    </div>
+  ) : (
+    <div class="shot" aria-hidden="true">
+      <Fragment set:html={personGlyphSvg()} />
+      <span style="position:relative;background:rgba(247,247,246,.88);padding:4px 8px;border-radius:2px">
+        Portrait slot<br>TODO: photo + alt text
+      </span>
+    </div>
+  )}
+  <h3>{name}</h3>
+  <p class="role">{role}</p>
+  {programme && year ? (
+    <p class="prog">{year} · {programme}</p>
+  ) : (
+    <p class="prog nodata-inline">TODO: programme &amp; year</p>
+  )}
+</div>

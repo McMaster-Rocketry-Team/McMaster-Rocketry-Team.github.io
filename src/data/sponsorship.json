@@ -37,15 +37,20 @@
         "Featured social media posts",
         "Long write-up on the sponsorship page",
         "Sponsor outreach events with rockets",
-        "Customized promotion as requested"
+        "Custom promotion when you ask for it"
       ]
     }
   ],
   "partners": [
-    { "name": null, "tier": "Gold" },
-    { "name": null, "tier": "Silver" },
-    { "name": null, "tier": "Silver" },
-    { "name": null, "tier": "Bronze" }
+    { "name": "MDA Space", "tier": "Gold" },
+    { "name": "McMaster Engineering", "tier": "Gold" },
+    { "name": "MES", "tier": "Gold" },
+    { "name": "Isaac Operations", "tier": "Silver" },
+    { "name": "Origin Innovations", "tier": "Silver" },
+    { "name": "SolidWorks", "tier": "Silver" },
+    { "name": "Onshape", "tier": "Silver" },
+    { "name": "Altium", "tier": "Silver" },
+    { "name": "Aversan", "tier": "Bronze" }
   ],
   "contacts": [
     { "role": "Sponsorship", "title": "Operations lead", "name": null,

@@ -14,7 +14,7 @@
     "slug": "avionics",
     "name": "Avionics",
     "blurb": "Flight computers and telemetry: embedded firmware and PCB design. This subteam decides when every event on the flight fires.",
-    "detail": "Avionics builds the flight computer stack: the sensors that tell the rocket where it is, the logic that decides when to fire each event, and the telemetry that gets the data back to the ground. Competition rules require a commercial altimeter and GPS as the primary flight computer, currently a Blue Raven paired with a Featherweight GPS. Alongside that, the subteam designs its own student-researched-and-developed boards, such as Void Lake, which fly as backup. If you have written code before, this is the fastest place on the team to see your work fly. If you have not, this is where a lot of us learned.",
+    "detail": "Avionics builds the flight computer stack: the sensors that tell the rocket where it is, the logic that decides when to fire each event, and the telemetry that gets the data back to the ground. Competition rules require a commercial altimeter and GPS as the primary flight computer, currently a Blue Raven paired with a Featherweight GPS. Alongside that, the subteam designs its own SRAD boards, such as Void Lake, which fly as backup. If you have written code before, this is the fastest place on the team to see your work fly. If you have not, this is where a lot of us learned.",
     "first": "Shadow a flight-computer build, wire and test one sensor board, and help run a ground test. No prior hardware experience assumed.",
     "skills": "C or Python, a soldering iron you are not afraid of, and any exposure to control theory. We teach the rest.",
     "hours": "About 6 h / week"
@@ -43,7 +43,7 @@
     "id": "payload",
     "slug": "payload",
     "name": "Payload",
-    "blurb": "The experiment we fly, and most years the reason the rocket exists at all. Interdisciplinary: CAD, electrical and software all sit on it.",
+    "blurb": "The experiment we fly, and most years the reason the rocket exists at all. CAD, electrical and software all sit on it.",
     "detail": null,
     "first": null,
     "skills": null,

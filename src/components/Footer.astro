@@ -14,12 +14,15 @@ const socials = [
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <h2 class="fh">{site.name}</h2>
-        <p style="margin:0;max-width:38ch;font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.78)">
+        <div class="lockup lockup--foot">
+          <h2 class="lockup-name">{site.name}</h2>
+          <p class="lockup-tag">{site.tagline}</p>
+        </div>
+        <p style="margin:14px 0 0;max-width:38ch;font-size:15.5px;line-height:1.65;color:rgba(255,255,255,.78)">
           A student team at {site.org} in {site.city}. We design, build and
           fly our own rockets, and we compete at Launch Canada.
         </p>
-        <p style="margin:16px 0 0;font-size:14.5px">
+        <p style="margin:16px 0 0;font-size:15.5px">
           <a href={mailHref()}>{site.email || 'TODO@macrocketry.ca'}</a>
           {!hasRealEmail() && <> <TodoBadge label="real team email" /></>}
         </p>

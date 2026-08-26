@@ -1,6 +1,7 @@
-// Ported from render.js's fleet lineup logic, unchanged in substance: same
-// height math, same procedural placeholder glyph for vehicles with no photo
-// yet, same ignition/graphite recolouring.
+// Fleet lineup sizing: pixel height is strictly proportional to tip-to-tail
+// lengthIn (shared linear scale with the ruler in FleetLineup.astro). Unsized
+// vehicles use a mid-height placeholder so unknown length never reads as
+// shortest or tallest.
 
 export const maxRiseH = 620;
 export const minRiseH = 260;
@@ -42,7 +43,24 @@ export function personGlyphSvg(): string {
 }
 
 export function riseHeight(lengthIn: number | null, maxLengthIn: number): number {
-  return lengthIn ? Math.round(minRiseH + (lengthIn / maxLengthIn) * (maxRiseH - minRiseH)) : unsizedH;
+  // Strict tip-to-tail proportion: 0 length → 0 px, tallest → maxRiseH.
+  // Unsized vehicles stay at mid height so an unknown length never reads as
+  // "shortest" or "tallest" on the scale.
+  return lengthIn ? Math.round((lengthIn / maxLengthIn) * maxRiseH) : unsizedH;
+}
+
+/** Pixel offset of a length tick from the top of a maxRiseH scale. */
+export function scaleTickTop(lengthIn: number, maxLengthIn: number): number {
+  return Math.round((1 - lengthIn / maxLengthIn) * maxRiseH);
+}
+
+/** Major scale ticks in inches from 0 (baseline) up to maxLengthIn (tallest tip). */
+export function scaleTicks(maxLengthIn: number): number[] {
+  const step = 30; // 30 in ≈ 0.76 m — readable without crowding
+  const ticks: number[] = [0];
+  for (let v = step; v <= maxLengthIn - step * 0.5; v += step) ticks.push(v);
+  ticks.push(Math.round(maxLengthIn * 10) / 10);
+  return ticks;
 }
 
 export function shortComp(comp: string): string {

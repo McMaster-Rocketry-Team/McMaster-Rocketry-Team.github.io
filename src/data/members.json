@@ -6,16 +6,24 @@
     { "label": "Founded", "value": null, "note": "year the team started" }
   ],
   "leads": [
-    { "role": "President", "subteam": null, "names": ["Robin Anderson"], "programme": null, "year": null },
-    { "role": "Project manager", "subteam": null, "names": ["Christina Zhou"], "programme": null, "year": null },
-    { "role": "Airframe lead", "subteam": "airframe", "names": ["Blake Wang", "Kiran Suresh"], "programme": null, "year": null },
-    { "role": "Payload lead", "subteam": "payload", "names": ["Joud Al Mowesati", "Owen Martin"], "programme": null, "year": null },
-    { "role": "Recovery lead", "subteam": "recovery", "names": ["Abigail Rosehart", "Erik Filippetti"], "programme": null, "year": null },
-    { "role": "Avionics lead", "subteam": "avionics", "names": ["Ilyaseen Nimji", "Krish Patel"], "programme": null, "year": null },
-    { "role": "Composites lead", "subteam": "composites", "names": ["Jase McClure", "Julia Da Silva"], "programme": null, "year": null },
-    { "role": "Propulsion lead", "subteam": "propulsion", "names": ["Ella Chow", "Sebastian Carter", "Timothy Manukian"], "programme": null, "year": null },
-    { "role": "Operations lead", "subteam": "operations", "names": ["Kendra Osa Nayanka", "Lea Tejeda"], "programme": null, "year": null },
-    { "role": "VP finance", "subteam": null, "names": ["Jia Agarwal"], "programme": null, "year": null },
-    { "role": "Chief safety officer", "subteam": null, "names": ["Callum Williams"], "programme": null, "year": null }
+    { "role": "President", "subteam": null, "name": "Robin Anderson", "programme": null, "year": null, "photo": "/media/leads/robin-anderson.webp" },
+    { "role": "Project manager", "subteam": null, "name": "Christina Zhou", "programme": null, "year": null, "photo": "/media/leads/christina-zhou.webp" },
+    { "role": "Airframe lead", "subteam": "airframe", "name": "Blake Wang", "programme": null, "year": null, "photo": "/media/leads/blake-wang.webp" },
+    { "role": "Airframe lead", "subteam": "airframe", "name": "Kiran Suresh", "programme": null, "year": null, "photo": "/media/leads/kiran-suresh.webp" },
+    { "role": "Payload lead", "subteam": "payload", "name": "Joud Al Mowesati", "programme": null, "year": null, "photo": "/media/leads/joud-al-mowesati.webp" },
+    { "role": "Payload lead", "subteam": "payload", "name": "Owen Martin", "programme": null, "year": null, "photo": "/media/leads/owen-martin.webp" },
+    { "role": "Recovery lead", "subteam": "recovery", "name": "Abigail Rosehart", "programme": null, "year": null, "photo": null },
+    { "role": "Recovery lead", "subteam": "recovery", "name": "Erik Filippetti", "programme": null, "year": null, "photo": null },
+    { "role": "Avionics lead", "subteam": "avionics", "name": "Ilyaseen Nimji", "programme": null, "year": null, "photo": "/media/leads/ilya-nimji.webp" },
+    { "role": "Avionics lead", "subteam": "avionics", "name": "Krish Patel", "programme": null, "year": null, "photo": null },
+    { "role": "Composites lead", "subteam": "composites", "name": "Jase McClure", "programme": null, "year": null, "photo": "/media/leads/jase-mcclure.webp" },
+    { "role": "Composites lead", "subteam": "composites", "name": "Julia Da Silva", "programme": null, "year": null, "photo": "/media/leads/julia-silva.webp" },
+    { "role": "Propulsion lead", "subteam": "propulsion", "name": "Ella Chow", "programme": null, "year": null, "photo": "/media/leads/ella-chow.webp" },
+    { "role": "Propulsion lead", "subteam": "propulsion", "name": "Sebastian Carter", "programme": null, "year": null, "photo": "/media/leads/sebastian-carter.webp" },
+    { "role": "Propulsion lead", "subteam": "propulsion", "name": "Timothy Manukian", "programme": null, "year": null, "photo": "/media/leads/tim-manukian.webp" },
+    { "role": "Operations lead", "subteam": "operations", "name": "Kendra Osa Nayanka", "programme": null, "year": null, "photo": "/media/leads/kendra-osa-nayanka.webp" },
+    { "role": "Operations lead", "subteam": "operations", "name": "Lea Tejeda", "programme": null, "year": null, "photo": "/media/leads/lea-tejeda.webp" },
+    { "role": "VP finance", "subteam": null, "name": "Jia Agarwal", "programme": null, "year": null, "photo": null },
+    { "role": "Chief safety officer", "subteam": null, "name": "Callum Williams", "programme": null, "year": null, "photo": "/media/leads/callum-williams.webp" }
   ]
 }

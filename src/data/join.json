@@ -2,17 +2,17 @@
   "applyHref": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=B2M3RCm0rUKMJSjNSW9HchhskgGNdnhJm_6LuuhnTuxUOU1OQVNTUjA4OVVKVE41OEhFTzdTTkJXVi4u",
   "steps": [
     { "title": "Meet us at Clubsfest or Facultyfest",
-      "body": "We have a table at both events at the start of each academic year." },
+      "body": "Facultyfest is August 31, 12:30 to 17:00, for incoming first-year engineers. Clubsfest is September 14, 16:30 to 19:30 on the JHE field during B2S week." },
     { "title": "Fill in the form",
       "body": "It asks which subteam you're interested in, plus a few short questions about why you want to join and any past experience." },
     { "title": "Interview with a subteam",
-      "body": "Every subteam runs its own interview, usually 30 minutes to an hour, about what you would want to work on." },
+      "body": "Every subteam runs its own interview, usually 30 minutes to an hour, about what you'd want to work on." },
     { "title": "Start building",
-      "body": "You're in! Show up to meetings, attend build sessions, and gain valuable aerospace experience." }
+      "body": "You're in. Show up to meetings, come to build sessions, and get to work on a real vehicle." }
   ],
   "dates": [
-    { "label": "Facultyfest", "note": "August 31" },
-    { "label": "Clubsfest", "note": "September 14" },
+    { "label": "Facultyfest", "note": "August 31", "detail": "12:30 to 17:00" },
+    { "label": "Clubsfest", "note": "September 14", "detail": "16:30 to 19:30, JHE field" },
     { "label": "Applications open", "note": "August 31, 09:00" },
     { "label": "Applications close", "note": "September 18, 23:59" }
   ],
@@ -24,7 +24,7 @@
     { "q": "How much time does it actually take?",
       "a": "About six hours a week for most members, though what you put in is what you get out. It picks up in the weeks before a launch and eases off around exams." },
     { "q": "Can I join partway through the year?",
-      "a": "Not usually. We hire during a set window each term, at Clubsfest and Facultyfest, rather than on a rolling basis. If you missed the window, email us and we'll get back if there's any openings." },
+      "a": "Not usually. We hire during a set window each term, at Clubsfest and Facultyfest, rather than on a rolling basis. If you missed the window, email us and we'll get back if there are any openings." },
     { "q": "What if I want to try a different subteam later?",
       "a": "Normal, and encouraged. Plenty of people move once they have seen what the other subteams actually do." }
   ]

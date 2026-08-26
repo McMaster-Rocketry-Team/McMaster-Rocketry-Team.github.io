@@ -2,25 +2,25 @@
 
 Generated from the mockup source. The live site is now Astro (`src/data/*.json`,
 `src/pages/`). Per-file occurrence counts at the bottom are stale; the *list*
-of missing facts is still the right list. Paths below name the mockup file and
-the Astro equivalent.
+of missing facts is what matters. Paths below name the mockup file and the
+Astro equivalent.
 
-**Resolved since this file was written:** team email is `rocketry@mcmaster.ca`.
-2026–27 lead **names** are in `src/data/members.json` (programmes, years, and
-portraits are not). `/outreach` exists. The join FAQ "do I need to pay
-anything?" was removed rather than answered. Nimbus apogee is sourced:
-`17862`, from the flight computer. Application form URL and the Clubsfest/
-Facultyfest/application dates are in `join.json`. Social handles are in
-`site.json`. Weekly time commitment is answered in the join FAQ, no `todo`
-flag left. Nimbus has a `lengthIn` and a `build` narrative. The other five
-vehicles still do not.
+**Resolved since this file was written:** team email `rocketry@mcmaster.ca`;
+2026–27 lead **names** (and 15/19 portraits) in `members.json`; `/outreach`
+exists; join FAQ "do I need to pay anything?" removed rather than answered;
+Nimbus apogee `17862` from the flight computer; apply URL + Clubsfest /
+Facultyfest / application dates in `join.json`; Instagram / Discord /
+LinkedIn in `site.json`; weekly time commitment answered in the join FAQ;
+sponsorship **tier amounts** Bronze `$500+` / Silver `$2,000+` / Gold
+`$3,000+`; Nimbus `lengthIn` + `build`; Marauder I/II, Luminis, and Osiris
+`lengthIn` also set; all six fleet cutouts shipped (including Luminis V2).
 
 ## Blocks a real launch
 
 | What | Where (mockup → Astro) | Why it matters |
 |---|---|---|
 | ~~**Team email address**~~ | done, `rocketry@mcmaster.ca` | |
-| **Three sponsorship amounts** | `final/sponsors.html` → `src/data/sponsorship.json` | A sponsor cannot decide without a number; they will price you low. |
+| ~~**Three sponsorship amounts**~~ | done in `src/data/sponsorship.json` tiers | |
 | **Two named contacts** | `final/sponsors.html` → `src/data/sponsorship.json` | "A named human" was a sponsor blocker. The slot exists, the name does not. |
 | **Season budget figures** | `final/sponsors.html` → `src/data/sponsorship.json` | The most persuasive content on the page per the sponsor review. |
 | ~~**Application form URL**~~ | done, real Microsoft Forms URL in `join.json` `applyHref` | |
@@ -32,18 +32,18 @@ vehicles still do not.
 
 | What | Where |
 |---|---|
-| ~~Member **names**~~ — 2026–27 leads are in | `src/data/members.json`. Programmes, years, portraits + alt text still empty. |
+| ~~Member **names**~~ — 2026–27 leads are in | `src/data/members.json`. Programmes and years still empty. Portraits: 15/19 (missing: Abigail Rosehart, Erik Filippetti, Krish Patel, Jia Agarwal). |
 | Subteam lead programmes / years / one-line bios | `src/pages/subteams/[slug].astro` (names already render from `members.json`) |
-| Roster statistics (faculties, first years, founded) | `src/data/members.json` `stats` |
+| Roster statistics (faculties, first years, founded) | `src/data/members.json` `stats` (`Active members` is `100+`; the other three are null) |
 | Real subteam description and first-term detail | `src/data/subteams.json` (`detail` / `first` / `skills` still null except Avionics) |
-| Vehicle specs — length, mass, motor, recovery, result | `src/data/vehicles.json` (`lengthIn` set on Nimbus only, still null on the other five, so they draw at the same fallback height) |
+| Vehicle specs — mass, motor, recovery, result; Luminis V2 length | `src/data/vehicles.json` (`lengthIn` set on five of six; Luminis V2 still null) |
 | Build narrative per vehicle | `src/data/vehicles.json` `build` (Nimbus and Osiris have one, the other four do not) |
-| Photographs + captions | `src/pages/rockets/[slug].astro` gallery, still four hardcoded TODO slots. Shortlists exist under `rockets/<slug>/SHORTLIST.md` for all six vehicles, none wired in. |
+| Photographs + captions | `src/pages/rockets/[slug].astro` gallery, still four hardcoded TODO slots. Shortlists exist under `rockets/<slug>/SHORTLIST.md` for all six vehicles, none wired in. Osiris has gallery webps on disk already. |
 | Partner logos, linked, with company-name alt text | `src/pages/sponsors.astro` |
 | Sponsorship package PDF | `src/pages/sponsors.astro` |
 | ~~Social handles (Instagram, Discord, LinkedIn)~~ | done, all three set in `src/data/site.json` `social` |
 | Answer to "do I need to pay anything?" | **removed** from `join.json`. $600 / $65 figures from minutes were not published. Say if the FAQ should come back. |
-| Outreach TODOs | `src/data/outreach.json` — STEM name, Space Industry night, Isaac dinner, info nights, Clubsfest every-term, LC bingo year |
+| Outreach TODOs | `src/data/outreach.json` — STEM name/when, Space Industry night, Isaac dinner, info nights, whether LC bingo runs every Launch Canada |
 
 ## Raw occurrences
 

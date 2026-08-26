@@ -40,3 +40,10 @@ __pycache__/
 
 # Staged photo imports not yet sorted into a rockets/<slug>/ folder.
 temp osiris images/
+
+# Local lead / outreach source JPEGs (shipped webps live under public/media/).
+leads_photos/
+/outreach/
+
+# Scratch fleet cutout previews.
+.tmp-fleet-*.png

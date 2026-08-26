@@ -1,6 +1,65 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 (Marauder I ogive restore) · branch `dev` @ `bb3f987` (origin in sync; working tree dirty)
+**Last updated:** 2026-08-26 (docs + review lock-in) · branch `dev` (ahead of `origin/dev`; see latest check-in)
+
+## 2026-08-26 docs + ReviewMode lock-in
+
+Working tree since `5f7f555` (outreach + four fleet cutouts). Docs below this
+heading that still say "lengthIn null on all six", "Luminis V2 borrows
+Osiris", "Nimbus 18,000", or "readme is still init" are historical; this
+section is current.
+
+### ReviewMode (live Chromium session)
+
+| Page | Status |
+|---|---|
+| `/` | Fully locked (0–42) |
+| `/join` | Fully locked (0–37) |
+| `/rockets` | Fully locked (0–21) |
+| `/rockets/osiris` | Fully locked via `vehicles.json` `reviewLocked` |
+| `/outreach` | 4 unlocked left (Space Industry night blurb, Isaac photo slot, "For sponsors", CtaBand tag) |
+| `/sponsors` | Partial; tier amounts in, budget figures and contact names still TODO |
+| `/members` | 46/82 locked this session; 36 open (mostly programme/year TODOs; unchecked: Joud, Owen, Jase, Ella, Sebastian) |
+| `/subteams`, `/subteams/[slug]`, other vehicles | Not started |
+
+### What is true on disk now
+
+- **Fleet cutouts:** all six vehicles have their own PNG under
+  `public/media/rockets/` (Luminis V2 no longer stands in Osiris).
+- **`lengthIn`:** set on Marauder I (100.6), Marauder II (105), Luminis (110),
+  Nimbus (106.3), Osiris (124.8). **Luminis V2 still `null`** (only remaining
+  unsized airframe in the lineup).
+- **Nimbus apogee** `17862` (flight computer). Osiris `mach` unpublished
+  (`null`). Luminis V2 apogee `10564`.
+- **Sponsorship tiers:** Bronze `$500+` / Silver `$2,000+` / Gold `$3,000+`
+  in `sponsorship.json`. Season **budget amounts** and **two named contacts**
+  still null.
+- **Leads:** 19 names in `members.json`; **15/19** have portraits in
+  `public/media/leads/` (still empty: Abigail Rosehart, Erik Filippetti,
+  Krish Patel, Jia Agarwal). Programmes and years still null for everyone.
+  `LeadCard.astro` renders them.
+- **Outreach:** route live; six event photos in `public/media/outreach/`.
+  Five events still carry `todo` flags (STEM name/when, Space Industry night,
+  Isaac dinner, info nights, LC bingo recurrence).
+- **Join:** real apply URL, Discord, LinkedIn, Facultyfest Aug 31 12:30–17:00,
+  Clubsfest Sept 14 16:30–19:30 JHE field, applications open Aug 31 09:00 /
+  close Sept 18 23:59.
+- **Design rule:** `.cursor/rules/design.mdc` (red/white/black, full-colour
+  heroes + `.herobox`, tagline only in nav/footer/home hero). `readme.md`
+  points at it.
+
+### Still open (launch blockers and near-term)
+
+- Season budget figures + sponsorship contact names.
+- Programme/year on `/members`; four missing lead portraits (Abigail, Erik,
+  Krish, Jia).
+- Vehicle galleries (template still four fixed slots; shortlists not wired).
+- Luminis V2 `lengthIn`; remaining outreach TODOs; `check:todo` gate.
+- Finish ReviewMode on outreach / sponsors / members / subteams / other vehicles.
+- Remove ReviewMode before launch.
+
+Raw source staging (`leads_photos/`, root `outreach/` JPGs) and
+`.tmp-fleet-*.png` stay gitignored; shipped assets are under `public/media/`.
 
 ## 2026-08-26 Marauder I ogive restore (Cursor)
 
@@ -139,10 +198,14 @@ vehicle page too since they share this template.
 
 ## 2026-08-26 uncommitted site pass (Cursor)
 
-Everything below this heading is in the working tree and **not committed**.
-`origin/dev` is at `bb3f987` (the hygiene check-in). Notes further down that
+> **Mostly committed in later 2026-08-26 commits** (outreach/cutouts at
+> `5f7f555`, then the docs + review lock-in). Historical "still dirty" framing
+> below is no longer accurate; see the top check-in for current open items.
+
+Everything below this heading was in the working tree when this section was
+written. `origin/dev` was at `bb3f987` at the time. Notes further down that
 say "`dev` is 9 commits ahead" or "nothing has been pushed since `init`" are
-stale; that push happened. The dirty tree is still local only.
+stale; that push happened.
 
 ### What landed
 
@@ -310,27 +373,25 @@ from the two sets share a gallery.
 
 ### Still not done
 
+> **Superseded by the 2026-08-26 docs + ReviewMode lock-in at the top of this
+> file.** Kept as the snapshot of what this pass thought was open; do not
+> treat the bullets below as current (Luminis V2 now has its own cutout;
+> `lengthIn` is set on five of six; Nimbus apogee / join URL / tier amounts /
+> readme are done).
+
 - Vehicle galleries: still four hardcoded TODO slots in `[slug].astro`. All
   six `SHORTLIST.md` files exist; nothing is wired. The four-slot template
   still does not match the albums (see photo-ingest check-in).
-- **Luminis V2 is the last vehicle still showing another rocket's photo.** Its
-  shortlist says no cutout candidate exists and that is roughly right:
-  `luminis-v2-08` is occluded by a painted tube in the foreground, and
-  `luminis-v2-05` is a pale airframe against pale cloud with bystanders at
-  the base. If it cannot be cut cleanly, `image: null` renders the
-  procedural glyph, which is more honest than Osiris standing in for it.
-  **Robin's call 2026-08-26: leave the stand-in for now**, so the home page
-  still shows Osiris's airframe in the Luminis V2 slot. Revisit before launch.
-- **`lengthIn` is null on all six**, so every rocket renders at the same 440px
-  fallback while the caption underneath says "Rocket size = relative length,
-  tip to tail." The field is inches, in `src/data/vehicles.json`. Six numbers
-  from Robin makes the lineup mean what it says.
+- ~~**Luminis V2 is the last vehicle still showing another rocket's photo.**~~
+  Done later the same day: `public/media/rockets/luminis-v2.png`.
+- ~~**`lengthIn` is null on all six**~~ — five of six filled; Luminis V2 still
+  null (see top check-in).
 - Missing files referenced by shortlists: `luminis-v2-02`, `luminis-v2-03`,
   `marauder-i-11`. Listed as rejected/backup picks but not in the folders.
-- Robin-only facts (Nimbus apogee, apply URL, term dates, sponsor amounts)
-  and the `check:todo` gate.
-- `readme.md` was still the word "init"; rewritten this pass to say how to
-  run the site.
+- ~~Robin-only facts (Nimbus apogee, apply URL, term dates, sponsor amounts)~~
+  — those four are in; budget figures, contact names, and the `check:todo`
+  gate remain.
+- ~~`readme.md` was still the word "init"~~ — rewritten.
 
 Dev server: `pnpm astro dev --host 127.0.0.1 --port 4321`.
 
@@ -721,16 +782,18 @@ Carried from the day-1 plan and still binding:
 
 6. ~~Palette is McMaster Heritage Maroon `#7A003C`~~ — **superseded.** The design moved to
    a new system, tracked live at claude.ai/design ("McMaster Rocketry Design System",
-   project id `3fe61467-ca14-4c72-80a1-d4bd7fe18e79`) — check that project's `spec.md`
-   before assuming the palette below is still current, the local
-   `McMaster_Rocketry_Design_System_Spec.md` copy in the repo root goes stale.
-   Current tokens: `--ignition #BF2026` (brand red, deliberate accents only) plus a
-   **true grayscale** scale (`--graphite-900 #1A1A1A` down to `--paper #F7F7F6`, every
-   step R=G=B). The live spec's own neutrals are red-leaning ("warm graphite"); Robin
-   overrode that on 2026-08-25 because it read as brown/muddy in practice — palette
-   stays strictly red/white/black, keep the override even if the spec still says warm
-   graphite. `--altimeter` (green) and `--amber` are narrow utility colors (chart
-   series/status dot, caution accent) the spec restricts to non-text, non-decorative use.
+   project id `3fe61467-ca14-4c72-80a1-d4bd7fe18e79`). Local
+   `McMaster_Rocketry_Design_System_Spec.md` (gitignored) is the sync source for that
+   project's `spec.md` — currently at **v1.1**. Current tokens: `--ignition #BF2026`
+   plus a **true grayscale** scale (`--graphite-900 #1A1A1A` down to `--paper #F7F7F6`,
+   every step R=G=B). Photographic/video heroes stay full colour with copy in `.herobox`
+   (same panel as Osiris). Tagline is **"Get blasted"** (`site.json` `tagline`): home
+   hero `.tag`, home document title, footer once — not on Join/Sponsors.
+   `--altimeter` (green) and `--amber` are narrow utility colors (chart series/status
+   dot, caution accent) restricted to non-text, non-decorative use.
+   **Sync owed:** push local v1.1 `spec.md` into the claude.ai/design project (Claude
+   Code `DesignSync` / `/design-sync`). Cursor cannot reach `api.anthropic.com` from
+   this sandbox.
 7. Accurate flight data, never marketing rounding.
 8. Claude drafts non-technical prose only. Robin writes every spec, number and safety
    claim.

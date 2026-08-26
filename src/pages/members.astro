@@ -1,14 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { personGlyphSvg } from '../lib/fleet';
+import LeadCard from '../components/LeadCard.astro';
 import members from '../data/members.json';
+
+const execRoles = new Set([
+  'President',
+  'Project manager',
+  'VP finance',
+  'Chief safety officer',
+]);
+const executives = members.leads.filter((m) => execRoles.has(m.role));
+const subteamLeads = members.leads.filter((m) => !execRoles.has(m.role));
 ---
 
 <BaseLayout
   title="Members"
   description="The students who build and fly McMaster Rocketry's vehicles."
   current="/members"
+  reviewLocked={[0, 1, 2, 4, 5, 6, 8, 9, 11, 12, 14, 15, 18, 19, 21, 22, 30, 31, 33, 34, 36, 37, 39, 40, 45, 46, 54, 55, 57, 58, 60, 61, 64, 66, 67, 68, 70, 72, 74, 75, 76, 77, 78, 79, 80, 81]}
 >
 <header class="phead">
   <span class="crosshair tl" aria-hidden="true"></span>
@@ -16,7 +26,7 @@ import members from '../data/members.json';
   <div class="wrap">
     <div class="tag">Members</div>
     <h1>The people<br>who build it.</h1>
-    <p class="lede">Over 100 students across seven subteams and every faculty on campus. These are the leads: the rest of the team is on the subteam pages.</p>
+    <p class="lede">Over 100 students across seven subteams and every faculty on campus. These are the leads. The rest of the team is on the subteam pages.</p>
   </div>
 </header>
 
@@ -26,26 +36,26 @@ import members from '../data/members.json';
       <div><div class="tag">2026&ndash;27 leadership</div><h2>Leads.</h2></div>
       <p>Portraits, programmes and years still need filling. Every photograph needs a real alt description before this ships.</p>
     </div>
-    <div class="roster">
-      {members.leads.map((m) => (
-        <div class="person">
-          <div class="shot" aria-hidden="true">
-            <Fragment set:html={personGlyphSvg()} />
-            <span style="position:relative;background:rgba(247,247,246,.88);padding:4px 8px;border-radius:2px">
-              Portrait slot<br>TODO: photo + alt text
-            </span>
-          </div>
-          <h3>{m.role}</h3>
-          <p class="role">{m.names.join(', ')}</p>
-          {m.programme && m.year ? (
-            <p class="prog">{m.year} · {m.programme}</p>
-          ) : (
-            <p class="prog nodata-inline">TODO: programme &amp; year</p>
-          )}
-        </div>
-      ))}
+
+    <div class="roster-block">
+      <p class="roster-label">Executive</p>
+      <div class="roster roster--exec">
+        {executives.map((m) => (
+          <LeadCard name={m.name} role={m.role} programme={m.programme} year={m.year} photo={m.photo} />
+        ))}
+      </div>
     </div>
-    <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+
+    <div class="roster-block">
+      <p class="roster-label">Subteam leads</p>
+      <div class="roster">
+        {subteamLeads.map((m) => (
+          <LeadCard name={m.name} role={m.role} programme={m.programme} year={m.year} photo={m.photo} />
+        ))}
+      </div>
+    </div>
+
+    <p style="margin:clamp(36px,6vh,64px) 0 0;font-size:15px;color:var(--muted-on-paper);max-width:66ch">
       <span class="todo" aria-hidden="true">TODO(robin)</span> Portraits, programmes and years. Alt text
       should describe the person: &ldquo;Priya Shah, avionics lead,&rdquo; not
       &ldquo;a student smiling.&rdquo; If a member would rather not be pictured, the card
@@ -70,7 +80,7 @@ import members from '../data/members.json';
     </dl>
     <div class="prose" style="color:rgba(255,255,255,.86);margin-top:clamp(30px,5vh,52px)">
       <p>Most of the people on this page had never touched a rocket before joining. Several
-        are not in engineering at all: the operations lead runs sponsorship, the
+        are not in engineering at all. The operations leads run sponsorship, the
         budget and everything we do on campus.</p>
     </div>
     <div class="btnrow"><a class="btn solid" href="/join">Join them</a></div>

@@ -49,9 +49,15 @@ it. Rejected file kept at `/tmp/mrt-cutout/rejected/marauder-i.png`.
           --erase 692,450,80,940
       $V scripts/cut-fleet-cutout.py restore m1-cut.png m1-ogive.png --until 400
       $V scripts/cut-fleet-cutout.py finish m1-ogive.png m1-clipped.png \
-          --erase 70,1228,6,41 --keep-all-blobs --keep-halo --no-straighten --feather 0
-      $V scripts/cut-fleet-cutout.py patch m1-clipped.png public/media/rockets/marauder-i.png \
-          --box 80,1136,26,70,170 --box 80,1200,26,70,110 --blend 2
+          --erase 70,1100,6,169 --keep-all-blobs --keep-halo --no-straighten --feather 0
+      $V scripts/cut-fleet-cutout.py patch m1-clipped.png m1-v12.png \
+          --box 80,1136,26,70,170 --box 75,1200,38,66,110 --blend 1
+      $V scripts/cut-fleet-cutout.py patch m1-v12.png m1-v12.png \
+          --box 76,1266,36,3,110 --blend 0
+      $V scripts/cut-fleet-cutout.py patch m1-v12.png public/media/rockets/marauder-i.png \
+          --box 156,1372,12,22,-80 --blend 1
+      $V scripts/cut-fleet-cutout.py patch public/media/rockets/marauder-i.png public/media/rockets/marauder-i.png \
+          --box 156,1372,12,3,-80 --blend 0
 
   `-rotate 90` (clockwise, so the nose ends up at the top) happens between the mask and
   finish steps because the model wants the photo as shot. `--keep` starts at the real
@@ -72,13 +78,19 @@ solid right-edge pixels across that axis (and clips leftover shade on the first
 photograph, of this vehicle, of this row. Verify: per-row `|L-R|` on the ogive
 is 0, the tip sits on the centreline, and xmin does not freeze while xmax grows.
 
-The two `patch` boxes are the tripod saddle's shadow on the tube face, cloned from
-plain red 170px / 110px further aft. Do not patch above the MES logo: a first try
-at `78,544,28,50,-110` copied darker paint from the cone join and read as a
-rectangular shadow. The small dark mark left of the flame is a rivet at the
-coupler, and the D-shaped piece on the left edge is a rail button — both stay.
-The `--erase 70,1228,6,41` only clips the saddle where it breaks past the tube
-edge; it must stop before row 1270 or it bites a fin.
+The left `patch` boxes are the tripod saddle's shadow on the tube face, cloned from
+plain red 170px / 110px further aft. The last three rows of that hole sit against
+the fin root, so they are a hard clone (`--blend 0`) — a cosine ramp there mixed
+the hole back in. The right-side box at `156,1372` is a second saddle mark just
+above the right fin, cloned from 80px further forward. Do not patch above the MES
+logo: a first try at `78,544,28,50,-110` copied darker paint from the cone join
+and read as a rectangular shadow. The small dark mark left of the flame is a rivet
+at the coupler, and the D-shaped piece on the left edge is a rail button — both
+stay. The `--erase 70,1100,6,169` clips the saddle and a 4px black spike at
+rows 1224-1227 (the nick Robin arrowed, just above the fins) plus a 1px black
+fringe along that limb. It must stop before row 1269 or it bites a fin. The dark triangle in
+the centre of the tube above the fins is the **middle red fin in its own shadow**,
+not a hole — leave it.
 
 ### Two defects Robin caught on the live page, and what they actually were
 - **"The nosecone is chipped."** It was not the cone. A **guy wire** runs diagonally

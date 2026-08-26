@@ -21,7 +21,7 @@ const applyHref = join.applyHref || mailHref('Application');
   <div class="wrap">
     <div class="tag">Join us</div>
     <h1>No experience<br>required.</h1>
-    <p class="lede">We hire first years. We hire people who have never touched a rocket. We hire people who are not in engineering. The only thing we ask is that you're passionate about aerospace and have a desire to learn.</p>
+    <p class="lede">We hire first years. We hire people who have never touched a rocket. We hire people who aren't in engineering. Come ready to learn. We'll teach the rest.</p>
   </div>
 </header>
 
@@ -52,12 +52,19 @@ const applyHref = join.applyHref || mailHref('Application');
     <div class="shead">
       <div><div class="tag">Key dates</div><h2>When.</h2></div>
       <p>We hire during a set window each term, at Clubsfest and Facultyfest, not
-         on a rolling basis. If you missed our hiring window, email us and we'll
-         get back if there's any openings.</p>
+         on a rolling basis. If you missed the window, email us and we'll get
+         back if there are any openings.</p>
     </div>
     <dl class="dl">
       {join.dates.map((d) => (
-        <div><dt>{d.label}</dt><dd class={d.note ? undefined : 'nodata'}>{d.note ?? 'TODO'} {d.todo && <TodoBadge label={d.todo} />}</dd></div>
+        <div>
+          <dt>{d.label}</dt>
+          <dd class={d.note ? undefined : 'nodata'}>
+            {d.note ?? 'TODO'}
+            {'detail' in d && d.detail ? <small>{d.detail}</small> : null}
+            {'todo' in d && d.todo ? <TodoBadge label={d.todo} /> : null}
+          </dd>
+        </div>
       ))}
     </dl>
   </div>

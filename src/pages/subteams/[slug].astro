@@ -13,8 +13,7 @@ export async function getStaticPaths() {
 
 const { subteams, t } = Astro.props;
 const others = subteams.filter((x) => x.data.slug !== t.slug);
-const lead = members.leads.find((l) => l.subteam === t.slug);
-const leadNames = lead?.names ?? [];
+const leads = members.leads.filter((l) => l.subteam === t.slug);
 ---
 
 <BaseLayout title={t.name} description={t.blurb} current="/subteams">
@@ -37,7 +36,7 @@ const leadNames = lead?.names ?? [];
     <div class="cards c3" style="margin-top:clamp(30px,5vh,54px)">
       <div class="card">
         <div>
-          <div class="tag">What you would do</div>
+          <div class="tag">What you'd do</div>
           <h3>First term</h3>
           <p>{t.first || <TodoBadge label="what a first-term member actually does" />}</p>
         </div>
@@ -74,15 +73,15 @@ const leadNames = lead?.names ?? [];
 
     <div class="shead" style="margin-top:clamp(40px,7vh,80px)">
       <div><div class="tag">Leads</div><h2>Who runs it.</h2></div>
-      <p>Named leads, so a prospective member knows who to ask.</p>
+      <p>Named leads, so you know who to ask.</p>
     </div>
     <div class="cards c3">
-      {leadNames.length ? leadNames.map((name) => (
+      {leads.length ? leads.map((lead) => (
         <div class="card"><div>
           <div class="tag">Subteam lead</div>
-          <h3>{name}</h3>
+          <h3>{lead.name}</h3>
           <p>
-            {lead?.programme && lead?.year ? (
+            {lead.programme && lead.year ? (
               <>{lead.year} · {lead.programme}. </>
             ) : (
               <TodoBadge label="programme, year, and what they work on" />
@@ -99,7 +98,7 @@ const leadNames = lead?.names ?? [];
       )}
       <div class="card"><div>
         <div class="tag">Recruiting</div><h3>Open now</h3>
-        <p>We take new members every term, and we do not expect experience.</p>
+        <p>We take new members every term, and we don't expect experience.</p>
         <div class="btnrow"><a class="btn" href="/join">How to join</a></div>
       </div></div>
     </div>

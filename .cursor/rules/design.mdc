@@ -1,0 +1,38 @@
+---
+description: McMaster Rocketry visual identity — heroes, colour, tagline
+alwaysApply: true
+---
+
+# Visual identity
+
+Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video.
+
+## Heroes
+
+Photographic and video heroes are **full colour**. Do not grayscale the media, do not map it through a duotone filter, and do not cover it with a red or black gradient veil.
+
+Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel, hairline, slight blur), sized to the text — same treatment as `/rockets/osiris`. Interior pages without a photo stay a solid graphite `.phead` and do not grow a box.
+
+The home hero is full-viewport colour video plus `.herobox`. Vehicle pages with `heroImage` use `.phead.has-hero` plus `.herobox`.
+
+```html
+<!-- ✅ -->
+<header class="hero">
+  <video class="bgvid" ...></video>
+  <div class="wrap hero-in"><div class="herobox">...</div></div>
+</header>
+
+<!-- ❌ grayscale filter, colour veil, or type sitting on the footage -->
+```
+
+## Tagline
+
+`site.json` `tagline` is **"Get blasted"**. It travels with the team name as a `.lockup` (display name + mono tagline) in three places only:
+
+1. Nav brand (logo + short name + tagline)
+2. Footer brand column (full name + tagline)
+3. Home hero `.herobox` (full name + tagline, above the altitude)
+
+Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the tagline on section eyebrows, interior pageheads, Join, or Sponsors.
+
+Tokens and the rest of the system live in the header comment of `src/styles/site.css`.

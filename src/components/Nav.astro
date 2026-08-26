@@ -13,7 +13,10 @@ const { current } = Astro.props;
 <nav id="nav">
   <a class="brand" href="/">
     <Logo />
-    McMaster Rocketry
+    <span class="lockup">
+      <span class="lockup-name">{site.short}</span>
+      <span class="lockup-tag">{site.tagline}</span>
+    </span>
   </a>
   <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">
     <span class="bars" aria-hidden="true"></span>Menu

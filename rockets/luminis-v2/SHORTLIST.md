@@ -12,10 +12,38 @@ Source album: `LC24-1-photos.zip` (Launch Canada, per vehicles.json this is the
 | liftoff | `luminis-v2-06.webp` | high | Clean solo liftoff shot: rocket mid-ascent with a visible exhaust trail against the treeline. Already a cropped/composed shot (`McMasterCrop.JPG` in the source album), suggesting someone already picked it as a hero image once before. |
 | recovery | `luminis-v2-10.webp` | high | Team gathered around the recovered airframe on the ground, examining it together. |
 
-## Fleet cutout candidate
-- Source file: none of the shortlisted files
-- Usable as-is? No
-- Notes: Unlike Luminis (V1), I did not find a clean isolated product shot of this airframe against a plain background anywhere in the LC24 album. Every full-body shot has people, trees, or the launch rail in frame. Recommend keeping the `paleArt` osiris.png stand-in in `vehicles.json` for this vehicle until a better source photo turns up, rather than forcing a cutout from a busy background.
+## Fleet cutout — done 2026-08-26 from `-13`
+
+- Source file: **`luminis-v2-13.webp`**, newly imported this pass from
+  `LC24/LC24/IMG_20240821_103600.jpg` (contact sheet `sheet25_041.jpg`, cell 41-22).
+  The original shortlist said no cutout candidate existed; that was true of the
+  imported set. This frame was in the album and never pulled: full airframe
+  horizontal on two red tripod stands, LUMINIS lettering and bib 13 readable,
+  ~3800px of real tube in a 4618×3464 original.
+- Shipped as `public/media/rockets/luminis-v2.png`, 169x2212 RGBA, renders **34x440**.
+  Soft edge 4.25% (Luminis V1 is 5.87%). `paleArt` dropped (navy upper half, same
+  call as V1). Slimmer than V1's 42px at the same height: this photo is slightly
+  off-square so the body tapers ~32% nose-to-tail, and V2's white fins are
+  physically smaller than V1's black ones. Do not force the widths to match.
+- Reproduce. Crop the airframe band out of the full-res original first:
+
+      V=/home/robin/.cache/mrt-rembg/bin/python
+      magick '/home/robin/Downloads/MRT-photo-review/LC24/LC24/IMG_20240821_103600.jpg[0]' \
+          -auto-orient -crop 4618x1500+0+1100 +repage -resize 2400x lv2-crop.png
+      $V scripts/cut-fleet-cutout.py mask lv2-crop.png lv2-mask.png
+      magick lv2-mask.png -rotate 90 lv2-rot.png
+      $V scripts/cut-fleet-cutout.py finish lv2-rot.png lv2-s.png --feather 0
+      $V scripts/cut-fleet-cutout.py finish lv2-s.png public/media/rockets/luminis-v2.png \
+          --erase 0,1065,124,220 --erase 0,1855,143,185 --no-straighten
+
+  `-rotate 90` is clockwise, putting the nose (left in the source) at the top.
+  The two `--erase` boxes clip the tripod clamps at the tube's own left edge
+  after straightening. The clamps sit on the LUMINIS letters and the sponsor
+  stack, so `patch` is off-limits here.
+- Other frames considered and rejected for the cutout: `luminis-v2-05` / 48-4 /
+  49-7 (vertical on the rail — subject too thin, rail fused the full height);
+  46-9 `IMG_4746.HEIC` (indoor, huge, logo-side only, white fins against a white
+  wall); 41-5 (indoor hangar, LUMINIS visible, crowd overlapping).
 
 ## Draft captions (Robin must verify in ReviewMode)
 - integration: "The Luminis V2 team with the completed airframe, Launch Canada 2024."
@@ -47,6 +75,7 @@ Source album: `LC24-1-photos.zip` (Launch Canada, per vehicles.json this is the
 | `LC24/LC24/PXL_20240822_141320447.MP.jpg` | `luminis-v2-10.webp` | ".MP" is an Android motion-photo variant; only the still frame was used. |
 | `LC24/LC24/mpv-shot0003.jpg` | `luminis-v2-11.webp` | Manual video-player screenshot already in the source album, not something I extracted. |
 | `LC24/LC24/mpv-shot0006.jpg` | `luminis-v2-12.webp` | Same as above. |
+| `LC24/LC24/IMG_20240821_103600.jpg` | `luminis-v2-13.webp` | Sheet 41-22. Added 2026-08-26 as the fleet cutout source. Full airframe horizontal on two red tripod stands, 4618x3464. |
 
 Full source album (300+ other files not shortlisted here) remains at
 `/home/robin/Downloads/MRT-photo-review/LC24/`, not copied into the repo to
