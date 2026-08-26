@@ -5,7 +5,7 @@
       "body": "We have a table at both events at the start of term.",
       "todo": "confirm we run this every term" },
     { "title": "Fill in the form",
-      "body": "It asks what you are interested in and how much time you have. It does not ask for a resume and there is no minimum GPA.",
+      "body": "It asks what you are interested in and how much time you have. A resume is optional, so first years do not feel like they need one, and there is no minimum GPA.",
       "todo": "link the real application form, confirm the close date" },
     { "title": "Interview with a subteam",
       "body": "Every subteam runs its own interview, usually 30 minutes to an hour, about what you would want to work on." },
@@ -29,7 +29,7 @@
     { "q": "Do I need to pay anything?", "a": null,
       "todo": "answer this: membership fee, travel costs to competition, and what the team covers" },
     { "q": "Can I join partway through the year?",
-      "a": "Usually yes. Email us and we will tell you honestly whether a subteam has room right now, rather than putting you on a list." },
+      "a": "Not usually. We hire during a set window each term, at Clubsfest and Facultyfest, rather than on a rolling basis. Email us and we will tell you honestly when the next one opens." },
     { "q": "What if I want to try a different subteam later?",
       "a": "Normal, and encouraged. Plenty of people move once they have seen what the other subteams actually do." }
   ]
