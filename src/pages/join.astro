@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import TodoBadge from '../components/TodoBadge.astro';
+import { mailHref } from '../lib/site';
+import join from '../data/join.json';
+
+const applyHref = join.applyHref || mailHref('Application');
+---
+
+<BaseLayout
+  title="Join us"
+  description="How to join the McMaster Rocketry Team. No experience required."
+  current="/join"
+>
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Join us</div>
+    <h1>No experience<br>required.</h1>
+    <p class="lede">We hire first years. We hire people who have never touched a rocket. We hire people who are not in engineering. The only thing we ask is that you want to find out how high this one goes.</p>
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">How it works</div><h2>Four steps.</h2></div>
+      <p>Meet us at Clubsfest or Facultyfest, fill in the form, then have a short interview
+         with the subteam you want to join.</p>
+    </div>
+    <ol class="steps" role="list">
+      {join.steps.map((s) => (
+        <li><h3>{s.title}</h3><p>{s.body} {s.todo && <TodoBadge label={s.todo} />}</p></li>
+      ))}
+    </ol>
+    <div class="btnrow">
+      <a class="btn solid" href={applyHref}>Apply now</a>
+      {!join.applyHref && <TodoBadge label="swap for form URL" />}
+      <a class="btn" href="https://discord.gg/TODO">Join the Discord</a> <span class="todo" aria-hidden="true">TODO</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Key dates</div><h2>When.</h2></div>
+      <p>Applications open every term. If you have missed a window, come anyway. We
+         take people on a rolling basis when a subteam has room.</p>
+    </div>
+    <dl class="dl">
+      {join.dates.map((d) => (
+        <div><dt>{d.label}</dt><dd class="nodata">TODO<small>{d.note}</small></dd></div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Straight answers</div><h2>Questions people ask.</h2></div>
+      <p>If your question is not here, email us. We would rather answer it than have you
+         talk yourself out of applying.</p>
+    </div>
+    <div class="faq">
+      {join.faq.map((f) => (
+        <details>
+          <summary><h3>{f.q}</h3></summary>
+          {f.a ? (
+            <p class="a">{f.a} {f.todo && <TodoBadge label={f.todo} />}</p>
+          ) : (
+            <p class="a"><TodoBadge label={f.todo || 'answer this'} /></p>
+          )}
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

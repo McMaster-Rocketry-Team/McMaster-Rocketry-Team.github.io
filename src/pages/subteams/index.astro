@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const subteams = await getCollection('subteams');
+---
+
+<BaseLayout
+  title="Subteams"
+  description="The seven subteams that build and fly a McMaster Rocketry vehicle."
+  current="/subteams"
+>
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Subteams</div>
+    <h1>Seven teams,<br>one airframe.</h1>
+    <p class="lede">Every part of the vehicle, and everything around it, is owned by a student subteam. One of them needs no engineering background at all.</p>
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">All subteams</div><h2>Pick where<br>you would start.</h2></div>
+      <p>Each one owns a real part of the vehicle, and each one takes members with no
+         experience every term.</p>
+    </div>
+    <div class="cards c4">
+      {subteams.map((s) => (
+        <a class="card" href={`/subteams/${s.data.slug}`}>
+          <div><h3>{s.data.name}</h3><p>{s.data.blurb}</p></div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

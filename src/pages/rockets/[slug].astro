@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TodoBadge from '../../components/TodoBadge.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+export async function getStaticPaths() {
+  const vehicles = await getCollection('vehicles');
+  return vehicles.map((v) => ({ params: { slug: v.data.slug }, props: { vehicles, v: v.data } }));
+}
+
+const { vehicles, v } = Astro.props;
+
+const rows: [string, string | null, string][] = [
+  ['Apogee', v.apogee ? v.apogee.toLocaleString() : null, v.apogee ? 'feet above ground level' : 'flew, but no instrumented figure'],
+  ['Max velocity', v.mach ? `Mach ${v.mach}` : null, 'at burnout'],
+  ['Max acceleration', v.specs.accel, 'peak, from flight data'],
+  ['Length', v.specs.length, 'overall, nose to tail'],
+  ['Liftoff mass', v.specs.mass, 'fuelled, with payload'],
+  ['Motor', v.specs.motor, 'designation and impulse class'],
+  ['Recovery', v.specs.recovery, 'drogue and main configuration'],
+  ['Result', v.specs.result, 'placing, and in which category'],
+];
+
+const i = vehicles.findIndex((x) => x.data.slug === v.slug);
+const prev = i > 0 ? vehicles[i - 1].data : null;
+const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
+---
+
+<BaseLayout title={v.name} description={`${v.name}: McMaster Rocketry's ${v.year} ${v.comp} vehicle.`} current="/rockets">
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Vehicle · {v.year} · {v.comp}</div>
+    <h1>{v.name}</h1>
+    <p class="lede">{v.summary}</p>
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Flight record</div><h2>What it did.</h2></div>
+      <p>Figures come from the onboard flight computer. Anything we could not measure is
+         marked as such rather than estimated.</p>
+    </div>
+    <dl class="dl">
+      {rows.map(([label, val, note]) => (
+        <div>
+          <dt>{label}</dt>
+          {val ? (
+            <dd>
+              {label === 'Apogee' ? <>{val} ft</> : val}
+              {label === 'Apogee' && v.apogeeUnverified && <span class="todo" aria-hidden="true"> rounded, source it</span>}
+              {' '}<small>{note}</small>
+            </dd>
+          ) : (
+            <dd class="nodata">Not published<small>{note}</small></dd>
+          )}
+        </div>
+      ))}
+    </dl>
+    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+      Every field above is a slot. Fill what you measured, and leave the rest reading
+      &ldquo;Not published.&rdquo; An empty slot is more credible than a guess.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">The build</div><h2>How it was made.</h2></div>
+      <p>Written by the subteam leads each year. Keep it concrete: what changed from
+         the last vehicle, and why.</p>
+    </div>
+    <div class="prose" style="color:rgba(255,255,255,.86)">
+      {v.build ? <p>{v.build}</p> : <p>No build write-up for this vehicle yet. <TodoBadge label="build narrative" /></p>}
+    </div>
+    <div class="prose" style="color:rgba(255,255,255,.86)">
+      <div class="callout" style="color:rgba(255,255,255,.78)">
+        Every vehicle gets a page like this one. The template does not change, only
+        the data and the narrative do, once a year, after the flight.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Gallery</div><h2>On the pad.</h2></div>
+      <p>Photographs from build and launch. Every image needs a real description for
+         screen readers, not &ldquo;rocket.jpg.&rdquo;</p>
+    </div>
+    <div class="gallery">
+      <figure><div class="ph"><span>Photo slot: integration<br>TODO</span></div>
+        <figcaption>TODO: describe what is happening, not what is visible.</figcaption></figure>
+      <figure><div class="ph"><span>Photo slot: on the pad<br>TODO</span></div>
+        <figcaption>TODO: caption.</figcaption></figure>
+      <figure><div class="ph"><span>Photo slot: liftoff<br>TODO</span></div>
+        <figcaption>TODO: caption.</figcaption></figure>
+      <figure><div class="ph"><span>Photo slot: recovery<br>TODO</span></div>
+        <figcaption>TODO: caption.</figcaption></figure>
+    </div>
+    <div class="btnrow">
+      {prev && <a class="btn" href={`/rockets/${prev.slug}`}><span aria-hidden="true">&larr;</span> {prev.name}</a>}
+      <a class="btn" href="/rockets">All vehicles</a>
+      {next && <a class="btn" href={`/rockets/${next.slug}`}>{next.name} <span aria-hidden="true">&rarr;</span></a>}
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

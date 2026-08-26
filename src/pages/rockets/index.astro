@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FleetLineup from '../../components/FleetLineup.astro';
+import FleetStat from '../../components/FleetStat.astro';
+import FleetTable from '../../components/FleetTable.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { numberWord } from '../../lib/site';
+
+const vehicles = await getCollection('vehicles');
+const years = vehicles.map((v) => v.data.year);
+const yearSpan = Math.max(...years) - Math.min(...years) + 1;
+const noRecordCount = vehicles.filter((v) => !v.data.apogee).length;
+const vCountWord = numberWord(vehicles.length);
+const yearSpanWord = numberWord(yearSpan);
+const noRecordWord = numberWord(noRecordCount);
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+---
+
+<BaseLayout
+  title="Rockets"
+  description="Every vehicle the McMaster Rocketry Team has designed, built and flown."
+  current="/rockets"
+>
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">The fleet</div>
+    <h1>{cap(vCountWord)} rockets.<br>{cap(yearSpanWord)} years.</h1>
+    <p class="lede">Every vehicle the team has designed, built and flown, in order.
+      {cap(noRecordWord)} of them flew before we kept instrumented
+      records, and we say so rather than guessing.</p>
+  </div>
+</header>
+
+<section class="paper fleet">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">By year</div><h2>Apogee, every flight.</h2></div>
+      <p>Launch Canada scores against a declared target, so the tallest rocket
+         does not automatically win.</p>
+      <div class="statline"><FleetStat /></div>
+    </div>
+    <FleetLineup />
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="tablewrap">
+      <FleetTable />
+    </div>
+    <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+      Apogee is the highest altitude the vehicle reached, measured by the onboard flight
+      computer. Where we have no instrumented figure we publish nothing rather than an
+      estimate.
+    </p>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

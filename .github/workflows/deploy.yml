@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+# Runs on push to main (the production branch) and by hand. dev is the
+# working branch and is not deployed from, so iterative content work there
+# never trips the TODO gate below.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm astro build
+
+      # Go-live gate: fails the job if a placeholder TODO reached the built
+      # HTML. Not a merge check on dev, only on an actual production deploy.
+      # See scripts/check-todo.mjs and PLAN.md's Astro port notes.
+      - run: pnpm check:todo
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

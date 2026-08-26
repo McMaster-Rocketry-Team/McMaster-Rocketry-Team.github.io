@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TodoBadge from '../../components/TodoBadge.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { mailHref } from '../../lib/site';
+import members from '../../data/members.json';
+
+export async function getStaticPaths() {
+  const subteams = await getCollection('subteams');
+  return subteams.map((s) => ({ params: { slug: s.data.slug }, props: { subteams, t: s.data } }));
+}
+
+const { subteams, t } = Astro.props;
+const others = subteams.filter((x) => x.data.slug !== t.slug);
+const lead = members.leads.find((l) => l.role === `${t.name} lead`);
+const deputy: { name: string | null } | null = null; // no deputy field in the data model yet
+---
+
+<BaseLayout title={t.name} description={t.blurb} current="/subteams">
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Subteams</div>
+    <h1>{t.name}</h1>
+    <p class="lede">{t.blurb}</p>
+  </div>
+</header>
+
+<section id="detail-section">
+  <div class="wrap">
+    <div class="prose" style="color:rgba(255,255,255,.86)">
+      {t.detail ? <p>{t.detail}</p> : <><p>{t.blurb}</p><p><TodoBadge label="full subteam description" /></p></>}
+    </div>
+
+    <div class="cards c3" style="margin-top:clamp(30px,5vh,54px)">
+      <div class="card">
+        <div>
+          <div class="tag">What you would do</div>
+          <h3>First term</h3>
+          <p>{t.first || <TodoBadge label="what a first-term member actually does" />}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div>
+          <div class="tag">Skills that help</div>
+          <h3>Useful, not required</h3>
+          <p>{t.skills || <TodoBadge label="useful-but-not-required skills" />}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div>
+          <div class="tag">Time</div>
+          <h3>{t.hours || 'TODO'}</h3>
+          <p>More in the four weeks before a launch, much less over exams. We plan around
+            your term, not the other way round.
+            <span class="todo" aria-hidden="true">TODO: confirm real commitment</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="shead" style="margin-top:clamp(40px,7vh,80px)">
+      <div><div class="tag">The others</div><h2>Every other subteam.</h2></div>
+      <p>Each one takes members with no experience every term.</p>
+    </div>
+    <div class="cards c4">
+      {others.map((x) => (
+        <a class="card" href={`/subteams/${x.data.slug}`}>
+          <div><h3>{x.data.name}</h3><p>{x.data.blurb}</p></div>
+        </a>
+      ))}
+    </div>
+
+    <div class="shead" style="margin-top:clamp(40px,7vh,80px)">
+      <div><div class="tag">Leads</div><h2>Who runs it.</h2></div>
+      <p>Named leads, so a prospective member knows who to ask.</p>
+    </div>
+    <div class="cards c3">
+      <div class="card"><div>
+        <div class="tag">Subteam lead</div>
+        <h3>{lead?.name || 'TODO: name'}</h3>
+        <p>
+          {lead?.programme && lead?.year ? `${lead.year} · ${lead.programme}. ` : ''}
+          One sentence on what they work on.
+          {' '}<a href={mailHref()} style="text-decoration:underline;text-underline-offset:3px">Email</a>
+        </p>
+      </div></div>
+      <div class="card"><div>
+        <div class="tag">Deputy lead</div>
+        <h3>{deputy?.name || 'TODO: name'}</h3>
+        <p>Year and programme. One sentence on what they work on.</p>
+      </div></div>
+      <div class="card"><div>
+        <div class="tag">Recruiting</div><h3>Open now</h3>
+        <p>We take new members every term, and we do not expect experience.</p>
+        <div class="btnrow"><a class="btn" href="/join">How to join</a></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

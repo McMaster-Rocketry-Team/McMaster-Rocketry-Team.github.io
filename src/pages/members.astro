@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { personGlyphSvg } from '../lib/fleet';
+import members from '../data/members.json';
+---
+
+<BaseLayout
+  title="Members"
+  description="The students who build and fly McMaster Rocketry's vehicles."
+  current="/members"
+>
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Members</div>
+    <h1>The people<br>who build it.</h1>
+    <p class="lede">Over 100 students across seven subteams and every faculty on campus. These are the leads: the rest of the team is on the subteam pages.</p>
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">2025&ndash;26 leadership</div><h2>Leads.</h2></div>
+      <p>Nine leads. Every photograph needs a real alt description before this ships.</p>
+    </div>
+    <div class="roster">
+      {members.leads.map((m) => (
+        <div class="person">
+          <div class="shot" aria-hidden="true">
+            <Fragment set:html={personGlyphSvg()} />
+            <span style="position:relative;background:rgba(247,247,246,.88);padding:4px 8px;border-radius:2px">
+              Portrait slot<br>TODO: photo + alt text
+            </span>
+          </div>
+          <h3>{m.role}</h3>
+          <p class="role">{m.name || 'TODO: name'}</p>
+          {m.programme && m.year ? (
+            <p class="prog">{m.year} · {m.programme}</p>
+          ) : (
+            <p class="prog nodata-inline">TODO: programme &amp; year</p>
+          )}
+        </div>
+      ))}
+    </div>
+    <p style="margin:24px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+      <span class="todo" aria-hidden="true">TODO(robin)</span> Names, portraits, programmes and years. Alt text
+      should describe the person: &ldquo;Priya Shah, avionics lead,&rdquo; not
+      &ldquo;a student smiling.&rdquo; If a member would rather not be pictured, the card
+      works without one. Fill programme and year from the person, never a guess (see
+      the note in <code>src/data/members.json</code>).
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Who we are</div><h2>Not only engineers.</h2></div>
+      <p>The team runs on more than airframes. These are the numbers behind the roster.</p>
+    </div>
+    <dl class="dl">
+      {members.stats.map((s) => (
+        <div>
+          <dt>{s.label}</dt>
+          {s.value ? <dd>{s.value}<small>{s.note}</small></dd> : <dd class="nodata">TODO<small>{s.note}</small></dd>}
+        </div>
+      ))}
+    </dl>
+    <div class="prose" style="color:rgba(255,255,255,.86);margin-top:clamp(30px,5vh,52px)">
+      <p>Most of the people on this page had never touched a rocket before joining. Several
+        are not in engineering at all: the operations lead runs sponsorship, the
+        budget and everything we do on campus.</p>
+    </div>
+    <div class="btnrow"><a class="btn solid" href="/join">Join them</a></div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

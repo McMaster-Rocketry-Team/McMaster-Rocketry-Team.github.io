@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { mailHref } from '../lib/site';
+import site from '../data/site.json';
+import sponsorship from '../data/sponsorship.json';
+---
+
+<BaseLayout
+  title="Sponsors"
+  description="Sponsor the McMaster Rocketry Team: tiers, what your support buys, and who to contact."
+  current="/sponsors"
+>
+<header class="phead">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="tag">Sponsors</div>
+    <h1>Put your name<br>on a rocket.</h1>
+    <p class="lede">We are a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting a hundred students to a launch site, and it puts your company in front of them while they decide where to work.</p>
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">What it buys</div><h2>Where the money goes.</h2></div>
+      <p>We publish this because sponsors ask, and because a team that will not say where
+         the money goes is not a team worth funding.</p>
+    </div>
+    <dl class="dl">
+      {sponsorship.budget.map((b) => (
+        <div>
+          <dt>{b.label}</dt>
+          {b.amount ? <dd>{b.amount}<small>{b.note}</small></dd> : <dd class="nodata">TODO<small>{b.note}</small></dd>}
+        </div>
+      ))}
+    </dl>
+    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper);max-width:66ch">
+      <span class="todo" aria-hidden="true">TODO(robin)</span> Real figures here are the single most persuasive
+      thing on this page. A sponsor who can see the budget can see what their tier actually
+      pays for.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Tiers</div><h2>What you get.</h2></div>
+      <p>Three tiers, and a fourth option if you would rather give materials or machine time
+         than money. That is often more useful to us.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tiers">
+      {sponsorship.tiers.map((t) => (
+        <div class={'tier' + (t.lead ? ' lead' : '')}>
+          <h3>{t.name}</h3>
+          <div class="amount">{t.amount || 'TODO'}</div>
+          <ul role="list">
+            {t.benefits.map((b) => <li>{b}</li>)}
+          </ul>
+          {!t.amount && <span class="todo" aria-hidden="true">TODO: amount</span>}
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="prose" style="color:rgba(255,255,255,.86);margin-top:clamp(30px,5vh,52px)">
+      <p><b>In-kind support.</b> Machine time, carbon, connectors, test equipment, PCB runs,
+        or an afternoon of an engineer&rsquo;s time are frequently worth more to us than the
+        equivalent cash. Tell us what you have and we will tell you honestly whether we can
+        use it.</p>
+    </div>
+    <div class="btnrow">
+      <a class="btn solid" href={mailHref()}>Talk to us</a>
+      <a class="btn" href={mailHref('Sponsorship package')}>Request the package</a>
+      <span class="todo" aria-hidden="true">TODO: swap for PDF</span>
+    </div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Current partners</div><h2>Who backs us.</h2></div>
+      <p>Logo placement is deliberate and consistent: greyscale on dark, full colour
+         on paper, at a size set by tier.</p>
+    </div>
+    <div class="cards c4">
+      {sponsorship.partners.map((p) => (
+        <div class="card" style="min-height:150px;align-items:center;justify-content:center">
+          <span class="mono" style="color:var(--muted-on-paper)">{p.name || 'Logo slot'}<br>{p.tier}</span>
+        </div>
+      ))}
+    </div>
+    <p style="margin:22px 0 0;font-size:13.5px;color:var(--muted-on-paper)">
+      <span class="todo" aria-hidden="true">TODO(robin)</span> Real partner logos, each linked, each with the
+      company name as alt text.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Contact</div><h2>Who to ask.</h2></div>
+      <p>Email a person, and get a reply from a person.</p>
+    </div>
+    <div class="cards c2">
+      {sponsorship.contacts.map((c) => (
+        <div class="card"><div>
+          <div class="tag">{c.role}</div>
+          <h3>{c.name || 'TODO: name'}</h3>
+          <p>{c.title}. {c.blurb}<br>
+            <a href={mailHref()} style="text-decoration:underline;text-underline-offset:3px">{site.email || 'TODO@macrocketry.ca'}</a>
+          </p>
+        </div></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>
