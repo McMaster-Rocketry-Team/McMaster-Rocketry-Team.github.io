@@ -29,10 +29,19 @@ Open http://127.0.0.1:4321/. `pnpm astro build` writes `dist/`. `pnpm astro prev
 | Subteam heroes / work shots | `public/media/subteams/` |
 | Sponsor logos + sponsors hero | `public/media/sponsors/` |
 | Fleet cutout script | `scripts/cut-fleet-cutout.py` |
-| ReviewMode open-block scan | `scripts/review-scan.py` |
+| Launch checklist | `LAUNCH_REVIEW.md` |
 | Progress and open questions | `PLAN.md` |
 | Content only Robin can supply | `mockups/TODO-MANIFEST.md` |
 
 **Mockups (`mockups/final/`):** deprecated visual reference. The Astro site in `src/` is canonical — mockups still carry the old hero veil/duotone, apogee-scaled fleet, and flat nav. Do not treat mockup HTML/CSS as source of truth when they disagree with `src/`.
 
-A ReviewMode overlay is mounted on every page in dev (`src/components/ReviewMode.astro`). Checked blocks are locked via `reviewLocked` on each page (or `vehicles.json` for per-vehicle pages). Delete the component and its import in `src/layouts/BaseLayout.astro` before launch.
+## Pre-merge audit
+
+ReviewMode was removed 2026-08-27 (`8a82573`). Before merging `dev` → `main`:
+
+```bash
+pnpm check:todo && pnpm astro check && pnpm build && pnpm check:todo
+rg -i 'data-rv|data-review|rv-panel' dist/ || echo "OK: no ReviewMode leaks"
+```
+
+See `LAUNCH_REVIEW.md` § "Verification audit" for the full double-check list. Known gap: `pnpm astro check` reports 6 type errors in `join.astro` (`todo` fields); production build still passes.

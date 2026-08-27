@@ -1,25 +1,38 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 late evening · branch `dev` @ `707109f`
+**Last updated:** 2026-08-27 evening · branch `dev` @ `52e707f`
 
 ## Sign-off — resume here
 
-**Verdict:** on track for Facultyfest / Squarespace cutoff **Mon 31 Aug** (~4 days). Risk is ReviewMode lock passes on vehicle galleries and propulsion, not engineering.
+**Verdict:** ready to merge `dev` → `main` after DNS/CNAME and a quick visual click-through. Squarespace cutoff **Mon 31 Aug**.
 
-**Deploy gate:** `pnpm check:todo` → **0** (cleared 27 Aug). CI still off (`35a592b`).
+**Deploy gate:** `pnpm check:todo` → **0** (verified 27 Aug after ReviewMode strip). `pnpm astro check` → **6 errors** in `join.astro` (`todo` field typing; build still passes).
 
-**ReviewMode:** 26 open blocks on six routes (8 propulsion, 4 each on Luminis / Luminis V2 / Osiris gallery captions, 3 each on Marauder I / II captions). Home, join, members, rockets index, Nimbus, and most subteams at 0. See `LAUNCH_REVIEW.md`.
+**ReviewMode:** **removed** (`8a82573`). All routes were locked before strip (`9746012` propulsion + six vehicles). Legacy `reviewLocked` arrays remain in JSON/page props until a cleanup pass; they are inert.
+
+**CI:** `build-check.yml` re-enabled on `dev` push/PR (`8a82573`). Deploy on `main` unchanged.
 
 **Next session, in order**
 
-1. Lock vehicle gallery captions + `/subteams/propulsion` ReviewMode (26 blocks).
-2. Strip `ReviewMode.astro` · re-enable CI · merge `dev` → `main`.
+1. Merge `dev` → `main` (triggers Pages deploy + `check:todo` gate).
+2. DNS: `CNAME` for `macrocketry.ca`, registrar records, enforce HTTPS.
+3. Cloudflare analytics token → `site.json`; sponsorship legal recipient (Financial Affairs).
+4. Remaining `LAUNCH_REVIEW.md` sections 2, 4–6, 8–9, 11–13 (visual QA, a11y, copy voice, legal).
 
-**Done this pass (2026-08-27 late evening):** Luminis + Luminis V2 galleries reframed at **1400×933 (3:2)** to match `.gallery .ph`; V2 pad shot corrected (wrong-team yellow tube dropped). Gallery **captions** on all six vehicles. Marauder I build locked. Chris Hadfield home gallery (`chris-hadfield.json` + 4 webps). ReviewMode/review-scan chrome sync (statline, fleetnote, craft). Dark-section gallery + note/callout colour fixes.
+**Done 2026-08-27 (commits `9746012` · `8a82573` · `52e707f`):**
 
-**Can wait:** hidden outreach events, safety page, unused Hadfield source JPGs in `chris-hadfield/` (shipped webps are under `public/media/chris-hadfield/`).
+| Step | What |
+|---|---|
+| 1 | Locked ReviewMode on `/subteams/propulsion` + all six `/rockets/*` pages |
+| 2 | Deleted `ReviewMode.astro`; removed overlay + `data-rv-locked` from `BaseLayout` |
+| 3 | Re-enabled `build-check.yml` on `dev` |
+| 4 | Audit: `check:todo` ✓ · `build` ✓ (24 pages + sitemap) · `dist/` grep ✓ (no ReviewMode leaks) · `astro check` ✗ (join.astro) |
+| 7 | SEO (`site`, sitemap, canonical/OG, JSON-LD, `robots.txt`); `site.webmanifest` + apple-touch-icon; footer affiliation + ©; PDF 11 MB → 2.1 MB; EXIF stripped from 109 images; `public/.nojekyll` |
+
+**Can wait:** hidden outreach events, safety page, unused Hadfield source JPGs in `chris-hadfield/`, `reviewLocked` JSON cleanup.
 
 **Dev server:** `pnpm astro dev --host localhost --port 4321`  
+**Audit one-liner:** `pnpm check:todo && pnpm astro check && pnpm build && pnpm check:todo && rg -i 'data-rv|data-review|rv-panel' dist/ || echo OK`  
 **Go-live canvas:** `~/.cursor/projects/home-robin-Documents-Rocketry-McMaster-Rocketry-Team-github-io/canvases/go-live-status.canvas.tsx`
 
 ---
