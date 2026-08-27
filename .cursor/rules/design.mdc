@@ -11,14 +11,14 @@ Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent,
 
 Photographic and video heroes are **full colour**. Do not grayscale the media, do not map it through a duotone filter, and do not cover it with a red or black gradient veil.
 
-Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel, hairline, slight blur), sized to the text — same treatment as `/rockets/osiris`. Interior pages **without** a photo stay a solid graphite `.phead` and do **not** grow a box.
+Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel, hairline, slight blur), sized to the text. Interior pages **without** a photo hero use a solid graphite `.phead` and do **not** grow a box.
 
 | Context | Pattern |
 |---|---|
 | Home | `.hero` + `.bgvid` + `.herobox` |
-| Vehicle / subteam / sponsors with photo | `.phead.has-hero` + `.herobox` |
-| Landscape product shots (sponsors) | add `.has-hero--wide` so cover matches the photo ratio |
-| Everything else (Join, pages without a hero photo) | `.phead` only — tag, h1, lede in `.wrap` |
+| Vehicle / subteam with photo | `.phead.has-hero` + `.herobox` (all six vehicles, all seven subteams) |
+| Sponsors landscape hero | `.phead.has-hero.has-hero--wide` + `.herobox` |
+| Everything else (Join, Members, pages without a hero photo) | `.phead` only — tag, h1, lede in `.wrap` |
 
 ```html
 <!-- ✅ photo hero -->
@@ -47,6 +47,12 @@ Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the t
 ## Page rhythm
 
 Alternate `section.paper` (light) and plain `<section>` (dark). Every page ends with `CtaBand`. Prefer CSS utilities (`.prose`, `.prose--follow`, `.note`, `.link-fleet`, `.link-underline`) over inline colour/spacing.
+
+| Route | Pattern |
+|---|---|
+| `/rockets` | `.phead` → `.paper.fleet` → `CtaBand` (lineup only) |
+| `/payloads` | `.phead` → `.paper.fleet` → `CtaBand` |
+| Home | `.hero` → `.paper.fleet` → dark `#subs` → `CtaBand` |
 
 ## Links
 

@@ -2,11 +2,23 @@
 
 **Canonical spec (v1.3):** [`McMaster_Rocketry_Design_System_Spec.md`](../McMaster_Rocketry_Design_System_Spec.md) in the repo root (gitignored — sync source for claude.ai/design).
 
-**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens.
+**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens (references v1.3 · 2026-08-27).
 
 **Agent rules:** [`.cursor/rules/design.mdc`](../.cursor/rules/design.mdc)
 
 **Live remote:** [claude.ai/design](https://claude.ai/design) → project **McMaster Rocketry Design System** (`3fe61467-ca14-4c72-80a1-d4bd7fe18e79`), file `spec.md`.
+
+## Local sync status (2026-08-27)
+
+These repo files were aligned to `McMaster_Rocketry_Design_System_Spec.md` v1.3:
+
+| File | What changed |
+|---|---|
+| `McMaster_Rocketry_Design_System_Spec.md` | Heroes (all vehicle/subteam pageheads, `.has-hero--wide`), Payloads nav/page, fleet/payload lineup, `.link-fleet`, product backlight, stale open items removed |
+| `src/styles/site.css` | Header comment bumped v1.2 → v1.3 |
+| `.cursor/rules/design.mdc` | Hero table + page rhythm table |
+
+**Remote claude.ai/design:** not updated from Cursor. Push the gitignored spec with Claude Code (below).
 
 ## Sync claude.ai/design after local edits
 
@@ -16,7 +28,7 @@ From this repo in **Claude Code** (not Cursor):
 2. Run `/design-login` if needed.
 3. Run **`/design-sync`** — pushes `McMaster_Rocketry_Design_System_Spec.md` → remote `spec.md`.
 
-Cursor cannot call the design API from its sandbox. After syncing remotely, verify on claude.ai/design that `spec.md` shows **v1.3 · 2026-08-27**. Synced 2026-08-27 evening.
+Verify on claude.ai/design that `spec.md` shows **v1.3 · 2026-08-27** and matches the heroes, Payloads, and link-fleet sections above.
 
 ## Subteam heroes
 

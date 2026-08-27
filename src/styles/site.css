@@ -7,7 +7,7 @@
    the inverted scroll. All three were display:none below 900px in the mockups,
    which was the design admitting they were desktop-only.
 
-   Rebuilt onto McMaster_Rocketry_Design_System_Spec.md v1.2 (2026-08-26). Neutrals are
+   Rebuilt onto McMaster_Rocketry_Design_System_Spec.md v1.3 (2026-08-27). Neutrals are
    true grayscale now (R=G=B on every graphite/fog step) rather than the
    red-leaning warm graphite the spec first called for — that warmth,
    stacked under --paper's own slight cream, was reading as brown across
@@ -17,16 +17,16 @@
    ignition is reserved for buttons, hairline accents, icons on paper and the
    corner-crosshair device. Photographic and video heroes stay full colour:
    never grayscale the media, never wash it with a colour veil. Copy sits in
-   .herobox, the same graphite-fill-plus-hairline panel used on Osiris and
-   the home hero. Tagline is "Get blasted" (`site.json` `tagline`): it travels
-   with the team name as a .lockup (name + tagline) in the nav brand, the
-   footer brand column, and the home hero — not as a section eyebrow and not
-   on Join / Sponsors pageheads. --fog-500 measures 3.02:1 on --paper, below the
-   4.5:1 floor for text, so caption-weight copy on paper uses --graphite-700
-   (10.13:1) instead — see --muted-on-paper below. Fog stays for hairlines
-   and captions on dark grounds, where it clears 5.38:1. Page rhythm, nav
-   flyout, fleet length-scale, CSS utilities, and gallery rules: see spec v1.2
-   and docs/design-system.md.
+   .herobox on photo/video heroes only (home, all six vehicle pageheads,
+   all seven subteam pageheads, sponsors .has-hero--wide). Tagline is
+   "Get blasted" (`site.json` `tagline`): .lockup in nav, footer, home hero
+   only. --fog-500 measures 3.02:1 on --paper, below the 4.5:1 floor for
+   text, so caption-weight copy on paper uses --graphite-700 (10.13:1) —
+   see --muted-on-paper below. Fog stays for hairlines and captions on dark
+   grounds, where it clears 5.38:1. v1.3 adds: .link-fleet, product-shot
+   white backlight (.ph-is-product ::before), .payload-lineup, .dl>div direct-
+   child hairline fix, Payloads nav + /payloads page rhythm. Full spec:
+   McMaster_Rocketry_Design_System_Spec.md and docs/design-system.md.
    ========================================================================== */
 :root{
   --ignition:#BF2026;
