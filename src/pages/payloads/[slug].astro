@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TodoBadge from '../../components/TodoBadge.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+export async function getStaticPaths() {
+  const payloads = (await getCollection('payloads')).sort((a, b) => a.data.year - b.data.year);
+  const vehicles = await getCollection('vehicles');
+  return payloads.map((p) => ({ params: { slug: p.data.slug }, props: { payloads, vehicles, p: p.data } }));
+}
+
+const { payloads, vehicles, p } = Astro.props;
+const vehicle = p.vehicle ? vehicles.find((v) => v.data.slug === p.vehicle)?.data : null;
+
+const i = payloads.findIndex((x) => x.data.slug === p.slug);
+const prev = i > 0 ? payloads[i - 1].data : null;
+const next = i < payloads.length - 1 ? payloads[i + 1].data : null;
+---
+
+<BaseLayout title={p.name} description={`${p.name}: McMaster Rocketry's ${p.year} ${p.comp} payload.`} current="/payloads" reviewLocked={p.reviewLocked}>
+<header class={p.heroImage ? 'phead has-hero' : 'phead'} style={p.heroImage ? `--hero-img:url(${p.heroImage})` : undefined}>
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    {p.heroImage ? (
+      <div class="herobox">
+        <div class="tag">Payload · {p.year} · {p.comp}</div>
+        <h1>{p.name}</h1>
+        <p class="lede">{p.summary}</p>
+      </div>
+    ) : (
+      <>
+        <div class="tag">Payload · {p.year} · {p.comp}</div>
+        <h1>{p.name}</h1>
+        <p class="lede">{p.summary}</p>
+      </>
+    )}
+  </div>
+</header>
+
+<section class="paper">
+  <div class="wrap">
+    <dl class="dl">
+      <div>
+        <dt>Flew on</dt>
+        {vehicle ? <dd><a class="link-underline" href={`/rockets/${vehicle.slug}`}>{vehicle.name}</a></dd> : <dd class="nodata">Not published</dd>}
+      </div>
+      <div>
+        <dt>Result</dt>
+        {p.result ? <dd>{p.result}</dd> : <dd class="nodata">Not published</dd>}
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">The payload</div><h2>What it did.</h2></div>
+    </div>
+    <div class="prose">
+      {p.detail ? <p>{p.detail}</p> : <p>No write-up for this payload yet. <TodoBadge label="payload description" /></p>}
+    </div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="tag">Gallery</div><h2>In the field.</h2></div>
+    </div>
+    <div class="gallery">
+      {p.photos && p.photos.length > 0 ? p.photos.map((photo) => (
+        <figure><div class="ph"><img src={photo.src} alt={photo.alt} loading="lazy" /></div>
+          {photo.caption && <figcaption>{photo.caption}</figcaption>}</figure>
+      )) : (<>
+        <figure><div class="ph"><span>Photo slot: bench testing<br />TODO</span></div>
+          <figcaption>TODO: caption.</figcaption></figure>
+        <figure><div class="ph"><span>Photo slot: integration<br />TODO</span></div>
+          <figcaption>TODO: caption.</figcaption></figure>
+        <figure><div class="ph"><span>Photo slot: on the pad<br />TODO</span></div>
+          <figcaption>TODO: caption.</figcaption></figure>
+        <figure><div class="ph"><span>Photo slot: recovered<br />TODO</span></div>
+          <figcaption>TODO: caption.</figcaption></figure>
+      </>)}
+    </div>
+    <div class="btnrow">
+      {prev && <a class="btn" href={`/payloads/${prev.slug}`}><span aria-hidden="true">&larr;</span> {prev.name}</a>}
+      <a class="btn" href="/payloads">All payloads</a>
+      {next && <a class="btn" href={`/payloads/${next.slug}`}>{next.name} <span aria-hidden="true">&rarr;</span></a>}
+    </div>
+  </div>
+</section>
+
+<CtaBand />
+</BaseLayout>

@@ -8,10 +8,11 @@ import members from '../../data/members.json';
 
 export async function getStaticPaths() {
   const subteams = await getCollection('subteams');
-  return subteams.map((s) => ({ params: { slug: s.data.slug }, props: { subteams, t: s.data } }));
+  const payloads = (await getCollection('payloads')).sort((a, b) => b.data.year - a.data.year);
+  return subteams.map((s) => ({ params: { slug: s.data.slug }, props: { subteams, payloads, t: s.data } }));
 }
 
-const { subteams, t } = Astro.props;
+const { subteams, payloads, t } = Astro.props;
 const others = subteams.filter((x) => x.data.slug !== t.slug);
 const leads = members.leads.filter((l) => l.subteam === t.slug);
 const leadSlots = (leads.length || 1) + 1;
@@ -82,6 +83,27 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
     </div>
   </div>
 </section>
+
+{t.slug === 'payload' && payloads.length > 0 && (
+  <section class="paper">
+    <div class="wrap">
+      <div class="shead">
+        <div><div class="tag">Recent payloads</div><h2>What we've flown.</h2></div>
+      </div>
+      <div class="cards c2">
+        {payloads.map((p) => (
+          <a class="card" href={`/payloads/${p.data.slug}`}>
+            <div>
+              <div class="tag">{p.data.year} · {p.data.comp}</div>
+              <h3>{p.data.name}</h3>
+              <p>{p.data.summary}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
 <section>
   <div class="wrap">

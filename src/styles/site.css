@@ -330,9 +330,9 @@ footer.site{background:var(--graphite-900);border-top:1px solid rgba(255,255,255
 .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
 section.paper .dl{background:var(--rule-light);border-color:var(--rule-light)}
-.dl div{background:var(--graphite-900);padding:20px}
+.dl>div{background:var(--graphite-900);padding:20px}
 .dl>a.card{min-height:0;padding:20px;border-radius:0}
-section.paper .dl div{background:var(--paper)}
+section.paper .dl>div{background:var(--paper)}
 .dl dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--muted-on-ink);margin:0 0 9px}
 section.paper .dl dt{color:var(--muted-on-paper)}
@@ -406,6 +406,12 @@ tbody tr:last-child td{border-bottom:0}
 .craft .rise{transition:transform var(--dur) var(--ease)}
 .craft .rise img{height:var(--rise);width:auto;max-width:100%}
 .craft:hover .rise,.craft:focus-visible .rise{transform:translateY(-22px)}
+/* Payload lineup stand-in until cropped photos land: same rise slot an <img>
+   would occupy, so swapping one in later needs no layout change. */
+.craft .rise-ph{display:inline-flex;align-items:flex-end;justify-content:center;
+  width:56px;height:var(--rise);box-sizing:border-box;padding-bottom:6px;
+  background:var(--fog-100);border:1px dashed var(--fog-300);color:var(--muted-on-paper);
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
 /* A photo's own airframe can sit within a few RGB steps of --paper (the
    osiris.png stand-in measures ~231,221,216 against #F7F7F6), so the rocket
    nearly disappears into the page rather than the page having no background
@@ -433,6 +439,19 @@ tbody tr:last-child td{border-bottom:0}
 .craft .val{position:absolute;bottom:70px;left:0;right:0;
   font-family:var(--font-mono);font-size:clamp(13px,1.1vw,14.5px);line-height:1.3;letter-spacing:.02em;
   color:var(--graphite-900);font-variant-numeric:tabular-nums;text-align:center}
+/* Payload Challenge wins get the same ignition accent as the rest of the
+   page's call-to-action copy, so a 1st place reads as a result, not a label. */
+.craft .val.win{color:var(--ignition);font-weight:700}
+/* Payload lineup only ever shows a handful of entries, unlike FleetLineup's
+   full roster, so the shared .craft/.lineup sizing (tuned for six vehicles
+   sharing a row) leaves two crafts stranded close together mid-row. Scoped
+   to min-width:701px so it never fights the mobile stacked-row overrides
+   below, which reset .craft to a fixed 100% width. */
+@media(min-width:701px){
+  .lineup.payload-lineup{gap:clamp(48px,9vw,160px)}
+  .craft.payload-craft{max-width:280px}
+  .craft.payload-craft .rise-ph{width:88px}
+}
 .craft .nm{position:absolute;bottom:8px;left:0;right:0;text-align:center;
   line-height:1.25;padding:0 2px}
 .craft .nm b{position:relative;display:inline-block;font-family:var(--font-display);font-weight:600;
@@ -484,6 +503,7 @@ tbody tr:last-child td{border-bottom:0}
   .craft .rise{flex:0 0 auto;width:28px;height:56px;display:flex;align-items:flex-end;justify-content:center}
   .craft .rise svg{width:22px;height:56px}
   .craft .rise img{width:auto;height:56px;max-width:28px;object-fit:contain;object-position:bottom center}
+  .craft .rise-ph{width:28px;height:56px;padding-bottom:4px;font-size:8px}
   .craft:hover .rise,.craft:focus-visible .rise{transform:none}
   .craft .nm{position:static;transform:none;flex:1 1 auto;text-align:left;padding:0;
     display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}

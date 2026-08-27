@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const payloads = await getCollection('payloads');
+const wins = payloads.filter((p) => p.data.result?.startsWith('1st')).length;
+---
+
+{payloads.length ? (
+  <>
+    <div class="lbl">Payload Challenge wins</div>
+    <div class="num">{wins}</div>
+    <div class="unit">of {payloads.length} payloads flown</div>
+  </>
+) : (
+  <>
+    <div class="lbl">Payload Challenge wins</div>
+    <div class="unit">No verified record yet</div>
+  </>
+)}

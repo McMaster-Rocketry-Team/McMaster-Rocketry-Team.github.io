@@ -10,11 +10,14 @@ interface Props {
 const { current } = Astro.props;
 const subteams = await getCollection('subteams');
 const vehicles = sortVehicles(await getCollection('vehicles'));
+const payloads = await getCollection('payloads');
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const onRocketsIndex = path === '/rockets';
 const onRocketsSection = path === '/rockets' || path.startsWith('/rockets/');
 const onSubteamsIndex = path === '/subteams';
 const onSubteamsSection = path === '/subteams' || path.startsWith('/subteams/');
+const onPayloadsIndex = path === '/payloads';
+const onPayloadsSection = path === '/payloads' || path.startsWith('/payloads/');
 ---
 
 <a class="skip" href="#main">Skip to content</a>
@@ -48,6 +51,28 @@ const onSubteamsSection = path === '/subteams' || path.startsWith('/subteams/');
                     href={`/rockets/${v.slug}`}
                     aria-current={path === `/rockets/${v.slug}` ? 'page' : undefined}
                   >{v.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+      if (item.href === '/payloads') {
+        return (
+          <div class="navitem">
+            <a
+              href={item.href}
+              class:list={['navitem-top', onPayloadsSection && 'is-section']}
+              aria-current={onPayloadsIndex ? 'page' : undefined}
+              aria-haspopup="true"
+            >{item.label}</a>
+            <ul class="navmenu" aria-label="Payloads">
+              {payloads.map(({ data: p }) => (
+                <li>
+                  <a
+                    href={`/payloads/${p.slug}`}
+                    aria-current={path === `/payloads/${p.slug}` ? 'page' : undefined}
+                  >{p.name}</a>
                 </li>
               ))}
             </ul>

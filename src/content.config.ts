@@ -81,4 +81,31 @@ const subteams = defineCollection({
   }),
 });
 
-export const collections = { vehicles, subteams };
+const payloads = defineCollection({
+  loader: file('src/data/payloads.json'),
+  schema: z.object({
+    slug: z.string(),
+    name: z.string(),
+    year: z.number(),
+    comp: z.string(),
+    // Slug of the vehicle this payload flew on, links to /rockets/{vehicle}.
+    vehicle: z.string().nullable(),
+    result: z.string().nullable(),
+    // Cropped cutout for the payload lineup, same role as vehicles' `image`.
+    // Null renders a TODO stand-in in the same rise slot.
+    image: z.string().nullable(),
+    summary: z.string(),
+    detail: z.string().nullable(),
+    heroImage: z.string().nullable().optional(),
+    // Gallery photos, most payloads don't have any yet and fall back to the
+    // TODO placeholder slots.
+    photos: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+      caption: z.string().optional(),
+    })).optional(),
+    reviewLocked: z.array(z.number()).optional(),
+  }),
+});
+
+export const collections = { vehicles, subteams, payloads };

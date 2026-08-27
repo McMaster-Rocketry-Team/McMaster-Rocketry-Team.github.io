@@ -1,0 +1,28 @@
+[
+  {
+    "id": "magpie",
+    "slug": "magpie",
+    "name": "Magpie",
+    "year": 2026,
+    "comp": "Launch Canada",
+    "vehicle": "osiris",
+    "result": "1st, Payload Challenge",
+    "image": null,
+    "summary": "An SRAD Fracture Test Module carrying epoxy test articles, flown on Osiris to test how a self-healing polymer performs under real flight loads.",
+    "detail": "Magpie is the team's first scientific payload: a self-contained module that initiates and propagates small cracks in epoxy test articles during flight, as a proof of concept for using self-healing polymers in aerospace structures. It flew on Osiris and won first place in the Payload Challenge at Launch Canada 2026.",
+    "reviewLocked": []
+  },
+  {
+    "id": "sparrow",
+    "slug": "sparrow",
+    "name": "Sparrow",
+    "year": 2025,
+    "comp": "Launch Canada",
+    "vehicle": "nimbus",
+    "result": "1st, Payload Challenge",
+    "image": null,
+    "summary": "A 360-degree camera paired with a recovery beacon, flown on Nimbus. Won first place in the Payload Challenge at Launch Canada 2025.",
+    "detail": "Sparrow paired a 360-degree camera with a recovery beacon: full-flight footage in every direction, plus a way to find the airframe faster after it lands. It flew on Nimbus and won first place in the Payload Challenge at Launch Canada 2025.",
+    "reviewLocked": []
+  }
+]

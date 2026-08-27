@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Visual identity
 
-Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video. Full spec: `McMaster_Rocketry_Design_System_Spec.md` v1.2 (sync to claude.ai/design via `/design-sync`).
+Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video. Full spec: `McMaster_Rocketry_Design_System_Spec.md` v1.3 (sync to claude.ai/design via `/design-sync`).
 
 ## Heroes
 

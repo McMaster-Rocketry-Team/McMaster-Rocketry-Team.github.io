@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import { shortComp, unsizedH } from '../lib/fleet';
+
+const payloads = (await getCollection('payloads')).sort((a, b) => a.data.year - b.data.year);
+---
+
+<div class="fleet-stage">
+  <div class="lineup payload-lineup reveal-pending">
+    {payloads.map(({ data: p }) => (
+      <a class="craft payload-craft" href={`/payloads/${p.slug}`}>
+        <span class="rise">
+          {p.image ? (
+            <img src={p.image} alt="" style={`--rise:${unsizedH}px`} />
+          ) : (
+            <span class="rise-ph" style={`--rise:${unsizedH}px`}>TODO</span>
+          )}
+        </span>
+        <span class={`val${p.result?.startsWith('1st') ? ' win' : ''}`}>{p.result}</span>
+        <span class="nm">
+          <b>{p.name}</b>
+          <span class="meta">{shortComp(p.comp)} · {p.year}</span>
+          <span class="go" aria-hidden="true">View →</span>
+        </span>
+      </a>
+    ))}
+  </div>
+</div>
+<div class="wrap"><div class="baseline"></div></div>
+<div class="wrap">
+  <div class="fleetnote">
+    <span>LC = Launch Canada · SAC = Spaceport America Cup</span>
+    <span>Cropped photos coming soon</span>
+  </div>
+</div>

@@ -8,6 +8,7 @@
   "social": { "instagram": "https://www.instagram.com/mcmasterrocketry/?hl=en", "discord": "https://discord.gg/tsQq8byCy8", "linkedin": "https://ca.linkedin.com/company/mcmaster-rocketry-team" },
   "nav": [
     { "label": "Rockets", "href": "/rockets" },
+    { "label": "Payloads", "href": "/payloads" },
     { "label": "Subteams", "href": "/subteams" },
     { "label": "Members", "href": "/members" },
     { "label": "Outreach", "href": "/outreach" },
