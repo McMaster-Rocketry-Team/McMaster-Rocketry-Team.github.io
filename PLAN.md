@@ -1,24 +1,23 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 evening · branch `dev` @ `8a9e044`+ · pushing tonight
+**Last updated:** 2026-08-27 late evening · branch `dev` · Luminis galleries + Hadfield shipped tonight
 
 ## Sign-off — resume here
 
-**Verdict:** on track for Facultyfest / Squarespace cutoff **Mon 31 Aug** (~4 days). Risk is content polish and ReviewMode lock passes, not engineering.
+**Verdict:** on track for Facultyfest / Squarespace cutoff **Mon 31 Aug** (~4 days). Risk is ReviewMode lock passes on vehicle galleries and propulsion, not engineering.
 
-**Deploy gate:** `pnpm check:todo` → **1** hit (Propulsion work-photo TODO slot). Marauder I `build` still open in ReviewMode but not in `check:todo`. CI still off (`35a592b`).
+**Deploy gate:** `pnpm check:todo` → **0** (cleared 27 Aug). CI still off (`35a592b`).
 
-**ReviewMode:** home, join, rockets index, most vehicles, subteams index, sponsors, outreach, payloads, most subteam detail pages progressing. See `LAUNCH_REVIEW.md` for the pre-launch checklist.
+**ReviewMode:** 26 open blocks on six routes (8 propulsion, 4 each on Luminis / Luminis V2 / Osiris gallery captions, 3 each on Marauder I / II captions). Home, join, members, rockets index, Nimbus, and most subteams at 0. See `LAUNCH_REVIEW.md`.
 
 **Next session, in order**
 
-1. Propulsion work photo (last `check:todo` blocker).
-2. Marauder I `build` in `vehicles.json`.
-3. `check:todo` → 0 · strip `ReviewMode.astro` · re-enable CI · merge `dev` → `main`.
+1. Lock vehicle gallery captions + `/subteams/propulsion` ReviewMode (26 blocks).
+2. Strip `ReviewMode.astro` · re-enable CI · merge `dev` → `main`.
 
-**Done this pass (2026-08-27):** Payloads section (Magpie + Sparrow pages, lineup, nav). Subteam heroes + work shots for Airframe, Recovery, Composites, Operations, Payload (Real-ESRGAN upscale on payload hero). Join photo hero. 404 page. Lead portrait refresh. Design spec **v1.3** synced to claude.ai/design. `docs/design-system.md` + `.cursor/rules/design.mdc` updated.
+**Done this pass (2026-08-27 late evening):** Luminis + Luminis V2 galleries reframed at **1400×933 (3:2)** to match `.gallery .ph`; V2 pad shot corrected (wrong-team yellow tube dropped). Gallery **captions** on all six vehicles. Marauder I build locked. Chris Hadfield home gallery (`chris-hadfield.json` + 4 webps). ReviewMode/review-scan chrome sync (statline, fleetnote, craft). Dark-section gallery + note/callout colour fixes.
 
-**Can wait:** hidden outreach events, safety page, Chris Hadfield gallery (source in `chris-hadfield/`).
+**Can wait:** hidden outreach events, safety page, unused Hadfield source JPGs in `chris-hadfield/` (shipped webps are under `public/media/chris-hadfield/`).
 
 **Dev server:** `pnpm astro dev --host localhost --port 4321`  
 **Go-live canvas:** `~/.cursor/projects/home-robin-Documents-Rocketry-McMaster-Rocketry-Team-github-io/canvases/go-live-status.canvas.tsx`

@@ -4,13 +4,33 @@ Source album: `LC24-1-photos.zip` (Launch Canada, per vehicles.json this is the
 2024 Launch Canada flight), extracted at
 `/home/robin/Downloads/MRT-photo-review/LC24/`.
 
-## Gallery picks (4 slots for `[slug].astro`)
+## Gallery picks (4 slots for `[slug].astro`) — updated 2026-08-27 (reframed)
 | Slot | File | Confidence | Why |
 |------|------|------------|-----|
-| integration | `luminis-v2-01.webp` | high | Full team holding the completed airframe, "LUMINIS" lettering and McMaster sponsor logos legible, burned-forest launch site in the background. |
-| on the pad | `luminis-v2-05.webp` | high | Rocket vertical on the pad against clear blue sky, people beside it for scale. |
-| liftoff | `luminis-v2-06.webp` | high | Clean solo liftoff shot: rocket mid-ascent with a visible exhaust trail against the treeline. Already a cropped/composed shot (`McMasterCrop.JPG` in the source album), suggesting someone already picked it as a hero image once before. |
-| recovery | `luminis-v2-10.webp` | high | Team gathered around the recovered airframe on the ground, examining it together. |
+| integration | `luminis-v2-13.webp` | high | Full airframe horizontal under the Launch Canada tent, bib 13 on the tail. |
+| on the pad | `luminis-v2-05.webp` | high | Vertical on the launch rail, LUMINIS lettering and bib 13 legible. |
+| liftoff | `luminis-v2-06.webp` | high | McMasterCrop liftoff frame — exhaust plume and ascending airframe. |
+| recovery | `luminis-v2-15.webp` | high | Carrying recovered airframe through the bush, bib 13 on the tail (`IMG_20240822_080554.jpg`). |
+
+Gallery exports ship at **1400×933 (3:2 landscape)** to match `.gallery .ph` — not portrait 1050×1400.
+
+**Rejected:** `luminis-v2-14.webp` / `IMG_20240818_101424.jpg` — yellow tube with fleur-de-lis branding is another team's vehicle, not Luminis V2.
+
+## Previous gallery (replaced 2026-08-27)
+| Slot | File | Notes |
+|------|------|-------|
+| integration | `luminis-v2-13.webp` | Same pick — portrait export cropped badly |
+| avionics | `luminis-v2-14.webp` | **Wrong rocket** — not McMaster Luminis |
+| in flight | `luminis-v2-11.webp` | Onboard frame mostly empty sky — poor gallery frame |
+| recovery | `luminis-v2-15.webp` | Same pick — portrait export cropped badly |
+
+## Earlier gallery (replaced 2026-08-27)
+| Slot | File | Notes |
+|------|------|-------|
+| integration | `luminis-v2-01.webp` | Team holding airframe |
+| on the pad | `luminis-v2-05.webp` | Vertical on pad |
+| liftoff | `luminis-v2-06.webp` | McMasterCrop liftoff |
+| recovery | `luminis-v2-10.webp` | Team around recovered airframe |
 
 ## Fleet cutout — done 2026-08-26 from `-13`
 

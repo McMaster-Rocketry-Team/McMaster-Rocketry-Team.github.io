@@ -41,6 +41,13 @@
     if (!root) return;
     var locked;
     try { locked = new Set(JSON.parse(root.getAttribute('data-rv-locked') || '[]')); } catch (e) { locked = new Set(); }
+    var CHROME = { tag: 1, amount: 1, lbl: 1, num: 1, unit: 1, val: 1, nm: 1, fleetnote: 1, meta: 1, go: 1 };
+    function isChrome(el) {
+      if (el.closest('.statline, .fleetnote, .craft')) return true;
+      var c = el.classList;
+      for (var k in CHROME) { if (c.contains(k)) return true; }
+      return false;
+    }
     var INLINE = { A: 1, B: 1, I: 1, EM: 1, STRONG: 1, SPAN: 1, BR: 1, SUP: 1, SUB: 1, U: 1 };
     var candidates = [];
     root.querySelectorAll('p,h1,h2,h3,h4,h5,li,figcaption,blockquote,dt,dd').forEach(function (el) {
@@ -60,10 +67,11 @@
     var flagged = candidates.filter(function (el) {
       if (el.closest('button,#rv-panel')) return false;
       if (el.closest('[aria-hidden="true"]')) return false;
-      // Section eyebrows (.tag) and tier amounts (.amount) are chrome, not
-      // copy to sign off. Including them shifted indices vs the Python scan
-      // and left leftover checkmarks on fully locked pages.
-      if (el.classList.contains('tag') || el.classList.contains('amount')) return false;
+      // Section eyebrows (.tag), tier amounts, and fleet/statline telemetry
+      // (.lbl/.num/.unit/.val/.nm/.fleetnote) are chrome, not copy to sign off.
+      // Including them shifted indices vs review-scan.py and left leftover
+      // checkmarks on fully locked pages.
+      if (isChrome(el)) return false;
       if ((el.textContent || '').trim().length < 2) return false;
       return true;
     });
@@ -73,7 +81,11 @@
     var path = location.pathname;
     var stored;
     try { stored = JSON.parse(localStorage.getItem('mrt-review:' + path) || '[]'); } catch (e) { stored = []; }
-    var verifiedSet = new Set(stored);
+    var verifiedSet = new Set(stored.filter(function (i) {
+      return i < deduped.length && !locked.has(i);
+    }));
+    var allLocked = deduped.length > 0 && deduped.every(function (el, i) { return locked.has(i); });
+    if (allLocked) localStorage.removeItem('mrt-review:' + path);
     deduped.forEach(function (el, i) {
       if (locked.has(i)) return;
       el.setAttribute('data-review', i);

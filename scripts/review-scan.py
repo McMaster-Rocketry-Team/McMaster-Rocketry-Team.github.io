@@ -37,6 +37,19 @@ ROUTES = [
 INLINE = {"A", "B", "I", "EM", "STRONG", "SPAN", "BR", "SUP", "SUB", "U"}
 PROSE = {"P", "H1", "H2", "H3", "H4", "H5", "LI", "FIGCAPTION", "BLOCKQUOTE", "DT", "DD"}
 WRAPPER = {"DIV", "SPAN", "B", "I"}
+# Telemetry / lineup chrome — not prose to sign off. Must stay in sync with ReviewMode.astro.
+CHROME = {"tag", "amount", "lbl", "num", "unit", "val", "nm", "fleetnote", "meta", "go"}
+CHROME_ANCESTORS = {"statline", "fleetnote", "craft"}
+
+
+def in_chrome_container(el: Tag) -> bool:
+    for parent in el.parents:
+        if not isinstance(parent, Tag):
+            break
+        classes = set(parent.get("class") or [])
+        if classes & CHROME_ANCESTORS:
+            return True
+    return False
 
 
 def text_of(el: Tag) -> str:
@@ -67,10 +80,11 @@ def scan(html: str):
             candidates.append(el)
         elif el.name.upper() in WRAPPER:
             children = [c for c in el.children if isinstance(c, Tag)]
-            if children and all(c.name.upper() in INLINE for c in children):
-                clone = clone_without_links(el)
-                if len(text_of(clone)) >= 2:
-                    candidates.append(el)
+            if children and not all(c.name.upper() in INLINE for c in children):
+                continue
+            clone = clone_without_links(el)
+            if len(text_of(clone)) >= 2:
+                candidates.append(el)
 
     flagged = []
     for el in candidates:
@@ -78,8 +92,10 @@ def scan(html: str):
             continue
         if el.find_parent(attrs={"aria-hidden": "true"}):
             continue
-        classes = el.get("class") or []
-        if "tag" in classes or "amount" in classes:
+        if in_chrome_container(el):
+            continue
+        classes = set(el.get("class") or [])
+        if classes & CHROME:
             continue
         if len(text_of(el)) < 2:
             continue

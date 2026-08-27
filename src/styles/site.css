@@ -242,6 +242,8 @@ section.paper .tag{color:var(--ignition)}
 .shead p{margin:0;max-width:44ch;font-size:16.5px;line-height:1.65;
   color:var(--muted-on-ink)}
 section.paper .shead p{color:var(--muted-on-paper)}
+/* Dark interior sections: eyebrows match .phead / .cta (78% white), not fog-300. */
+section:not(.paper):not(.cta) .shead .tag{color:rgba(255,255,255,.78)}
 .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--fog-300)}
 
@@ -295,7 +297,8 @@ a.card:hover .ico,a.card:focus-visible .ico{color:var(--white)}
 .card .ico{width:42px;height:42px;color:var(--fog-300);
   transition:color var(--dur) var(--ease)}
 section.paper .card .ico{color:var(--ignition)}
-.card.card-cta h3{color:var(--ignition)}
+.card.card-cta h3{color:rgba(255,255,255,.90)}
+section.paper .card.card-cta h3{color:var(--ignition)}
 a.card.card-cta:hover h3,a.card.card-cta:focus-visible h3{color:var(--white)}
 
 /* ---------- CTA PANEL (from C.2's Stage 04 — the only block that asked) ---------- */
@@ -651,7 +654,9 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
 .shead--follow{margin-top:clamp(40px,7vh,80px)}
 .cards--follow{margin-top:clamp(30px,5vh,54px)}
 .note{margin:22px 0 0;font-size:15px;color:var(--muted-on-paper);max-width:66ch}
+section:not(.paper):not(.cta) .note{color:var(--muted-on-ink)}
 .note--roster{margin:clamp(36px,6vh,64px) 0 0;font-size:15px;color:var(--muted-on-paper);max-width:66ch}
+section:not(.paper):not(.cta) .note--roster{color:var(--muted-on-ink)}
 /* Static underline — mailto, external refs, prose. Not fleet/vehicle cross-links. */
 .link-underline{text-decoration:underline;text-underline-offset:3px}
 /* Fleet name underline: resting ignition stub grows to full width on hover/focus.
@@ -679,6 +684,7 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
 }
 .callout{border-left:3px solid var(--ignition);padding:4px 0 4px 20px;margin:26px 0;
   font-size:16px;line-height:1.65;color:var(--muted-on-paper)}
+section:not(.paper):not(.cta) .callout{color:var(--muted-on-ink)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .gallery figure{margin:0}
 @media(max-width:620px){.gallery{grid-template-columns:1fr}}
@@ -689,6 +695,8 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
 .gallery figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-ink);line-height:1.55}
 section.paper .gallery figcaption{color:var(--muted-on-paper)}
+section:not(.paper) .gallery .ph{background:transparent;border-color:var(--rule-dark)}
+section:not(.paper) .gallery .ph span{color:var(--muted-on-ink)}
 /* CAD / product shots: transparent alpha, never crop with cover. */
 .ph-is-product{background:transparent;border-color:var(--rule-dark);overflow:visible}
 section.paper .ph-is-product{border-color:var(--rule-light)}
@@ -734,11 +742,12 @@ section.paper .procedure-list{background:var(--rule-light);border-color:var(--ru
 .procedure-list li{padding:clamp(16px,2.2vw,22px) clamp(18px,2.5vw,28px);
   background:var(--graphite-900);font-size:16px;line-height:1.65;
   color:rgba(255,255,255,.78);counter-increment:procedure}
-section.paper .procedure-list li{background:var(--paper);color:var(--ink-on-paper)}
+section.paper .procedure-list li{background:var(--paper);color:var(--graphite-900)}
 .procedure-list{counter-reset:procedure}
 .procedure-list li::before{content:counter(procedure,decimal-leading-zero);
   display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;
   color:var(--ignition);margin-bottom:8px}
+section:not(.paper) .procedure-list li::before{color:rgba(255,255,255,.78)}
 .module-grid{list-style:none;margin:clamp(22px,3vw,36px) 0 0;padding:0;
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
   background:var(--rule-dark);border:1px solid var(--rule-dark)}
@@ -752,7 +761,7 @@ section.paper .module-card__ph{border-bottom-color:var(--rule-light)}
 .module-card__body{padding:clamp(16px,2.2vw,22px)}
 .module-card h3{font-family:var(--font-display);font-weight:600;
   font-size:clamp(22px,2.4vw,28px);letter-spacing:-.005em;line-height:1.1;
-  color:var(--ignition);margin:0 0 10px}
+  color:rgba(255,255,255,.90);margin:0 0 10px}
 section.paper .module-card h3{color:var(--ignition-deep)}
 .module-card p{margin:0;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.72)}
 section.paper .module-card p{color:var(--muted-on-paper)}

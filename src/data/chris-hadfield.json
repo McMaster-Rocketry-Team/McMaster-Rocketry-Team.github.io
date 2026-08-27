@@ -1,0 +1,29 @@
+{
+  "tag": "Launch Canada 2026",
+  "headline": ["Chris Hadfield", "signed Osiris."],
+  "lede": "At the range in Timmins, Chris Hadfield stopped by to meet the team and signed the nosecone before our highest flight ever.",
+  "photos": [
+    {
+      "src": "/media/chris-hadfield/lc26-hadfield-with-team.webp",
+      "alt": "Chris Hadfield in aviator sunglasses and a grey polo, surrounded by McMaster Rocketry team members at the Launch Canada range.",
+      "caption": "Chris Hadfield meets the team at the range.",
+      "ratio": "2/3"
+    },
+    {
+      "src": "/media/chris-hadfield/lc26-hadfield-signing-rocket.webp",
+      "alt": "Chris Hadfield leans over Osiris's white nosecone on a truck tailgate and signs it with a black marker.",
+      "caption": "Signing the nosecone on the tailgate.",
+      "ratio": "2/3"
+    },
+    {
+      "src": "/media/chris-hadfield/lc26-signed-nosecone-chris-hadfield-signature.webp",
+      "alt": "Osiris's white nosecone with Chris Hadfield's signature in black marker, resting on a truck tailgate.",
+      "caption": "The signed nosecone before integration."
+    },
+    {
+      "src": "/media/chris-hadfield/lc26-signed-nosecone-signature-closeup.webp",
+      "alt": "Close-up of Chris Hadfield's signature on the recovered nosecone, white paint chipped away from drag on the way down.",
+      "caption": "The signed nosecone after recovery. Chipped paint from drag."
+    }
+  ]
+}

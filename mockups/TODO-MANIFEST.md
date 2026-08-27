@@ -44,9 +44,9 @@ events (three hidden pending detail).
 | Subteam lead programmes / years / one-line bios | `src/pages/subteams/[slug].astro` (names already render from `members.json`) |
 | Roster statistics (faculties, first years, founded) | `src/data/members.json` `stats` (`Active members` is `100+`; the other three are null) |
 | Real subteam description and first-term detail | `src/data/subteams.json` (`detail` / `first` / `skills` still null except Avionics) |
-| Vehicle specs — mass, motor, recovery, result; Luminis V2 length | `src/data/vehicles.json` (`lengthIn` set on five of six; Luminis V2 still null). Nimbus recovery/accel/mach done; other vehicles mostly null. |
-| Build narrative per vehicle | `src/data/vehicles.json` `build` (Nimbus and Osiris have one, the other four do not) |
-| ~~Photographs + captions~~ — five of six wired in Astro | `src/data/vehicles.json` `photos[]` + `[slug].astro` variable gallery. Mockup still four fixed slots. Confirm three unconfirmed liftoff frames before launch. |
+| Vehicle specs — mass, motor, recovery, result | `src/data/vehicles.json` (all six have `lengthIn`; mass/recovery/result mostly null except Nimbus). |
+| Build narrative per vehicle | `src/data/vehicles.json` `build` (all six have one) |
+| ~~Photographs + captions~~ | done — all six vehicles in `vehicles.json` `photos[]` with `caption` on every slot. Gallery exports at **1400×933 (3:2 landscape)** to match `.gallery .ph`. Luminis + Luminis V2 reframed 2026-08-27. |
 | Partner logos, linked, with company-name alt text | `src/pages/sponsors.astro` |
 | ~~Sponsorship package PDF~~ | done, `/docs/sponsorship-package-2026-2027.pdf` |
 | ~~Social handles (Instagram, Discord, LinkedIn)~~ | done, all three set in `src/data/site.json` `social` |

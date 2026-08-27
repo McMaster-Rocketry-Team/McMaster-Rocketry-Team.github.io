@@ -9,7 +9,7 @@ import CtaBand from '../../components/CtaBand.astro';
   title="Payloads"
   description="The experiments the McMaster Rocketry Team has designed, built and flown."
   current="/payloads"
-  reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+  reviewLocked={Array.from({ length: 6 }, (_, i) => i)}
 >
 <header class="phead">
   <span class="crosshair tl" aria-hidden="true"></span>

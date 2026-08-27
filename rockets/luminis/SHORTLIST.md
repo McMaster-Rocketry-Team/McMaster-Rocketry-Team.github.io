@@ -4,13 +4,31 @@ Source album: `sac 2024-photos.zip` (Spaceport America Cup 2024), extracted at
 `/home/robin/Downloads/MRT-photo-review/SAC 2024/`. Competition bib number
 visible on the airframe is 58.
 
-## Gallery picks (4 slots for `[slug].astro`)
+## Gallery picks (4 slots for `[slug].astro`) — updated 2026-08-27 (reframed)
 | Slot | File | Confidence | Why |
 |------|------|------------|-----|
-| integration | `luminis-03.webp` | high | Full team holding the rocket under a tent at the SAC pad area; clearest "this is our team, this is the vehicle" shot in the set. |
-| on the pad | `luminis-04.webp` | high | Rocket horizontal on the rail cradle, bib "58" legible, team prepping it, dramatic overcast sky. |
-| liftoff | `luminis-08.webp` | medium | A rocket mid-flight with a visible smoke trail, crowd watching, same album and launch window as the other Luminis material. The airframe is too small/far to read any lettering, so I cannot independently confirm this specific flight is Luminis rather than a nearby team's vehicle at the same shared range. Robin should confirm before this goes on the page. |
-| recovery | `luminis-11.webp` | high | Team member kneeling with the recovered airframe, bib number legible on the tube, parachute and hardware laid out beside it. |
+| integration | `luminis-03.webp` | high | Full team under the range tent, LUMINIS lettering and bib 58 legible. |
+| on the pad | `luminis-04.webp` | high | Horizontal on the launch rail at SAC, team making final checks. |
+| payload | `luminis-05.webp` | high | Avionics sled wired for dual-deploy, VL pyro and main/drogue labels. |
+| recovery | `luminis-11.webp` | high | Team member beside recovered airframe, bib 58 and signed fins. |
+
+Gallery exports ship at **1400×933 (3:2 landscape)** to match `.gallery .ph` — not portrait 1050×1400.
+
+## Previous gallery (replaced 2026-08-27)
+| Slot | File | Notes |
+|------|------|-------|
+| integration | `luminis-02.webp` | Vertical in assembly hall — portrait export cropped badly |
+| on the pad | `luminis-12.webp` | Work-table prep — tight crop, heads cut off |
+| payload | `luminis-13.webp` | Camera-port closeup — too tight for gallery frame |
+| recovery | `luminis-14.webp` | Dig-out scene — portrait export lost context |
+
+## Earlier gallery (replaced 2026-08-27)
+| Slot | File | Notes |
+|------|------|-------|
+| integration | `luminis-03.webp` | Team under tent |
+| on the pad | `luminis-04.webp` | Horizontal on rail cradle |
+| liftoff | `luminis-08.webp` | Unconfirmed vehicle identity in frame |
+| recovery | `luminis-11.webp` | Kneeling beside recovered airframe |
 
 ## Fleet cutout — done 2026-08-26
 - Source file: `luminis-01.webp` (originally `Image-21.webp`, already in the repo before this session)

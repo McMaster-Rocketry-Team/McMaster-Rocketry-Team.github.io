@@ -9,6 +9,7 @@ import SubteamCards from '../components/SubteamCards.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { numberWord } from '../lib/site';
 import site from '../data/site.json';
+import hadfield from '../data/chris-hadfield.json';
 
 const vehicles = await getCollection('vehicles');
 const payloads = await getCollection('payloads');
@@ -25,7 +26,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   title={site.tagline}
   description="McMaster Rocketry Team: student-built rockets from Hamilton, Ontario. Highest flight: 33,584 ft."
   current="/"
-  reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]}
+  reviewLocked={Array.from({ length: 36 }, (_, i) => i)}
 >
 <header class="hero">
   <span class="crosshair tl" aria-hidden="true"></span>
@@ -53,6 +54,29 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   </div>
   <button class="vidtoggle" id="vidtoggle">Pause video</button>
 </header>
+
+<section id="hadfield">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <div class="tag">{hadfield.tag}</div>
+        <h2>{hadfield.headline[0]}<br>{hadfield.headline[1]}</h2>
+      </div>
+      <p>{hadfield.lede}</p>
+    </div>
+    <div class="gallery">
+      {hadfield.photos.map((photo) => (
+        <figure>
+          <div class="ph" style={photo.ratio ? `--ph-ratio:${photo.ratio}` : undefined}>
+            <img src={photo.src} alt={photo.alt} loading="lazy" />
+          </div>
+          {photo.caption && <figcaption>{photo.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+    <div class="btnrow"><a class="btn" href="/rockets/osiris">Osiris</a></div>
+  </div>
+</section>
 
 <section class="paper fleet" id="fleet">
   <span class="crosshair tl" aria-hidden="true"></span>

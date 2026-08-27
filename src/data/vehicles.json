@@ -9,9 +9,9 @@
     "image": "/media/rockets/marauder-i.png",
     "heroImage": "/media/rockets/marauder-i-hero.webp",
     "photos": [
-      { "src": "/media/rockets/marauder-i-gallery-team.webp", "alt": "The Marauder I team stands with the completed red airframe under the Launch Canada tent, McMaster 23 lettering visible." },
-      { "src": "/media/rockets/marauder-i-gallery-pad.webp", "alt": "Marauder I stands vertical on the rail in the sandy clearing before launch." },
-      { "src": "/media/rockets/marauder-i-gallery-liftoff.webp", "alt": "A rocket leaves the pad with a visible exhaust plume at Launch Canada 2022." }
+      { "src": "/media/rockets/marauder-i-gallery-team.webp", "alt": "The Marauder I team stands with the completed red airframe under the Launch Canada tent, McMaster 23 lettering visible.", "caption": "The first competition crew with Marauder I under the Launch Canada tent. McMaster 23 on the tube." },
+      { "src": "/media/rockets/marauder-i-gallery-pad.webp", "alt": "Marauder I stands vertical on the rail in the sandy clearing before launch.", "caption": "On the rail in the sandy clearing. Final checks before the count." },
+      { "src": "/media/rockets/marauder-i-gallery-liftoff.webp", "alt": "A rocket leaves the pad with a visible exhaust plume at Launch Canada 2022.", "caption": "Clears the pad at Launch Canada 2022, the team's first competition flight." }
     ],
     "apogee": null,
     "mach": null,
@@ -19,7 +19,7 @@
     "summary": "The first vehicle the team ever flew, and the one that proved we could get off the pad at all.",
     "specs": { "length": "2.6 m (100.6 in)", "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
     "build": "Marauder I was the team's first competition vehicle, built for Launch Canada's 10k COTS division in 2022. A 6 in fiberglass airframe with in-house structures, dual-deploy recovery, and student avionics, it carried McMaster 23 lettering on the pad. The rocket left the rail cleanly; we never recovered the airframe from the bush. The flight still proved the team could integrate subsystems and get off the pad.",
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
   },
   {
     "id": "marauder-ii",
@@ -31,9 +31,9 @@
     "image": "/media/rockets/marauder-ii.png",
     "heroImage": "/media/rockets/marauder-ii-hero.webp",
     "photos": [
-      { "src": "/media/rockets/marauder-ii-gallery-team.webp", "alt": "The Marauder II team holds the airframe at Spaceport America Cup 2023, bib 55 and McMaster lettering readable." },
-      { "src": "/media/rockets/marauder-ii-gallery-pad.webp", "alt": "Marauder II stands vertical on the desert launch rail, bib 55." },
-      { "src": "/media/rockets/marauder-ii-gallery-recovery.webp", "alt": "The recovered Marauder II airframe lies on the desert floor after landing." }
+      { "src": "/media/rockets/marauder-ii-gallery-team.webp", "alt": "The Marauder II team holds the airframe at Spaceport America Cup 2023, bib 55 and McMaster lettering readable.", "caption": "The full crew with the airframe at Spaceport America Cup 2023. Bib 55 on the tube." },
+      { "src": "/media/rockets/marauder-ii-gallery-pad.webp", "alt": "Marauder II stands vertical on the desert launch rail, bib 55.", "caption": "Vertical on the desert launch rail. Bib 55, last checks before flight." },
+      { "src": "/media/rockets/marauder-ii-gallery-recovery.webp", "alt": "The recovered Marauder II airframe lies on the desert floor after landing.", "caption": "The airframe on the desert floor after landing. First full recovery at SAC for the team." }
     ],
     "apogee": null,
     "mach": null,
@@ -53,10 +53,10 @@
     "image": "/media/rockets/luminis.png",
     "heroImage": "/media/rockets/luminis-hero.webp",
     "photos": [
-      { "src": "/media/rockets/luminis-gallery-team.webp", "alt": "The Luminis team holds the completed airframe under a tent at the Spaceport America Cup pad area." },
-      { "src": "/media/rockets/luminis-gallery-pad.webp", "alt": "Luminis lies horizontal on the rail cradle, bib 58 legible, while the team makes final checks before launch." },
-      { "src": "/media/rockets/luminis-gallery-liftoff.webp", "alt": "A rocket climbs from the pad with a smoke trail, spectators watching from the range." },
-      { "src": "/media/rockets/luminis-gallery-recovery.webp", "alt": "A team member kneels beside the recovered Luminis airframe, bib 58 visible, with parachute and hardware laid out on the ground." }
+      { "src": "/media/rockets/luminis-gallery-team.webp", "alt": "The Luminis team poses with the completed airframe under the range tent, LUMINIS lettering and bib 58 visible.", "caption": "The Luminis crew under the range tent before flight. LUMINIS lettering and bib 58 on the airframe." },
+      { "src": "/media/rockets/luminis-gallery-pad.webp", "alt": "Luminis lies horizontal on the launch rail at Spaceport America Cup, team 58 making final checks before flight.", "caption": "On the rail at Spaceport America Cup. Final checks before launch." },
+      { "src": "/media/rockets/luminis-gallery-liftoff.webp", "alt": "The Luminis avionics sled wired for dual-deploy recovery, VL pyro and main/drogue channels labeled on the harness.", "caption": "The avionics sled wired for dual-deploy recovery. VL pyro and main/drogue channels labeled on the harness." },
+      { "src": "/media/rockets/luminis-gallery-recovery.webp", "alt": "A team member kneels beside the recovered Luminis airframe after landing, bib 58 and signed fins visible beside the parachute.", "caption": "After landing in the scrub. Signed fins and the parachute beside the recovered airframe." }
     ],
     "apogee": null,
     "mach": null,
@@ -76,17 +76,17 @@
     "image": "/media/rockets/luminis-v2.png",
     "heroImage": "/media/rockets/luminis-v2-hero.webp",
     "photos": [
-      { "src": "/media/rockets/luminis-v2-gallery-team.webp", "alt": "The full Luminis V2 team holds the completed airframe at the Launch Canada 2024 site, LUMINIS lettering and sponsor logos legible." },
-      { "src": "/media/rockets/luminis-v2-gallery-pad.webp", "alt": "Luminis V2 stands vertical on the pad against clear sky, team members beside it for scale." },
-      { "src": "/media/rockets/luminis-v2-gallery-liftoff.webp", "alt": "Luminis V2 climbs from the pad with a visible exhaust trail against the treeline." },
-      { "src": "/media/rockets/luminis-v2-gallery-recovery.webp", "alt": "The team gathers around the recovered Luminis V2 airframe on the ground after landing." }
+      { "src": "/media/rockets/luminis-v2-gallery-team.webp", "alt": "Luminis V2 lies horizontal under the Launch Canada tent, full airframe from nose to fins, bib 13 on the tail.", "caption": "The full airframe under the Launch Canada tent, nose to fins. Bib 13 on the tail." },
+      { "src": "/media/rockets/luminis-v2-gallery-pad.webp", "alt": "Luminis V2 stands vertical on the launch rail before flight, LUMINIS lettering and bib 13 readable up the airframe.", "caption": "On the launch rail before flight. LUMINIS lettering and bib 13 up the airframe." },
+      { "src": "/media/rockets/luminis-v2-gallery-liftoff.webp", "alt": "Luminis V2 clears the pad at Launch Canada, exhaust plume trailing behind the ascending airframe.", "caption": "Clears the pad at Launch Canada 2024. The team's first nominal launch and recovery." },
+      { "src": "/media/rockets/luminis-v2-gallery-recovery.webp", "alt": "A team member carries the recovered Luminis V2 airframe through the bush, bib 13 on the tail and orange streamer on the tube.", "caption": "Back through the bush with the airframe. Bib 13 still readable on the tail." }
     ],
     "apogee": 10564,
     "mach": null,
-    "lengthIn": null,
+    "lengthIn": 110,
     "summary": "The first vehicle we flew with a flight computer we trusted enough to publish the numbers.",
-    "specs": { "length": null, "mass": null, "motor": "CTI M1545", "recovery": null, "result": null, "accel": null },
-    "build": "Luminis V2's Launch Canada 2024 flight was the team's first fully nominal launch and recovery. Blue Raven flew as primary with EasyMini and Void Lake (VLF4) as backups. VLF4 came back flight-proven. The payload camera recorded the full flight. Apogee was 10,564 ft, 5.2% below the projected 11,146 ft.",
+    "specs": { "length": "2.8 m (110 in)", "mass": null, "motor": "CTI M1545", "recovery": null, "result": null, "accel": null },
+    "build": "Luminis V2 reused the same 5 in, 2.8 m airframe as Luminis. Its Launch Canada 2024 flight was the team's first fully nominal launch and recovery. Blue Raven flew as primary with EasyMini and Void Lake (VLF4) as backups. VLF4 came back flight-proven. The payload camera recorded the full flight. Apogee was 10,564 ft, 5.2% below the projected 11,146 ft.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
   },
   {
@@ -99,12 +99,12 @@
     "image": "/media/rockets/nimbus.png",
     "heroImage": "/media/rockets/nimbus-hero.webp",
     "photos": [
-      { "src": "/media/rockets/nimbus-gallery-team.webp", "alt": "The Nimbus team with disassembled airframe sections under the McMaster Engineering tent at Launch Canada 2025, NIMBUS lettering visible.", "caption": "Integration at the range — the full crew with the airframe broken down for transport." },
+      { "src": "/media/rockets/nimbus-gallery-team.webp", "alt": "The Nimbus team with disassembled airframe sections under the McMaster Engineering tent at Launch Canada 2025, NIMBUS lettering visible.", "caption": "Integration at the range. The full crew with the airframe broken down for transport." },
       { "src": "/media/rockets/nimbus-gallery-pad.webp", "alt": "A team member arms Nimbus on the launch rail against clear sky before flight.", "caption": "Arming on the rail. Last checks on pyrotechnics and avionics before the count." },
-      { "src": "/media/rockets/nimbus-gallery-avionics.webp", "alt": "The open avionics bay on the yellow Nimbus airframe, wiring and flight hardware visible.", "caption": "The avionics stack wired into the bay — flight computers, harnesses, and bulkhead connectors." },
+      { "src": "/media/rockets/nimbus-gallery-avionics.webp", "alt": "The open avionics bay on the yellow Nimbus airframe, wiring and flight hardware visible.", "caption": "The avionics stack wired into the bay: flight computers, harnesses, and bulkhead connectors." },
       { "src": "/media/rockets/nimbus-gallery-recovery.webp", "alt": "Signed Nimbus fin sections on a towel after recovery, team names in gold marker.", "caption": "Signed fins after recovery. Every flight crew leaves their mark before the airframe goes back in the rack." }
     ],
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
     "apogee": 17862,
     "mach": 1.14,
     "lengthIn": 106.3,
@@ -122,12 +122,12 @@
     "image": "/media/rockets/osiris.png",
     "heroImage": "/media/rockets/osiris-hero.webp",
     "photos": [
-      { "src": "/media/rockets/osiris-gallery-display.webp", "alt": "Four team members hold the assembled Osiris airframe, OSIRIS lettering and bib number 25 visible, at the competition venue." },
-      { "src": "/media/rockets/osiris-gallery-avionics.webp", "alt": "The open airframe before final assembly: left to right, the airbrake actuator, the avionics bay, and the payload section." },
-      { "src": "/media/rockets/osiris-gallery-crew.webp", "alt": "The team stands beside Osiris, vertical on the rail, before launch." },
-      { "src": "/media/rockets/osiris-gallery-recovery-crew.webp", "alt": "The recovery team in the bush, holding the recovered airframe sections beside the caught parachute." }
+      { "src": "/media/rockets/osiris-gallery-display.webp", "alt": "Four team members hold the assembled Osiris airframe, OSIRIS lettering and bib number 25 visible, at the competition venue.", "caption": "The assembled airframe on display. OSIRIS lettering and bib 25 on the tube." },
+      { "src": "/media/rockets/osiris-gallery-avionics.webp", "alt": "The open airframe before final assembly: left to right, the airbrake actuator, the avionics bay, and the payload section.", "caption": "Open before final assembly: airbrake actuator, avionics bay, and payload section in line." },
+      { "src": "/media/rockets/osiris-gallery-crew.webp", "alt": "The team stands beside Osiris, vertical on the rail, before launch.", "caption": "Beside the airframe on the rail. Last checks before launch." },
+      { "src": "/media/rockets/osiris-gallery-recovery-crew.webp", "alt": "The recovery team in the bush, holding the recovered airframe sections beside the caught parachute.", "caption": "The recovery crew in the bush with the airframe sections and caught parachute." }
     ],
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
     "paleArt": true,
     "apogee": 33584,
     "mach": 1.92,
