@@ -67,6 +67,7 @@ const subteams = defineCollection({
     first: z.string().nullable(),
     skills: z.string().nullable(),
     hours: z.string().nullable(),
+    reviewLocked: z.array(z.number()).optional(),
   }),
 });
 

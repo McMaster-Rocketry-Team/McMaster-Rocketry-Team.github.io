@@ -18,7 +18,8 @@
     "lengthIn": 100.6,
     "summary": "The first vehicle the team ever flew, and the one that proved we could get off the pad at all.",
     "specs": { "length": "2.6 m (100.6 in)", "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
-    "build": null
+    "build": null,
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
   },
   {
     "id": "marauder-ii",
@@ -39,7 +40,8 @@
     "lengthIn": 105,
     "summary": "Our first international competition vehicle.",
     "specs": { "length": "2.7 m (105 in)", "mass": "22.7 kg dry / 26.5 kg wet", "motor": "CTI M2150", "recovery": "2 ft drogue @ apogee · 12 ft main @ 1300 ft", "result": null, "accel": null },
-    "build": "Marauder II was the team's first Spaceport America Cup vehicle: a 5 in fiberglass airframe with clipped-delta fins, dual-deploy recovery, and an SRAD avionics suite flying as backup to COTS altimeters. It flew on a CTI M2150 (7,455 N·s)."
+    "build": "Marauder II was the team's first Spaceport America Cup vehicle: a 5 in fiberglass airframe with clipped-delta fins, dual-deploy recovery, and an SRAD avionics suite flying as backup to COTS altimeters. It flew on a CTI M2150 (7,455 N·s).",
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
   },
   {
     "id": "luminis",
@@ -61,7 +63,8 @@
     "lengthIn": 110,
     "summary": "The first airframe designed around its payload rather than the other way round.",
     "specs": { "length": "2.8 m (110 in)", "mass": "16.8 kg dry / 22.6 kg wet", "motor": "CTI 6800M3700-P", "recovery": "2 ft drogue @ apogee · 12 ft main @ 1400 ft", "result": null, "accel": null },
-    "build": "Luminis kept the 5 in fiberglass layout from Marauder II (Von Karman nose, three clipped-delta carbon fins) and added the team's first functional payload: an onboard camera for flight video. Dual-deploy recovery used a COTS EasyMini with Void Lake 4 as SRAD backup. It flew on a CTI 6800M3700-P (6,800 N·s)."
+    "build": "Luminis kept the 5 in fiberglass layout from Marauder II (Von Karman nose, three clipped-delta carbon fins) and added the team's first functional payload: an onboard camera for flight video. Dual-deploy recovery used a COTS EasyMini with Void Lake 4 as SRAD backup. It flew on a CTI 6800M3700-P (6,800 N·s).",
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
   },
   {
     "id": "luminis-v2",
@@ -83,7 +86,8 @@
     "lengthIn": null,
     "summary": "The first vehicle we flew with a flight computer we trusted enough to publish the numbers.",
     "specs": { "length": null, "mass": null, "motor": "CTI M1545", "recovery": null, "result": null, "accel": null },
-    "build": "Luminis V2's Launch Canada 2024 flight was the team's first fully nominal launch and recovery. Blue Raven flew as primary with EasyMini and Void Lake (VLF4) as backups. VLF4 came back flight-proven. The payload camera recorded the full flight. Apogee was 10,564 ft, 5.2% below the projected 11,146 ft."
+    "build": "Luminis V2's Launch Canada 2024 flight was the team's first fully nominal launch and recovery. Blue Raven flew as primary with EasyMini and Void Lake (VLF4) as backups. VLF4 came back flight-proven. The payload camera recorded the full flight. Apogee was 10,564 ft, 5.2% below the projected 11,146 ft.",
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
   },
   {
     "id": "nimbus",

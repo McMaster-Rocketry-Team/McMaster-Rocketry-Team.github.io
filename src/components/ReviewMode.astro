@@ -27,6 +27,7 @@
 #rv-panel{position:fixed;right:16px;bottom:16px;z-index:999;background:var(--graphite-900);color:var(--white);
   font:600 12px/1.3 var(--font-mono);padding:10px 14px;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.35);
   display:flex;align-items:center;gap:10px}
+#rv-panel[hidden]{display:none}
 #rv-panel button{font:600 11px var(--font-mono);background:var(--ignition);color:var(--white);border:0;
   padding:5px 9px;border-radius:3px;cursor:pointer}
 </style>
@@ -59,6 +60,10 @@
     var flagged = candidates.filter(function (el) {
       if (el.closest('button,#rv-panel')) return false;
       if (el.closest('[aria-hidden="true"]')) return false;
+      // Section eyebrows (.tag) and tier amounts (.amount) are chrome, not
+      // copy to sign off. Including them shifted indices vs the Python scan
+      // and left leftover checkmarks on fully locked pages.
+      if (el.classList.contains('tag') || el.classList.contains('amount')) return false;
       if ((el.textContent || '').trim().length < 2) return false;
       return true;
     });
@@ -93,6 +98,8 @@
       var done = unlocked.filter(function (el) { return el.classList.contains('rv-verified'); }).length;
       var countEl = document.getElementById('rv-count');
       if (countEl) countEl.textContent = 'Review: ' + done + '/' + unlocked.length;
+      var panel = document.getElementById('rv-panel');
+      if (panel) panel.hidden = unlocked.length === 0;
     }
     updateCount();
     var resetBtn = document.getElementById('rv-reset');

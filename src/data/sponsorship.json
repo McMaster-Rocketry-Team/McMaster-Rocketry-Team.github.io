@@ -48,15 +48,60 @@
     }
   ],
   "partners": [
-    { "name": "MDA Space", "tier": "Gold" },
-    { "name": "McMaster Engineering", "tier": "Gold" },
-    { "name": "MES", "tier": "Gold" },
-    { "name": "Isaac Operations", "tier": "Silver" },
-    { "name": "Origin Innovations", "tier": "Silver" },
-    { "name": "SolidWorks", "tier": "Silver" },
-    { "name": "Onshape", "tier": "Silver" },
-    { "name": "Altium", "tier": "Silver" },
-    { "name": "Aversan", "tier": "Bronze" }
+    {
+      "name": "MDA Space",
+      "tier": "Gold",
+      "href": "https://mda.space/",
+      "logo": "/media/sponsors/mda-space.svg"
+    },
+    {
+      "name": "McMaster Engineering",
+      "tier": "Gold",
+      "href": "https://www.eng.mcmaster.ca/",
+      "logo": "/media/sponsors/mcmaster-engineering.svg"
+    },
+    {
+      "name": "McMaster Engineering Society",
+      "tier": "Gold",
+      "href": "https://macengsociety.ca/",
+      "logo": "/media/sponsors/mes.webp"
+    },
+    {
+      "name": "Isaac Operations",
+      "tier": "Silver",
+      "href": "https://isaacteam.com/",
+      "logo": "/media/sponsors/isaac-operations.svg"
+    },
+    {
+      "name": "Origin Innovations",
+      "tier": "Silver",
+      "href": "https://origininnovations.ca/",
+      "logo": "/media/sponsors/origin-innovations.svg"
+    },
+    {
+      "name": "SOLIDWORKS",
+      "tier": "Silver",
+      "href": "https://www.solidworks.com/",
+      "logo": "/media/sponsors/solidworks.webp"
+    },
+    {
+      "name": "Onshape",
+      "tier": "Silver",
+      "href": "https://www.onshape.com/",
+      "logo": "/media/sponsors/onshape.svg"
+    },
+    {
+      "name": "Altium",
+      "tier": "Silver",
+      "href": "https://www.altium.com/",
+      "logo": "/media/sponsors/altium.webp"
+    },
+    {
+      "name": "Aversan",
+      "tier": "Bronze",
+      "href": "https://www.aversan.com/",
+      "logo": "/media/sponsors/aversan.webp"
+    }
   ],
   "contacts": [
     { "role": "Sponsorship", "title": "President", "name": "Robin Anderson",

@@ -4,13 +4,19 @@ import CtaBand from '../components/CtaBand.astro';
 import { mailHref } from '../lib/site';
 import site from '../data/site.json';
 import sponsorship from '../data/sponsorship.json';
+
+const tierOrder = ['Gold', 'Silver', 'Bronze'] as const;
+const partnersByTier = tierOrder.map((tier) => ({
+  tier,
+  partners: sponsorship.partners.filter((p) => p.tier === tier),
+}));
 ---
 
 <BaseLayout
   title="Sponsors"
   description="Sponsor the McMaster Rocketry Team: tiers, what your support buys, and who to contact."
   current="/sponsors"
-  reviewLocked={[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 54, 55, 59, 60, 69, 70, 71, 72]}
+  reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56]}
 >
 <header class="phead">
   <span class="crosshair tl" aria-hidden="true"></span>
@@ -52,6 +58,8 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">Tiers</div><h2>What you get.</h2></div>
+      <p>Three tiers, and a fourth option if you'd rather give materials or machine time
+         than money. That is often more useful to us.</p>
     </div>
   </div>
   <div class="wrap">
@@ -85,18 +93,29 @@ import sponsorship from '../data/sponsorship.json';
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">Current partners</div><h2>Who backs us.</h2></div>
+      <p>Logo placement follows tier: larger on paper for Gold, medium for Silver, compact for Bronze. Each links to the partner's site.</p>
     </div>
-    <div class="cards c4">
-      {sponsorship.partners.map((p) => (
-        <div class="card partner-slot">
-          <span class="mono">{p.name || 'Logo slot'}<br>{p.tier}</span>
+    <div class="partner-tiers">
+      {partnersByTier.map(({ tier, partners }) => (
+        <div class={'partner-tier' + (tier === 'Gold' ? ' partner-tier--gold' : '')}>
+          <p class="partner-tier-label">{tier}</p>
+          <ul class="partner-grid" role="list">
+            {partners.map((p) => (
+              <li>
+                <a
+                  class="partner-logo"
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={p.logo} alt={p.name} loading="lazy" decoding="async" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>
-    <p class="note">
-      <span class="todo" aria-hidden="true">TODO(robin)</span> Real partner logos, each linked, each with the
-      company name as alt text.
-    </p>
   </div>
 </section>
 

@@ -1,29 +1,181 @@
 {
   "stats": [
-    { "label": "Active members", "value": "100+", "note": "across seven subteams" },
-    { "label": "Faculties represented", "value": null, "note": "engineering, science, commerce, humanities" },
-    { "label": "First years", "value": null, "note": "every year, no experience needed" },
-    { "label": "Founded", "value": null, "note": "year the team started" }
+    {
+      "label": "Active members",
+      "value": "100+",
+      "note": "across seven subteams"
+    },
+    {
+      "label": "Faculties represented",
+      "value": "4",
+      "note": "engineering, science, commerce, humanities"
+    },
+    {
+      "label": "First years",
+      "value": "16",
+      "note": "every year, no experience needed"
+    },
+    {
+      "label": "Founded",
+      "value": "2022",
+      "note": "first Launch Canada flight"
+    }
   ],
   "leads": [
-    { "role": "President", "subteam": null, "name": "Robin Anderson", "programme": null, "year": null, "photo": "/media/leads/robin-anderson.webp" },
-    { "role": "Project manager", "subteam": null, "name": "Christina Zhou", "programme": null, "year": null, "photo": "/media/leads/christina-zhou.webp" },
-    { "role": "Airframe lead", "subteam": "airframe", "name": "Blake Wang", "programme": null, "year": null, "photo": "/media/leads/blake-wang.webp" },
-    { "role": "Airframe lead", "subteam": "airframe", "name": "Kiran Suresh", "programme": null, "year": null, "photo": "/media/leads/kiran-suresh.webp" },
-    { "role": "Payload lead", "subteam": "payload", "name": "Joud Al Mowesati", "programme": null, "year": null, "photo": "/media/leads/joud-al-mowesati.webp" },
-    { "role": "Payload lead", "subteam": "payload", "name": "Owen Martin", "programme": null, "year": null, "photo": "/media/leads/owen-martin.webp" },
-    { "role": "Recovery lead", "subteam": "recovery", "name": "Abigail Rosehart", "programme": null, "year": null, "photo": null },
-    { "role": "Recovery lead", "subteam": "recovery", "name": "Erik Filippetti", "programme": null, "year": null, "photo": null },
-    { "role": "Avionics lead", "subteam": "avionics", "name": "Ilyaseen Nimji", "programme": null, "year": null, "photo": "/media/leads/ilya-nimji.webp" },
-    { "role": "Avionics lead", "subteam": "avionics", "name": "Krish Patel", "programme": null, "year": null, "photo": null },
-    { "role": "Composites lead", "subteam": "composites", "name": "Jase McClure", "programme": null, "year": null, "photo": "/media/leads/jase-mcclure.webp" },
-    { "role": "Composites lead", "subteam": "composites", "name": "Julia Da Silva", "programme": null, "year": null, "photo": "/media/leads/julia-silva.webp" },
-    { "role": "Propulsion lead", "subteam": "propulsion", "name": "Ella Chow", "programme": null, "year": null, "photo": "/media/leads/ella-chow.webp" },
-    { "role": "Propulsion lead", "subteam": "propulsion", "name": "Sebastian Carter", "programme": null, "year": null, "photo": "/media/leads/sebastian-carter.webp" },
-    { "role": "Propulsion lead", "subteam": "propulsion", "name": "Timothy Manukian", "programme": null, "year": null, "photo": "/media/leads/tim-manukian.webp" },
-    { "role": "Operations lead", "subteam": "operations", "name": "Kendra Osa Nayanka", "programme": null, "year": null, "photo": "/media/leads/kendra-osa-nayanka.webp" },
-    { "role": "Operations lead", "subteam": "operations", "name": "Lea Tejeda", "programme": null, "year": null, "photo": "/media/leads/lea-tejeda.webp" },
-    { "role": "VP finance", "subteam": null, "name": "Jia Agarwal", "programme": null, "year": null, "photo": null },
-    { "role": "Chief safety officer", "subteam": null, "name": "Callum Williams", "programme": null, "year": null, "photo": "/media/leads/callum-williams.webp" }
+    {
+      "role": "President",
+      "subteam": null,
+      "name": "Robin Anderson",
+      "programme": "Computer Engineering",
+      "year": "5th year",
+      "photo": "/media/leads/robin-anderson.webp"
+    },
+    {
+      "role": "Project manager",
+      "subteam": null,
+      "name": "Christina Zhou",
+      "programme": "Mechanical Engineering",
+      "year": "3rd year",
+      "photo": "/media/leads/christina-zhou.webp"
+    },
+    {
+      "role": "Airframe lead",
+      "subteam": "airframe",
+      "name": "Blake Wang",
+      "programme": "Engineering 1",
+      "year": "2nd year",
+      "photo": "/media/leads/blake-wang.webp",
+      "yearReview": true
+    },
+    {
+      "role": "Airframe lead",
+      "subteam": "airframe",
+      "name": "Kiran Suresh",
+      "programme": "Mechanical Engineering",
+      "year": "3rd year",
+      "photo": "/media/leads/kiran-suresh.webp"
+    },
+    {
+      "role": "Payload lead",
+      "subteam": "payload",
+      "name": "Joud Al Mowesati",
+      "programme": "Computer Engineering",
+      "year": "4th year",
+      "photo": "/media/leads/joud-al-mowesati.webp"
+    },
+    {
+      "role": "Payload lead",
+      "subteam": "payload",
+      "name": "Owen Martin",
+      "programme": "Computer Engineering",
+      "year": "5th year",
+      "photo": "/media/leads/owen-martin.webp"
+    },
+    {
+      "role": "Recovery lead",
+      "subteam": "recovery",
+      "name": "Abigail Rosehart",
+      "programme": "Chemical Engineering",
+      "year": "3rd year",
+      "photo": null
+    },
+    {
+      "role": "Recovery lead",
+      "subteam": "recovery",
+      "name": "Erik Filippetti",
+      "programme": "Engineering 1",
+      "year": "2nd year",
+      "photo": null,
+      "yearReview": true
+    },
+    {
+      "role": "Avionics lead",
+      "subteam": "avionics",
+      "name": "Ilyaseen Nimji",
+      "programme": "Engineering 1",
+      "year": "2nd year",
+      "photo": "/media/leads/ilya-nimji.webp",
+      "yearReview": true
+    },
+    {
+      "role": "Avionics lead",
+      "subteam": "avionics",
+      "name": "Krish Patel",
+      "programme": "Computer Engineering",
+      "year": "3rd year",
+      "photo": null
+    },
+    {
+      "role": "Composites lead",
+      "subteam": "composites",
+      "name": "Jase McClure",
+      "programme": "Mechanical Engineering",
+      "year": "4th year",
+      "photo": "/media/leads/jase-mcclure.webp"
+    },
+    {
+      "role": "Composites lead",
+      "subteam": "composites",
+      "name": "Julia Da Silva",
+      "programme": "Civil Engineering",
+      "year": "3rd year",
+      "photo": "/media/leads/julia-silva.webp"
+    },
+    {
+      "role": "Propulsion lead",
+      "subteam": "propulsion",
+      "name": "Ella Chow",
+      "programme": "Mechanical Engineering",
+      "year": "4th year",
+      "photo": "/media/leads/ella-chow.webp"
+    },
+    {
+      "role": "Propulsion lead",
+      "subteam": "propulsion",
+      "name": "Sebastian Carter",
+      "programme": "Engineering Physics",
+      "year": "PhD",
+      "photo": "/media/leads/sebastian-carter.webp"
+    },
+    {
+      "role": "Propulsion lead",
+      "subteam": "propulsion",
+      "name": "Timothy Manukian",
+      "programme": "Honours Chem",
+      "year": "3rd year",
+      "photo": "/media/leads/tim-manukian.webp"
+    },
+    {
+      "role": "Operations lead",
+      "subteam": "operations",
+      "name": "Kendra Osa Nayanka",
+      "programme": "Electrical Engineering + Minor in Nuclear",
+      "year": "3rd year",
+      "photo": "/media/leads/kendra-osa-nayanka.webp"
+    },
+    {
+      "role": "Operations lead",
+      "subteam": "operations",
+      "name": "Lea Tejeda",
+      "programme": "JPPL",
+      "year": "4th year",
+      "photo": "/media/leads/lea-tejeda.webp"
+    },
+    {
+      "role": "Chief safety officer",
+      "subteam": null,
+      "name": "Jia Agarwal",
+      "programme": "Engineering Physics & Management",
+      "year": "4th year",
+      "photo": null
+    },
+    {
+      "role": "VP finance",
+      "subteam": null,
+      "name": "Callum Williams",
+      "programme": "Chemical Engineering and Bioengineering",
+      "year": "5th year",
+      "photo": "/media/leads/callum-williams.webp"
+    }
   ]
 }

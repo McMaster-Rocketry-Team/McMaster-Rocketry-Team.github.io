@@ -16,7 +16,7 @@ const others = subteams.filter((x) => x.data.slug !== t.slug);
 const leads = members.leads.filter((l) => l.subteam === t.slug);
 ---
 
-<BaseLayout title={t.name} description={t.blurb} current="/subteams">
+<BaseLayout title={t.name} description={t.blurb} current="/subteams" reviewLocked={t.reviewLocked}>
 <header class="phead">
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>

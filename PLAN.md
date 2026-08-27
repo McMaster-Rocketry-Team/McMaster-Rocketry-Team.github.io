@@ -1,6 +1,90 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 (Nimbus flight record, fleet heroes, /rockets trim) · branch `dev`
+**Last updated:** 2026-08-26 late evening (commit: sponsors + members programmes; rosters wait) · branch `dev`
+
+## 2026-08-26 late evening — sponsors polish + ReviewMode (Cursor handoff)
+
+Use this section to resume in a fresh chat. Dev server may already be on **localhost:4321** (`pnpm astro dev --host 127.0.0.1 --port 4321`).
+
+### Done this chat
+
+| Item | Detail |
+|---|---|
+| **Founded** | `members.json` stats → **`2022`** (“first Launch Canada flight”). Also filled: faculties **`4`**, first years **`16`**. Active still `100+`. |
+| **Partner logos** | All **9** partners have assets under `public/media/sponsors/` + `href`/`logo` in `sponsorship.json`. Regenerator: `scripts/prepare-sponsor-logos.py`. |
+| **`/sponsors` polish** | Tier-grouped logo wall (Gold → Silver → Bronze), linked logos, hairline grid, tiers intro restored. Logo TODO note removed. |
+| **`/sponsors` ReviewMode** | Fully locked **0–56**. Overlay should show **0 flagged** and hide the Review panel. |
+| **`/members` ReviewMode** | Locked programme lines Robin clicked from Chromium localStorage. **70 locked / 8 open**. |
+| **ReviewMode bugfix** | Browser scan was also flagging `.tag` / `.amount` chrome (index drift vs Python). Now skipped in `ReviewMode.astro` + `scripts/review-scan.py`. Panel hides when `unlocked.length === 0`. |
+
+**Rosters / portraits can wait for launch.** Robin is waiting on photos from people; do not chase. Missing lead portraits: Abigail Rosehart, Erik Filippetti, Krish Patel, Jia Agarwal. `LeadCard` ships the glyph placeholder without a `TODO` string so `check:todo` is not blocked on them. `/members` shead + roster note updated accordingly.
+
+### Uncommitted tree (not on `origin/dev`)
+
+| Path | Change |
+|---|---|
+| `src/data/members.json` | Programme/year on all 19 leads (prior session) + stats 4 / 16 / 2022 |
+| `src/data/sponsorship.json` | Partners with `href` + `logo` |
+| `src/pages/sponsors.astro` | Logo wall by tier; `reviewLocked` **0–56** |
+| `src/pages/members.astro` | `reviewLocked` 70 indices (see below) |
+| `src/styles/site.css` | `.partner-tiers` / `.partner-logo` grid |
+| `src/components/ReviewMode.astro` | Skip `.tag`/`.amount`; hide panel when done |
+| `public/media/sponsors/*` | 9 logo files (svg/webp) |
+| `scripts/prepare-sponsor-logos.py` | **New** — fetch/process logos |
+| `scripts/review-scan.py` | **New** — list open ReviewMode blocks (aligned with browser scan) |
+| Prior session leftovers | `vehicles.json`, `subteams.json`, `content.config.ts`, rockets/outreach review locks, `luminis-v2.png` |
+
+Also untracked: `errors.png` (unrelated; do not commit unless Robin says so).
+
+### ReviewMode status (`python3 scripts/review-scan.py http://localhost:4321 --open`)
+
+| Route | Open | Notes |
+|---|---|---|
+| `/`, `/join`, `/rockets`, Marauder II, Luminis, Luminis V2, Nimbus, Osiris, `/subteams`, **`/sponsors`** | **0** | Fully locked |
+| `/rockets/marauder-i` | **1** | Build narrative TODO |
+| `/subteams/[slug]` (×7) | **3–8** each | detail/first/skills/hours TODOs + lead programme lines (subteam pages don’t yet inherit filled programmes as locked) |
+| `/outreach` | **4** | STEM name/when, info nights, LC bingo, one-off funding |
+| `/members` | **8** | See below |
+
+**`/members` still open:**
+
+- Programme lines **not** in Robin’s click set: **20** Blake, **35** Erik, **38** Ilyaseen (`yearReview: true` — confirm stream), **62** Lea (JPPL)
+- **69 / 71 / 73** stats (faculties 4, first years 16, founded 2022) — filled but not clicked/locked yet
+- Roster note / portraits: **not a launch blocker** (waiting on photos from people)
+
+**How to lock clicks:** ReviewMode → Chromium `localStorage` key `mrt-review:<path>`. Agent can also read Chromium LevelDB under `~/.config/chromium/Default/Local Storage/leveldb/`. Prefer paste from console when unsure:
+
+```javascript
+copy(JSON.stringify(JSON.parse(localStorage.getItem('mrt-review:/members') || '[]')))
+```
+
+**Do not** batch-lock all non-TODO blocks — Robin rejected that (2026-08-26).
+
+Current `members.astro` `reviewLocked` (70): `[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,36,37,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,64,65,66,67,68,70,72,74,75,76,77]`
+
+### Deploy gate
+
+`pnpm check:todo` remaining after this pass: subteam copy, outreach flags, Marauder I build. **Rosters are not a launch blocker.** CI still disabled (`35a592b`).
+
+### Next session, in order
+
+1. **Subteam blurbs** (Avionics is the template: `detail` / `first` / `skills` / `hours`). Six teams still empty. Biggest remaining `check:todo` chunk.
+2. Lock remaining `/members` ReviewMode blocks Robin verifies (yearReview three + Lea + stats), or confirm/fix those facts. Do **not** wait on portraits.
+3. Outreach TODO flags + Marauder I `build`.
+4. `check:todo` → merge `main` → remove `ReviewMode.astro` before launch.
+5. Optional: design spec v1.2 `/design-sync` to claude.ai/design (still owed).
+
+Logo sources worth knowing: MES / SOLIDWORKS / Altium from 2022 sponsorship PDF; MDA + McMaster Eng + Origin + Aversan + Onshape + Isaac from official sites. Re-run `python3 scripts/prepare-sponsor-logos.py` if assets need refresh.
+
+---
+
+## 2026-08-26 evening — ReviewMode + members Excel (prior handoff)
+
+Superseded for “what to do next” by the late-evening section above. Kept for Excel import rules.
+
+**Source:** `~/Downloads/2025-2026 Active Members.xlsx` — **9 sheets**. ~91 active members. Year: +1 from sheet level. Programme expanded from abbreviations. **`yearReview: true`:** Blake Wang, Erik Filippetti, Ilyaseen Nimji. Robin: 5th year Computer Engineering. Exec swap: Jia → CSO, Callum → VP finance. Name aliases: Kiran / Julia / Abigail / Kendra as before.
+
+---
 
 ## 2026-08-26 Nimbus flight record + /rockets trim
 
