@@ -7,19 +7,26 @@
     "detail": null,
     "first": null,
     "skills": null,
-    "hours": null,
+    "hours": "About 6 h / week",
+    "photo": null,
+    "photoAlt": null,
+    "photoCaption": null,
     "reviewLocked": [0, 1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 31, 32, 33, 34]
   },
   {
     "id": "avionics",
     "slug": "avionics",
     "name": "Avionics",
-    "blurb": "Flight computers and telemetry: embedded firmware and PCB design. This subteam decides when every event on the flight fires.",
-    "detail": "Avionics builds the flight computer stack: the sensors that tell the rocket where it is, the logic that decides when to fire each event, and the telemetry that gets the data back to the ground. Competition rules require a commercial altimeter and GPS as the primary flight computer, currently a Blue Raven paired with a Featherweight GPS. Alongside that, the subteam designs its own SRAD boards, such as Void Lake, which fly as backup. If you have written code before, this is the fastest place on the team to see your work fly. If you have not, this is where a lot of us learned.",
-    "first": "Shadow a flight-computer build, wire and test one sensor board, and help run a ground test. No prior hardware experience assumed.",
-    "skills": "C or Python, a soldering iron you are not afraid of, and any exposure to control theory. We teach the rest.",
+    "blurb": "Flight computers and telemetry: embedded firmware and PCB design in KiCad. This subteam decides when every event on the flight fires.",
+    "detail": "Avionics builds the flight computer stack: the sensors that tell the rocket where it is, the logic that decides when to fire each event, and the telemetry that gets the data back to the ground. Competition rules require a commercial altimeter and GPS as the primary flight computer, currently a Blue Raven paired with a Featherweight GPS. Alongside that, the subteam designs its own SRAD boards in KiCad, such as Void Lake, which fly as backup. There is also mechanical work if you want it: mounts, harnesses, and how boards and wiring sit in the airframe. If you have written code before, this is the fastest place on the team to see your work fly. If you have not, this is where a lot of us learned.",
+    "first": "Shadow a flight-computer build, start a board in KiCad, wire and test one sensor, and help run a ground test. No prior hardware experience assumed.",
+    "skills": "C or Python, KiCad, a soldering iron you are not afraid of, and any exposure to control theory. CAD helps if you want to work on how boards and wiring attach to the internal structure. We teach the rest.",
     "hours": "About 6 h / week",
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 29, 30, 31, 32, 33]
+    "heroImage": "/media/subteams/avionics-hero.webp",
+    "photo": "/media/subteams/avionics-work.webp",
+    "photoAlt": "Hands wiring an open avionics bay on the workbench: coloured harnesses, a circuit board with red indicator LEDs, and tools laid out beside it.",
+    "photoCaption": "Wiring the bay on the bench. The harnesses go in before the tube closes.",
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {
     "id": "propulsion",
@@ -29,7 +36,10 @@
     "detail": null,
     "first": null,
     "skills": null,
-    "hours": null,
+    "hours": "About 6 h / week",
+    "photo": null,
+    "photoAlt": null,
+    "photoCaption": null,
     "reviewLocked": [0, 1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 32, 33, 34, 35, 36]
   },
   {
@@ -40,7 +50,10 @@
     "detail": null,
     "first": null,
     "skills": null,
-    "hours": null,
+    "hours": "About 6 h / week",
+    "photo": null,
+    "photoAlt": null,
+    "photoCaption": null,
     "reviewLocked": [0, 1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 31, 32, 33, 34]
   },
   {
@@ -51,7 +64,10 @@
     "detail": null,
     "first": null,
     "skills": null,
-    "hours": null,
+    "hours": "About 6 h / week",
+    "photo": null,
+    "photoAlt": null,
+    "photoCaption": null,
     "reviewLocked": [0, 1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 31, 32, 33, 34]
   },
   {
@@ -62,7 +78,10 @@
     "detail": null,
     "first": null,
     "skills": null,
-    "hours": null,
+    "hours": "About 6 h / week",
+    "photo": null,
+    "photoAlt": null,
+    "photoCaption": null,
     "reviewLocked": [0, 1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 31, 32, 33, 34]
   },
   {
@@ -73,7 +92,10 @@
     "detail": null,
     "first": null,
     "skills": null,
-    "hours": null,
+    "hours": "About 6 h / week",
+    "photo": null,
+    "photoAlt": null,
+    "photoCaption": null,
     "reviewLocked": [0, 1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 31, 32, 33, 34]
   }
 ]

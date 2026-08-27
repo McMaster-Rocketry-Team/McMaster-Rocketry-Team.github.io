@@ -6,7 +6,7 @@
     { "label": "Recovery", "note": "parachutes, recovery harness lines and hardware, commercial recovery electronics, airbrake structure", "amount": "$2,849" },
     { "label": "Controls and avionics bay", "note": "recovery control PCBs, flight data acquisition, avionics bay structure", "amount": "$3,429" },
     { "label": "Composite manufacturing", "note": "fibreglass and carbon fibre, epoxy, jigs, PPE", "amount": "$1,845" },
-    { "label": "Operations", "note": "outreach activities, Ad Astra magazine printing, food for events", "amount": "$2,759" },
+    { "label": "Operations", "note": "campus outreach, recruitment, and team logistics", "amount": "$2,759" },
     { "label": "Propulsion", "note": "engine assembly, pressure testing setup, fill system, engine testing, fuel casting setup", "amount": "$9,445" },
     { "label": "Competition expenses 2027", "note": "Launch Canada fees, accommodation, travel", "amount": "$15,950" },
     { "label": "Total", "note": "2026–27 season projected expenses", "amount": "$50,034" }

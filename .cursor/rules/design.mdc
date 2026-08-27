@@ -16,8 +16,9 @@ Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel
 | Context | Pattern |
 |---|---|
 | Home | `.hero` + `.bgvid` + `.herobox` |
-| Vehicle with `heroImage` | `.phead.has-hero` + `.herobox` |
-| Everything else (Join, Sponsors, vehicles without hero photo) | `.phead` only — tag, h1, lede in `.wrap` |
+| Vehicle / subteam / sponsors with photo | `.phead.has-hero` + `.herobox` |
+| Landscape product shots (sponsors) | add `.has-hero--wide` so cover matches the photo ratio |
+| Everything else (Join, pages without a hero photo) | `.phead` only — tag, h1, lede in `.wrap` |
 
 ```html
 <!-- ✅ photo hero -->

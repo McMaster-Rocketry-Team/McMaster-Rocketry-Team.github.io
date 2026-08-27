@@ -14,30 +14,55 @@ export async function getStaticPaths() {
 const { subteams, t } = Astro.props;
 const others = subteams.filter((x) => x.data.slug !== t.slug);
 const leads = members.leads.filter((l) => l.subteam === t.slug);
+const leadSlots = (leads.length || 1) + 1;
+const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
 ---
 
 <BaseLayout title={t.name} description={t.blurb} current="/subteams" reviewLocked={t.reviewLocked}>
-<header class="phead">
+<header class={t.heroImage ? 'phead has-hero' : 'phead'} style={t.heroImage ? `--hero-img:url(${t.heroImage})` : undefined}>
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="tag">Subteams</div>
-    <h1>{t.name}</h1>
-    <p class="lede">{t.blurb}</p>
+    {t.heroImage ? (
+      <div class="herobox">
+        <div class="tag">Subteams</div>
+        <h1>{t.name}</h1>
+        <p class="lede">{t.blurb}</p>
+      </div>
+    ) : (
+      <>
+        <div class="tag">Subteams</div>
+        <h1>{t.name}</h1>
+        <p class="lede">{t.blurb}</p>
+      </>
+    )}
   </div>
 </header>
 
 <section class="paper">
   <div class="wrap">
-    <div class="prose">
-      {t.detail ? <p>{t.detail}</p> : <><p>{t.blurb}</p><p><TodoBadge label="full subteam description" /></p></>}
+    <div class="subteam-intro">
+      <div class="prose">
+        {t.detail ? <p>{t.detail}</p> : <><p>{t.blurb}</p><p><TodoBadge label="full subteam description" /></p></>}
+      </div>
+      <figure class="subteam-shot">
+        <div class="tag">{t.photoTag || 'In the shop'}</div>
+        {t.photo ? (
+          <div class="ph"><img src={t.photo} alt={t.photoAlt || ''} loading="lazy" /></div>
+        ) : (
+          <div class="ph"><span>Photo slot: work in progress<br />TODO</span></div>
+        )}
+        {t.photo && t.photoCaption ? (
+          <figcaption>{t.photoCaption}</figcaption>
+        ) : null}
+      </figure>
     </div>
 
     <div class="cards c3 cards--follow">
       <div class="card">
         <div>
           <div class="tag">What you'd do</div>
-          <h3>First term</h3>
+          <h3>First year</h3>
           <p>{t.first || <TodoBadge label="what a first-term member actually does" />}</p>
         </div>
       </div>
@@ -52,9 +77,6 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
         <div>
           <div class="tag">Time</div>
           <h3>{t.hours || 'TODO'}</h3>
-          <p>More in the four weeks before a launch, much less over exams. We plan around
-            your term, not the other way round.
-            <span class="todo" aria-hidden="true">TODO: confirm real commitment</span></p>
         </div>
       </div>
     </div>
@@ -67,7 +89,7 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
       <div><div class="tag">The others</div><h2>Every other subteam.</h2></div>
       <p>Each one takes members with no experience every term.</p>
     </div>
-    <div class="cards c4">
+    <div class="cards c3">
       {others.map((x) => (
         <a class="card" href={`/subteams/${x.data.slug}`}>
           <div><h3>{x.data.name}</h3><p>{x.data.blurb}</p></div>
@@ -79,7 +101,7 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
       <div><div class="tag">Leads</div><h2>Who runs it.</h2></div>
       <p>Named leads, so you know who to ask.</p>
     </div>
-    <div class="cards c3">
+    <div class={`cards ${leadCols}`}>
       {leads.length ? leads.map((lead) => (
         <div class="card"><div>
           <div class="tag">Subteam lead</div>
@@ -100,11 +122,13 @@ const leads = members.leads.filter((l) => l.subteam === t.slug);
           <p>Year and programme. One sentence on what they work on.</p>
         </div></div>
       )}
-      <div class="card"><div>
-        <div class="tag">Recruiting</div><h3>Open now</h3>
-        <p>We take new members every term, and we don't expect experience.</p>
-        <div class="btnrow"><a class="btn" href="/join">How to join</a></div>
-      </div></div>
+      <a class="card" href="/join">
+        <div>
+          <div class="tag">Recruiting</div>
+          <h3>Join us</h3>
+          <p>How to apply, and when.</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>

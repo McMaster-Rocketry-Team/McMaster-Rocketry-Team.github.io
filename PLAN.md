@@ -1,6 +1,53 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 late evening (outreach copy locked; sponsors + members programmes) · branch `dev`
+**Last updated:** 2026-08-26 night (subteam pages + sponsors hero/copy; Avionics locked) · branch `dev`
+
+## 2026-08-26 night — subteams polish, sponsors hero, copy tone
+
+Use this section to resume. Dev server: `pnpm astro dev --host localhost --port 4321` (IPv6 `localhost`; `127.0.0.1` may not hit the listener).
+
+### Done this pass
+
+| Item | Detail |
+|---|---|
+| **Avionics copy** | KiCad PCB design; optional mechanical fit-up for boards/wiring in the airframe. Hours **About 6 h / week**. |
+| **Time copy sitewide** | Removed “less over exams / we plan around your term.” Join FAQ is just six hours/week. Subteam Time card is the hours heading only. All seven teams have `hours` filled. |
+| **Subteam template** | Work photo beside detail blurb (`.subteam-intro` / `.subteam-shot`). Tag **In the shop** + caption when present. Recruiting card links to `/join` (no duplicated dates). Others grid is **c3** so hairlines close. Leads grid column count divides evenly. |
+| **Avionics media** | Work shot `/media/subteams/avionics-work.webp` (from Downloads `avionics_payload.jpg`). Hero `/media/subteams/avionics-hero.webp` (from `avionics.jpg`) via optional `heroImage` + `.herobox`. |
+| **Avionics ReviewMode** | Fully locked **0–33** (Chromium clicks `[8,26,28]` merged). |
+| **`/sponsors` hero** | Photo hero from Downloads `sponsor_hero_2.jpg` → `/media/sponsors/sponsor-hero.webp`. `.has-hero--wide` so landscape cover crops less. |
+| **Sponsors copy** | Operations budget note → “campus outreach, recruitment, and team logistics” (no food/magazine). In-kind: materials/CNC/PCBs/connectors/test gear only — no engineer’s time. |
+| **Outreach** | Prior commit `4892f22`: CAGIS fall 2025, info nights, LC bingo one-off, sponsor email CTA; `/outreach` fully locked. |
+| **Rosters** | Still not a launch blocker; waiting on portraits from people. |
+
+### Schema / data notes
+
+- Subteams: optional `heroImage`, `photo`, `photoAlt`, `photoCaption`, `photoTag`.
+- Fill other teams the same way as Avionics when assets/copy arrive.
+
+### ReviewMode / deploy gate
+
+| Route | Open | Notes |
+|---|---|---|
+| `/`, `/join`, `/rockets`, most vehicles, `/subteams`, `/sponsors`, `/outreach`, **`/subteams/avionics`** | **0** | Fully locked |
+| `/rockets/marauder-i` | **1** | Build narrative TODO |
+| Other `/subteams/[slug]` | **7–8** each | detail / first / skills + unreviewed chrome (hours, others H2, Join card, some lead names) |
+| `/members` | **~8** | yearReview lines + stats clicks still open; portraits wait |
+
+`check:todo` still fails on empty subteam blurbs + Marauder I build + empty photo slots on other subteams. CI disabled (`35a592b`).
+
+### Next session, in order
+
+1. **Subteam blurbs** for the six empty teams (Avionics is the template). Biggest remaining gate.
+2. Lock remaining `/members` blocks Robin verifies. Do **not** wait on portraits.
+3. Marauder I `build`.
+4. Optional: more subteam `heroImage` / work photos when assets land.
+5. `check:todo` → merge `main` → remove `ReviewMode.astro` before launch.
+6. Optional: design spec v1.2 `/design-sync` to claude.ai/design (still owed).
+
+Untracked and **do not commit** unless Robin asks: `errors.png`.
+
+---
 
 ## 2026-08-26 night — outreach copy + ReviewMode lock
 
@@ -14,79 +61,17 @@
 
 ---
 
-## 2026-08-26 late evening — sponsors polish + ReviewMode (Cursor handoff)
+## 2026-08-26 late evening — sponsors polish + ReviewMode (prior)
 
-Use this section to resume in a fresh chat. Dev server may already be on **localhost:4321** (`pnpm astro dev --host 127.0.0.1 --port 4321`).
+Superseded for “what to do next” by the night section above. Kept for logo sources and members lock list.
 
-### Done this chat
+**Partner logos:** all 9 under `public/media/sponsors/` + regenerator `scripts/prepare-sponsor-logos.py`. Sources: MES / SOLIDWORKS / Altium from 2022 sponsorship PDF; MDA + McMaster Eng + Origin + Aversan + Onshape + Isaac from official sites.
 
-| Item | Detail |
-|---|---|
-| **Founded** | `members.json` stats → **`2022`** (“first Launch Canada flight”). Also filled: faculties **`4`**, first years **`16`**. Active still `100+`. |
-| **Partner logos** | All **9** partners have assets under `public/media/sponsors/` + `href`/`logo` in `sponsorship.json`. Regenerator: `scripts/prepare-sponsor-logos.py`. |
-| **`/sponsors` polish** | Tier-grouped logo wall (Gold → Silver → Bronze), linked logos, hairline grid, tiers intro restored. Logo TODO note removed. |
-| **`/sponsors` ReviewMode** | Fully locked **0–56**. Overlay should show **0 flagged** and hide the Review panel. |
-| **`/members` ReviewMode** | Locked programme lines Robin clicked from Chromium localStorage. **70 locked / 8 open**. |
-| **ReviewMode bugfix** | Browser scan was also flagging `.tag` / `.amount` chrome (index drift vs Python). Now skipped in `ReviewMode.astro` + `scripts/review-scan.py`. Panel hides when `unlocked.length === 0`. |
+**Rosters / portraits can wait for launch.** Missing: Abigail Rosehart, Erik Filippetti, Krish Patel, Jia Agarwal.
 
-**Rosters / portraits can wait for launch.** Robin is waiting on photos from people; do not chase. Missing lead portraits: Abigail Rosehart, Erik Filippetti, Krish Patel, Jia Agarwal. `LeadCard` ships the glyph placeholder without a `TODO` string so `check:todo` is not blocked on them. `/members` shead + roster note updated accordingly.
-
-### Uncommitted tree (not on `origin/dev`)
-
-| Path | Change |
-|---|---|
-| `src/data/members.json` | Programme/year on all 19 leads (prior session) + stats 4 / 16 / 2022 |
-| `src/data/sponsorship.json` | Partners with `href` + `logo` |
-| `src/pages/sponsors.astro` | Logo wall by tier; `reviewLocked` **0–56** |
-| `src/pages/members.astro` | `reviewLocked` 70 indices (see below) |
-| `src/styles/site.css` | `.partner-tiers` / `.partner-logo` grid |
-| `src/components/ReviewMode.astro` | Skip `.tag`/`.amount`; hide panel when done |
-| `public/media/sponsors/*` | 9 logo files (svg/webp) |
-| `scripts/prepare-sponsor-logos.py` | **New** — fetch/process logos |
-| `scripts/review-scan.py` | **New** — list open ReviewMode blocks (aligned with browser scan) |
-| Prior session leftovers | `vehicles.json`, `subteams.json`, `content.config.ts`, rockets/outreach review locks, `luminis-v2.png` |
-
-Also untracked: `errors.png` (unrelated; do not commit unless Robin says so).
-
-### ReviewMode status (`python3 scripts/review-scan.py http://localhost:4321 --open`)
-
-| Route | Open | Notes |
-|---|---|---|
-| `/`, `/join`, `/rockets`, Marauder II, Luminis, Luminis V2, Nimbus, Osiris, `/subteams`, **`/sponsors`** | **0** | Fully locked |
-| `/rockets/marauder-i` | **1** | Build narrative TODO |
-| `/subteams/[slug]` (×7) | **3–8** each | detail/first/skills/hours TODOs + lead programme lines (subteam pages don’t yet inherit filled programmes as locked) |
-| `/outreach` | **0** | Fully locked (STEM fall 2025, info nights, LC bingo one-off, sponsor email CTA) |
-| `/members` | **8** | See below |
-
-**`/members` still open:**
-
-- Programme lines **not** in Robin’s click set: **20** Blake, **35** Erik, **38** Ilyaseen (`yearReview: true` — confirm stream), **62** Lea (JPPL)
-- **69 / 71 / 73** stats (faculties 4, first years 16, founded 2022) — filled but not clicked/locked yet
-- Roster note / portraits: **not a launch blocker** (waiting on photos from people)
-
-**How to lock clicks:** ReviewMode → Chromium `localStorage` key `mrt-review:<path>`. Agent can also read Chromium LevelDB under `~/.config/chromium/Default/Local Storage/leveldb/`. Prefer paste from console when unsure:
-
-```javascript
-copy(JSON.stringify(JSON.parse(localStorage.getItem('mrt-review:/members') || '[]')))
-```
-
-**Do not** batch-lock all non-TODO blocks — Robin rejected that (2026-08-26).
+**`/members` still open (do not batch-lock):** Blake **20**, Erik **35**, Ilyaseen **38** (`yearReview`), Lea **62**; stats **69 / 71 / 73**.
 
 Current `members.astro` `reviewLocked` (70): `[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,36,37,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,64,65,66,67,68,70,72,74,75,76,77]`
-
-### Deploy gate
-
-`pnpm check:todo` remaining after this pass: subteam copy, Marauder I build. **Outreach TODO flags cleared.** **Rosters are not a launch blocker.** CI still disabled (`35a592b`).
-
-### Next session, in order
-
-1. **Subteam blurbs** (Avionics is the template: `detail` / `first` / `skills` / `hours`). Six teams still empty. Biggest remaining `check:todo` chunk.
-2. Lock remaining `/members` ReviewMode blocks Robin verifies (yearReview three + Lea + stats), or confirm/fix those facts. Do **not** wait on portraits.
-3. Marauder I `build`.
-4. `check:todo` → merge `main` → remove `ReviewMode.astro` before launch.
-5. Optional: design spec v1.2 `/design-sync` to claude.ai/design (still owed).
-
-Logo sources worth knowing: MES / SOLIDWORKS / Altium from 2022 sponsorship PDF; MDA + McMaster Eng + Origin + Aversan + Onshape + Isaac from official sites. Re-run `python3 scripts/prepare-sponsor-logos.py` if assets need refresh.
 
 ---
 

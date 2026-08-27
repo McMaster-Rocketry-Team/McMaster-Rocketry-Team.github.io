@@ -117,7 +117,7 @@ window.MRT = {
       { label:"Recovery", note:"parachutes, recovery harness lines and hardware, commercial recovery electronics, airbrake structure", amount:"$2,849" },
       { label:"Controls and avionics bay", note:"recovery control PCBs, flight data acquisition, avionics bay structure", amount:"$3,429" },
       { label:"Composite manufacturing", note:"fibreglass and carbon fibre, epoxy, jigs, PPE", amount:"$1,845" },
-      { label:"Operations", note:"outreach activities, Ad Astra magazine printing, food for events", amount:"$2,759" },
+      { label:"Operations", note:"campus outreach, recruitment, and team logistics", amount:"$2,759" },
       { label:"Propulsion", note:"engine assembly, pressure testing setup, fill system, engine testing, fuel casting setup", amount:"$9,445" },
       { label:"Competition expenses 2027", note:"Launch Canada fees, accommodation, travel", amount:"$15,950" },
       { label:"Total", note:"2026–27 season projected expenses", amount:"$50,034" }
@@ -193,7 +193,7 @@ window.MRT = {
       { q:"I am not in engineering. Is there a place for me?",
         a:"Yes. Operations is a full subteam: it runs sponsorship, the budget, and everything we do on campus. Commerce, communications, humanities and science students all sit on it. Payload also takes science students most years." },
       { q:"How much time does it actually take?",
-        a:"About six hours a week for most members, rising in the four weeks before a launch and dropping to almost nothing over exams. We plan around the academic term.",
+        a:"About six hours a week for most members.",
         todo:"confirm the real figure" },
       { q:"Do I need to pay anything?", a:null,
         todo:"answer this: membership fee, travel costs to competition, and what the team covers" },

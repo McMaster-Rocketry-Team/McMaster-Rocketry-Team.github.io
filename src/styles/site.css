@@ -215,6 +215,11 @@ nav[data-scrolled="true"]{
 .phead.has-hero::before{content:"";position:absolute;inset:0;z-index:0;
   background-image:var(--hero-img);background-size:cover;background-position:center}
 .phead.has-hero .wrap{position:relative;z-index:2}
+/* Wide product / logo heroes (e.g. /sponsors): match the photo's landscape
+   ratio so cover does not zoom into a tight centre crop. */
+.phead.has-hero--wide{min-height:clamp(320px, calc(100vw * 0.54), 680px);
+  display:flex;align-items:flex-end}
+.phead.has-hero--wide .wrap{width:100%;padding-bottom:clamp(28px,5vh,56px)}
 /* Full-colour photographic / video heroes: copy sits in this panel so the
    media stays unfiltered. Same graphite-fill-plus-hairline as .vidtoggle,
    sized to the text rather than the full header. */
@@ -655,6 +660,24 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
 .gallery .ph span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
 .gallery figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-paper);line-height:1.55}
+
+/* Subteam page: detail prose left, one work photo right. Not .event-block
+   (that pattern is photo-left / copy-right with hairlines). Stacks below 860px. */
+.subteam-intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:clamp(22px,3.5vw,40px);align-items:start}
+.subteam-intro .prose{max-width:none}
+.subteam-shot{margin:0}
+.subteam-shot .tag{margin:0 0 10px}
+.subteam-shot .ph{aspect-ratio:4/3;background:var(--fog-100);display:grid;place-items:center;
+  border:1px solid var(--rule-light);overflow:hidden}
+.subteam-shot .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.subteam-shot .ph span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
+.subteam-shot figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-paper);line-height:1.55}
+@media(max-width:860px){
+  .subteam-intro{grid-template-columns:1fr}
+  .subteam-shot .ph{aspect-ratio:3/2}
+}
 
 /* Outreach split rows. Not .card (hover-fill tile) and not a 3-up grid of
    unnamed past events. Each kind of day is one full-width block: photo on

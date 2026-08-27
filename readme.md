@@ -26,7 +26,10 @@ Open http://127.0.0.1:4321/. `pnpm astro build` writes `dist/`. `pnpm astro prev
 | Fleet cutouts (shipped) | `public/media/rockets/` |
 | Lead portraits (shipped) | `public/media/leads/` |
 | Outreach photos (shipped) | `public/media/outreach/` |
+| Subteam heroes / work shots | `public/media/subteams/` |
+| Sponsor logos + sponsors hero | `public/media/sponsors/` |
 | Fleet cutout script | `scripts/cut-fleet-cutout.py` |
+| ReviewMode open-block scan | `scripts/review-scan.py` |
 | Progress and open questions | `PLAN.md` |
 | Content only Robin can supply | `mockups/TODO-MANIFEST.md` |
 

@@ -67,6 +67,16 @@ const subteams = defineCollection({
     first: z.string().nullable(),
     skills: z.string().nullable(),
     hours: z.string().nullable(),
+    // Full-bleed pagehead photo. Most subteams stay a plain .phead until one
+    // lands; with a hero, copy sits in .herobox like vehicle pages.
+    heroImage: z.string().nullable().optional(),
+    // One work-in-progress shot for the subteam page. Null until a real
+    // photo lands; the template shows a single slot rather than inventing a
+    // multi-image gallery.
+    photo: z.string().nullable().optional(),
+    photoAlt: z.string().nullable().optional(),
+    photoCaption: z.string().nullable().optional(),
+    photoTag: z.string().nullable().optional(),
     reviewLocked: z.array(z.number()).optional(),
   }),
 });

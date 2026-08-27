@@ -18,13 +18,15 @@ const partnersByTier = tierOrder.map((tier) => ({
   current="/sponsors"
   reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56]}
 >
-<header class="phead">
+<header class="phead has-hero has-hero--wide" style="--hero-img:url(/media/sponsors/sponsor-hero.webp)">
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="tag">Sponsors</div>
-    <h1>Put your name<br>on a rocket.</h1>
-    <p class="lede">We're a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting our roughly 20-person competition crew to a launch site. It also puts your company in front of them while they decide where to work.</p>
+    <div class="herobox">
+      <div class="tag">Sponsors</div>
+      <h1>Put your name<br>on a rocket.</h1>
+      <p class="lede">We're a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting our roughly 20-person competition crew to a launch site. It also puts your company in front of them while they decide where to work.</p>
+    </div>
   </div>
 </header>
 
@@ -79,8 +81,8 @@ const partnersByTier = tierOrder.map((tier) => ({
   <div class="wrap">
     <div class="prose prose--follow">
       <p><b>In-kind support.</b> We'll take materials, machine shop CNC time, PCBs, connectors,
-        test equipment, or an afternoon of an engineer&rsquo;s time in place of cash. Tell us
-        what you have and we'll say whether we can use it.</p>
+        or test equipment in place of cash. Tell us what you have and we'll say whether we
+        can use it.</p>
     </div>
     <div class="btnrow">
       <a class="btn solid" href={mailHref()}>Talk to us</a>
