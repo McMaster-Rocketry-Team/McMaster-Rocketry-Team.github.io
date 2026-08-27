@@ -12,8 +12,8 @@ Before any push that would hit CI:
 
 - **Deploy** (`.github/workflows/deploy.yml`): runs on push to `main` only, and always runs
   `pnpm check:todo` after build. Production must be clean.
-- **Build check** (`.github/workflows/build-check.yml`): **manual only** (`workflow_dispatch`).
-  Do not re-enable push/PR triggers until `check:todo` passes on `dev`.
+- **Build check** (`.github/workflows/build-check.yml`): runs on push/PR to `dev`, plus
+  manual dispatch. Re-enabled 2026-08-27 after ReviewMode strip and a clean `check:todo`.
 
 When Robin says the site is ready to go live, run `check:todo` once more, then push/merge to
 `main` or manually dispatch build check if a sanity run is wanted.

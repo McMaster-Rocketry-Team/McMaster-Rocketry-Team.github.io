@@ -1,9 +1,11 @@
 name: Build check
 
-# Manual only until the built site passes check:todo (no TODO strings in dist/).
-# Do not add push/PR triggers back while placeholder content remains — see
-# .cursor/rules/ci.mdc and scripts/check-todo.mjs.
+# Runs on dev pushes/PRs. Production deploy on main still runs check:todo in deploy.yml.
 on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
   workflow_dispatch:
 
 jobs:
