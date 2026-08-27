@@ -19,7 +19,7 @@
     "summary": "The first vehicle the team ever flew, and the one that proved we could get off the pad at all.",
     "specs": { "length": "2.6 m (100.6 in)", "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
     "build": "Marauder I was the team's first competition vehicle, built for Launch Canada's 10k COTS division in 2022. A 6 in fiberglass airframe with in-house structures, dual-deploy recovery, and student avionics, it carried McMaster 23 lettering on the pad. The rocket left the rail cleanly; we never recovered the airframe from the bush. The flight still proved the team could integrate subsystems and get off the pad.",
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
   },
   {
     "id": "marauder-ii",
@@ -41,7 +41,7 @@
     "summary": "Our first international competition vehicle.",
     "specs": { "length": "2.7 m (105 in)", "mass": "22.7 kg dry / 26.5 kg wet", "motor": "CTI M2150", "recovery": "2 ft drogue @ apogee · 12 ft main @ 1300 ft", "result": null, "accel": null },
     "build": "Marauder II was the team's first Spaceport America Cup vehicle: a 5 in fiberglass airframe with clipped-delta fins, dual-deploy recovery, and an SRAD avionics suite flying as backup to COTS altimeters. It flew on a CTI M2150 (7,455 N·s).",
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
   },
   {
     "id": "luminis",
@@ -64,7 +64,7 @@
     "summary": "The first airframe designed around its payload rather than the other way round.",
     "specs": { "length": "2.8 m (110 in)", "mass": "16.8 kg dry / 22.6 kg wet", "motor": "CTI 6800M3700-P", "recovery": "2 ft drogue @ apogee · 12 ft main @ 1400 ft", "result": null, "accel": null },
     "build": "Luminis kept the 5 in fiberglass layout from Marauder II (Von Karman nose, three clipped-delta carbon fins) and added the team's first functional payload: an onboard camera for flight video. Dual-deploy recovery used a COTS EasyMini with Void Lake 4 as SRAD backup. It flew on a CTI 6800M3700-P (6,800 N·s).",
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
   },
   {
     "id": "luminis-v2",
@@ -87,7 +87,7 @@
     "summary": "The first vehicle we flew with a flight computer we trusted enough to publish the numbers.",
     "specs": { "length": "2.8 m (110 in)", "mass": null, "motor": "CTI M1545", "recovery": null, "result": null, "accel": null },
     "build": "Luminis V2 reused the same 5 in, 2.8 m airframe as Luminis. Its Launch Canada 2024 flight was the team's first fully nominal launch and recovery. Blue Raven flew as primary with EasyMini and Void Lake (VLF4) as backups. VLF4 came back flight-proven. The payload camera recorded the full flight. Apogee was 10,564 ft, 5.2% below the projected 11,146 ft.",
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
   },
   {
     "id": "nimbus",
@@ -127,7 +127,7 @@
       { "src": "/media/rockets/osiris-gallery-crew.webp", "alt": "The team stands beside Osiris, vertical on the rail, before launch.", "caption": "Beside the airframe on the rail. Last checks before launch." },
       { "src": "/media/rockets/osiris-gallery-recovery-crew.webp", "alt": "The recovery team in the bush, holding the recovered airframe sections beside the caught parachute.", "caption": "The recovery crew in the bush with the airframe sections and caught parachute." }
     ],
-    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
     "paleArt": true,
     "apogee": 33584,
     "mach": 1.92,
