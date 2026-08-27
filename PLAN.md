@@ -1,6 +1,28 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 night (repo hygiene cleanup) · branch `dev`
+**Last updated:** 2026-08-26 night (Robin signing off) · branch `dev` @ `170b5e5` · `origin/dev` in sync
+
+## Sign-off — resume here
+
+**Verdict:** on track for Facultyfest / Squarespace cutoff **Mon 31 Aug** (~5 days). Risk is content, not engineering.
+
+**Deploy gate:** `pnpm check:todo` → **25** hits (was ~79). Breakdown: 6 subteams × 3 copy fields (18) + 6 empty work-photo TODOs + Marauder I build (1). CI still off (`35a592b`).
+
+**ReviewMode:** home, join, rockets index, most vehicles, subteams index, sponsors, outreach, **avionics** = 0 open. Still open: Marauder I (1), six empty subteams (7–8 each), members (~8 programme/stats clicks — not a gate).
+
+**Next session, in order**
+
+1. Write **detail / first year / skills** for Airframe, Propulsion, Recovery, Payload, Composites, Operations (Avionics is the template).
+2. Drop TODO photo slots when `photo` is null **or** add work shots.
+3. Marauder I `build` in `vehicles.json`.
+4. `check:todo` → 0 · strip `ReviewMode.astro` · re-enable CI · merge `dev` → `main`.
+
+**Can wait:** 4 lead portraits, extra subteam heroes, hidden outreach events, design-sync, safety page.
+
+**Dev server:** `pnpm astro dev --host localhost --port 4321`  
+**Go-live canvas:** `~/.cursor/projects/home-robin-Documents-Rocketry-McMaster-Rocketry-Team-github-io/canvases/go-live-status.canvas.tsx`
+
+---
 
 ## 2026-08-26 night — repo hygiene
 
@@ -56,12 +78,7 @@ Use this section to resume. Dev server: `pnpm astro dev --host localhost --port 
 
 ### Next session, in order
 
-1. **Subteam blurbs** for the six empty teams (Avionics is the template). Biggest remaining gate.
-2. Lock remaining `/members` blocks Robin verifies. Do **not** wait on portraits.
-3. Marauder I `build`.
-4. Optional: more subteam `heroImage` / work photos when assets land.
-5. `check:todo` → merge `main` → remove `ReviewMode.astro` before launch.
-6. Optional: design spec v1.2 `/design-sync` to claude.ai/design (still owed).
+See **Sign-off — resume here** at the top of this file (authoritative as of 2026-08-26 night).
 
 Untracked staging dirs are gitignored (`leads_photos/`, root `outreach/`, `temp osiris images/`).
 
