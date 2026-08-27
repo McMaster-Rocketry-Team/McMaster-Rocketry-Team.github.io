@@ -1,6 +1,24 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 night (subteam pages + sponsors hero/copy; Avionics locked) · branch `dev`
+**Last updated:** 2026-08-26 night (repo hygiene cleanup) · branch `dev`
+
+## 2026-08-26 night — repo hygiene
+
+Removed unused tracked files and local staging leftovers:
+
+| Removed | Why |
+|---|---|
+| `src/components/FleetTable.astro` | Unmounted after `/rockets` became lineup-only |
+| `public/media/rockets/osiris-gallery-{integration,liftoff,pad,recovery}.webp` | Superseded; live gallery uses display/avionics/crew/recovery-crew |
+| `public/favicon.svg` | Unused (`favicon.ico` + `/brand/logo-mark.svg`) |
+| `macrocketry-urls.txt` | Squarespace migration scratch |
+| `mockups/final/safety.html` | Out of launch scope; no Astro `/safety` route |
+| `mockups/final/docs/sponsorship-package-*.pdf` | Duplicate of `public/docs/` (~11 MB) |
+| Local: `leads_photos/`, root `outreach/`, `temp osiris images/`, `errors.png`, `.tmp-fleet-*.png` | Staging already shipped under `public/media/` (still gitignored if recreated) |
+
+Kept: `mockups/final/` HTML/CSS/JS, `media-source/hero-source.mp4`, `rockets/<slug>/` shortlists, brand PNGs under `public/brand/`.
+
+---
 
 ## 2026-08-26 night — subteams polish, sponsors hero, copy tone
 
@@ -45,7 +63,7 @@ Use this section to resume. Dev server: `pnpm astro dev --host localhost --port 
 5. `check:todo` → merge `main` → remove `ReviewMode.astro` before launch.
 6. Optional: design spec v1.2 `/design-sync` to claude.ai/design (still owed).
 
-Untracked and **do not commit** unless Robin asks: `errors.png`.
+Untracked staging dirs are gitignored (`leads_photos/`, root `outreach/`, `temp osiris images/`).
 
 ---
 
@@ -94,8 +112,8 @@ primary) wired into `vehicles.json`:
 - **ReviewMode:** `/rockets/nimbus` fully locked (**0–34**). `/rockets` partial
   (**0–22** of 26 blocks after table removal).
 - **`/rockets`:** dropped the **`FleetTable`** section — page is **fleet lineup
-  + CTA only**. `FleetTable.astro` remains in the repo but is not mounted on any
-  route. Rhythm: `.phead` → `.paper.fleet` → `.cta`.
+  + CTA only**. `FleetTable.astro` deleted in the hygiene pass. Rhythm:
+  `.phead` → `.paper.fleet` → `.cta`.
 - **Vehicle heroes:** `heroImage` set for Marauder I/II, Luminis, Luminis V2,
   and Nimbus (webp under `public/media/rockets/`). Nimbus gallery swapped to
   integration / pad / avionics / recovery (liftoff frame removed).
