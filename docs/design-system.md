@@ -20,7 +20,7 @@ Cursor cannot call the design API from its sandbox. After syncing remotely, veri
 
 ## Subteam heroes
 
-Optional `heroImage` on each subteam in `subteams.json` drives `.phead.has-hero` + `.herobox`. Shipped heroes: Airframe, Avionics, Recovery, Composites, Operations, Payload (`public/media/subteams/*-hero.webp`). Propulsion is the only subteam without a hero photo yet. Low-res sources (e.g. Payload at 1137×618) may be upscaled with Real-ESRGAN before export; store masters in `media-source/`.
+Optional `heroImage` on each subteam in `subteams.json` drives `.phead.has-hero` + `.herobox`. Shipped heroes: all seven subteams (`public/media/subteams/*-hero.webp`). Low-res sources (e.g. Payload at 1137×618) may be upscaled with Real-ESRGAN before export; store masters in `media-source/`.
 
 ## Mockups
 
