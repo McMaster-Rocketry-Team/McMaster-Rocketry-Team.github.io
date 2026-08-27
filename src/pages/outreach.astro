@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import OutreachEvent from '../components/OutreachEvent.astro';
-import TodoBadge from '../components/TodoBadge.astro';
 import { mailHref } from '../lib/site';
 import outreach from '../data/outreach.json';
 
@@ -12,7 +11,7 @@ import outreach from '../data/outreach.json';
   title="Outreach"
   description="STEM days, industry nights, Clubsfest, Facultyfest, Launch Canada youth outreach and a sponsor dinner from the McMaster Rocketry Team."
   current="/outreach"
-  reviewLocked={[0, 1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20]}
+  reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
 >
 <header class="phead">
   <span class="crosshair tl" aria-hidden="true"></span>
@@ -46,7 +45,7 @@ import outreach from '../data/outreach.json';
     </div>
     <div class="prose">
       <p>Isaac Operations already did it, with a dinner for the team. Your name in front of students on campus, not only on an airframe at a competition most of them never see.</p>
-      <p>Want to fund one event instead of a season tier? Email us and we'll say whether that works this year. <TodoBadge label="whether one-off event funding exists, and at what amount" /></p>
+      <p>Want to fund one event instead of a season tier? Email us to get in touch.</p>
     </div>
     <div class="btnrow">
       <a class="btn solid" href="/sponsors">See the tiers</a>

@@ -51,7 +51,7 @@ events (three hidden pending detail).
 | ~~Sponsorship package PDF~~ | done, `/docs/sponsorship-package-2026-2027.pdf` |
 | ~~Social handles (Instagram, Discord, LinkedIn)~~ | done, all three set in `src/data/site.json` `social` |
 | Answer to "do I need to pay anything?" | **removed** from `join.json`. $600 / $65 figures from minutes were not published. Say if the FAQ should come back. |
-| Outreach TODOs | `src/data/outreach.json` — STEM name/when, Space Industry night, Isaac dinner, info nights, whether LC bingo runs every Launch Canada |
+| Outreach TODOs | **done** — CAGIS fall 2025, info nights (fall, talk with leads), LC bingo one-off at Launch Canada 2026; Space Industry night / Isaac dinner still `hidden` pending detail |
 
 ## Raw occurrences
 

@@ -3,9 +3,9 @@
     {
       "slug": "stem-outreach",
       "name": "STEM outreach",
-      "blurb": "On campus, for girls and gender-diverse youth, with CAGIS.",
+      "blurb": "On campus in fall 2025, for girls and gender-diverse youth, with CAGIS.",
       "detail": null,
-      "todo": "program name and when",
+      "todo": null,
       "photo": "/media/outreach/cagis.webp",
       "photoAlt": "A team member at a whiteboard labelled FINS explains rocket stability to a group of children during a CAGIS STEM session."
     },
@@ -51,9 +51,9 @@
     {
       "slug": "info-nights",
       "name": "Info nights",
-      "blurb": "On campus.",
+      "blurb": "Hosted each fall semester so any McMaster student can learn about the club and talk directly with team leads.",
       "detail": null,
-      "todo": "what they cover, who they are for, and when",
+      "todo": null,
       "photo": "/media/outreach/nimbus-outreach.webp",
       "photoAlt": "Nimbus laid out in two sections on a table with the avionics bay open between them, during an on-campus info session."
     },
@@ -80,7 +80,7 @@
       "name": "Youth outreach at Launch Canada",
       "blurb": "On conference days at Launch Canada 2026. Kids filled in a rocketry bingo. Prizes were candy rockets. The grand prize was a McMaster Rocketry bucket hat.",
       "detail": null,
-      "todo": "whether the bingo runs every Launch Canada",
+      "todo": null,
       "photo": "/media/outreach/lc26-bingo.webp",
       "photoAlt": "A McMaster Rocketry bucket hat beside a stack of rocketry bingo cards on a table at Launch Canada 2026."
     }

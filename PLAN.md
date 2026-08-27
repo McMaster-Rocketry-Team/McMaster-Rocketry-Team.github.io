@@ -1,6 +1,18 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 late evening (commit: sponsors + members programmes; rosters wait) · branch `dev`
+**Last updated:** 2026-08-26 late evening (outreach copy locked; sponsors + members programmes) · branch `dev`
+
+## 2026-08-26 night — outreach copy + ReviewMode lock
+
+| Item | Detail |
+|---|---|
+| **STEM / CAGIS** | Fall semester 2025. |
+| **Info nights** | Each fall so any McMaster student can learn about the club and talk directly with team leads. |
+| **LC bingo** | One-time at Launch Canada 2026 — leave as written. |
+| **Sponsor CTA** | “Email us to get in touch” (dropped one-off funding TODO). |
+| **`/outreach` ReviewMode** | Fully locked **0–20** from Chromium clicks `[4,8,14,17]` + prior locks. |
+
+---
 
 ## 2026-08-26 late evening — sponsors polish + ReviewMode (Cursor handoff)
 
@@ -43,7 +55,7 @@ Also untracked: `errors.png` (unrelated; do not commit unless Robin says so).
 | `/`, `/join`, `/rockets`, Marauder II, Luminis, Luminis V2, Nimbus, Osiris, `/subteams`, **`/sponsors`** | **0** | Fully locked |
 | `/rockets/marauder-i` | **1** | Build narrative TODO |
 | `/subteams/[slug]` (×7) | **3–8** each | detail/first/skills/hours TODOs + lead programme lines (subteam pages don’t yet inherit filled programmes as locked) |
-| `/outreach` | **4** | STEM name/when, info nights, LC bingo, one-off funding |
+| `/outreach` | **0** | Fully locked (STEM fall 2025, info nights, LC bingo one-off, sponsor email CTA) |
 | `/members` | **8** | See below |
 
 **`/members` still open:**
@@ -64,13 +76,13 @@ Current `members.astro` `reviewLocked` (70): `[0,1,2,3,4,5,6,7,8,9,10,11,12,13,1
 
 ### Deploy gate
 
-`pnpm check:todo` remaining after this pass: subteam copy, outreach flags, Marauder I build. **Rosters are not a launch blocker.** CI still disabled (`35a592b`).
+`pnpm check:todo` remaining after this pass: subteam copy, Marauder I build. **Outreach TODO flags cleared.** **Rosters are not a launch blocker.** CI still disabled (`35a592b`).
 
 ### Next session, in order
 
 1. **Subteam blurbs** (Avionics is the template: `detail` / `first` / `skills` / `hours`). Six teams still empty. Biggest remaining `check:todo` chunk.
 2. Lock remaining `/members` ReviewMode blocks Robin verifies (yearReview three + Lea + stats), or confirm/fix those facts. Do **not** wait on portraits.
-3. Outreach TODO flags + Marauder I `build`.
+3. Marauder I `build`.
 4. `check:todo` → merge `main` → remove `ReviewMode.astro` before launch.
 5. Optional: design spec v1.2 `/design-sync` to claude.ai/design (still owed).
 
