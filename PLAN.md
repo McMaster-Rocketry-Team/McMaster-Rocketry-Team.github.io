@@ -1,23 +1,24 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-26 night (Robin signing off) · branch `dev` @ `170b5e5` · `origin/dev` in sync
+**Last updated:** 2026-08-27 evening · branch `dev` @ `8a9e044`+ · pushing tonight
 
 ## Sign-off — resume here
 
-**Verdict:** on track for Facultyfest / Squarespace cutoff **Mon 31 Aug** (~5 days). Risk is content, not engineering.
+**Verdict:** on track for Facultyfest / Squarespace cutoff **Mon 31 Aug** (~4 days). Risk is content polish and ReviewMode lock passes, not engineering.
 
-**Deploy gate:** `pnpm check:todo` → **25** hits (was ~79). Breakdown: 6 subteams × 3 copy fields (18) + 6 empty work-photo TODOs + Marauder I build (1). CI still off (`35a592b`).
+**Deploy gate:** `pnpm check:todo` → **1** hit (Propulsion work-photo TODO slot). Marauder I `build` still open in ReviewMode but not in `check:todo`. CI still off (`35a592b`).
 
-**ReviewMode:** home, join, rockets index, most vehicles, subteams index, sponsors, outreach, **avionics** = 0 open. Still open: Marauder I (1), six empty subteams (7–8 each), members (~8 programme/stats clicks — not a gate).
+**ReviewMode:** home, join, rockets index, most vehicles, subteams index, sponsors, outreach, payloads, most subteam detail pages progressing. See `LAUNCH_REVIEW.md` for the pre-launch checklist.
 
 **Next session, in order**
 
-1. Write **detail / first year / skills** for Airframe, Propulsion, Recovery, Payload, Composites, Operations (Avionics is the template).
-2. Drop TODO photo slots when `photo` is null **or** add work shots.
-3. Marauder I `build` in `vehicles.json`.
-4. `check:todo` → 0 · strip `ReviewMode.astro` · re-enable CI · merge `dev` → `main`.
+1. Propulsion work photo (last `check:todo` blocker).
+2. Marauder I `build` in `vehicles.json`.
+3. `check:todo` → 0 · strip `ReviewMode.astro` · re-enable CI · merge `dev` → `main`.
 
-**Can wait:** 4 lead portraits, extra subteam heroes, hidden outreach events, design-sync, safety page.
+**Done this pass (2026-08-27):** Payloads section (Magpie + Sparrow pages, lineup, nav). Subteam heroes + work shots for Airframe, Recovery, Composites, Operations, Payload (Real-ESRGAN upscale on payload hero). Join photo hero. 404 page. Lead portrait refresh. Design spec **v1.3** synced to claude.ai/design. `docs/design-system.md` + `.cursor/rules/design.mdc` updated.
+
+**Can wait:** hidden outreach events, safety page, Chris Hadfield gallery (source in `chris-hadfield/`).
 
 **Dev server:** `pnpm astro dev --host localhost --port 4321`  
 **Go-live canvas:** `~/.cursor/projects/home-robin-Documents-Rocketry-McMaster-Rocketry-Team-github-io/canvases/go-live-status.canvas.tsx`

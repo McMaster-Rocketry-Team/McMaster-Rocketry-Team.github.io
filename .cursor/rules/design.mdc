@@ -46,7 +46,28 @@ Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the t
 
 ## Page rhythm
 
-Alternate `section.paper` (light) and plain `<section>` (dark). Every page ends with `CtaBand`. Prefer CSS utilities (`.prose`, `.prose--follow`, `.note`, `.link-underline`) over inline colour/spacing.
+Alternate `section.paper` (light) and plain `<section>` (dark). Every page ends with `CtaBand`. Prefer CSS utilities (`.prose`, `.prose--follow`, `.note`, `.link-fleet`, `.link-underline`) over inline colour/spacing.
+
+## Links
+
+| Class | Use |
+|---|---|
+| `.link-fleet` | Cross-links to vehicles, payloads, or lineup names — ignition hairline at 42% width, grows to 100% on hover/focus (same motion as fleet `.craft` cards). |
+| `.link-underline` | Mailto, sponsors email, static underline — no grow animation. |
+
+```html
+<!-- ✅ vehicle cross-link in a spec grid -->
+<a class="link-fleet" href="/rockets/osiris">Osiris</a>
+
+<!-- ✅ mailto / plain underline -->
+<a class="link-underline" href="mailto:...">Email</a>
+```
+
+Fleet lineup names use `<b class="link-fleet">` inside `.craft`; the parent card’s hover also triggers the underline grow.
+
+## Product shot backlight
+
+Transparent CAD/product images (rembg cutouts) on dark sections get a **white** radial backlight behind the asset — not ignition. Implemented on `.module-card__ph::before` (SRAD board grid), `.payload-render::before` (full payload CAD beside prose), and `.product-aside::before` (inline CAD beside payload block copy). Use `object-fit: contain` (`.ph-is-product`) so cutouts are never cropped.
 
 `/rockets` is **lineup only**: `.phead` → `.paper.fleet` → `CtaBand` (no table section).
 

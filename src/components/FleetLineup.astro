@@ -39,7 +39,7 @@ const ticks = scaleTicks(maxLengthIn);
           <span class="rise" set:html={rise} />
           <span class="val">{v.apogee && <>{v.apogee.toLocaleString()} ft</>}</span>
           <span class="nm">
-            <b>{v.name}</b>
+            <b class="link-fleet">{v.name}</b>
             <span class="meta">{shortComp(v.comp)} · {v.year}</span>
             <span class="go" aria-hidden="true">View →</span>
           </span>

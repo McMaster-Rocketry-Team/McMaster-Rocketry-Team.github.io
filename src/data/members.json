@@ -13,7 +13,7 @@
     {
       "label": "First years",
       "value": "16",
-      "note": "every year, no experience needed"
+      "note": "growing every year; no experience needed"
     },
     {
       "label": "Founded",
@@ -124,6 +124,14 @@
     {
       "role": "Propulsion lead",
       "subteam": "propulsion",
+      "name": "Timothy Manukian",
+      "programme": "Honours Chem",
+      "year": "3rd year",
+      "photo": "/media/leads/tim-manukian.webp"
+    },
+    {
+      "role": "Propulsion lead",
+      "subteam": "propulsion",
       "name": "Ella Chow",
       "programme": "Mechanical Engineering",
       "year": "4th year",
@@ -136,14 +144,6 @@
       "programme": "Engineering Physics",
       "year": "PhD",
       "photo": "/media/leads/sebastian-carter.webp"
-    },
-    {
-      "role": "Propulsion lead",
-      "subteam": "propulsion",
-      "name": "Timothy Manukian",
-      "programme": "Honours Chem",
-      "year": "3rd year",
-      "photo": "/media/leads/tim-manukian.webp"
     },
     {
       "role": "Operations lead",
@@ -164,18 +164,26 @@
     {
       "role": "Chief safety officer",
       "subteam": null,
-      "name": "Jia Agarwal",
+      "name": "Callum Williams",
       "programme": "Engineering Physics & Management",
       "year": "4th year",
-      "photo": null
+      "photo": "/media/leads/callum-williams.webp"
     },
     {
       "role": "VP finance",
       "subteam": null,
-      "name": "Callum Williams",
+      "name": "Jia Agarwal",
       "programme": "Chemical Engineering and Bioengineering",
       "year": "5th year",
-      "photo": "/media/leads/callum-williams.webp"
+      "photo": null
+    },
+    {
+      "role": "HR",
+      "subteam": null,
+      "name": "Nick Phan",
+      "programme": "Business",
+      "year": "PhD",
+      "photo": "/media/leads/nick-phan.webp"
     }
   ]
 }

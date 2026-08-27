@@ -213,7 +213,7 @@ nav[data-scrolled="true"]{
 .phead .lede{margin:22px 0 0;max-width:56ch;font-size:clamp(16px,1.7vw,19px);
   line-height:1.62;color:rgba(255,255,255,.90)}
 .phead.has-hero::before{content:"";position:absolute;inset:0;z-index:0;
-  background-image:var(--hero-img);background-size:cover;background-position:center}
+  background-image:var(--hero-img);background-size:cover;background-position:var(--hero-pos,center)}
 .phead.has-hero .wrap{position:relative;z-index:2}
 /* Wide product / logo heroes (e.g. /sponsors): match the photo's landscape
    ratio so cover does not zoom into a tight centre crop. */
@@ -451,17 +451,17 @@ tbody tr:last-child td{border-bottom:0}
   .lineup.payload-lineup{gap:clamp(48px,9vw,160px)}
   .craft.payload-craft{max-width:280px}
   .craft.payload-craft .rise-ph{width:88px}
+  /* Result line is longer than an apogee figure; lift it off the name block. */
+  .craft.payload-craft .val{bottom:84px}
+  /* CAD cutouts already carry their own alpha; drop-shadow rims read as a halo. */
+  .craft.payload-craft .rise img{filter:none}
 }
 .craft .nm{position:absolute;bottom:8px;left:0;right:0;text-align:center;
   line-height:1.25;padding:0 2px}
 .craft .nm b{position:relative;display:inline-block;font-family:var(--font-display);font-weight:600;
   font-size:clamp(13px,1.2vw,15px);letter-spacing:-.005em}
-/* Resting ignition stub under the name — same vocabulary as nav underlines.
-   Grows to the full name width on hover/focus. */
-.craft .nm b::after{content:"";position:absolute;left:0;right:auto;bottom:-3px;
-  height:1.5px;width:42%;background:var(--ignition);
-  transition:width var(--dur) var(--ease)}
-.craft:hover .nm b::after,.craft:focus-visible .nm b::after{width:100%}
+/* Ignition stub underline — shared with .link-fleet (see Link patterns). */
+.craft:hover .link-fleet::after,.craft:focus-visible .link-fleet::after{width:100%}
 .craft .nm .meta{display:block;font-family:var(--font-mono);
   font-size:clamp(12px,1vw,13px);letter-spacing:.08em;
   text-transform:uppercase;color:var(--muted-on-paper);margin-top:6px}
@@ -561,13 +561,13 @@ tbody tr:last-child td{border-bottom:0}
 
 /* ---------- ROSTER ----------
    Deliberately NOT the 1px brick used on .cards / .tiers — faces need air.
-   Cap at 4 across with a real gap so the page reads as portraits, not a
+   Cap at 3 across with a real gap so the page reads as portraits, not a
    packed tile sheet. */
 .roster-block + .roster-block{margin-top:clamp(48px,8vh,88px)}
 .roster-label{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);font-weight:400;
   margin:0 0 clamp(20px,3vh,28px)}
-.roster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(40px,5.5vw,72px) clamp(28px,4vw,56px)}
 @media(max-width:900px){
   .roster,.roster--exec{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -652,7 +652,15 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
 .cards--follow{margin-top:clamp(30px,5vh,54px)}
 .note{margin:22px 0 0;font-size:15px;color:var(--muted-on-paper);max-width:66ch}
 .note--roster{margin:clamp(36px,6vh,64px) 0 0;font-size:15px;color:var(--muted-on-paper);max-width:66ch}
+/* Static underline — mailto, external refs, prose. Not fleet/vehicle cross-links. */
 .link-underline{text-decoration:underline;text-underline-offset:3px}
+/* Fleet name underline: resting ignition stub grows to full width on hover/focus.
+   Used on lineup cards (.craft .nm b) and inline vehicle links in spec grids (.dl dd). */
+.link-fleet{color:inherit;text-decoration:none}
+.link-fleet{position:relative;display:inline-block}
+.link-fleet::after{content:"";position:absolute;left:0;bottom:-3px;height:1.5px;width:42%;
+  background:var(--ignition);transition:width var(--dur) var(--ease)}
+.link-fleet:hover::after,.link-fleet:focus-visible::after{width:100%}
 .partner-tiers{display:flex;flex-direction:column;gap:clamp(28px,4vw,44px)}
 .partner-tier-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--muted-on-paper);margin:0 0 14px}
@@ -674,12 +682,84 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .gallery figure{margin:0}
 @media(max-width:620px){.gallery{grid-template-columns:1fr}}
-.gallery .ph{aspect-ratio:3/2;background:var(--fog-100);display:grid;place-items:center;
+.gallery .ph{aspect-ratio:var(--ph-ratio,3/2);background:var(--fog-100);display:grid;place-items:center;
   border:1px solid var(--rule-light);overflow:hidden}
 .gallery .ph img{width:100%;height:100%;object-fit:cover;display:block}
 .gallery .ph span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
-.gallery figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-paper);line-height:1.55}
+.gallery figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-ink);line-height:1.55}
+section.paper .gallery figcaption{color:var(--muted-on-paper)}
+/* CAD / product shots: transparent alpha, never crop with cover. */
+.ph-is-product{background:transparent;border-color:var(--rule-dark);overflow:visible}
+section.paper .ph-is-product{border-color:var(--rule-light)}
+.ph-is-product img{object-fit:contain;padding:clamp(10px,1.8vw,18px)}
+.gallery .ph.ph-is-product{aspect-ratio:auto;min-height:clamp(220px,36vh,440px);
+  position:relative;isolation:isolate;background:transparent;border-color:var(--rule-dark)}
+section.paper .gallery .ph.ph-is-product{border-color:var(--rule-light)}
+.gallery .ph-is-product img{width:auto;height:auto;max-width:min(100%,743px);max-height:none;
+  margin:auto;position:relative;z-index:1}
+/* White backlight behind transparent CAD cutouts — shared glow vocabulary. */
+.module-card__ph::before,.payload-render::before,.product-aside::before,.bus-part::before,.gallery .ph.ph-is-product::before{
+  content:"";position:absolute;left:8%;right:8%;top:10%;bottom:12%;
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.42) 0%,rgba(255,255,255,.14) 50%,transparent 75%);
+  filter:blur(24px);z-index:0;pointer-events:none}
+section.paper .module-card__ph::before,section.paper .product-aside::before,section.paper .bus-part::before,
+section.paper .gallery .ph.ph-is-product::before{
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.55) 0%,rgba(255,255,255,.18) 50%,transparent 75%)}
+/* Payload detail: prose left, full CAD render right (dark sections only). */
+.payload-intro{align-items:start}
+.payload-render{margin:0;display:grid;place-items:center;position:relative;isolation:isolate}
+.payload-render img{display:block;width:auto;max-width:100%;max-height:min(88vh,760px);margin:0 auto;
+  position:relative;z-index:1}
+.product-aside{margin:0;position:relative;isolation:isolate;display:grid;place-items:center;
+  min-height:clamp(200px,32vh,420px);width:100%}
+.product-aside img{display:block;width:min(100%,2392px);height:auto;max-height:none;
+  position:relative;z-index:1;image-rendering:auto}
+/* Magpie bus: bulkheads above, struts below (poster hardware breakdown). */
+.bus-parts{display:grid;gap:clamp(6px,1vw,10px);width:100%;align-self:center}
+.bus-parts__bulkheads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.5vw,16px)}
+.bus-parts__struts{display:grid;grid-template-columns:1fr;gap:2px}
+.bus-part{margin:0;position:relative;isolation:isolate;display:grid;place-items:center;
+  min-height:clamp(110px,20vh,220px);padding:clamp(8px,1.2vw,14px)}
+.bus-part img{display:block;width:auto;max-width:100%;height:auto;object-fit:contain;
+  position:relative;z-index:1;image-rendering:auto}
+.bus-parts__bulkheads .bus-part img{max-height:clamp(120px,24vh,280px);width:min(100%,1575px)}
+.bus-part--strut{min-height:0;padding:2px 0}
+.bus-part--strut img{max-height:clamp(36px,7vh,72px);width:min(100%,1765px)}
+
+/* Payload page: experiment procedure and SRAD module cards */
+.procedure-list{list-style:none;margin:clamp(22px,3vw,36px) 0 0;padding:0;
+  display:grid;gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
+section.paper .procedure-list{background:var(--rule-light);border-color:var(--rule-light)}
+.procedure-list li{padding:clamp(16px,2.2vw,22px) clamp(18px,2.5vw,28px);
+  background:var(--graphite-900);font-size:16px;line-height:1.65;
+  color:rgba(255,255,255,.78);counter-increment:procedure}
+section.paper .procedure-list li{background:var(--paper);color:var(--ink-on-paper)}
+.procedure-list{counter-reset:procedure}
+.procedure-list li::before{content:counter(procedure,decimal-leading-zero);
+  display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;
+  color:var(--ignition);margin-bottom:8px}
+.module-grid{list-style:none;margin:clamp(22px,3vw,36px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  background:var(--rule-dark);border:1px solid var(--rule-dark)}
+section.paper .module-grid{background:var(--rule-light);border-color:var(--rule-light)}
+.module-card{display:flex;flex-direction:column;background:var(--graphite-900)}
+section.paper .module-card{background:var(--paper)}
+.module-card__ph{aspect-ratio:1;background:transparent;display:grid;place-items:center;
+  border-bottom:1px solid var(--rule-dark);padding:clamp(14px,2vw,22px);position:relative;isolation:isolate}
+section.paper .module-card__ph{border-bottom-color:var(--rule-light)}
+.module-card__ph img{display:block;width:100%;height:100%;object-fit:contain;position:relative;z-index:1}
+.module-card__body{padding:clamp(16px,2.2vw,22px)}
+.module-card h3{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(22px,2.4vw,28px);letter-spacing:-.005em;line-height:1.1;
+  color:var(--ignition);margin:0 0 10px}
+section.paper .module-card h3{color:var(--ignition-deep)}
+.module-card p{margin:0;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.72)}
+section.paper .module-card p{color:var(--muted-on-paper)}
+.poster-figure{margin:clamp(22px,3vw,36px) 0 0;border:1px solid var(--rule-dark)}
+section.paper .poster-figure{border-color:var(--rule-light)}
+.poster-figure img{display:block;width:100%;height:auto}
+@media(max-width:860px){.module-grid{grid-template-columns:1fr}}
 
 /* Subteam page: detail prose left, one work photo right. Not .event-block
    (that pattern is photo-left / copy-right with hairlines). Stacks below 860px. */
@@ -690,10 +770,15 @@ section:not(.paper):not(.cta) .prose p{color:rgba(255,255,255,.86)}
 .subteam-shot .tag{margin:0 0 10px}
 .subteam-shot .ph{aspect-ratio:4/3;background:var(--fog-100);display:grid;place-items:center;
   border:1px solid var(--rule-light);overflow:hidden}
-.subteam-shot .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.subteam-shot .ph img,.subteam-shot .ph video{width:100%;height:100%;object-fit:cover;display:block}
+/* CAD in the same photo box — contain inside the frame, never crop. */
+.subteam-shot .ph.ph-is-product{background:#fff;border:1px solid var(--rule-light);
+  overflow:hidden;place-items:stretch}
+.subteam-shot .ph.ph-is-product img{width:100%;height:100%;object-fit:contain;padding:0;min-height:0}
 .subteam-shot .ph span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted-on-paper);text-align:center;padding:0 14px}
-.subteam-shot figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-paper);line-height:1.55}
+.subteam-shot figcaption{margin-top:9px;font-size:15.5px;color:var(--muted-on-ink);line-height:1.55}
+section.paper .subteam-shot figcaption{color:var(--muted-on-paper)}
 @media(max-width:860px){
   .subteam-intro{grid-template-columns:1fr}
   .subteam-shot .ph{aspect-ratio:3/2}

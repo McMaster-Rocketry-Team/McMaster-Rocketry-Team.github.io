@@ -10,3 +10,18 @@ build and shipped to GitHub Pages, so masters live here instead.
 Derivatives in `public/media/` are cut from source t=5.2s for 12s, cropped
 `crop=1632:918:144:162` to remove the "LAUNCH CANADA 2025" watermark from the
 top-right, and stripped of audio.
+
+- `magpie-electronics-source.mp4` — 720×1280, 6s bench footage of the Magpie
+  SRAD stack. Downloaded 2026-08-27.
+
+Derivative `public/media/subteams/payload-work.mp4` is center-cropped to the
+subteam body frame (4:3, banner stripped `crop=720:540:0:179`), H.264, no
+audio, for the Payload subteam page loop beside the prose. Poster:
+`payload-work.webp`.
+
+- `payload-hero-source.jpg` — 1137×618 shop photo of the payload bay internals.
+  Downloaded 2026-08-27. Upscaled 4× with Real-ESRGAN (`realesrgan-x4plus`),
+  then resized to `public/media/subteams/payload-hero.webp` (1568×852, q82).
+
+- `join-hero-source.jpg` — team group photo for `/join` hero. Downloaded
+  2026-08-27. Cropped `crop=1136:1170:310:0` → `public/media/join-hero.webp`.

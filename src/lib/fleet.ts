@@ -16,6 +16,8 @@ export function sortVehicles<T extends { data: { year: number } }>(vehicles: T[]
   return [...vehicles].sort((a, b) => a.data.year - b.data.year);
 }
 
+export const sortPayloads = sortVehicles;
+
 export function rocketGlyph(h: number): string {
   const w = Math.round(h * 0.17), cx = w / 2, nose = h * 0.16, finW = w * 0.85;
   const bodyBot = h - h * 0.13, ov = finW * 0.55, sw = w + ov * 2, id = 'rg' + h;

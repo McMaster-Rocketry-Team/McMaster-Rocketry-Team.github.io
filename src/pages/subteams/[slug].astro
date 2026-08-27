@@ -4,11 +4,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TodoBadge from '../../components/TodoBadge.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { mailHref } from '../../lib/site';
+import { sortPayloads } from '../../lib/fleet';
 import members from '../../data/members.json';
 
 export async function getStaticPaths() {
   const subteams = await getCollection('subteams');
-  const payloads = (await getCollection('payloads')).sort((a, b) => b.data.year - a.data.year);
+  const payloads = sortPayloads(await getCollection('payloads'));
   return subteams.map((s) => ({ params: { slug: s.data.slug }, props: { subteams, payloads, t: s.data } }));
 }
 
@@ -20,7 +21,7 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
 ---
 
 <BaseLayout title={t.name} description={t.blurb} current="/subteams" reviewLocked={t.reviewLocked}>
-<header class={t.heroImage ? 'phead has-hero' : 'phead'} style={t.heroImage ? `--hero-img:url(${t.heroImage})` : undefined}>
+<header class={t.heroImage ? 'phead has-hero' : 'phead'} style={t.heroImage ? `--hero-img:url(${t.heroImage})${t.heroImagePosition ? `;--hero-pos:${t.heroImagePosition}` : ''}` : undefined}>
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
@@ -48,12 +49,27 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
       </div>
       <figure class="subteam-shot">
         <div class="tag">{t.photoTag || 'In the shop'}</div>
-        {t.photo ? (
-          <div class="ph"><img src={t.photo} alt={t.photoAlt || ''} loading="lazy" /></div>
+        {t.photo || t.photoVideo ? (
+          <div class={`ph${t.photoIsProduct ? ' ph-is-product' : ''}`}>
+            {t.photoVideo ? (
+              <video
+                src={t.photoVideo}
+                poster={t.photo ?? undefined}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label={t.photoAlt || ''}
+              />
+            ) : (
+              <img src={t.photo} alt={t.photoAlt || ''} loading="lazy" />
+            )}
+          </div>
         ) : (
           <div class="ph"><span>Photo slot: work in progress<br />TODO</span></div>
         )}
-        {t.photo && t.photoCaption ? (
+        {(t.photo || t.photoVideo) && t.photoCaption ? (
           <figcaption>{t.photoCaption}</figcaption>
         ) : null}
       </figure>

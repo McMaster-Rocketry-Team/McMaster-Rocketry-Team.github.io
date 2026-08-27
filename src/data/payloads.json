@@ -7,10 +7,99 @@
     "comp": "Launch Canada",
     "vehicle": "osiris",
     "result": "1st, Payload Challenge",
-    "image": null,
-    "summary": "An SRAD Fracture Test Module carrying epoxy test articles, flown on Osiris to test how a self-healing polymer performs under real flight loads.",
-    "detail": "Magpie is the team's first scientific payload: a self-contained module that initiates and propagates small cracks in epoxy test articles during flight, as a proof of concept for using self-healing polymers in aerospace structures. It flew on Osiris and won first place in the Payload Challenge at Launch Canada 2026.",
-    "reviewLocked": []
+    "image": "/media/payloads/magpie/assembly.webp",
+    "heroImage": "/media/payloads/magpie/bench.webp",
+    "summary": "McMaster Rocketry's first scientific payload: an SRAD fracture-test module that flew on Osiris to test how a self-healing polymer performs under real flight loads.",
+    "detail": "Self-healing polymers have the potential to address critical durability needs in reusable launch vehicles, which face extreme acceleration, intense aerodynamic loads, and repeated thermal cycling. Magpie studies that problem directly: it characterizes TDCB epoxy test articles with microencapsulated DGEBA and boron-trifluoride hardener in sisal fibre strands, measuring how a sounding-rocket launch environment affects the healing structure.\n\nMagpie carries exactly three test articles. Two samples are fractured on the pad (one roughly thirty minutes before liftoff, one as close to launch as practical); the third stays intact to measure flight effects on the healing structure itself. A linear actuator on a Delrin guide loads the samples under tension while SRAD boards record strain, temperature, and pressure data over CAN bus. The module is fully passive once initiated: no pyrotechnics, pressurized parts, or active deployment that could affect the vehicle. It flew on Osiris and won first place in the Payload Challenge at Launch Canada 2026.",
+    "blocks": [
+      {
+        "tag": "Mechanical",
+        "heading": "The Magpie bus.",
+        "body": "SLS nylon mounts house three SRAD PCBs and four 14500 Li-ion cells. A CNC-machined 6061-aluminum bus forms the skeleton: a ring-and-rod frame that carries the experiment modules and electronics stack, secured to the payload bay via a U-bolt on the top plate.",
+        "parts": [
+          {
+            "src": "/media/payloads/magpie/top-bulkhead.webp",
+            "alt": "CAD render of the Magpie top bulkhead with U-bolt mount and payload-bay interface.",
+            "role": "bulkhead"
+          },
+          {
+            "src": "/media/payloads/magpie/bottom-bulkhead.webp",
+            "alt": "CAD render of the Magpie bottom bulkhead ring with six strut mounting tabs.",
+            "role": "bulkhead"
+          },
+          {
+            "src": "/media/payloads/magpie/strut.webp",
+            "alt": "CAD render of a machined 6061 aluminum strut with countersunk mounting holes.",
+            "role": "strut",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "tag": "Hardware",
+        "heading": "Fracture test modules.",
+        "body": "TDCB samples are cast in custom SLA 3D-printed molds from 105 epoxy resin. Each fracture test module combines machined 6061 aluminum (baseplate, mount, couplers), a Delrin guide, an Actuonix P8-10-165-3-ST linear actuator (165:1 gear ratio, 10 mm stroke), and a DMYH-113 bidirectional 10 kg load cell.",
+        "image": "/media/payloads/magpie/ftm-module.webp",
+        "imageAlt": "CAD render of a fracture test module with actuator, load cell, and colored fixture blocks."
+      }
+    ],
+    "render": {
+      "src": "/media/payloads/magpie/assembly.webp",
+      "alt": "Full CAD render of the Magpie assembly: aluminum strut frame, three experiment modules, and stacked SRAD electronics."
+    },
+    "procedure": [
+      "Pre-flight: begin the fracture test; upon full fracture, return actuators to zero-load positions.",
+      "In-flight: continue recording data locally.",
+      "Post-flight: evaluate sample and FTM condition; compare logged data with bench tests.",
+      "Post-competition: run new test samples in the flown FTMs to gauge how flight affected hardware performance."
+    ],
+    "electronics": [
+      {
+        "name": "SEM",
+        "role": "Sensor & Experiment Module — strain acquisition and experiment control.",
+        "image": "/media/payloads/magpie/sem-board.webp",
+        "alt": "CAD render of the Magpie SEM PCB with SD card slot and GPIO header."
+      },
+      {
+        "name": "SDRM",
+        "role": "Software Defined Radio Module — 433 MHz LoRa telemetry link to the ground station.",
+        "image": "/media/payloads/magpie/sdrm-board.webp",
+        "alt": "CAD render of the Magpie SDRM PCB with antenna connector and radio module."
+      },
+      {
+        "name": "EPM",
+        "role": "Electrical Power Module — battery management and power distribution for the payload stack.",
+        "image": "/media/payloads/magpie/epm-board.webp",
+        "alt": "CAD render of the Magpie EPM PCB with power connectors and regulators."
+      }
+    ],
+    "poster": "/media/payloads/magpie/poster.webp",
+    "posterAlt": "Launch Canada 2026 competition poster for Magpie: specifications, experiment procedure, hardware breakdown, and SRAD electronics.",
+    "photos": [
+      {
+        "src": "/media/payloads/magpie/wiring.webp",
+        "alt": "Magpie on display at the McMaster Rocketry booth: competition poster, payload stack, Osiris nose cone, and SRAD boards on the table.",
+        "caption": "Magpie booth setup at Launch Canada — poster, hardware, and electronics on display."
+      },
+      {
+        "src": "/media/payloads/magpie/presentation.webp",
+        "alt": "A team member presents the Magpie competition poster at the McMaster Rocketry booth.",
+        "caption": "Presenting the Magpie poster at the McMaster Rocketry booth."
+      },
+      {
+        "src": "/media/payloads/magpie/team.webp",
+        "alt": "The Magpie team with the payload on display at Launch Canada, competition poster behind.",
+        "caption": "Magpie on display at Launch Canada 2026.",
+        "ratio": "2/3"
+      },
+      {
+        "src": "/media/payloads/magpie/integration.webp",
+        "alt": "A team member fastens hardware on the Magpie stack beside the Osiris nose cone at the range.",
+        "caption": "Final integration checks on the pad — Osiris nose cone in the background.",
+        "ratio": "2/3"
+      }
+    ],
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
   },
   {
     "id": "sparrow",
@@ -20,9 +109,37 @@
     "comp": "Launch Canada",
     "vehicle": "nimbus",
     "result": "1st, Payload Challenge",
-    "image": null,
+    "image": "/media/payloads/sparrow/assembly.webp",
+    "heroImage": "/media/payloads/sparrow/hero.webp",
+    "heroImagePosition": "center 65%",
     "summary": "A 360-degree camera paired with a recovery beacon, flown on Nimbus. Won first place in the Payload Challenge at Launch Canada 2025.",
     "detail": "Sparrow paired a 360-degree camera with a recovery beacon: full-flight footage in every direction, plus a way to find the airframe faster after it lands. It flew on Nimbus and won first place in the Payload Challenge at Launch Canada 2025.",
-    "reviewLocked": []
+    "render": {
+      "src": "/media/payloads/sparrow/assembly.webp",
+      "alt": "Sparrow payload assembly on its display base: 360-degree camera, recovery beacon, and SRAD electronics in an open aluminum frame."
+    },
+    "photos": [
+      {
+        "src": "/media/payloads/sparrow/powered.webp",
+        "alt": "Sparrow standing on its base, plugged in and charging.",
+        "caption": "Charging the night before launch."
+      },
+      {
+        "src": "/media/payloads/sparrow/bench.webp",
+        "alt": "A team member at the bench with Sparrow, a laptop, and SRAD boards wired for testing.",
+        "caption": "Debugging last-minute integration issues before flight."
+      },
+      {
+        "src": "/media/payloads/sparrow/electronics.webp",
+        "alt": "Top-down view of Sparrow on the workbench surrounded by SRAD PCBs, laptops, and test gear.",
+        "caption": "Verifying CAN bus communication across the SRAD stack."
+      },
+      {
+        "src": "/media/payloads/sparrow/flight.webp",
+        "alt": "360-degree camera view from Sparrow in flight: cloud deck and blue sky through the circular lens.",
+        "caption": "Footage from the 360-degree camera during flight on Nimbus."
+      }
+    ],
+    "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   }
 ]

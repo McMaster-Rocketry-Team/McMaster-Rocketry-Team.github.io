@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Logo from './Logo.astro';
 import site from '../data/site.json';
-import { sortVehicles } from '../lib/fleet';
+import { sortVehicles, sortPayloads } from '../lib/fleet';
 
 interface Props {
   current: string; // e.g. "/rockets"
@@ -10,7 +10,7 @@ interface Props {
 const { current } = Astro.props;
 const subteams = await getCollection('subteams');
 const vehicles = sortVehicles(await getCollection('vehicles'));
-const payloads = await getCollection('payloads');
+const payloads = sortPayloads(await getCollection('payloads'));
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const onRocketsIndex = path === '/rockets';
 const onRocketsSection = path === '/rockets' || path.startsWith('/rockets/');

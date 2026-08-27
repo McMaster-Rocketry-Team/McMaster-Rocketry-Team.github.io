@@ -6,6 +6,7 @@
   "city": "Hamilton, Ontario",
   "email": "rocketry@mcmaster.ca",
   "social": { "instagram": "https://www.instagram.com/mcmasterrocketry/?hl=en", "discord": "https://discord.gg/tsQq8byCy8", "linkedin": "https://ca.linkedin.com/company/mcmaster-rocketry-team" },
+  "cloudflareAnalyticsToken": "",
   "nav": [
     { "label": "Rockets", "href": "/rockets" },
     { "label": "Payloads", "href": "/payloads" },

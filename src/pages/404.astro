@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="This page doesn't exist, or it moved."
+  current="/404"
+  reviewLocked={[0, 1]}
+>
+<header class="phead has-hero has-hero--wide" style="--hero-img:url(/media/404-sunset.webp)">
+  <span class="crosshair tl" aria-hidden="true"></span>
+  <span class="crosshair br" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="herobox">
+      <div class="tag">404</div>
+      <h1>Page not<br>found.</h1>
+      <p class="lede">This page doesn't exist, or it moved. Try one of the links below.</p>
+      <div class="btnrow">
+        <a class="btn solid" href="/">Home</a>
+        <a class="btn" href="/join">Join us</a>
+      </div>
+    </div>
+  </div>
+</header>
+</BaseLayout>

@@ -19,9 +19,6 @@ const { name, role, programme, year, photo } = Astro.props;
   ) : (
     <div class="shot" aria-hidden="true">
       <Fragment set:html={personGlyphSvg()} />
-      <span class="shot-placeholder">
-        Portrait pending
-      </span>
     </div>
   )}
   <h3>{name}</h3>

@@ -32,6 +32,7 @@ ROUTES = [
     "/outreach",
     "/sponsors",
     "/members",
+    "/404",
 ]
 INLINE = {"A", "B", "I", "EM", "STRONG", "SPAN", "BR", "SUP", "SUB", "U"}
 PROSE = {"P", "H1", "H2", "H3", "H4", "H5", "LI", "FIGCAPTION", "BLOCKQUOTE", "DT", "DD"}
@@ -86,20 +87,9 @@ def scan(html: str):
 
     deduped = []
     for el in flagged:
-        if any(other is not el and other in el.parents for other in flagged):
+        if any(other is not el and el in other.descendants for other in flagged):
             continue
-        if any(other is not el and el in other.parents for other in flagged):
-            continue
-        # other.contains(el)
-        nested = False
-        for other in flagged:
-            if other is el:
-                continue
-            if el in other.descendants:
-                nested = True
-                break
-        if not nested:
-            deduped.append(el)
+        deduped.append(el)
 
     blocks = [
         {"tag": el.name.lower(), "text": text_of(el)[:140]}

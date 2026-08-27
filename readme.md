@@ -21,7 +21,7 @@ Open http://127.0.0.1:4321/. `pnpm astro build` writes `dist/`. `pnpm astro prev
 | Pages | `src/pages/` |
 | Data the team edits | `src/data/*.json` |
 | Tokens, layout, hero pattern | `src/styles/site.css` (header comment) + `.cursor/rules/design.mdc` |
-| Design system spec (v1.2) | `McMaster_Rocketry_Design_System_Spec.md` (gitignored) · `docs/design-system.md` (pointer + sync steps) |
+| Design system spec (v1.3) | `McMaster_Rocketry_Design_System_Spec.md` (gitignored) · `docs/design-system.md` (pointer + sync steps) |
 | Vehicle photos (source) | `rockets/<slug>/` + `SHORTLIST.md` |
 | Fleet cutouts (shipped) | `public/media/rockets/` |
 | Lead portraits (shipped) | `public/media/leads/` |

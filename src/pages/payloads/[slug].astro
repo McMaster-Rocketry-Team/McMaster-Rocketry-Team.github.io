@@ -4,8 +4,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TodoBadge from '../../components/TodoBadge.astro';
 import CtaBand from '../../components/CtaBand.astro';
 
+import { sortPayloads } from '../../lib/fleet';
+
 export async function getStaticPaths() {
-  const payloads = (await getCollection('payloads')).sort((a, b) => a.data.year - b.data.year);
+  const payloads = sortPayloads(await getCollection('payloads'));
   const vehicles = await getCollection('vehicles');
   return payloads.map((p) => ({ params: { slug: p.data.slug }, props: { payloads, vehicles, p: p.data } }));
 }
@@ -16,10 +18,20 @@ const vehicle = p.vehicle ? vehicles.find((v) => v.data.slug === p.vehicle)?.dat
 const i = payloads.findIndex((x) => x.data.slug === p.slug);
 const prev = i > 0 ? payloads[i - 1].data : null;
 const next = i < payloads.length - 1 ? payloads[i + 1].data : null;
+
+const detailParagraphs = p.detail ? p.detail.split(/\n\n+/) : [];
+
+// After hero (dark) + specs (paper) + detail (dark), alternate paper/dark for optional sections.
+let sectionTone = 0;
+function sectionClass(): string | undefined {
+  const paper = sectionTone % 2 === 0;
+  sectionTone += 1;
+  return paper ? 'paper' : undefined;
+}
 ---
 
 <BaseLayout title={p.name} description={`${p.name}: McMaster Rocketry's ${p.year} ${p.comp} payload.`} current="/payloads" reviewLocked={p.reviewLocked}>
-<header class={p.heroImage ? 'phead has-hero' : 'phead'} style={p.heroImage ? `--hero-img:url(${p.heroImage})` : undefined}>
+<header class={p.heroImage ? 'phead has-hero' : 'phead'} style={p.heroImage ? `--hero-img:url(${p.heroImage})${p.heroImagePosition ? `;--hero-pos:${p.heroImagePosition}` : ''}` : undefined}>
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
@@ -41,10 +53,21 @@ const next = i < payloads.length - 1 ? payloads[i + 1].data : null;
 
 <section class="paper">
   <div class="wrap">
+  {p.specs && p.specs.length > 0 ? (
+    <div class="shead">
+      <div><div class="tag">Specifications</div><h2>By the numbers.</h2></div>
+    </div>
+  ) : null}
     <dl class="dl">
+      {p.specs && p.specs.map((row) => (
+        <div>
+          <dt>{row.label}</dt>
+          <dd>{row.value}</dd>
+        </div>
+      ))}
       <div>
         <dt>Flew on</dt>
-        {vehicle ? <dd><a class="link-underline" href={`/rockets/${vehicle.slug}`}>{vehicle.name}</a></dd> : <dd class="nodata">Not published</dd>}
+        {vehicle ? <dd><a class="link-fleet" href={`/rockets/${vehicle.slug}`}>{vehicle.name}</a></dd> : <dd class="nodata">Not published</dd>}
       </div>
       <div>
         <dt>Result</dt>
@@ -56,23 +79,122 @@ const next = i < payloads.length - 1 ? payloads[i + 1].data : null;
 
 <section>
   <div class="wrap">
-    <div class="shead">
-      <div><div class="tag">The payload</div><h2>What it did.</h2></div>
-    </div>
-    <div class="prose">
-      {p.detail ? <p>{p.detail}</p> : <p>No write-up for this payload yet. <TodoBadge label="payload description" /></p>}
+    <div class="subteam-intro payload-intro">
+      <div>
+        <div class="shead" style="margin-top:0">
+          <div><div class="tag">The payload</div><h2>What it did.</h2></div>
+        </div>
+        <div class="prose prose--follow">
+          {detailParagraphs.length > 0 ? detailParagraphs.map((para) => <p>{para}</p>) : (
+            <p>No write-up for this payload yet. <TodoBadge label="payload description" /></p>
+          )}
+        </div>
+      </div>
+      {p.render && (
+        <figure class="subteam-shot payload-render">
+          <img src={p.render.src} alt={p.render.alt} loading="lazy" />
+        </figure>
+      )}
     </div>
   </div>
 </section>
 
-<section class="paper">
+{p.blocks && p.blocks.map((block) => (
+  <section class={sectionClass()}>
+    <div class="wrap">
+      <div class="subteam-intro">
+        <div>
+          <div class="shead" style="margin-top:0">
+            <div><div class="tag">{block.tag}</div><h2>{block.heading}</h2></div>
+          </div>
+          <div class="prose prose--follow">
+            <p>{block.body}</p>
+          </div>
+        </div>
+        {block.parts && block.parts.length > 0 ? (
+          <div class="bus-parts">
+            <div class="bus-parts__bulkheads">
+              {block.parts.filter((part) => part.role === 'bulkhead').map((part) => (
+                <figure class="bus-part">
+                  <img src={part.src} alt={part.alt} loading="lazy" />
+                </figure>
+              ))}
+            </div>
+            {block.parts.filter((part) => part.role === 'strut').map((part) => (
+              <div class="bus-parts__struts">
+                {Array.from({ length: part.count ?? 1 }).map(() => (
+                  <figure class="bus-part bus-part--strut">
+                    <img src={part.src} alt={part.alt} loading="lazy" />
+                  </figure>
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : block.image ? (
+          <figure class="product-aside">
+            <img src={block.image} alt={block.imageAlt ?? ''} loading="lazy" />
+          </figure>
+        ) : null}
+      </div>
+    </div>
+  </section>
+))}
+
+{p.procedure && p.procedure.length > 0 && (
+  <section class={sectionClass()}>
+    <div class="wrap">
+      <div class="shead">
+        <div><div class="tag">Procedure</div><h2>Experiment lifecycle.</h2></div>
+      </div>
+      <ol class="procedure-list">
+        {p.procedure.map((step) => <li>{step}</li>)}
+      </ol>
+    </div>
+  </section>
+)}
+
+{p.electronics && p.electronics.length > 0 && (
+  <section class={sectionClass()}>
+    <div class="wrap">
+      <div class="shead">
+        <div><div class="tag">Electronics</div><h2>SRAD boards.</h2></div>
+      </div>
+      <ul class="module-grid">
+        {p.electronics.map((mod) => (
+          <li class="module-card">
+            <div class="module-card__ph"><img src={mod.image} alt={mod.alt} loading="lazy" /></div>
+            <div class="module-card__body">
+              <h3>{mod.name}</h3>
+              <p>{mod.role}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+{p.poster && (
+  <section class={sectionClass()}>
+    <div class="wrap">
+      <div class="shead">
+        <div><div class="tag">Competition</div><h2>Launch Canada poster.</h2></div>
+      </div>
+      <figure class="poster-figure">
+        <img src={p.poster} alt={p.posterAlt ?? `${p.name} competition poster`} loading="lazy" />
+      </figure>
+    </div>
+  </section>
+)}
+
+<section class={sectionClass()}>
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">Gallery</div><h2>In the field.</h2></div>
     </div>
     <div class="gallery">
       {p.photos && p.photos.length > 0 ? p.photos.map((photo) => (
-        <figure><div class="ph"><img src={photo.src} alt={photo.alt} loading="lazy" /></div>
+        <figure><div class={`ph${photo.contain ? ' ph-is-product' : ''}`} style={photo.ratio ? `--ph-ratio:${photo.ratio}` : undefined}><img src={photo.src} alt={photo.alt} loading="lazy" /></div>
           {photo.caption && <figcaption>{photo.caption}</figcaption>}</figure>
       )) : (<>
         <figure><div class="ph"><span>Photo slot: bench testing<br />TODO</span></div>

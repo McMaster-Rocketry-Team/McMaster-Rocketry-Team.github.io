@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import { shortComp, unsizedH } from '../lib/fleet';
+import { shortComp, sortPayloads, unsizedH } from '../lib/fleet';
 
-const payloads = (await getCollection('payloads')).sort((a, b) => a.data.year - b.data.year);
+const payloads = sortPayloads(await getCollection('payloads'));
 ---
 
 <div class="fleet-stage">
@@ -18,7 +18,7 @@ const payloads = (await getCollection('payloads')).sort((a, b) => a.data.year - 
         </span>
         <span class={`val${p.result?.startsWith('1st') ? ' win' : ''}`}>{p.result}</span>
         <span class="nm">
-          <b>{p.name}</b>
+          <b class="link-fleet">{p.name}</b>
           <span class="meta">{shortComp(p.comp)} · {p.year}</span>
           <span class="go" aria-hidden="true">View →</span>
         </span>
@@ -30,6 +30,5 @@ const payloads = (await getCollection('payloads')).sort((a, b) => a.data.year - 
 <div class="wrap">
   <div class="fleetnote">
     <span>LC = Launch Canada · SAC = Spaceport America Cup</span>
-    <span>Cropped photos coming soon</span>
   </div>
 </div>

@@ -1,17 +1,34 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import LeadCard from '../components/LeadCard.astro';
 import members from '../data/members.json';
 
+const subteams = await getCollection('subteams');
+const subteamOrder = new Map(subteams.map(({ data }, i) => [data.slug, i]));
+
+function leadSortKey(lead: (typeof members.leads)[number]) {
+  if (lead.subteam == null) return subteams.length;
+  return subteamOrder.get(lead.subteam) ?? subteams.length;
+}
+
 const execRoles = new Set([
   'President',
   'Project manager',
-  'VP finance',
-  'Chief safety officer',
 ]);
 const executives = members.leads.filter((m) => execRoles.has(m.role));
-const subteamLeads = members.leads.filter((m) => !execRoles.has(m.role));
+const subteamLeads = members.leads
+  .map((m, i) => ({ m, i }))
+  .filter(({ m }) => !execRoles.has(m.role))
+  .sort((a, b) => {
+    if (a.m.name === 'Nick Phan') return 1;
+    if (b.m.name === 'Nick Phan') return -1;
+    const bySubteam = leadSortKey(a.m) - leadSortKey(b.m);
+    if (bySubteam !== 0) return bySubteam;
+    return a.i - b.i;
+  })
+  .map(({ m }) => m);
 ---
 
 <BaseLayout
@@ -34,7 +51,6 @@ const subteamLeads = members.leads.filter((m) => !execRoles.has(m.role));
   <div class="wrap">
     <div class="shead">
       <div><div class="tag">2026&ndash;27 leadership</div><h2>Leads.</h2></div>
-      <p>Programmes and years are in. Four portraits are still waiting on the people themselves. Cards work without a photo.</p>
     </div>
 
     <div class="roster-block">
@@ -55,12 +71,6 @@ const subteamLeads = members.leads.filter((m) => !execRoles.has(m.role));
       </div>
     </div>
 
-    <p class="note note--roster">
-      Four lead portraits are still outstanding. They can wait: we are waiting
-      on photos from the people, not chasing them for launch. Alt text should
-      describe the person: &ldquo;Priya Shah, avionics lead,&rdquo; not
-      &ldquo;a student smiling.&rdquo; The card works without a photo.
-    </p>
   </div>
 </section>
 
