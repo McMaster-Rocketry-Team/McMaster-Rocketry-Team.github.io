@@ -1,6 +1,6 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 late evening · branch `dev` · Luminis galleries + Hadfield shipped tonight
+**Last updated:** 2026-08-27 late evening · branch `dev` @ `707109f`
 
 ## Sign-off — resume here
 
