@@ -1,0 +1,16 @@
+{
+  "name": "McMaster Rocketry Team",
+  "short_name": "McMaster Rocketry",
+  "description": "Student-built rockets from Hamilton, Ontario.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1A1A",
+  "theme_color": "#BF2026",
+  "icons": [
+    {
+      "src": "/brand/logo-mark-white-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

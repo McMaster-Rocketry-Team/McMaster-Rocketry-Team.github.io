@@ -19,8 +19,9 @@ const socials = [
           <p class="lockup-tag">{site.tagline}</p>
         </div>
         <p class="foot-intro">
-          A student team at {site.org} in {site.city}. We design, build and
-          fly our own rockets, and we compete at Launch Canada.
+          A student club at {site.org} in {site.city}, not an official
+          University publication. We design, build and fly our own rockets, and
+          we compete at Launch Canada.
         </p>
         <p class="foot-contact">
           <a href={mailHref()}>{site.email || 'TODO@macrocketry.ca'}</a>
@@ -54,6 +55,8 @@ const socials = [
         </ul>
       </div>
     </div>
-    <div class="foot-note"><span>{site.org} · {site.city}</span></div>
+    <div class="foot-note">
+      <span>© 2026 McMaster Rocketry Team · {site.org} · {site.city}</span>
+    </div>
   </div>
 </footer>

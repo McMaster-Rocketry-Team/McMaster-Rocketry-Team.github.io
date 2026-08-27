@@ -20,6 +20,14 @@ const yearSpanWord = numberWord(yearSpan);
 const pCountWord = numberWord(payloads.length);
 const pWins = payloads.filter((p) => p.data.result?.startsWith('1st')).length;
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: 'https://macrocketry.ca',
+  email: site.email,
+  sameAs: [site.social.instagram, site.social.discord, site.social.linkedin].filter(Boolean),
+};
 ---
 
 <BaseLayout
@@ -28,6 +36,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   current="/"
   reviewLocked={Array.from({ length: 36 }, (_, i) => i)}
 >
+<script type="application/ld+json" is:inline set:html={JSON.stringify(orgJsonLd)} />
 <header class="hero">
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
