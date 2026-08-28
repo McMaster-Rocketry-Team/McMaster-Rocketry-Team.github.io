@@ -1,12 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import TodoBadge from '../components/TodoBadge.astro';
-import { mailHref } from '../lib/site';
 import join from '../data/join.json';
 import site from '../data/site.json';
 
-const applyHref = join.applyHref || mailHref('Application');
 const sections = join.sections;
 ---
 
@@ -36,15 +33,12 @@ const sections = join.sections;
     </div>
     <ol class="steps" role="list">
       {join.steps.map((s) => (
-        <li><h3>{s.title}</h3><p>{s.body} {s.todo && <TodoBadge label={s.todo} />}</p></li>
+        <li><h3>{s.title}</h3><p>{s.body}</p></li>
       ))}
     </ol>
     <div class="btnrow">
-      <a class="btn solid" href={applyHref}>{join.buttons.apply}</a>
-      {!join.applyHref && <TodoBadge label="swap for form URL" />}
-      {site.social.discord
-        ? <a class="btn" href={site.social.discord}>{join.buttons.discord}</a>
-        : <><a class="btn" href="#">{join.buttons.discord}</a> <TodoBadge label="swap for the real invite" /></>}
+      <a class="btn solid" href={join.applyHref}>{join.buttons.apply}</a>
+      <a class="btn" href={site.social.discord}>{join.buttons.discord}</a>
     </div>
   </div>
 </section>
@@ -59,10 +53,9 @@ const sections = join.sections;
       {join.dates.map((d) => (
         <div>
           <dt>{d.label}</dt>
-          <dd class={d.note ? undefined : 'nodata'}>
-            {d.note ?? 'TODO'}
-            {'detail' in d && d.detail ? <small>{d.detail}</small> : null}
-            {'todo' in d && d.todo ? <TodoBadge label={d.todo} /> : null}
+          <dd>
+            {d.note}
+            {d.detail ? <small>{d.detail}</small> : null}
           </dd>
         </div>
       ))}
@@ -80,11 +73,7 @@ const sections = join.sections;
       {join.faq.map((f) => (
         <details>
           <summary><h3>{f.q}</h3></summary>
-          {f.a ? (
-            <p class="a">{f.a} {f.todo && <TodoBadge label={f.todo} />}</p>
-          ) : (
-            <p class="a"><TodoBadge label={f.todo || 'answer this'} /></p>
-          )}
+          <p class="a">{f.a}</p>
         </details>
       ))}
     </div>

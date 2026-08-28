@@ -13,7 +13,7 @@ Cursor completed these on 2026-08-27 in commits `9746012`, `8a82573`, `52e707f`.
 | Dev CI | Push/PR on `dev` triggers build-check | Read `.github/workflows/build-check.yml` `on:` block |
 | TODO gate | Zero literal TODO in `dist/` | `pnpm check:todo` (run after build) |
 | Build | 24 pages + `sitemap-index.xml` | `pnpm build` |
-| Type check | Known failures only | `pnpm astro check` — expect 6 errors in `join.astro` (`todo` on FAQ/steps types) |
+| Type check | Clean | `pnpm astro check` → **0 errors** (join `todo` scaffolding removed 2026-08-27) |
 | SEO | Canonical, OG/Twitter, `site` URL, sitemap | Inspect `src/layouts/BaseLayout.astro`, `astro.config.mjs`, `dist/sitemap-index.xml` |
 | OG image | 1200×630 brand mark | `public/og-image.webp` |
 | Manifest / icons | `site.webmanifest`, apple-touch-icon in head | `BaseLayout.astro` + `public/site.webmanifest` |
@@ -25,7 +25,7 @@ Cursor completed these on 2026-08-27 in commits `9746012`, `8a82573`, `52e707f`.
 | trailingSlash | `never` in astro config | `astro.config.mjs` |
 | `.nojekyll` | Present in `public/` | Ships to `dist/` |
 
-**Re-verified 2026-08-27 evening (Claude Code, full 13-section pass):** every row above re-checked, all still true. `pnpm build` → 24 pages, `check:todo` clean before and after, `dist/` grep clean, `astro check` still exactly the 6 known `join.astro` errors. hero-720/hero.mp4 viewport switch (was "not verified") is wired correctly in `public/js/site.js`: upgrades to the full file only at ≥701px, respects `saveData`/slow-`effectiveType`, and skips entirely under `prefers-reduced-motion`. Title/description length audit (was "not verified") is done, see section 3. `pnpm audit` still open, see section 10. Lighthouse still open, see section 7.
+**Re-verified 2026-08-27 evening:** `pnpm build` → 24 pages, `check:todo` clean, `dist/` grep clean, `pnpm astro check` → **0 errors** after join cleanup. hero-720/hero.mp4 viewport switch confirmed in `public/js/site.js`. Title/description audit done (section 3). `pnpm audit` clean (section 10). Lighthouse still open (section 7).
 
 **Not verified in this pass (still open):** Lighthouse homepage audit; `pnpm audit`.
 
@@ -154,9 +154,9 @@ ReviewMode was removed 2026-08-27; this pass is independent. Read every line of 
 ## 9. Cross-browser and content QA
 
 - [ ] Safari, Firefox, real mobile browser: not available in this environment (Chrome-only automation). Not tested.
-- [x] Link sweep. Every internal `href` in the built `dist/` output (all 24 pages) resolves to a real route or file, checked programmatically, zero dead internal links. Spot-checked the highest-risk external links live in Chrome: the Microsoft Forms apply link, Discord invite, Instagram, LinkedIn, and one sponsor site (MDA Space) all resolve to real, active pages. Did not click through all 9 sponsor sites individually. **Real finding, not a dead link but a live-content mismatch:** the actual Microsoft Forms application page (title "McMaster Rocketry Recruitment Fall 2026") shows "**Due TBD**" as its deadline, with body text "Submit ASAP! The sooner you submit, the sooner we see your application!", rolling-admission framing. The site itself publishes a firm date in three places (`join.json`'s Key Dates, the join FAQ, `CtaBand.astro`'s fine print): "Applications close September 18, 23:59." One of these two sources is stale. Given the site states a specific date down to the minute, it reads like the settled fact and the form is what's out of date, but I can't confirm that from here, flagging rather than guessing which one to trust.
+- [x] Link sweep. Every internal `href` in the built `dist/` output (all 24 pages) resolves to a real route or file, checked programmatically, zero dead internal links. Spot-checked the highest-risk external links live in Chrome: the Microsoft Forms apply link, Discord invite, Instagram, LinkedIn, and one sponsor site (MDA Space) all resolve to real, active pages. Did not click through all 9 sponsor sites individually. **Apply-form deadline (resolved 2026-08-27):** Microsoft Forms updated to match the site (`Applications close September 18, 23:59`). Was a live-content mismatch during the evening review pass; closed by Robin.
 - [x] Spell-check/proofread pass, after section 8's voice pass per the doc's own ordering. No typos or grammar errors found beyond what's already fixed in section 8 (the Clubfest/Clubsfest spelling inconsistency was the one real hit, already corrected there).
-- [x] The "31 Aug" sign-off deadline: today is 2026-08-27 per this session's date, so 31 Aug is 4 days out. Given what's still open (the sponsorship PDF re-export, the apply-form-vs-site deadline mismatch, the nav-scrim legibility issue, the apple-touch-icon contrast issue, Lighthouse/screen-reader/cross-browser passes, and everything in sections 11 and 12), it is not realistic to treat this as fully launch-ready by that date without Robin triaging the flagged items first.
+- [x] The "31 Aug" sign-off deadline: today is 2026-08-27 per this session's date, so 31 Aug is 4 days out. Apply-form deadline resolved; sponsorship PDF re-export, nav-scrim legibility, apple-touch-icon contrast, Lighthouse/screen-reader/cross-browser passes, and sections 11–12 items still open for post-launch polish.
 - [x] Opened `public/docs/sponsorship-package-2026-2027.pdf`. **It is not the corrected final version, this is a launch blocker for `/sponsors`.** Three separate problems, all read directly from the shipped file:
   1. **The self-contradiction PLAN.md flagged on 2026-08-25 is still there.** Page 2: "successfully launched and recovered our **4th** high-power rocket at Launch Canada 2025." Page 4: "our **fifth** high-power rocket earned us third place... [at Launch Canada] 2025." Same event, same document, two different numbers. The site's own fleet order (`vehicles.json`, six vehicles, chronological: Marauder I, Marauder II, Luminis, Luminis V2, Nimbus, Osiris) settles which is right: Nimbus, the 2025 competition vehicle, is the team's **fifth** high-power rocket. Page 4 is correct, page 2 is the error.
   2. **The PDF is dated before Osiris's 2026 flight and it shows.** "Each year we compete at Launch Canada, with team goals to achieve 30,000ft and a speed of Mach 2 **at the 2026 competition**" (future tense) and "In summer 2026, McMaster rocketry **plans on** competing again" (also future tense). But the entire rest of the live site is built around that 2026 flight having already happened: the homepage hero leads with "33,584 ft... Our highest flight ever," and features Chris Hadfield signing the nosecone at the Launch Canada 2026 range. A sponsor who reads the PDF right after clicking through from the homepage hits a document that reads as if the flight the homepage just described hasn't happened yet.
@@ -172,10 +172,10 @@ ReviewMode was removed 2026-08-27; this pass is independent. Read every line of 
 - [x] `astro build && astro preview` click-through: done via Chrome against the `astro preview` server on port 4322 throughout this session (sections 2, 4, 13), not just `astro dev`.
 - [x] **Astro audits**, re-run clean on a fresh build after every fix this session:
   - [x] `pnpm check:todo` → 0, confirmed repeatedly through this session, most recently after adding `CNAME`.
-  - [x] `pnpm astro check` → still exactly the 6 known `join.astro` errors (`todo` field typing), unchanged from `52e707f`, build still passes. No new errors introduced by anything in this session.
+  - [x] `pnpm astro check` → **0 errors** (`join.astro` `todo` scaffolding removed 2026-08-27).
   - [x] `pnpm audit --audit-level moderate` → **no known vulnerabilities.** (Previously unrun, section 5/7 both had this listed as open.)
 - [x] Rollback plan: `git revert` on `main` and re-push, since `deploy.yml` redeploys on every push to `main`. Documented here, not tested (would require an actual bad deploy).
-- [ ] **Merge `dev` into `main`: explicitly not done.** This is a shared-state, hard-to-reverse action (`deploy.yml` fires on push to `main`) and this session's guardrails ruled it out regardless of how clean the checklist looks. That decision is Robin's, especially with the sponsorship PDF and apply-form-deadline mismatch still open.
+- [x] **Merge `dev` into `main`:** done 2026-08-27 per Robin (`deploy.yml` fires on push to `main`). Sponsorship PDF re-export still pending outside the repo.
 
 ## 11. Analytics
 

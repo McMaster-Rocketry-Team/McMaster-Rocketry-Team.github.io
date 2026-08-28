@@ -1,23 +1,24 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 night · branch `dev` @ `c32338c`
+**Last updated:** 2026-08-27 night · branch `dev` (pre-merge to `main`)
 
 ## Sign-off — resume here
 
-**Verdict:** not ready to merge `dev` → `main` yet. Full `LAUNCH_REVIEW.md` sections 1–13 pass done tonight; **two** launch blockers remain (PDF, apply deadline). Squarespace cutoff **Mon 31 Aug**.
+**Verdict:** merging `dev` → `main` tonight per Robin. One **content** blocker remains outside the repo: stale sponsorship PDF (re-export from source). Squarespace cutoff **Mon 31 Aug**.
 
-**Deploy gate:** `pnpm check:todo` → **0**. `pnpm astro check` → **6 errors** in `join.astro` (`todo` field typing, unchanged, build still passes). `pnpm audit --audit-level moderate` → **0 vulnerabilities**.
+**Deploy gate:** `pnpm check:todo` → **0**. `pnpm astro check` → **0 errors** (join `todo` scaffolding removed). `pnpm audit --audit-level moderate` → **0 vulnerabilities**.
 
-**Blockers (need Robin):**
+**Blockers (need Robin, non-repo):**
 
-1. **Sponsorship PDF is stale.** `public/docs/sponsorship-package-2026-2027.pdf` still self-contradicts (4th vs fifth rocket), future-tense 2026 copy, old maroon palette. Re-export from source.
-2. **Apply-form deadline mismatch.** Live Microsoft Forms says "Due TBD" / rolling admission; `join.json` publishes "Applications close September 18, 23:59" in three places. Confirm which is authoritative.
+1. **Sponsorship PDF is stale.** `public/docs/sponsorship-package-2026-2027.pdf` still self-contradicts (4th vs fifth rocket), future-tense 2026 copy, old maroon palette. Re-export from source when ready; does not block deploy of the Astro site.
 
 **Resolved tonight:**
 
-- **`osiris.mach`:** Robin chose to **publish OpenRocket FDR Mach 1.92** after Void Lake SRAD log ingest (Void Lake KF peak read ~1.03; apogee/accel/recovery from log). See `docs/data-layer.md`.
-- **Hero apogee drift:** home hero now reads highest `apogee` from `vehicles` collection (same source as `/rockets/osiris`).
-- **Copy drift:** page chrome moved to `pages.json` + extended JSON files; templates render only. See `docs/data-layer.md`.
+- **Apply deadline:** Microsoft Forms updated to match site (`Applications close September 18, 23:59`).
+- **`join.astro`:** removed dead `todo`/`TodoBadge` scaffolding; `astro check` clean.
+- **`osiris.mach`:** published OpenRocket FDR **1.92** after Void Lake ingest (see `docs/data-layer.md`).
+- **Hero apogee drift:** home hero reads `vehicles` collection.
+- **Copy drift:** `pages.json` + extended JSON; see `docs/data-layer.md`.
 
 **ReviewMode:** removed (`8a82573`). Legacy `reviewLocked` arrays inert until cleanup.
 
@@ -25,11 +26,10 @@
 
 **Next session, in order**
 
-1. Robin: resolve blockers 1–2 (PDF re-export, confirm apply deadline).
+1. Robin: re-export sponsorship PDF when source is ready.
 2. Robin: nav-scrim legibility + apple-touch-icon contrast (`LAUNCH_REVIEW.md` §2/§6).
-3. Merge `dev` → `main` only after 1–2.
-4. DNS: registrar records for `macrocketry.ca` (repo `public/CNAME` shipped).
-5. Cloudflare analytics → `site.json`; sponsorship legal recipient; trademark/AODA/member consent.
+3. DNS: registrar records for `macrocketry.ca` (repo `public/CNAME` shipped).
+4. Cloudflare analytics → `site.json`; sponsorship legal recipient; trademark/AODA/member consent.
 
 **Done 2026-08-27 night — Claude Code (commits `93eb3cd`, `4cded4b` + uncommitted launch pass):**
 
