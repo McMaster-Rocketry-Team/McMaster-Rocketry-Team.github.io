@@ -178,11 +178,18 @@ nav[data-scrolled="true"]{
    with the brand. Other 860px layout queries stay where they are. */
 @media(max-width:980px){
   .navtoggle{display:inline-flex}
-  /* the panel is fixed from top:0 and paints after the toggle in DOM order, so
+  /* the panel is fixed and paints after the toggle in DOM order, so
      the brand and the close button have to be lifted above it */
   .brand,.navtoggle{position:relative;z-index:2}
-  .navlinks{position:fixed;inset:0 0 auto 0;top:0;
-    padding:calc(env(safe-area-inset-top) + var(--navh) + 12px) var(--gutter) 26px;
+  /* Panel starts below the fixed header instead of behind it: with internal
+     scroll enabled (below), content sliding under a same-top-edge panel would
+     surface in the header's gradient (no solid backing) between the brand and
+     the toggle, since neither covers that gap. */
+  .navlinks{position:fixed;inset:0 0 auto 0;
+    top:calc(env(safe-area-inset-top) + var(--navh));
+    max-height:calc(100dvh - env(safe-area-inset-top) - var(--navh));
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:12px var(--gutter) 26px;
     flex-direction:column;align-items:stretch;gap:0;background:var(--graphite-900);
     border-bottom:1px solid rgba(255,255,255,.18);
     transform:translateY(-100%);visibility:hidden;
@@ -194,8 +201,12 @@ nav[data-scrolled="true"]{
   .navitem-top::after{display:none}
   .navitem{border-bottom:1px solid rgba(255,255,255,.12)}
   .navitem-top{border-bottom:0}
-  .navmenu{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;
+  .navmenu{position:static;transform:none;opacity:1;pointer-events:auto;
     min-width:0;padding:0 0 10px;border:0;background:transparent}
+  /* visibility gated on the panel being open, not forced unconditionally:
+     visibility inherits, so an unconditional override here would show through
+     the closed (visibility:hidden) .navlinks panel's clipped edge. */
+  nav[data-open="true"] .navmenu{visibility:visible}
   .navmenu::before{display:none}
   .navmenu a{padding:10px 0 10px 14px;min-height:40px;display:flex;align-items:center;
     color:rgba(255,255,255,.72);font-size:14px;border-left:1.5px solid rgba(255,255,255,.18)}
