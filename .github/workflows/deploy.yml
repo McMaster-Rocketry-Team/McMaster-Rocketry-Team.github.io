@@ -41,7 +41,7 @@ jobs:
       # See scripts/check-todo.mjs and PLAN.md's Astro port notes.
       - run: pnpm check:todo
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
       - uses: actions/upload-pages-artifact@v3
         with:
