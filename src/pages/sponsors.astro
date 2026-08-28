@@ -5,6 +5,8 @@ import { mailHref } from '../lib/site';
 import site from '../data/site.json';
 import sponsorship from '../data/sponsorship.json';
 
+const showBudgetBreakdown = false;
+
 const tierOrder = ['Gold', 'Silver', 'Bronze'] as const;
 const partnersByTier = tierOrder.map((tier) => ({
   tier,
@@ -30,31 +32,33 @@ const partnersByTier = tierOrder.map((tier) => ({
   </div>
 </header>
 
-<section class="paper">
-  <div class="wrap">
-    <div class="shead">
-      <div><div class="tag">What it buys</div><h2>Where the money goes.</h2></div>
-      <p>We publish this because sponsors ask. A team that won't say where the money
-         goes isn't a team worth funding.</p>
-    </div>
-    <dl class="dl c4">
-      {sponsorship.budget.map((b) => (
-        <div>
-          <dt>{b.label}</dt>
-          {b.amount ? <dd>{b.amount}<small>{b.note}</small></dd> : <dd class="nodata">TODO<small>{b.note}</small></dd>}
-        </div>
-      ))}
-      <div class="dl-cta">
-        <dt>Sponsor</dt>
-        <dd>
-          <a class="card card-cta" href={sponsorship.packagePdf} download>
-            <div><h3>Get package</h3><p>The 2026–27 sponsorship package: tiers, benefits, and what we fly.</p></div>
-          </a>
-        </dd>
+{showBudgetBreakdown && (
+  <section class="paper">
+    <div class="wrap">
+      <div class="shead">
+        <div><div class="tag">What it buys</div><h2>Where the money goes.</h2></div>
+        <p>We publish this because sponsors ask. A team that won't say where the money
+           goes isn't a team worth funding.</p>
       </div>
-    </dl>
-  </div>
-</section>
+      <dl class="dl c4">
+        {sponsorship.budget.map((b) => (
+          <div>
+            <dt>{b.label}</dt>
+            {b.amount ? <dd>{b.amount}<small>{b.note}</small></dd> : <dd class="nodata">TODO<small>{b.note}</small></dd>}
+          </div>
+        ))}
+        <div class="dl-cta">
+          <dt>Sponsor</dt>
+          <dd>
+            <a class="card card-cta" href={sponsorship.packagePdf} download>
+              <div><h3>Get package</h3><p>The 2026-27 sponsorship package: tiers, benefits, and what we fly.</p></div>
+            </a>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+)}
 
 <section>
   <div class="wrap">
