@@ -1,33 +1,56 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 evening · branch `dev` @ `52e707f`
+**Last updated:** 2026-08-27 night · branch `dev` @ `4cded4b` + uncommitted (Cursor + Claude Code)
 
 ## Sign-off — resume here
 
-**Verdict:** ready to merge `dev` → `main` after DNS/CNAME and a quick visual click-through. Squarespace cutoff **Mon 31 Aug**.
+**Verdict:** not ready to merge `dev` → `main` yet. Full `LAUNCH_REVIEW.md` sections 1–13 pass done tonight; **two** launch blockers remain (PDF, apply deadline). Squarespace cutoff **Mon 31 Aug**.
 
-**Deploy gate:** `pnpm check:todo` → **0** (verified 27 Aug after ReviewMode strip). `pnpm astro check` → **6 errors** in `join.astro` (`todo` field typing; build still passes).
+**Deploy gate:** `pnpm check:todo` → **0**. `pnpm astro check` → **6 errors** in `join.astro` (`todo` field typing, unchanged, build still passes). `pnpm audit --audit-level moderate` → **0 vulnerabilities**.
 
-**ReviewMode:** **removed** (`8a82573`). All routes were locked before strip (`9746012` propulsion + six vehicles). Legacy `reviewLocked` arrays remain in JSON/page props until a cleanup pass; they are inert.
+**Blockers (need Robin):**
 
-**CI:** `build-check.yml` re-enabled on `dev` push/PR (`8a82573`). Deploy on `main` unchanged.
+1. **Sponsorship PDF is stale.** `public/docs/sponsorship-package-2026-2027.pdf` still self-contradicts (4th vs fifth rocket), future-tense 2026 copy, old maroon palette. Re-export from source.
+2. **Apply-form deadline mismatch.** Live Microsoft Forms says "Due TBD" / rolling admission; `join.json` publishes "Applications close September 18, 23:59" in three places. Confirm which is authoritative.
+
+**Resolved tonight:**
+
+- **`osiris.mach`:** Robin chose to **publish OpenRocket FDR Mach 1.92** after Void Lake SRAD log ingest (Void Lake KF peak read ~1.03; apogee/accel/recovery from log). See `docs/data-layer.md`.
+- **Hero apogee drift:** home hero now reads highest `apogee` from `vehicles` collection (same source as `/rockets/osiris`).
+- **Copy drift:** page chrome moved to `pages.json` + extended JSON files; templates render only. See `docs/data-layer.md`.
+
+**ReviewMode:** removed (`8a82573`). Legacy `reviewLocked` arrays inert until cleanup.
+
+**CI:** `build-check.yml` on `dev` push/PR (`astro build` + `check:todo`). Deploy on `main` unchanged.
 
 **Next session, in order**
 
-1. Merge `dev` → `main` (triggers Pages deploy + `check:todo` gate).
-2. DNS: `CNAME` for `macrocketry.ca`, registrar records, enforce HTTPS.
-3. Cloudflare analytics token → `site.json`; sponsorship legal recipient (Financial Affairs).
-4. Remaining `LAUNCH_REVIEW.md` sections 2, 4–6, 8–9, 11–13 (visual QA, a11y, copy voice, legal).
+1. Robin: resolve blockers 1–2 (PDF re-export, confirm apply deadline).
+2. Robin: nav-scrim legibility + apple-touch-icon contrast (`LAUNCH_REVIEW.md` §2/§6).
+3. Merge `dev` → `main` only after 1–2.
+4. DNS: registrar records for `macrocketry.ca` (repo `public/CNAME` shipped).
+5. Cloudflare analytics → `site.json`; sponsorship legal recipient; trademark/AODA/member consent.
 
-**Done 2026-08-27 (commits `9746012` · `8a82573` · `52e707f`):**
+**Done 2026-08-27 night — Claude Code (commits `93eb3cd`, `4cded4b` + uncommitted launch pass):**
 
-| Step | What |
+| Area | What |
 |---|---|
-| 1 | Locked ReviewMode on `/subteams/propulsion` + all six `/rockets/*` pages |
-| 2 | Deleted `ReviewMode.astro`; removed overlay + `data-rv-locked` from `BaseLayout` |
-| 3 | Re-enabled `build-check.yml` on `dev` |
-| 4 | Audit: `check:todo` ✓ · `build` ✓ (24 pages + sitemap) · `dist/` grep ✓ (no ReviewMode leaks) · `astro check` ✗ (join.astro) |
-| 7 | SEO (`site`, sitemap, canonical/OG, JSON-LD, `robots.txt`); `site.webmanifest` + apple-touch-icon; footer affiliation + ©; PDF 11 MB → 2.1 MB; EXIF stripped from 109 images; `public/.nojekyll` |
+| Security | CSP meta tag; `pnpm-workspace.yaml` fix; `.github/dependabot.yml` (Actions, 7-day cooldown) |
+| Design | Three off-neutral grayscale leaks fixed in `site.css`; hero video perf (`site.js`) |
+| Bug | Mobile nav `<noscript>` fallback; sponsors budget section gated behind `showBudgetBreakdown` |
+| Copy | Em/en-dash pass; Clubsfest spelling; faculties overclaim; footer SAC mention |
+| SEO/perf | Title/description audit; hero source switching confirmed |
+| Pre-launch | `public/CNAME`; `pnpm audit` clean |
+
+**Done 2026-08-27 night — Cursor (uncommitted):**
+
+| Area | What |
+|---|---|
+| Flight data | Void Lake SRAD `flight_log.zip` → `scripts/ingest-flight-log.py`; Osiris apogee **33,551 ft**, accel **16.1 G**, main **1,373 ft**; Mach **1.92** (FDR, Robin call) |
+| Data layer | `pages.json`, `src/lib/copy.ts`; templates/components read JSON; sponsor contacts resolve from `members.leads` |
+| Docs | `docs/data-layer.md`; `media-source/README.md` flight-log entry |
+
+Full detail: `LAUNCH_REVIEW.md` (sections 1–13 updated in place tonight).
 
 **Can wait:** hidden outreach events, safety page, unused Hadfield source JPGs in `chris-hadfield/`, `reviewLocked` JSON cleanup.
 
