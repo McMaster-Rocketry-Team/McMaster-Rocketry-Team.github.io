@@ -1,10 +1,10 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 night · branch `dev` (pre-merge to `main`)
+**Last updated:** 2026-08-27 night · branch `main` @ `2ceecb8` (merged from `dev`)
 
 ## Sign-off — resume here
 
-**Verdict:** merging `dev` → `main` tonight per Robin. One **content** blocker remains outside the repo: stale sponsorship PDF (re-export from source). Squarespace cutoff **Mon 31 Aug**.
+**Verdict:** `dev` merged to `main` @ `2ceecb8` (2026-08-27). Deploy via `deploy.yml` on push. One **content** blocker remains outside the repo: stale sponsorship PDF (re-export from source). Squarespace cutoff **Mon 31 Aug**.
 
 **Deploy gate:** `pnpm check:todo` → **0**. `pnpm astro check` → **0 errors** (join `todo` scaffolding removed). `pnpm audit --audit-level moderate` → **0 vulnerabilities**.
 
