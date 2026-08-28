@@ -1,20 +1,19 @@
 ---
 import TodoBadge from './TodoBadge.astro';
 import { mailHref, hasRealEmail } from '../lib/site';
+import join from '../data/join.json';
 ---
 
 <section class="cta">
   <div class="wrap">
-    <div class="tag">Build the next one</div>
-    <h2>We hire first years.</h2>
-    <p>We hire people who have never touched a rocket. Come ready to learn.
-      We'll teach the rest.</p>
-    <p class="fine">Find us at Facultyfest on August 31, 12:30 to 17:00, or Clubsfest on September 14, 16:30 to 19:30 on the JHE field. Applications close September 18.
-      You don't need to be an engineer: we need people on operations as much as on airframe.</p>
+    <div class="tag">{join.cta.tag}</div>
+    <h2>{join.cta.headline}</h2>
+    <p>{join.cta.body}</p>
+    <p class="fine">{join.cta.fine}</p>
     <div class="btnrow">
-      <a class="btn solid" href="/join">How to join</a>
-      <a class="btn" href="/sponsors">Sponsor the team</a>
-      <a class="btn" href={mailHref()}>Email us</a>
+      <a class="btn solid" href="/join">{join.cta.buttons.join}</a>
+      <a class="btn" href="/sponsors">{join.cta.buttons.sponsors}</a>
+      <a class="btn" href={mailHref()}>{join.cta.buttons.email}</a>
       {!hasRealEmail() && <TodoBadge label="real team email" />}
     </div>
   </div>

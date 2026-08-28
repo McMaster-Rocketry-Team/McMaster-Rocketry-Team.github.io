@@ -38,6 +38,10 @@ Optional `heroImage` on each subteam in `subteams.json` drives `.phead.has-hero`
 
 `mockups/final/` is a **deprecated** snapshot. When mockup HTML/CSS disagrees with `src/` (hero veil, apogee fleet, flat nav), trust the Astro site.
 
+## Data layer
+
+Copy and numbers live in `src/data/*.json` and content collections; Astro templates render structure only. See [`docs/data-layer.md`](data-layer.md).
+
 ## Nav flyout alignment
 
 Rockets and Subteams use `.navitem` wrappers; other nav entries are plain `.navlinks > a`. On desktop, the link row must use **`align-items: baseline`** (not `center`) so all top-level labels share one text baseline. See spec **Navigation** and `src/styles/site.css` (`.navlinks`, `.navitem`).

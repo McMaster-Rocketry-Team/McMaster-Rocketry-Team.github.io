@@ -56,19 +56,19 @@
     "electronics": [
       {
         "name": "SEM",
-        "role": "Sensor & Experiment Module — strain acquisition and experiment control.",
+        "role": "Sensor & Experiment Module: strain acquisition and experiment control.",
         "image": "/media/payloads/magpie/sem-board.webp",
         "alt": "CAD render of the Magpie SEM PCB with SD card slot and GPIO header."
       },
       {
         "name": "SDRM",
-        "role": "Software Defined Radio Module — 433 MHz LoRa telemetry link to the ground station.",
+        "role": "Software Defined Radio Module: 433 MHz LoRa telemetry link to the ground station.",
         "image": "/media/payloads/magpie/sdrm-board.webp",
         "alt": "CAD render of the Magpie SDRM PCB with antenna connector and radio module."
       },
       {
         "name": "EPM",
-        "role": "Electrical Power Module — battery management and power distribution for the payload stack.",
+        "role": "Electrical Power Module: battery management and power distribution for the payload stack.",
         "image": "/media/payloads/magpie/epm-board.webp",
         "alt": "CAD render of the Magpie EPM PCB with power connectors and regulators."
       }
@@ -79,7 +79,7 @@
       {
         "src": "/media/payloads/magpie/wiring.webp",
         "alt": "Magpie on display at the McMaster Rocketry booth: competition poster, payload stack, Osiris nose cone, and SRAD boards on the table.",
-        "caption": "Magpie booth setup at Launch Canada — poster, hardware, and electronics on display."
+        "caption": "Magpie booth setup at Launch Canada: poster, hardware, and electronics on display."
       },
       {
         "src": "/media/payloads/magpie/presentation.webp",
@@ -95,7 +95,7 @@
       {
         "src": "/media/payloads/magpie/integration.webp",
         "alt": "A team member fastens hardware on the Magpie stack beside the Osiris nose cone at the range.",
-        "caption": "Final integration checks on the pad — Osiris nose cone in the background.",
+        "caption": "Final integration checks on the pad, Osiris nose cone in the background.",
         "ratio": "2/3"
       }
     ],

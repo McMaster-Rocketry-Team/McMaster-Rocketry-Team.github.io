@@ -7,6 +7,17 @@
   "email": "rocketry@mcmaster.ca",
   "social": { "instagram": "https://www.instagram.com/mcmasterrocketry/?hl=en", "discord": "https://discord.gg/tsQq8byCy8", "linkedin": "https://ca.linkedin.com/company/mcmaster-rocketry-team" },
   "cloudflareAnalyticsToken": "",
+  "titleSuffix": "McMaster Rocketry",
+  "logo": { "width": 1654, "height": 1654 },
+  "copyrightYear": 2026,
+  "footerIntro": "A student club at {org} in {city}, not an official University publication. We design, build and fly our own rockets, and we compete at Launch Canada and Spaceport America Cup.",
+  "abbreviations": "LC = Launch Canada · SAC = Spaceport America Cup",
+  "copy": { "notPublished": "Not published" },
+  "a11y": { "pauseVideo": "Pause video", "skipToContent": "Skip to content", "menu": "Menu" },
+  "stats": {
+    "fleet": { "label": "Highest flown", "empty": "No verified record yet" },
+    "payloads": { "label": "Payload Challenge wins", "empty": "No verified record yet", "unit": "of {count} payloads flown" }
+  },
   "nav": [
     { "label": "Rockets", "href": "/rockets" },
     { "label": "Payloads", "href": "/payloads" },
@@ -15,5 +26,18 @@
     { "label": "Outreach", "href": "/outreach" },
     { "label": "Sponsors", "href": "/sponsors" },
     { "label": "Join us", "href": "/join" }
-  ]
+  ],
+  "footerNav": [
+    { "label": "Rockets", "href": "/rockets" },
+    { "label": "Subteams", "href": "/subteams" },
+    { "label": "Members", "href": "/members" },
+    { "label": "Outreach", "href": "/outreach" },
+    { "label": "Join us", "href": "/join" }
+  ],
+  "footerContact": {
+    "teamHeading": "The team",
+    "touchHeading": "Get in touch",
+    "sponsorship": "Sponsorship",
+    "email": "Email"
+  }
 }

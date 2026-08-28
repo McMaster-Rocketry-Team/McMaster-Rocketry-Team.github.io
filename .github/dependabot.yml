@@ -1,0 +1,11 @@
+version: 2
+updates:
+  # GitHub Actions only. npm/pnpm updates are deliberately not configured
+  # here: astro is pinned in pnpm-workspace.yaml behind minimumReleaseAge,
+  # and a Dependabot PR bumping it same-day would undercut that quarantine.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7

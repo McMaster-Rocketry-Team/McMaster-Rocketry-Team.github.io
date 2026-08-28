@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+import { fill } from '../lib/copy';
 
 const payloads = await getCollection('payloads');
 const wins = payloads.filter((p) => p.data.result?.startsWith('1st')).length;
@@ -7,13 +9,13 @@ const wins = payloads.filter((p) => p.data.result?.startsWith('1st')).length;
 
 {payloads.length ? (
   <>
-    <div class="lbl">Payload Challenge wins</div>
+    <div class="lbl">{site.stats.payloads.label}</div>
     <div class="num">{wins}</div>
-    <div class="unit">of {payloads.length} payloads flown</div>
+    <div class="unit">{fill(site.stats.payloads.unit, { count: payloads.length })}</div>
   </>
 ) : (
   <>
-    <div class="lbl">Payload Challenge wins</div>
-    <div class="unit">No verified record yet</div>
+    <div class="lbl">{site.stats.payloads.label}</div>
+    <div class="unit">{site.stats.payloads.empty}</div>
   </>
 )}

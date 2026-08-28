@@ -5,6 +5,8 @@ import TodoBadge from '../../components/TodoBadge.astro';
 import CtaBand from '../../components/CtaBand.astro';
 
 import { sortPayloads } from '../../lib/fleet';
+import pages from '../../data/pages.json';
+import site from '../../data/site.json';
 
 export async function getStaticPaths() {
   const payloads = sortPayloads(await getCollection('payloads'));
@@ -13,6 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { payloads, vehicles, p } = Astro.props;
+const template = pages.payloads.template;
 const vehicle = p.vehicle ? vehicles.find((v) => v.data.slug === p.vehicle)?.data : null;
 
 const i = payloads.findIndex((x) => x.data.slug === p.slug);
@@ -55,7 +58,7 @@ function sectionClass(): string | undefined {
   <div class="wrap">
   {p.specs && p.specs.length > 0 ? (
     <div class="shead">
-      <div><div class="tag">Specifications</div><h2>By the numbers.</h2></div>
+      <div><div class="tag">{template.specs.tag}</div><h2>{template.specs.headline}</h2></div>
     </div>
   ) : null}
     <dl class="dl">
@@ -66,12 +69,12 @@ function sectionClass(): string | undefined {
         </div>
       ))}
       <div>
-        <dt>Flew on</dt>
-        {vehicle ? <dd><a class="link-fleet" href={`/rockets/${vehicle.slug}`}>{vehicle.name}</a></dd> : <dd class="nodata">Not published</dd>}
+        <dt>{template.labels.vehicle}</dt>
+        {vehicle ? <dd><a class="link-fleet" href={`/rockets/${vehicle.slug}`}>{vehicle.name}</a></dd> : <dd class="nodata">{site.copy.notPublished}</dd>}
       </div>
       <div>
-        <dt>Result</dt>
-        {p.result ? <dd>{p.result}</dd> : <dd class="nodata">Not published</dd>}
+        <dt>{template.labels.result}</dt>
+        {p.result ? <dd>{p.result}</dd> : <dd class="nodata">{site.copy.notPublished}</dd>}
       </div>
     </dl>
   </div>
@@ -82,7 +85,7 @@ function sectionClass(): string | undefined {
     <div class="subteam-intro payload-intro">
       <div>
         <div class="shead" style="margin-top:0">
-          <div><div class="tag">The payload</div><h2>What it did.</h2></div>
+          <div><div class="tag">{template.payload.tag}</div><h2>{template.payload.headline}</h2></div>
         </div>
         <div class="prose prose--follow">
           {detailParagraphs.length > 0 ? detailParagraphs.map((para) => <p>{para}</p>) : (
@@ -144,7 +147,7 @@ function sectionClass(): string | undefined {
   <section class={sectionClass()}>
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">Procedure</div><h2>Experiment lifecycle.</h2></div>
+        <div><div class="tag">{template.procedure.tag}</div><h2>{template.procedure.headline}</h2></div>
       </div>
       <ol class="procedure-list">
         {p.procedure.map((step) => <li>{step}</li>)}
@@ -157,7 +160,7 @@ function sectionClass(): string | undefined {
   <section class={sectionClass()}>
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">Electronics</div><h2>SRAD boards.</h2></div>
+        <div><div class="tag">{template.electronics.tag}</div><h2>{template.electronics.headline}</h2></div>
       </div>
       <ul class="module-grid">
         {p.electronics.map((mod) => (
@@ -178,7 +181,7 @@ function sectionClass(): string | undefined {
   <section class={sectionClass()}>
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">Competition</div><h2>Launch Canada poster.</h2></div>
+        <div><div class="tag">{template.poster.tag}</div><h2>{template.poster.headline}</h2></div>
       </div>
       <figure class="poster-figure">
         <img src={p.poster} alt={p.posterAlt ?? `${p.name} competition poster`} loading="lazy" />
@@ -190,7 +193,7 @@ function sectionClass(): string | undefined {
 <section class={sectionClass()}>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Gallery</div><h2>In the field.</h2></div>
+      <div><div class="tag">{template.gallery.tag}</div><h2>{template.gallery.headline}</h2></div>
     </div>
     <div class="gallery">
       {p.photos && p.photos.length > 0 ? p.photos.map((photo) => (
@@ -209,7 +212,7 @@ function sectionClass(): string | undefined {
     </div>
     <div class="btnrow">
       {prev && <a class="btn" href={`/payloads/${prev.slug}`}><span aria-hidden="true">&larr;</span> {prev.name}</a>}
-      <a class="btn" href="/payloads">All payloads</a>
+      <a class="btn" href="/payloads">{template.nav.all}</a>
       {next && <a class="btn" href={`/payloads/${next.slug}`}>{next.name} <span aria-hidden="true">&rarr;</span></a>}
     </div>
   </div>

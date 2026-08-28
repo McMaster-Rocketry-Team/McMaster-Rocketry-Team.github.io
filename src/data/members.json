@@ -1,4 +1,22 @@
 {
+  "page": {
+    "title": "Members",
+    "description": "The students who build and fly McMaster Rocketry's vehicles.",
+    "tag": "Members",
+    "headline": ["The people", "who build it."],
+    "lede": "Over {members} students across {subteams} and {faculties} faculties. These are the leads. The rest of the team is on the subteam pages.",
+    "leadershipTerm": "2026-27 leadership",
+    "rosterLabels": { "executive": "Executive", "subteamLeads": "Subteam leads" },
+    "about": {
+      "tag": "Who we are",
+      "headline": "Not only engineers.",
+      "lede": "The team runs on more than airframes. These are the numbers behind the roster.",
+      "body": "Most of the people on this page had never touched a rocket before joining. Several are not in engineering at all. The operations leads run sponsorship, the budget and everything we do on campus."
+    },
+    "cta": "Join them"
+  },
+  "executiveRoles": ["President", "Project manager"],
+  "leadSortLast": ["Nick Phan"],
   "stats": [
     {
       "label": "Active members",

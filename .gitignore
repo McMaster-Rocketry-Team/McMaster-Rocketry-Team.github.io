@@ -38,6 +38,9 @@ pnpm-debug.log*
 # Python bytecode cache from the fleet-cutout scripts.
 __pycache__/
 
+# Local flight-log CSV extract (ingest script cache).
+media-source/.*-extract/
+
 # Staged photo imports not yet sorted into a rockets/<slug>/ folder.
 temp osiris images/
 

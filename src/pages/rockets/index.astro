@@ -4,19 +4,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FleetLineup from '../../components/FleetLineup.astro';
 import FleetStat from '../../components/FleetStat.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import { fill } from '../../lib/copy';
 import { numberWord } from '../../lib/site';
+import pages from '../../data/pages.json';
 
+const page = pages.rockets.index;
 const vehicles = await getCollection('vehicles');
 const years = vehicles.map((v) => v.data.year);
 const yearSpan = Math.max(...years) - Math.min(...years) + 1;
 const vCountWord = numberWord(vehicles.length);
 const yearSpanWord = numberWord(yearSpan);
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const headline = fill(page.headline, { count: cap(vCountWord), years: cap(yearSpanWord) });
 ---
 
 <BaseLayout
-  title="Rockets"
-  description="Every vehicle the McMaster Rocketry Team has designed, built and flown."
+  title={page.title}
+  description={page.description}
   current="/rockets"
   reviewLocked={Array.from({ length: 6 }, (_, i) => i)}
 >
@@ -24,9 +28,9 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="tag">The fleet</div>
-    <h1>{cap(vCountWord)} rockets.<br>{cap(yearSpanWord)} years.</h1>
-    <p class="lede">Every vehicle the team has designed, built and flown, in order.</p>
+    <div class="tag">{page.tag}</div>
+    <h1 set:html={headline.replace('\n', '<br>')} />
+    <p class="lede">{page.lede}</p>
   </div>
 </header>
 
@@ -35,7 +39,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">By year</div><h2>Apogee, every flight.</h2></div>
+      <div><div class="tag">{page.section.tag}</div><h2>{page.section.headline}</h2></div>
       <div class="statline"><FleetStat /></div>
     </div>
     <FleetLineup />

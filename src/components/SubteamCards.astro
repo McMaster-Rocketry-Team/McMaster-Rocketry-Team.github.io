@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import join from '../data/join.json';
+
 const subteams = await getCollection('subteams');
 ---
 
@@ -13,6 +15,6 @@ const subteams = await getCollection('subteams');
     </a>
   ))}
   <a class="card card-cta" href="/join">
-        <div><h3>Want to learn more?</h3><p>Facultyfest August 31, or Clubsfest September 14 on the JHE field. Come talk with the team.</p></div>
+    <div><h3>{join.recruitCta.headline}</h3><p>{join.recruitCta.body}</p></div>
   </a>
 </div>

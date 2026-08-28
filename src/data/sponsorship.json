@@ -1,4 +1,41 @@
 {
+  "showBudgetBreakdown": false,
+  "tierOrder": ["Gold", "Silver", "Bronze"],
+  "page": {
+    "title": "Sponsors",
+    "description": "Sponsor the McMaster Rocketry Team: tiers, what your support buys, and who to contact.",
+    "tag": "Sponsors",
+    "headline": ["Put your name", "on a rocket."],
+    "lede": "We're a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting our roughly 20-person competition crew to a launch site. It also puts your company in front of them while they decide where to work."
+  },
+  "sections": {
+    "budget": {
+      "tag": "What it buys",
+      "headline": "Where the money goes.",
+      "lede": "We publish this because sponsors ask. A team that won't say where the money goes isn't a team worth funding."
+    },
+    "tiers": {
+      "tag": "Tiers",
+      "headline": "What you get.",
+      "lede": "Three tiers, and a fourth option if you'd rather give materials or machine time than money. That is often more useful to us."
+    },
+    "partners": {
+      "tag": "Current partners",
+      "headline": "Who backs us.",
+      "lede": "Logo placement follows tier: larger on paper for Gold, medium for Silver, compact for Bronze. Each links to the partner's site."
+    },
+    "contact": {
+      "tag": "Contact",
+      "headline": "Who to ask.",
+      "lede": "Email someone, and hear back from someone."
+    }
+  },
+  "packageCard": {
+    "headline": "Get package",
+    "body": "The 2026-27 sponsorship package: tiers, benefits, and what we fly."
+  },
+  "inKind": "We'll take materials, machine shop CNC time, PCBs, connectors, or test equipment in place of cash. Tell us what you have and we'll say whether we can use it.",
+  "buttons": { "talk": "Talk to us", "package": "Get package" },
   "packagePdf": "/docs/sponsorship-package-2026-2027.pdf",
   "budget": [
     { "label": "Airframe", "note": "commercial motor fuel and casing assembly, stock metal and fasteners for structural components", "amount": "$7,882" },
@@ -9,7 +46,7 @@
     { "label": "Operations", "note": "campus outreach, recruitment, and team logistics", "amount": "$2,759" },
     { "label": "Propulsion", "note": "engine assembly, pressure testing setup, fill system, engine testing, fuel casting setup", "amount": "$9,445" },
     { "label": "Competition expenses 2027", "note": "Launch Canada fees, accommodation, travel", "amount": "$15,950" },
-    { "label": "Total", "note": "2026–27 season projected expenses", "amount": "$50,034" }
+    { "label": "Total", "note": "2026-27 season projected expenses", "amount": "$50,034" }
   ],
   "tiers": [
     {
@@ -104,7 +141,7 @@
     }
   ],
   "contacts": [
-    { "role": "Sponsorship", "title": "President", "name": "Robin Anderson" },
-    { "role": "Sponsorship", "title": "Project manager", "name": "Christina Zhou" }
+    { "role": "Sponsorship", "title": "President", "leadRole": "President" },
+    { "role": "Sponsorship", "title": "Project manager", "leadRole": "Project manager" }
   ]
 }

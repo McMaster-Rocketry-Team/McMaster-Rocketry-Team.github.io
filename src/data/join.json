@@ -1,5 +1,39 @@
 {
   "applyHref": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=B2M3RCm0rUKMJSjNSW9HchhskgGNdnhJm_6LuuhnTuxUOU1OQVNTUjA4OVVKVE41OEhFTzdTTkJXVi4u",
+  "hero": {
+    "tag": "Join us",
+    "headline": ["No experience", "required."],
+    "lede": "We hire first years. We hire people who have never touched a rocket. We hire people who aren't in engineering. Come ready to learn. We'll teach the rest."
+  },
+  "cta": {
+    "tag": "Build the next one",
+    "headline": "We hire first years.",
+    "body": "We hire people who have never touched a rocket. Come ready to learn. We'll teach the rest.",
+    "fine": "Find us at Facultyfest on August 31, 12:30 to 17:00, or Clubsfest on September 14, 16:30 to 19:30 on the JHE field. Applications close September 18. You don't need to be an engineer: we need people on operations as much as on airframe.",
+    "buttons": { "join": "How to join", "sponsors": "Sponsor the team", "email": "Email us" }
+  },
+  "recruitCta": {
+    "headline": "Want to learn more?",
+    "body": "Facultyfest August 31, or Clubsfest September 14 on the JHE field. Come talk with the team."
+  },
+  "sections": {
+    "howItWorks": {
+      "tag": "How it works",
+      "headline": "Four steps.",
+      "lede": "Meet us at Clubsfest or Facultyfest, fill in the form, then have a short interview with the subteam you want to join."
+    },
+    "dates": {
+      "tag": "Key dates",
+      "headline": "When.",
+      "lede": "We hire during a set window each term, at Clubsfest and Facultyfest, not on a rolling basis. If you missed the window, email us and we'll get back if there are any openings."
+    },
+    "faq": {
+      "tag": "Straight answers",
+      "headline": "Questions people ask.",
+      "lede": "If your question isn't here, email us. We would rather answer it than have you talk yourself out of applying."
+    }
+  },
+  "buttons": { "apply": "Apply now", "discord": "Join the Discord" },
   "steps": [
     { "title": "Meet us at Clubsfest or Facultyfest",
       "body": "Facultyfest is August 31, 12:30 to 17:00, for incoming first-year engineers. Clubsfest is September 14, 16:30 to 19:30 on the JHE field during B2S week." },

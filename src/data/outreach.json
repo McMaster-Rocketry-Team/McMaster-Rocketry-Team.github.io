@@ -1,4 +1,24 @@
 {
+  "page": {
+    "title": "Outreach",
+    "description": "STEM days, industry nights, Clubsfest, Facultyfest, Launch Canada youth outreach and a sponsor dinner from the McMaster Rocketry Team.",
+    "tag": "Outreach",
+    "headline": ["See us on", "campus."],
+    "lede": "STEM days, industry nights, Clubsfest, Facultyfest, youth outreach at Launch Canada, and a dinner a sponsor put on for the team. Gold sponsors can put their name on the day."
+  },
+  "sections": {
+    "events": { "tag": "On campus", "headline": "What we've done." },
+    "operationsCta": "Operations"
+  },
+  "sponsorPitch": {
+    "tag": "For sponsors",
+    "headline": "Put your name on the day.",
+    "body": [
+      "Isaac Operations already did it, with a dinner for the team. Your name in front of students on campus, not only on an airframe at a competition most of them never see.",
+      "Want to fund one event instead of a season tier? Email us to get in touch."
+    ],
+    "buttons": { "tiers": "See the tiers", "email": "Email about an event" }
+  },
   "events": [
     {
       "slug": "stem-outreach",

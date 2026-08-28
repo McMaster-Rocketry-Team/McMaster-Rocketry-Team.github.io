@@ -3,27 +3,27 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import LeadCard from '../components/LeadCard.astro';
+import { membersLede } from '../lib/copy';
 import members from '../data/members.json';
 
+const page = members.page;
 const subteams = await getCollection('subteams');
 const subteamOrder = new Map(subteams.map(({ data }, i) => [data.slug, i]));
+const execRoles = new Set(members.executiveRoles);
+const sortLast = new Set(members.leadSortLast);
 
 function leadSortKey(lead: (typeof members.leads)[number]) {
   if (lead.subteam == null) return subteams.length;
   return subteamOrder.get(lead.subteam) ?? subteams.length;
 }
 
-const execRoles = new Set([
-  'President',
-  'Project manager',
-]);
 const executives = members.leads.filter((m) => execRoles.has(m.role));
 const subteamLeads = members.leads
   .map((m, i) => ({ m, i }))
   .filter(({ m }) => !execRoles.has(m.role))
   .sort((a, b) => {
-    if (a.m.name === 'Nick Phan') return 1;
-    if (b.m.name === 'Nick Phan') return -1;
+    if (sortLast.has(a.m.name)) return 1;
+    if (sortLast.has(b.m.name)) return -1;
     const bySubteam = leadSortKey(a.m) - leadSortKey(b.m);
     if (bySubteam !== 0) return bySubteam;
     return a.i - b.i;
@@ -32,8 +32,8 @@ const subteamLeads = members.leads
 ---
 
 <BaseLayout
-  title="Members"
-  description="The students who build and fly McMaster Rocketry's vehicles."
+  title={page.title}
+  description={page.description}
   current="/members"
   reviewLocked={Array.from({ length: 79 }, (_, i) => i)}
 >
@@ -41,20 +41,20 @@ const subteamLeads = members.leads
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="tag">Members</div>
-    <h1>The people<br>who build it.</h1>
-    <p class="lede">Over 100 students across seven subteams and every faculty on campus. These are the leads. The rest of the team is on the subteam pages.</p>
+    <div class="tag">{page.tag}</div>
+    <h1>{page.headline[0]}<br>{page.headline[1]}</h1>
+    <p class="lede">{membersLede(page.lede, members.stats)}</p>
   </div>
 </header>
 
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">2026&ndash;27 leadership</div><h2>Leads.</h2></div>
+      <div><div class="tag">{page.leadershipTerm}</div><h2>Leads.</h2></div>
     </div>
 
     <div class="roster-block">
-      <p class="roster-label">Executive</p>
+      <p class="roster-label">{page.rosterLabels.executive}</p>
       <div class="roster roster--exec">
         {executives.map((m) => (
           <LeadCard name={m.name} role={m.role} programme={m.programme} year={m.year} photo={m.photo} />
@@ -63,7 +63,7 @@ const subteamLeads = members.leads
     </div>
 
     <div class="roster-block">
-      <p class="roster-label">Subteam leads</p>
+      <p class="roster-label">{page.rosterLabels.subteamLeads}</p>
       <div class="roster">
         {subteamLeads.map((m) => (
           <LeadCard name={m.name} role={m.role} programme={m.programme} year={m.year} photo={m.photo} />
@@ -77,8 +77,8 @@ const subteamLeads = members.leads
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Who we are</div><h2>Not only engineers.</h2></div>
-      <p>The team runs on more than airframes. These are the numbers behind the roster.</p>
+      <div><div class="tag">{page.about.tag}</div><h2>{page.about.headline}</h2></div>
+      <p>{page.about.lede}</p>
     </div>
     <dl class="dl">
       {members.stats.map((s) => (
@@ -89,11 +89,9 @@ const subteamLeads = members.leads
       ))}
     </dl>
     <div class="prose prose--follow">
-      <p>Most of the people on this page had never touched a rocket before joining. Several
-        are not in engineering at all. The operations leads run sponsorship, the
-        budget and everything we do on campus.</p>
+      <p>{page.about.body}</p>
     </div>
-    <div class="btnrow"><a class="btn solid" href="/join">Join them</a></div>
+    <div class="btnrow"><a class="btn solid" href="/join">{page.cta}</a></div>
   </div>
 </section>
 

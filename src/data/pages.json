@@ -1,0 +1,120 @@
+{
+  "home": {
+    "hero": {
+      "apogeeLabel": "Highest flight to date: ",
+      "flightEver": "Our highest flight ever.",
+      "fleetBlurb": "airframe, avionics and recovery designed and built by students, flown on commercial motors.",
+      "cta": { "join": "Join the team", "rockets": "See the rockets" }
+    },
+    "fleet": {
+      "tag": "The fleet",
+      "headline": ["Every rocket,", "built and flown, in order."],
+      "countNote": "{count} vehicles in {years} years.",
+      "cta": "All {count} vehicles"
+    },
+    "payloads": {
+      "tag": "Payloads",
+      "ledeSuffix": "Most years, the payload is the reason the rocket exists at all.",
+      "allWinsNote": ", every one first place in the Payload Challenge at Launch Canada",
+      "cta": "All {count} payloads"
+    },
+    "subteams": {
+      "tag": "Subteams",
+      "headline": "{count} teams,\none rocket.",
+      "lede": "Every part of the vehicle, and everything around it, is owned by a student subteam. One of them needs no engineering background at all."
+    }
+  },
+  "rockets": {
+    "index": {
+      "title": "Rockets",
+      "description": "Every vehicle the McMaster Rocketry Team has designed, built and flown.",
+      "tag": "The fleet",
+      "headline": "{count} rockets.\n{years} years.",
+      "lede": "Every vehicle the team has designed, built and flown, in order.",
+      "section": { "tag": "By year", "headline": "Apogee, every flight." },
+      "fleetNote": { "scale": "Rocket height to scale, tip to tail" }
+    },
+    "template": {
+      "flightRecord": {
+        "tag": "Flight record",
+        "headline": "What it did.",
+        "note": "Figures come from the onboard flight computer."
+      },
+      "build": { "tag": "The build", "headline": "How it was made." },
+      "gallery": { "tag": "Gallery", "headline": "At competition." },
+      "specs": [
+        { "label": "Apogee", "note": "feet above ground level", "field": "apogee" },
+        { "label": "Max velocity", "note": "at burnout", "field": "mach", "format": "mach" },
+        { "label": "Max acceleration", "note": "peak, from flight data", "field": "specs.accel" },
+        { "label": "Length", "note": "overall, tip to tail", "field": "specs.length" },
+        { "label": "Liftoff mass", "note": "fuelled, with payload", "field": "specs.mass" },
+        { "label": "Motor", "note": "designation and impulse class", "field": "specs.motor" },
+        { "label": "Recovery", "note": "drogue and main configuration", "field": "specs.recovery" },
+        { "label": "Result", "note": "", "field": "specs.result" }
+      ],
+      "nav": { "all": "All vehicles", "prev": "prev", "next": "next" }
+    }
+  },
+  "payloads": {
+    "index": {
+      "title": "Payloads",
+      "description": "The experiments the McMaster Rocketry Team has designed, built and flown.",
+      "tag": "Payloads",
+      "lede": "Most years, the payload is the reason the rocket exists at all. Every one the team has flown.",
+      "section": { "tag": "All payloads", "headline": "By year." }
+    },
+    "template": {
+      "specs": { "tag": "Specifications", "headline": "By the numbers." },
+      "payload": { "tag": "The payload", "headline": "What it did." },
+      "procedure": { "tag": "Procedure", "headline": "Experiment lifecycle." },
+      "electronics": { "tag": "Electronics", "headline": "SRAD boards." },
+      "poster": { "tag": "Competition", "headline": "Launch Canada poster." },
+      "gallery": { "tag": "Gallery", "headline": "In the field." },
+      "labels": { "vehicle": "Flew on", "result": "Result" },
+      "nav": { "all": "All payloads" }
+    }
+  },
+  "subteams": {
+    "index": {
+      "title": "Subteams",
+      "description": "The seven subteams that build and fly a McMaster Rocketry vehicle.",
+      "tag": "Subteams",
+      "headline": "{count} teams,\none rocket.",
+      "lede": "Every part of the vehicle, and everything around it, is owned by a student subteam. One of them needs no engineering background at all.",
+      "section": {
+        "tag": "All subteams",
+        "headline": "Pick where\nyou'd start.",
+        "lede": "Each one owns a real part of the vehicle, and each one takes members with no experience every term."
+      }
+    },
+    "template": {
+      "cards": {
+        "firstYear": { "tag": "What you'd do", "headline": "First year" },
+        "skills": { "tag": "Skills that help", "headline": "Useful, not required" },
+        "time": { "tag": "Time" }
+      },
+      "payloads": { "tag": "Recent payloads", "headline": "What we've flown." },
+      "others": {
+        "tag": "The others",
+        "headline": "Every other subteam.",
+        "lede": "Each one takes members with no experience every term."
+      },
+      "leads": {
+        "tag": "Leads",
+        "headline": "Who runs it.",
+        "lede": "Named leads, so you know who to ask.",
+        "roleTag": "Subteam lead",
+        "recruiting": { "tag": "Recruiting", "headline": "Join us", "body": "How to apply, and when." }
+      },
+      "defaultPhotoTag": "In the shop"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page doesn't exist, or it moved.",
+    "tag": "404",
+    "headline": ["Page not", "found."],
+    "lede": "This page doesn't exist, or it moved. Try one of the links below.",
+    "cta": { "home": "Home", "join": "Join us" }
+  }
+}

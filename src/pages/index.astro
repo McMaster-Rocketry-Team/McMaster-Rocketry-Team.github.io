@@ -7,12 +7,19 @@ import PayloadLineup from '../components/PayloadLineup.astro';
 import PayloadStat from '../components/PayloadStat.astro';
 import SubteamCards from '../components/SubteamCards.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { fill, payloadsHeadline, subteamsHeadline } from '../lib/copy';
 import { numberWord } from '../lib/site';
 import site from '../data/site.json';
+import pages from '../data/pages.json';
 import hadfield from '../data/chris-hadfield.json';
 
+const home = pages.home;
 const vehicles = await getCollection('vehicles');
 const payloads = await getCollection('payloads');
+const subteams = await getCollection('subteams');
+const highestFlight = vehicles.reduce<(typeof vehicles)[number]['data'] | null>((best, { data: v }) => {
+  return v.apogee && (!best || v.apogee > (best.apogee ?? 0)) ? v : best;
+}, null);
 const years = vehicles.map((v) => v.data.year);
 const yearSpan = Math.max(...years) - Math.min(...years) + 1;
 const vCountWord = numberWord(vehicles.length);
@@ -20,19 +27,32 @@ const yearSpanWord = numberWord(yearSpan);
 const pCountWord = numberWord(payloads.length);
 const pWins = payloads.filter((p) => p.data.result?.startsWith('1st')).length;
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const siteUrl = Astro.site ?? new URL('https://macrocketry.ca');
+const logoUrl = new URL('/brand/logo-mark-white-red.png', siteUrl);
 const orgJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: site.name,
-  url: 'https://macrocketry.ca',
+  url: siteUrl.href,
+  logo: {
+    '@type': 'ImageObject',
+    url: logoUrl.href,
+    width: site.logo.width,
+    height: site.logo.height,
+  },
   email: site.email,
   sameAs: [site.social.instagram, site.social.discord, site.social.linkedin].filter(Boolean),
 };
+const heroDescription = highestFlight
+  ? `Highest flight: ${highestFlight.apogee!.toLocaleString()} ft.`
+  : 'Highest flight: record pending.';
+const fleetCountNote = fill(home.fleet.countNote, { count: cap(vCountWord), years: yearSpanWord });
+const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.headline);
 ---
 
 <BaseLayout
   title={site.tagline}
-  description="McMaster Rocketry Team: student-built rockets from Hamilton, Ontario. Highest flight: 33,584 ft."
+  description={`McMaster Rocketry Team: student-built rockets from Hamilton, Ontario. ${heroDescription}`}
   current="/"
   reviewLocked={Array.from({ length: 36 }, (_, i) => i)}
 >
@@ -50,18 +70,18 @@ const orgJsonLd = {
         <p class="lockup-name">{site.name}</p>
         <p class="lockup-tag">{site.tagline}</p>
       </div>
-      <h1 class="bignum"><span class="vh">Highest flight to date: </span><span class="n">33,584</span> <span class="u">ft</span></h1>
+      <h1 class="bignum"><span class="vh">{home.hero.apogeeLabel}</span><span class="n">{highestFlight?.apogee?.toLocaleString() ?? '—'}</span> <span class="u">ft</span></h1>
       <div class="subline">
-        <p>Osiris · Launch Canada 2026. Our highest flight ever.<br>{cap(vCountWord)} vehicles in {yearSpanWord} years: airframe, avionics and recovery designed and built by students, flown on commercial motors.</p>
-        <div class="who">McMaster University<br>Hamilton, Ontario</div>
+        <p>{highestFlight ? `${highestFlight.name} · ${highestFlight.comp} ${highestFlight.year}. ${home.hero.flightEver}` : home.hero.flightEver}<br>{cap(vCountWord)} vehicles in {yearSpanWord} years: {home.hero.fleetBlurb}</p>
+        <div class="who">{site.org}<br>{site.city}</div>
       </div>
       <div class="btnrow">
-        <a class="btn solid" href="/join">Join the team</a>
-        <a class="btn" href="/rockets">See the rockets</a>
+        <a class="btn solid" href="/join">{home.hero.cta.join}</a>
+        <a class="btn" href="/rockets">{home.hero.cta.rockets}</a>
       </div>
     </div>
   </div>
-  <button class="vidtoggle" id="vidtoggle">Pause video</button>
+  <button class="vidtoggle" id="vidtoggle">{site.a11y.pauseVideo}</button>
 </header>
 
 <section id="hadfield">
@@ -83,7 +103,7 @@ const orgJsonLd = {
         </figure>
       ))}
     </div>
-    <div class="btnrow"><a class="btn" href="/rockets/osiris">Osiris</a></div>
+    <div class="btnrow"><a class="btn" href={hadfield.cta.href}>{hadfield.cta.label}</a></div>
   </div>
 </section>
 
@@ -93,14 +113,14 @@ const orgJsonLd = {
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">The fleet</div>
-        <h2>Every rocket,<br>built and flown, in order.</h2>
+        <div class="tag">{home.fleet.tag}</div>
+        <h2>{home.fleet.headline[0]}<br>{home.fleet.headline[1]}</h2>
       </div>
-      <p>{cap(vCountWord)} vehicles in {yearSpanWord} years.</p>
+      <p>{fleetCountNote}</p>
       <div class="statline"><FleetStat /></div>
     </div>
     <FleetLineup />
-    <div class="btnrow"><a class="btn" href="/rockets">All {vCountWord} vehicles</a></div>
+    <div class="btnrow"><a class="btn" href="/rockets">{fill(home.fleet.cta, { count: vCountWord })}</a></div>
   </div>
 </section>
 
@@ -110,14 +130,14 @@ const orgJsonLd = {
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">Payloads</div>
-        <h2>Two entries, two wins</h2>
+        <div class="tag">{home.payloads.tag}</div>
+        <h2>{payloadsHeadline(payloads.length, pWins)}</h2>
       </div>
-      <p>{cap(pCountWord)} payloads flown{pWins === payloads.length && payloads.length > 0 ? ', every one first place in the Payload Challenge at Launch Canada' : ''}. Most years, the payload is the reason the rocket exists at all.</p>
+      <p>{cap(pCountWord)} payloads flown{pWins === payloads.length && payloads.length > 0 ? home.payloads.allWinsNote : ''}. {home.payloads.ledeSuffix}</p>
       <div class="statline"><PayloadStat /></div>
     </div>
     <PayloadLineup />
-    <div class="btnrow"><a class="btn" href="/payloads">All {pCountWord} payloads</a></div>
+    <div class="btnrow"><a class="btn" href="/payloads">{fill(home.payloads.cta, { count: pCountWord })}</a></div>
   </div>
 </section>
 
@@ -125,11 +145,10 @@ const orgJsonLd = {
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">Subteams</div>
-        <h2>Seven teams,<br>one rocket.</h2>
+        <div class="tag">{home.subteams.tag}</div>
+        <h2 set:html={subteamsHeadlineText.replace('\n', '<br>')} />
       </div>
-      <p>Every part of the vehicle, and everything around it, is owned by a student subteam.
-         One of them needs no engineering background at all.</p>
+      <p>{home.subteams.lede}</p>
     </div>
     <SubteamCards />
   </div>

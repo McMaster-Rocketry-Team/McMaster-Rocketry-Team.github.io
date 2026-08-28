@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import site from '../data/site.json';
 import { shortComp, sortPayloads, unsizedH } from '../lib/fleet';
 
 const payloads = sortPayloads(await getCollection('payloads'));
@@ -29,6 +30,6 @@ const payloads = sortPayloads(await getCollection('payloads'));
 <div class="wrap"><div class="baseline"></div></div>
 <div class="wrap">
   <div class="fleetnote">
-    <span>LC = Launch Canada · SAC = Spaceport America Cup</span>
+    <span>{site.abbreviations}</span>
   </div>
 </div>

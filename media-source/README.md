@@ -19,6 +19,10 @@ subteam body frame (4:3, banner stripped `crop=720:540:0:179`), H.264, no
 audio, for the Payload subteam page loop beside the prose. Poster:
 `payload-work.webp`.
 
+- `osiris-void-lake-flight-log.zip` — Void Lake SRAD `flight_log.csv` from
+  Osiris at Launch Canada 2026 (~715k rows, 200 Hz CAN telemetry). Ingested
+  via `scripts/ingest-flight-log.py` into `vehicles.json` on 2026-08-27.
+
 - `payload-hero-source.jpg` — 1137×618 shop photo of the payload bay internals.
   Downloaded 2026-08-27. Upscaled 4× with Real-ESRGAN (`realesrgan-x4plus`),
   then resized to `public/media/subteams/payload-hero.webp` (1568×852, q82).

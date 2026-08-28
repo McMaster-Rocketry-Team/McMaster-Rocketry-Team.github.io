@@ -4,19 +4,23 @@ import CtaBand from '../components/CtaBand.astro';
 import { mailHref } from '../lib/site';
 import site from '../data/site.json';
 import sponsorship from '../data/sponsorship.json';
+import members from '../data/members.json';
 
-const showBudgetBreakdown = false;
-
-const tierOrder = ['Gold', 'Silver', 'Bronze'] as const;
-const partnersByTier = tierOrder.map((tier) => ({
+const page = sponsorship.page;
+const sections = sponsorship.sections;
+const partnersByTier = sponsorship.tierOrder.map((tier) => ({
   tier,
   partners: sponsorship.partners.filter((p) => p.tier === tier),
+}));
+const contacts = sponsorship.contacts.map((c) => ({
+  ...c,
+  name: members.leads.find((lead) => lead.role === c.leadRole)?.name ?? null,
 }));
 ---
 
 <BaseLayout
-  title="Sponsors"
-  description="Sponsor the McMaster Rocketry Team: tiers, what your support buys, and who to contact."
+  title={page.title}
+  description={page.description}
   current="/sponsors"
   reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56]}
 >
@@ -25,20 +29,19 @@ const partnersByTier = tierOrder.map((tier) => ({
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="herobox">
-      <div class="tag">Sponsors</div>
-      <h1>Put your name<br>on a rocket.</h1>
-      <p class="lede">We're a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting our roughly 20-person competition crew to a launch site. It also puts your company in front of them while they decide where to work.</p>
+      <div class="tag">{page.tag}</div>
+      <h1>{page.headline[0]}<br>{page.headline[1]}</h1>
+      <p class="lede">{page.lede}</p>
     </div>
   </div>
 </header>
 
-{showBudgetBreakdown && (
+{sponsorship.showBudgetBreakdown && (
   <section class="paper">
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">What it buys</div><h2>Where the money goes.</h2></div>
-        <p>We publish this because sponsors ask. A team that won't say where the money
-           goes isn't a team worth funding.</p>
+        <div><div class="tag">{sections.budget.tag}</div><h2>{sections.budget.headline}</h2></div>
+        <p>{sections.budget.lede}</p>
       </div>
       <dl class="dl c4">
         {sponsorship.budget.map((b) => (
@@ -51,7 +54,7 @@ const partnersByTier = tierOrder.map((tier) => ({
           <dt>Sponsor</dt>
           <dd>
             <a class="card card-cta" href={sponsorship.packagePdf} download>
-              <div><h3>Get package</h3><p>The 2026-27 sponsorship package: tiers, benefits, and what we fly.</p></div>
+              <div><h3>{sponsorship.packageCard.headline}</h3><p>{sponsorship.packageCard.body}</p></div>
             </a>
           </dd>
         </div>
@@ -63,9 +66,8 @@ const partnersByTier = tierOrder.map((tier) => ({
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Tiers</div><h2>What you get.</h2></div>
-      <p>Three tiers, and a fourth option if you'd rather give materials or machine time
-         than money. That is often more useful to us.</p>
+      <div><div class="tag">{sections.tiers.tag}</div><h2>{sections.tiers.headline}</h2></div>
+      <p>{sections.tiers.lede}</p>
     </div>
   </div>
   <div class="wrap">
@@ -84,13 +86,11 @@ const partnersByTier = tierOrder.map((tier) => ({
   </div>
   <div class="wrap">
     <div class="prose prose--follow">
-      <p><b>In-kind support.</b> We'll take materials, machine shop CNC time, PCBs, connectors,
-        or test equipment in place of cash. Tell us what you have and we'll say whether we
-        can use it.</p>
+      <p><b>In-kind support.</b> {sponsorship.inKind}</p>
     </div>
     <div class="btnrow">
-      <a class="btn solid" href={mailHref()}>Talk to us</a>
-      <a class="btn" href={sponsorship.packagePdf} download>Get package</a>
+      <a class="btn solid" href={mailHref()}>{sponsorship.buttons.talk}</a>
+      <a class="btn" href={sponsorship.packagePdf} download>{sponsorship.buttons.package}</a>
     </div>
   </div>
 </section>
@@ -98,8 +98,8 @@ const partnersByTier = tierOrder.map((tier) => ({
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Current partners</div><h2>Who backs us.</h2></div>
-      <p>Logo placement follows tier: larger on paper for Gold, medium for Silver, compact for Bronze. Each links to the partner's site.</p>
+      <div><div class="tag">{sections.partners.tag}</div><h2>{sections.partners.headline}</h2></div>
+      <p>{sections.partners.lede}</p>
     </div>
     <div class="partner-tiers">
       {partnersByTier.map(({ tier, partners }) => (
@@ -128,11 +128,11 @@ const partnersByTier = tierOrder.map((tier) => ({
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Contact</div><h2>Who to ask.</h2></div>
-      <p>Email someone, and hear back from someone.</p>
+      <div><div class="tag">{sections.contact.tag}</div><h2>{sections.contact.headline}</h2></div>
+      <p>{sections.contact.lede}</p>
     </div>
     <div class="cards c2">
-      {sponsorship.contacts.map((c) => (
+      {contacts.map((c) => (
         <div class="card"><div>
           <div class="tag">{c.role}</div>
           <h3>{c.name || 'TODO: name'}</h3>

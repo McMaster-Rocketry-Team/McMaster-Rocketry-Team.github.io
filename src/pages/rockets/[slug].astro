@@ -4,6 +4,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TodoBadge from '../../components/TodoBadge.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { sortVehicles } from '../../lib/fleet';
+import { vehicleSpecValue } from '../../lib/copy';
+import site from '../../data/site.json';
+import pages from '../../data/pages.json';
 
 export async function getStaticPaths() {
   const vehicles = sortVehicles(await getCollection('vehicles'));
@@ -11,17 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { vehicles, v } = Astro.props;
-
-const rows: [string, string | null, string][] = [
-  ['Apogee', v.apogee ? v.apogee.toLocaleString() : null, 'feet above ground level'],
-  ['Max velocity', v.mach ? `Mach ${v.mach}` : null, 'at burnout'],
-  ['Max acceleration', v.specs.accel, 'peak, from flight data'],
-  ['Length', v.specs.length, 'overall, tip to tail'],
-  ['Liftoff mass', v.specs.mass, 'fuelled, with payload'],
-  ['Motor', v.specs.motor, 'designation and impulse class'],
-  ['Recovery', v.specs.recovery, 'drogue and main configuration'],
-  ['Result', v.specs.result, ''],
-];
+const template = pages.rockets.template;
 
 const i = vehicles.findIndex((x) => x.data.slug === v.slug);
 const prev = i > 0 ? vehicles[i - 1].data : null;
@@ -52,23 +45,26 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Flight record</div><h2>What it did.</h2></div>
-      <p>Figures come from the onboard flight computer.</p>
+      <div><div class="tag">{template.flightRecord.tag}</div><h2>{template.flightRecord.headline}</h2></div>
+      <p>{template.flightRecord.note}</p>
     </div>
     <dl class="dl">
-      {rows.map(([label, val, note]) => (
-        <div>
-          <dt>{label}</dt>
-          {val ? (
-            <dd>
-              {label === 'Apogee' ? <>{val} ft</> : val}
-              {note && <>{' '}<small>{note}</small></>}
-            </dd>
-          ) : (
-            <dd class="nodata">Not published{note && <small>{note}</small>}</dd>
-          )}
-        </div>
-      ))}
+      {template.specs.map((spec) => {
+        const val = vehicleSpecValue(v, spec.field);
+        return (
+          <div>
+            <dt>{spec.label}</dt>
+            {val ? (
+              <dd>
+                {spec.field === 'apogee' ? <>{val} ft</> : val}
+                {spec.note && <>{' '}<small>{spec.note}</small></>}
+              </dd>
+            ) : (
+              <dd class="nodata">{site.copy.notPublished}{spec.note && <small>{spec.note}</small>}</dd>
+            )}
+          </div>
+        );
+      })}
     </dl>
   </div>
 </section>
@@ -76,7 +72,7 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">The build</div><h2>How it was made.</h2></div>
+      <div><div class="tag">{template.build.tag}</div><h2>{template.build.headline}</h2></div>
     </div>
     <div class="prose">
       {v.build ? <p>{v.build}</p> : <p>No build write-up for this vehicle yet. <TodoBadge label="build narrative" /></p>}
@@ -87,7 +83,7 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Gallery</div><h2>At competition.</h2></div>
+      <div><div class="tag">{template.gallery.tag}</div><h2>{template.gallery.headline}</h2></div>
     </div>
     <div class="gallery">
       {v.photos && v.photos.length > 0 ? v.photos.map((photo) => (
@@ -106,7 +102,7 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
     </div>
     <div class="btnrow">
       {prev && <a class="btn" href={`/rockets/${prev.slug}`}><span aria-hidden="true">&larr;</span> {prev.name}</a>}
-      <a class="btn" href="/rockets">All vehicles</a>
+      <a class="btn" href="/rockets">{template.nav.all}</a>
       {next && <a class="btn" href={`/rockets/${next.slug}`}>{next.name} <span aria-hidden="true">&rarr;</span></a>}
     </div>
   </div>

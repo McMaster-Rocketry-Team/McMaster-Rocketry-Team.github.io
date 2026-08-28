@@ -1,4 +1,22 @@
 allowBuilds:
   esbuild: true
+# minimumReleaseAge is in minutes: 10080 = 7 days. Blocks installing any
+# package version published within the last week, a defense against a
+# compromised just-published release. astro@7.2.7 is excluded because it's
+# already the vetted, pinned version this repo runs on.
+minimumReleaseAge: 10080
+# The 7 entries below are dev-only tooling already in the committed lockfile
+# (transitive deps of @astrojs/check, never shipped to dist/), all published
+# within the last week as part of Astro's normal release cadence. Excluded so
+# turning minimumReleaseAge on doesn't break `pnpm install --frozen-lockfile`
+# in CI. A full `pnpm clean --lockfile` re-resolve would remove the need for
+# this list but changes far more than these 7 entries, so it wasn't run here.
 minimumReleaseAgeExclude:
   - astro@7.2.7
+  - '@astrojs/language-server@2.16.15'
+  - '@astrojs/markdown-satteri@0.3.8'
+  - fast-uri@3.1.6
+  - picomatch@4.0.7
+  - svgo@4.1.0
+  - vscode-languageserver-textdocument@1.0.14
+  - vscode-uri@3.2.0

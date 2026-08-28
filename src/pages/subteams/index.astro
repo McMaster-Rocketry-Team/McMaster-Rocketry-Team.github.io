@@ -2,13 +2,18 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import SubteamCards from '../../components/SubteamCards.astro';
+import { subteamsHeadline } from '../../lib/copy';
+import pages from '../../data/pages.json';
 
+const page = pages.subteams.index;
 const subteams = await getCollection('subteams');
+const headline = subteamsHeadline(subteams.length, page.headline);
 ---
 
 <BaseLayout
-  title="Subteams"
-  description="The seven subteams that build and fly a McMaster Rocketry vehicle."
+  title={page.title}
+  description={page.description}
   current="/subteams"
   reviewLocked={Array.from({ length: 23 }, (_, i) => i)}
 >
@@ -16,29 +21,19 @@ const subteams = await getCollection('subteams');
   <span class="crosshair tl" aria-hidden="true"></span>
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="tag">Subteams</div>
-    <h1>Seven teams,<br>one rocket.</h1>
-    <p class="lede">Every part of the vehicle, and everything around it, is owned by a student subteam. One of them needs no engineering background at all.</p>
+    <div class="tag">{page.tag}</div>
+    <h1 set:html={headline.replace('\n', '<br>')} />
+    <p class="lede">{page.lede}</p>
   </div>
 </header>
 
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">All subteams</div><h2>Pick where<br>you'd start.</h2></div>
-      <p>Each one owns a real part of the vehicle, and each one takes members with no
-         experience every term.</p>
+      <div><div class="tag">{page.section.tag}</div><h2 set:html={page.section.headline.replace('\n', '<br>')} /></div>
+      <p>{page.section.lede}</p>
     </div>
-    <div class="cards c4">
-      {subteams.map((s) => (
-        <a class="card" href={`/subteams/${s.data.slug}`}>
-          <div><h3>{s.data.name}</h3><p>{s.data.blurb}</p></div>
-        </a>
-      ))}
-      <a class="card card-cta" href="/join">
-        <div><h3>Want to learn more?</h3><p>Facultyfest August 31, or Clubsfest September 14 on the JHE field. Come talk with the team.</p></div>
-      </a>
-    </div>
+    <SubteamCards />
   </div>
 </section>
 

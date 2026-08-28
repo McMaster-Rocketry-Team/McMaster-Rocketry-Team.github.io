@@ -7,6 +7,7 @@ import join from '../data/join.json';
 import site from '../data/site.json';
 
 const applyHref = join.applyHref || mailHref('Application');
+const sections = join.sections;
 ---
 
 <BaseLayout
@@ -20,9 +21,9 @@ const applyHref = join.applyHref || mailHref('Application');
   <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="herobox">
-      <div class="tag">Join us</div>
-      <h1>No experience<br>required.</h1>
-      <p class="lede">We hire first years. We hire people who have never touched a rocket. We hire people who aren't in engineering. Come ready to learn. We'll teach the rest.</p>
+      <div class="tag">{join.hero.tag}</div>
+      <h1>{join.hero.headline[0]}<br>{join.hero.headline[1]}</h1>
+      <p class="lede">{join.hero.lede}</p>
     </div>
   </div>
 </header>
@@ -30,9 +31,8 @@ const applyHref = join.applyHref || mailHref('Application');
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">How it works</div><h2>Four steps.</h2></div>
-      <p>Meet us at Clubsfest or Facultyfest, fill in the form, then have a short interview
-         with the subteam you want to join.</p>
+      <div><div class="tag">{sections.howItWorks.tag}</div><h2>{sections.howItWorks.headline}</h2></div>
+      <p>{sections.howItWorks.lede}</p>
     </div>
     <ol class="steps" role="list">
       {join.steps.map((s) => (
@@ -40,11 +40,11 @@ const applyHref = join.applyHref || mailHref('Application');
       ))}
     </ol>
     <div class="btnrow">
-      <a class="btn solid" href={applyHref}>Apply now</a>
+      <a class="btn solid" href={applyHref}>{join.buttons.apply}</a>
       {!join.applyHref && <TodoBadge label="swap for form URL" />}
       {site.social.discord
-        ? <a class="btn" href={site.social.discord}>Join the Discord</a>
-        : <><a class="btn" href="#">Join the Discord</a> <TodoBadge label="swap for the real invite" /></>}
+        ? <a class="btn" href={site.social.discord}>{join.buttons.discord}</a>
+        : <><a class="btn" href="#">{join.buttons.discord}</a> <TodoBadge label="swap for the real invite" /></>}
     </div>
   </div>
 </section>
@@ -52,10 +52,8 @@ const applyHref = join.applyHref || mailHref('Application');
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Key dates</div><h2>When.</h2></div>
-      <p>We hire during a set window each term, at Clubsfest and Facultyfest, not
-         on a rolling basis. If you missed the window, email us and we'll get
-         back if there are any openings.</p>
+      <div><div class="tag">{sections.dates.tag}</div><h2>{sections.dates.headline}</h2></div>
+      <p>{sections.dates.lede}</p>
     </div>
     <dl class="dl">
       {join.dates.map((d) => (
@@ -75,9 +73,8 @@ const applyHref = join.applyHref || mailHref('Application');
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">Straight answers</div><h2>Questions people ask.</h2></div>
-      <p>If your question isn't here, email us. We would rather answer it than have you
-         talk yourself out of applying.</p>
+      <div><div class="tag">{sections.faq.tag}</div><h2>{sections.faq.headline}</h2></div>
+      <p>{sections.faq.lede}</p>
     </div>
     <div class="faq">
       {join.faq.map((f) => (

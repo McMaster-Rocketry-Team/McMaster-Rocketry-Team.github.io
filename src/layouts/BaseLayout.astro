@@ -12,7 +12,7 @@ interface Props {
   ogImage?: string;
 }
 const { title, description, current, ogImage = '/og-image.webp' } = Astro.props;
-const pageTitle = `${title} · McMaster Rocketry`;
+const pageTitle = `${title} · ${site.titleSuffix}`;
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
 const ogImageURL = Astro.site ? new URL(ogImage, Astro.site) : new URL(ogImage, Astro.url);
 ---
@@ -34,7 +34,7 @@ const ogImageURL = Astro.site ? new URL(ogImage, Astro.site) : new URL(ogImage, 
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageURL} />
-<link rel="icon" type="image/svg+xml" href="/brand/logo-mark.svg" />
+<link rel="icon" type="image/png" href="/brand/logo-mark-white-red.png" />
 <link rel="icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" href="/brand/logo-mark-white-512.png" />
 <link rel="manifest" href="/site.webmanifest" />

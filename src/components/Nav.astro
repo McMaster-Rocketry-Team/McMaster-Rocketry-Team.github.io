@@ -20,7 +20,7 @@ const onPayloadsIndex = path === '/payloads';
 const onPayloadsSection = path === '/payloads' || path.startsWith('/payloads/');
 ---
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">{site.a11y.skipToContent}</a>
 
 <nav id="nav">
   <a class="brand" href="/">
@@ -31,8 +31,21 @@ const onPayloadsSection = path === '/payloads' || path.startsWith('/payloads/');
     </span>
   </a>
   <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">
-    <span class="bars" aria-hidden="true"></span>Menu
+    <span class="bars" aria-hidden="true"></span>{site.a11y.menu}
   </button>
+  <noscript>
+    <style>
+      /* Below 980px .navlinks only opens via site.js's click handler on
+         #navtoggle. Without JS that panel stays permanently
+         visibility:hidden, so every nav link is unreachable on a phone.
+         Force the panel static and visible, and hide the now-nonfunctional
+         toggle, so the links degrade to always-on instead of gone. */
+      @media (max-width: 980px) {
+        .navlinks { position: static !important; transform: none !important; visibility: visible !important; }
+        .navtoggle { display: none !important; }
+      }
+    </style>
+  </noscript>
   <div class="navlinks" id="navlinks">
     {site.nav.map((item) => {
       if (item.href === '/rockets') {

@@ -6,6 +6,8 @@ import CtaBand from '../../components/CtaBand.astro';
 import { mailHref } from '../../lib/site';
 import { sortPayloads } from '../../lib/fleet';
 import members from '../../data/members.json';
+import pages from '../../data/pages.json';
+import site from '../../data/site.json';
 
 export async function getStaticPaths() {
   const subteams = await getCollection('subteams');
@@ -14,6 +16,7 @@ export async function getStaticPaths() {
 }
 
 const { subteams, payloads, t } = Astro.props;
+const template = pages.subteams.template;
 const others = subteams.filter((x) => x.data.slug !== t.slug);
 const leads = members.leads.filter((l) => l.subteam === t.slug);
 const leadSlots = (leads.length || 1) + 1;
@@ -48,7 +51,7 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
         {t.detail ? <p>{t.detail}</p> : <><p>{t.blurb}</p><p><TodoBadge label="full subteam description" /></p></>}
       </div>
       <figure class="subteam-shot">
-        <div class="tag">{t.photoTag || 'In the shop'}</div>
+        <div class="tag">{t.photoTag || template.defaultPhotoTag}</div>
         {t.photo || t.photoVideo ? (
           <div class={`ph${t.photoIsProduct ? ' ph-is-product' : ''}`}>
             {t.photoVideo ? (
@@ -63,7 +66,7 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
                   data-src={t.photoVideo}
                   aria-label={t.photoAlt || ''}
                 ></video>
-                <button class="vidtoggle" type="button">Pause video</button>
+                <button class="vidtoggle" type="button">{site.a11y.pauseVideo}</button>
               </>
             ) : (
               <img src={t.photo} alt={t.photoAlt || ''} loading="lazy" />
@@ -81,21 +84,21 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
     <div class="cards c3 cards--follow">
       <div class="card">
         <div>
-          <div class="tag">What you'd do</div>
-          <h3>First year</h3>
+          <div class="tag">{template.cards.firstYear.tag}</div>
+          <h3>{template.cards.firstYear.headline}</h3>
           <p>{t.first || <TodoBadge label="what a first-term member actually does" />}</p>
         </div>
       </div>
       <div class="card">
         <div>
-          <div class="tag">Skills that help</div>
-          <h3>Useful, not required</h3>
+          <div class="tag">{template.cards.skills.tag}</div>
+          <h3>{template.cards.skills.headline}</h3>
           <p>{t.skills || <TodoBadge label="useful-but-not-required skills" />}</p>
         </div>
       </div>
       <div class="card">
         <div>
-          <div class="tag">Time</div>
+          <div class="tag">{template.cards.time.tag}</div>
           <h3>{t.hours || 'TODO'}</h3>
         </div>
       </div>
@@ -107,7 +110,7 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
   <section class="paper">
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">Recent payloads</div><h2>What we've flown.</h2></div>
+        <div><div class="tag">{template.payloads.tag}</div><h2>{template.payloads.headline}</h2></div>
       </div>
       <div class="cards c2">
         {payloads.map((p) => (
@@ -127,8 +130,8 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">The others</div><h2>Every other subteam.</h2></div>
-      <p>Each one takes members with no experience every term.</p>
+      <div><div class="tag">{template.others.tag}</div><h2>{template.others.headline}</h2></div>
+      <p>{template.others.lede}</p>
     </div>
     <div class="cards c3">
       {others.map((x) => (
@@ -139,13 +142,13 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
     </div>
 
     <div class="shead shead--follow">
-      <div><div class="tag">Leads</div><h2>Who runs it.</h2></div>
-      <p>Named leads, so you know who to ask.</p>
+      <div><div class="tag">{template.leads.tag}</div><h2>{template.leads.headline}</h2></div>
+      <p>{template.leads.lede}</p>
     </div>
     <div class={`cards ${leadCols}`}>
       {leads.length ? leads.map((lead) => (
         <div class="card"><div>
-          <div class="tag">Subteam lead</div>
+          <div class="tag">{template.leads.roleTag}</div>
           <h3>{lead.name}</h3>
           <p>
             {lead.programme && lead.year ? (
@@ -158,16 +161,16 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
         </div></div>
       )) : (
         <div class="card"><div>
-          <div class="tag">Subteam lead</div>
+          <div class="tag">{template.leads.roleTag}</div>
           <h3>TODO: name</h3>
           <p>Year and programme. One sentence on what they work on.</p>
         </div></div>
       )}
       <a class="card" href="/join">
         <div>
-          <div class="tag">Recruiting</div>
-          <h3>Join us</h3>
-          <p>How to apply, and when.</p>
+          <div class="tag">{template.leads.recruiting.tag}</div>
+          <h3>{template.leads.recruiting.headline}</h3>
+          <p>{template.leads.recruiting.body}</p>
         </div>
       </a>
     </div>

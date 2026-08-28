@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import site from '../data/site.json';
 
 const vehicles = await getCollection('vehicles');
 const best = vehicles.reduce<(typeof vehicles)[number]['data'] | null>((m, { data: v }) => {
@@ -9,13 +10,13 @@ const best = vehicles.reduce<(typeof vehicles)[number]['data'] | null>((m, { dat
 
 {best ? (
   <>
-    <div class="lbl">Highest flown</div>
+    <div class="lbl">{site.stats.fleet.label}</div>
     <div class="num">{best.apogee!.toLocaleString()}</div>
     <div class="unit">ft · {best.name}, {best.year}</div>
   </>
 ) : (
   <>
-    <div class="lbl">Highest flown</div>
-    <div class="unit">No verified record yet</div>
+    <div class="lbl">{site.stats.fleet.label}</div>
+    <div class="unit">{site.stats.fleet.empty}</div>
   </>
 )}

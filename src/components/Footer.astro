@@ -1,6 +1,8 @@
 ---
 import site from '../data/site.json';
 import TodoBadge from './TodoBadge.astro';
+import Logo from './Logo.astro';
+import { fill } from '../lib/copy';
 import { mailHref, hasRealEmail } from '../lib/site';
 
 const socials = [
@@ -8,42 +10,40 @@ const socials = [
   ['Discord', site.social.discord],
   ['LinkedIn', site.social.linkedin],
 ] as const;
+const footerIntro = fill(site.footerIntro, { org: site.org, city: site.city });
 ---
 
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="lockup lockup--foot">
-          <h2 class="lockup-name">{site.name}</h2>
-          <p class="lockup-tag">{site.tagline}</p>
+        <div class="foot-brand">
+          <Logo />
+          <div class="lockup lockup--foot">
+            <h2 class="lockup-name">{site.name}</h2>
+            <p class="lockup-tag">{site.tagline}</p>
+          </div>
         </div>
-        <p class="foot-intro">
-          A student club at {site.org} in {site.city}, not an official
-          University publication. We design, build and fly our own rockets, and
-          we compete at Launch Canada.
-        </p>
+        <p class="foot-intro">{footerIntro}</p>
         <p class="foot-contact">
           <a href={mailHref()}>{site.email || 'TODO@macrocketry.ca'}</a>
           {!hasRealEmail() && <> <TodoBadge label="real team email" /></>}
         </p>
       </div>
       <div>
-        <h2 class="fh">The team</h2>
+        <h2 class="fh">{site.footerContact.teamHeading}</h2>
         <ul role="list">
-          <li><a href="/rockets">Rockets</a></li>
-          <li><a href="/subteams">Subteams</a></li>
-          <li><a href="/members">Members</a></li>
-          <li><a href="/outreach">Outreach</a></li>
-          <li><a href="/join">Join us</a></li>
+          {site.footerNav.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
         </ul>
       </div>
       <div>
-        <h2 class="fh">Get in touch</h2>
+        <h2 class="fh">{site.footerContact.touchHeading}</h2>
         <ul role="list">
-          <li><a href="/sponsors">Sponsorship</a></li>
+          <li><a href="/sponsors">{site.footerContact.sponsorship}</a></li>
           <li>
-            <a href={mailHref()}>Email</a>
+            <a href={mailHref()}>{site.footerContact.email}</a>
             {!hasRealEmail() && <> <TodoBadge label="real team email" /></>}
           </li>
           {socials.map(([label, href]) => (
@@ -56,7 +56,7 @@ const socials = [
       </div>
     </div>
     <div class="foot-note">
-      <span>© 2026 McMaster Rocketry Team · {site.org} · {site.city}</span>
+      <span>© {site.copyrightYear} {site.name} · {site.org} · {site.city}</span>
     </div>
   </div>
 </footer>

@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+import pages from '../data/pages.json';
 import { rocketGlyph, riseHeight, scaleTickTop, scaleTicks, shortComp, sortVehicles, maxRiseH } from '../lib/fleet';
 
 const vehicles = sortVehicles(await getCollection('vehicles'));
@@ -51,7 +53,7 @@ const ticks = scaleTicks(maxLengthIn);
 <div class="wrap"><div class="baseline"></div></div>
 <div class="wrap">
   <div class="fleetnote">
-    <span>LC = Launch Canada · SAC = Spaceport America Cup</span>
-    <span>Rocket height to scale, tip to tail</span>
+    <span>{site.abbreviations}</span>
+    <span>{pages.rockets.index.fleetNote.scale}</span>
   </div>
 </div>
