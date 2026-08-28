@@ -1,6 +1,6 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 night · branch `dev` @ `4cded4b` + uncommitted (Cursor + Claude Code)
+**Last updated:** 2026-08-27 night · branch `dev` @ `c32338c`
 
 ## Sign-off — resume here
 
