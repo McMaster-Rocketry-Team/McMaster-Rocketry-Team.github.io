@@ -10,8 +10,8 @@
   "titleSuffix": "McMaster Rocketry",
   "logo": { "width": 1654, "height": 1654 },
   "copyrightYear": 2026,
-  "footerIntro": "A student club at {org} in {city}, not an official University publication. We design, build and fly our own rockets, and we compete at Launch Canada and Spaceport America Cup.",
-  "abbreviations": "LC = Launch Canada · SAC = Spaceport America Cup",
+  "footerIntro": "A student club at {org} in {city}. We design, build and fly our own rockets, and we compete at Launch Canada.",
+  "abbreviations": "LC = Launch Canada · SAC = Spaceport America Cup (now IREC)",
   "copy": { "notPublished": "Not published" },
   "a11y": { "pauseVideo": "Pause video", "skipToContent": "Skip to content", "menu": "Menu" },
   "stats": {
