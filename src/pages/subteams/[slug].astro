@@ -52,16 +52,19 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
         {t.photo || t.photoVideo ? (
           <div class={`ph${t.photoIsProduct ? ' ph-is-product' : ''}`}>
             {t.photoVideo ? (
-              <video
-                src={t.photoVideo}
-                poster={t.photo ?? undefined}
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-label={t.photoAlt || ''}
-              />
+              <>
+                <video
+                  class="lazyvid"
+                  poster={t.photo ?? undefined}
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  data-src={t.photoVideo}
+                  aria-label={t.photoAlt || ''}
+                ></video>
+                <button class="vidtoggle" type="button">Pause video</button>
+              </>
             ) : (
               <img src={t.photo} alt={t.photoAlt || ''} loading="lazy" />
             )}

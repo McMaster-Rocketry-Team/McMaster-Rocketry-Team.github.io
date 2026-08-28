@@ -32,7 +32,7 @@ const ticks = scaleTicks(maxLengthIn);
     {vehicles.map(({ data: v }) => {
       const h = riseHeight(v.lengthIn, maxLengthIn);
       const rise = v.image
-        ? `<img src="${v.image}" alt="" style="--rise:${h}px">`
+        ? `<img src="${v.image}" alt="" style="--rise:${h}px" loading="lazy">`
         : rocketGlyph(h);
       return (
         <a class={`craft${v.paleArt ? ' pale-art' : ''}${!v.lengthIn ? ' unsized' : ''}`} href={`/rockets/${v.slug}`}>

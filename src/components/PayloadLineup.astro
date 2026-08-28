@@ -11,7 +11,7 @@ const payloads = sortPayloads(await getCollection('payloads'));
       <a class="craft payload-craft" href={`/payloads/${p.slug}`}>
         <span class="rise">
           {p.image ? (
-            <img src={p.image} alt="" style={`--rise:${unsizedH}px`} />
+            <img src={p.image} alt="" style={`--rise:${unsizedH}px`} loading="lazy" />
           ) : (
             <span class="rise-ph" style={`--rise:${unsizedH}px`}>TODO</span>
           )}

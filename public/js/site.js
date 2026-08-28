@@ -43,8 +43,10 @@
   var vidToggle = document.getElementById('vidtoggle');
 
   /* The `media` attribute on <source> is ignored inside <video> (it only works
-     in <picture>), so the markup ships the small cut as the default and we
-     upgrade to the full file only on a large screen with a willing connection. */
+     in <picture>), so we pick the small or large cut here, before the video
+     ever starts, and load that one file. Markup has no autoplay: setting
+     .src and calling .load() after autoplay had already started the small
+     cut used to restart playback mid-frame, a visible stutter on every load. */
   if(vid && vid.dataset.srcLg){
     var wide = matchMedia('(min-width:701px)').matches;
     var conn = navigator.connection || {};
@@ -53,18 +55,58 @@
       vid.src = vid.dataset.srcLg;
       vid.load();
     }
+    /* .play() can reject (autoplay policy, low-power mode); catch it so an
+       unplayed video doesn't leave the toggle lying about its own state. */
+    if(!reduce){ vid.play().catch(function(){ if(vidToggle) vidToggle.textContent = 'Play video'; }); }
   }
 
   if(vid && vidToggle){
-    if(reduce){ vid.pause(); vidToggle.textContent = 'Play video'; }
+    if(reduce){ vidToggle.textContent = 'Play video'; }
     /* The label carries the state, so no aria-pressed: a button reading
        "Play video" that reports itself as "pressed" contradicts itself. */
     vidToggle.addEventListener('click', function(){
       var paused = vid.paused;
-      if(paused){ vid.play(); } else { vid.pause(); }
+      if(paused){ vid.play().catch(function(){}); } else { vid.pause(); }
       vidToggle.textContent = paused ? 'Pause video' : 'Play video';
     });
   }
+
+  /* ---------- decorative subteam video: lazy start + pause control ----------
+     Autoplay-on-load fetched the whole clip the instant the page rendered,
+     even for a visitor who never scrolled past the hero. This defers the
+     fetch and playback to first view, same idea as the hero's source pick
+     above, and gives it the same WCAG 2.2.2 pause control. */
+  document.querySelectorAll('video.lazyvid[data-src]').forEach(function(v){
+    var box = v.closest('.ph');
+    var vt = box ? box.querySelector('.vidtoggle') : null;
+    if(vt){ vt.textContent = 'Play video'; }
+    var start = function(){
+      if(v.src) return;
+      v.src = v.dataset.src;
+      v.load();
+      if(!reduce){
+        v.play().then(function(){ if(vt) vt.textContent = 'Pause video'; }).catch(function(){});
+      }
+    };
+    if(reduce || !('IntersectionObserver' in window)){
+      start();
+    } else {
+      var vio = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ start(); vio.unobserve(entry.target); }
+        });
+      }, { threshold: 0.25 });
+      vio.observe(v);
+    }
+    if(vt){
+      vt.addEventListener('click', function(){
+        if(!v.src){ start(); return; }
+        var paused = v.paused;
+        if(paused){ v.play().catch(function(){}); } else { v.pause(); }
+        vt.textContent = paused ? 'Pause video' : 'Play video';
+      });
+    }
+  });
 
   /* ---------- fleet lineup reveal ----------
      render.js ships every lineup with .reveal-pending already on it. That

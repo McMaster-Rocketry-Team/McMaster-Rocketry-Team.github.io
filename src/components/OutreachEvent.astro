@@ -14,7 +14,7 @@ const { name, blurb, detail, todo, photo, photoAlt } = Astro.props;
 
 <article class="event-block">
   {photo ? (
-    <img src={photo} alt={photoAlt || ''} />
+    <img src={photo} alt={photoAlt || ''} loading="lazy" />
   ) : (
     <div class="ph"><span>Photo slot: {name}<br />TODO</span></div>
   )}
