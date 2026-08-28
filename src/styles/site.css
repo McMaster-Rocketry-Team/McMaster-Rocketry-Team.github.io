@@ -197,6 +197,12 @@ nav[data-scrolled="true"]{
   .navlinks > a,
   .navitem-top{padding:15px 0;min-height:44px;display:flex;align-items:center;
     border-bottom:1px solid rgba(255,255,255,.12);color:var(--white);font-size:15px}
+  /* Fixed label column, sized to the widest current label ("Payloads" /
+     "Subteams" at this font, letter-spacing included) so the divider lines
+     up across rows instead of trailing each label's own text width. Right
+     padding matches .navmenu a's 14px padding-left, so the divider gets
+     equal padding on both sides. */
+  .navitem-top{width:5.5rem;flex:0 0 auto;padding-right:14px}
   .navlinks > a::after,
   .navitem-top::after{display:none}
   .navitem{border-bottom:1px solid rgba(255,255,255,.12)}
