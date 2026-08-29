@@ -25,7 +25,10 @@
    see --muted-on-paper below. Fog stays for hairlines and captions on dark
    grounds, where it clears 5.38:1. v1.3 adds: .link-fleet, product-shot
    white backlight (.ph-is-product ::before), .payload-lineup, .dl>div direct-
-   child hairline fix, Payloads nav + /payloads page rhythm. Full spec:
+   child hairline fix, Payloads nav + /payloads page rhythm. v1.4 (2026-08-29)
+   removes .tier.lead's ignition border-top — it read as a stray red line
+   over Silver, on the site and in the sponsorship-package doc; the dark
+   fill alone carries the "lead tier" distinction. Full spec:
    McMaster_Rocketry_Design_System_Spec.md and docs/design-system.md.
    ========================================================================== */
 :root{

@@ -1,24 +1,26 @@
 # Design system — repo pointer
 
-**Canonical spec (v1.3):** [`McMaster_Rocketry_Design_System_Spec.md`](../McMaster_Rocketry_Design_System_Spec.md) in the repo root (gitignored — sync source for claude.ai/design).
+**Canonical spec (v1.4):** [`McMaster_Rocketry_Design_System_Spec.md`](../McMaster_Rocketry_Design_System_Spec.md) in the repo root (gitignored — sync source for claude.ai/design).
 
-**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens (references v1.3 · 2026-08-27).
+**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens (references v1.3 · 2026-08-27; `.tier.lead` accent border removed 2026-08-29, see below).
 
 **Agent rules:** [`.cursor/rules/design.mdc`](../.cursor/rules/design.mdc)
 
 **Live remote:** [claude.ai/design](https://claude.ai/design) → project **McMaster Rocketry Design System** (`3fe61467-ca14-4c72-80a1-d4bd7fe18e79`), file `spec.md`.
 
-## Local sync status (2026-08-27)
+## Local sync status (2026-08-29)
 
-These repo files were aligned to `McMaster_Rocketry_Design_System_Spec.md` v1.3:
+These repo files were aligned to `McMaster_Rocketry_Design_System_Spec.md` v1.4:
 
 | File | What changed |
 |---|---|
-| `McMaster_Rocketry_Design_System_Spec.md` | Heroes (all vehicle/subteam pageheads, `.has-hero--wide`), Payloads nav/page, fleet/payload lineup, `.link-fleet`, product backlight, stale open items removed |
-| `src/styles/site.css` | Header comment bumped v1.2 → v1.3 |
-| `.cursor/rules/design.mdc` | Hero table + page rhythm table |
+| `McMaster_Rocketry_Design_System_Spec.md` | `.tier.lead` accent border removed (was reading as a stray red line, on the site and in the sponsorship package); added an explicit contrast floor for `--fog-500` on paper, a white-78%-on-dark rule for eyebrow/tagline text, and a type-scale floor that applies to any team document, not just the site |
+| `src/styles/site.css` | `.tier.lead` no longer sets `border-top` |
+| `.cursor/rules/design.mdc` | Version reference bumped to v1.4 |
 
-**Remote claude.ai/design:** not updated from Cursor. Push the gitignored spec with Claude Code (below).
+**Sponsorship package:** the draft source (`sponsorship.html`, held outside the repo in a scratchpad) was rebuilt against v1.4 — dark Silver tier with no red border, `graphite-700` swapped in for `fog-500` captions on paper, body/caption sizes raised off the old 9–14px range, tagline colour fixed to white-78% wherever it sits on a dark ground. Not yet re-shipped to `public/docs/sponsorship-package-2026-2027.pdf` — that PDF still reflects the pre-2026-08-29 design.
+
+**Remote claude.ai/design:** push the gitignored spec with Claude Code (below) after pulling these edits.
 
 ## Sync claude.ai/design after local edits
 
@@ -28,7 +30,7 @@ From this repo in **Claude Code** (not Cursor):
 2. Run `/design-login` if needed.
 3. Run **`/design-sync`** — pushes `McMaster_Rocketry_Design_System_Spec.md` → remote `spec.md`.
 
-Verify on claude.ai/design that `spec.md` shows **v1.3 · 2026-08-27** and matches the heroes, Payloads, and link-fleet sections above.
+Verify on claude.ai/design that `spec.md` shows **v1.4 · 2026-08-29** and matches the tier, contrast-floor, and type-scale-floor sections above.
 
 ## Subteam heroes
 
