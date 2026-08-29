@@ -143,7 +143,7 @@
     }
   ],
   "contacts": [
-    { "role": "Sponsorship", "title": "President", "leadRole": "President" },
+    { "role": "Sponsorship", "title": "Captain", "leadRole": "Captain" },
     { "role": "Sponsorship", "title": "Project manager", "leadRole": "Project manager" }
   ]
 }

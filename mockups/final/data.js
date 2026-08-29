@@ -160,7 +160,7 @@ window.MRT = {
       { name:null, tier:"Bronze" }
     ],
     contacts: [
-      { role:"Sponsorship", title:"President", name:"Robin Anderson",
+      { role:"Sponsorship", title:"Captain", name:"Robin Anderson",
         blurb:"The person who will answer your email and follow through." },
       { role:"Sponsorship", title:"Project manager", name:"Christina Zhou",
         blurb:"Partnership coordination and follow-up. We both monitor the team inbox." }

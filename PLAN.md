@@ -203,7 +203,7 @@ not wired", or "four fixed slots" are historical; this section is current.
 - **Sponsorship budget:** all nine line items from the 2026–27 Budget sheet
   transcribed into `src/data/sponsorship.json` and `mockups/final/data.js`
   ($50,034 total). Budget grid uses `.dl.c4` with a "Get package" CTA cell.
-- **Sponsorship contacts:** Robin Anderson (President) and Christina Zhou
+- **Sponsorship contacts:** Robin Anderson (Captain) and Christina Zhou
   (Project manager) in `sponsorship.json`. Footer CTA and budget CTA link to
   `/docs/sponsorship-package-2026-2027.pdf` (also copied to `mockups/final/docs/`).
 - **Vehicle galleries:** `photos[]` arrays wired in `vehicles.json` for
@@ -457,7 +457,7 @@ indices 0–35 and 37–42 (36 is left unlocked). Delete the component and its
 layout line before launch.
 
 **2026–27 leads typed in.** `members.json` now uses `names: []` (co-leads).
-Roles on `/members`: President, Project manager, seven subteam leads, VP
+Roles on `/members`: Captain, Project manager, seven subteam leads, VP
 finance, Chief safety officer. Programmes, years, and portraits still empty.
 `/subteams/[slug]` matches by `subteam` slug and renders one card per name.
 **Avionics includes Krish Patel**, who was not on the OneDrive 2026-05-26

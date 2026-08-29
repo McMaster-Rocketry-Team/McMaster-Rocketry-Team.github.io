@@ -15,7 +15,7 @@
     },
     "cta": "Join them"
   },
-  "executiveRoles": ["President", "Project manager"],
+  "executiveRoles": ["Captain", "Project manager"],
   "leadSortLast": ["Nick Phan"],
   "stats": [
     {
@@ -41,7 +41,7 @@
   ],
   "leads": [
     {
-      "role": "President",
+      "role": "Captain",
       "subteam": null,
       "name": "Robin Anderson",
       "programme": "Computer Engineering",
