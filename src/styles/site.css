@@ -622,7 +622,7 @@ tbody tr:last-child td{border-bottom:0}
    ancestor, since it can be dropped into a dark or paper section either way. */
 .tier{background:var(--paper);color:var(--graphite-900);padding:clamp(24px,3vw,36px);display:flex;
   flex-direction:column;gap:16px}
-.tier.lead{background:var(--graphite-900);color:var(--white);border-top:3px solid var(--ignition)}
+.tier.lead{background:var(--graphite-900);color:var(--white)}
 .tier.lead .amount,.tier.lead h3{color:var(--white)}
 .tier.lead li{color:rgba(255,255,255,.90)}
 .tier.lead li::before{background:var(--white)}
