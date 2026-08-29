@@ -17,8 +17,9 @@ function leadSortKey(lead: (typeof members.leads)[number]) {
   return subteamOrder.get(lead.subteam) ?? subteams.length;
 }
 
-const executives = members.leads.filter((m) => execRoles.has(m.role));
-const subteamLeads = members.leads
+const leadsWithPhoto = members.leads.filter((m) => m.photo);
+const executives = leadsWithPhoto.filter((m) => execRoles.has(m.role));
+const subteamLeads = leadsWithPhoto
   .map((m, i) => ({ m, i }))
   .filter(({ m }) => !execRoles.has(m.role))
   .sort((a, b) => {

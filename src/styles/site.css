@@ -116,7 +116,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:cent
   background:linear-gradient(180deg,rgba(26,26,26,.85) 0%,rgba(26,26,26,.55) 45%,rgba(26,26,26,0) 100%);
   transition:background var(--dur) var(--ease)}
 nav[data-scrolled="true"]{
-  background:linear-gradient(180deg,rgba(26,26,26,.92) 0%,rgba(26,26,26,.65) 50%,rgba(26,26,26,0) 100%)}
+  /* Floor stays above 0: once scrolled, a paper section can sit directly behind
+     the bar (/subteams, /members), and a gradient that reaches full transparency
+     lets page content show through right where the tagline and nav links sit. */
+  background:linear-gradient(180deg,rgba(26,26,26,.92) 0%,rgba(26,26,26,.75) 50%,rgba(26,26,26,.55) 100%)}
 .brand{display:flex;align-items:center;gap:11px;min-height:44px;color:var(--white)}
 .brand .logo{height:32px;width:auto;flex:0 0 auto}
 /* Name + tagline lockup — same pairing in nav, footer, and home hero. */

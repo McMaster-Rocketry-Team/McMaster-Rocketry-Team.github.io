@@ -1,18 +1,23 @@
 # MRT site rebuild, progress and handoff
 
-**Last updated:** 2026-08-27 night · branch `main` @ `2ceecb8` (merged from `dev`)
+**Last updated:** 2026-08-29 · branch `dev`
 
 ## Sign-off — resume here
 
-**Verdict:** `dev` merged to `main` @ `2ceecb8` (2026-08-27). Deploy via `deploy.yml` on push. One **content** blocker remains outside the repo: stale sponsorship PDF (re-export from source). Squarespace cutoff **Mon 31 Aug**.
+**Verdict:** domain, DNS, and analytics cutover are all live on `main` (macrocketry.ca, HTTPS enforced, Cloudflare Web Analytics reporting). Deploy via `deploy.yml` on push to `main`.
 
-**Deploy gate:** `pnpm check:todo` → **0**. `pnpm astro check` → **0 errors** (join `todo` scaffolding removed). `pnpm audit --audit-level moderate` → **0 vulnerabilities**.
+**Deploy gate:** `pnpm check:todo` → **0**. `pnpm astro check` → **0 errors**. `pnpm audit --audit-level moderate` → **0 vulnerabilities**.
 
-**Blockers (need Robin, non-repo):**
+**Blockers (need Robin, non-repo):** none outstanding.
 
-1. **Sponsorship PDF is stale.** `public/docs/sponsorship-package-2026-2027.pdf` still self-contradicts (4th vs fifth rocket), future-tense 2026 copy, old maroon palette. Re-export from source when ready; does not block deploy of the Astro site.
+**Resolved 2026-08-29:**
 
-**Resolved tonight:**
+- **Nav-scrim legibility bug:** `nav[data-scrolled="true"]`'s gradient no longer fades to full transparency; floor raised to `.55` so page content stops showing through the bar on `/subteams` and `/members`.
+- **Apple-touch-icon:** was a white mark on a transparent background, near-invisible on a light iOS home screen. Now a flattened, opaque `apple-touch-icon.png` (dark mark on `--paper`).
+- **Members page:** leads with no uploaded photo no longer render a placeholder card, they're filtered out of the roster entirely.
+- **Sponsorship PDF, DNS cutover, Cloudflare analytics:** all confirmed shipped and live (see resolved history below); PLAN.md's stale references to them removed.
+
+**Resolved earlier (2026-08-27 night):**
 
 - **Apply deadline:** Microsoft Forms updated to match site (`Applications close September 18, 23:59`).
 - **`join.astro`:** removed dead `todo`/`TodoBadge` scaffolding; `astro check` clean.
@@ -26,10 +31,7 @@
 
 **Next session, in order**
 
-1. Robin: re-export sponsorship PDF when source is ready.
-2. Robin: nav-scrim legibility + apple-touch-icon contrast (`LAUNCH_REVIEW.md` §2/§6).
-3. DNS: registrar records for `macrocketry.ca` (repo `public/CNAME` shipped).
-4. Cloudflare analytics → `site.json`; sponsorship legal recipient; trademark/AODA/member consent.
+1. Sponsorship legal recipient, trademark clearance, AODA applicability: still need answers from Robin or McMaster staff (`LAUNCH_REVIEW.md` §12). Member consent for `members.json` names/photos confirmed by Robin 2026-08-29, no longer open.
 
 **Done 2026-08-27 night — Claude Code (commits `93eb3cd`, `4cded4b` + uncommitted launch pass):**
 
