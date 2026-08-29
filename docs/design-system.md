@@ -1,8 +1,8 @@
 # Design system — repo pointer
 
-**Canonical spec (v1.4):** [`McMaster_Rocketry_Design_System_Spec.md`](../McMaster_Rocketry_Design_System_Spec.md) in the repo root (gitignored — sync source for claude.ai/design).
+**Canonical spec (v1.5):** [`McMaster_Rocketry_Design_System_Spec.md`](../McMaster_Rocketry_Design_System_Spec.md) in the repo root (gitignored — sync source for claude.ai/design).
 
-**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens (references v1.3 · 2026-08-27; `.tier.lead` accent border removed 2026-08-29, see below).
+**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens (references v1.3 · 2026-08-27; `.tier.lead` accent border removed 2026-08-29, graphite fill removed 2026-08-29, see below).
 
 **Agent rules:** [`.cursor/rules/design.mdc`](../.cursor/rules/design.mdc)
 
@@ -10,15 +10,17 @@
 
 ## Local sync status (2026-08-29)
 
-These repo files were aligned to `McMaster_Rocketry_Design_System_Spec.md` v1.4:
+These repo files were aligned to `McMaster_Rocketry_Design_System_Spec.md` v1.5:
 
 | File | What changed |
 |---|---|
-| `McMaster_Rocketry_Design_System_Spec.md` | `.tier.lead` accent border removed (was reading as a stray red line, on the site and in the sponsorship package); added an explicit contrast floor for `--fog-500` on paper, a white-78%-on-dark rule for eyebrow/tagline text, and a type-scale floor that applies to any team document, not just the site |
-| `src/styles/site.css` | `.tier.lead` no longer sets `border-top` |
-| `.cursor/rules/design.mdc` | Version reference bumped to v1.4 |
+| `McMaster_Rocketry_Design_System_Spec.md` | `.tier.lead` accent border removed (v1.4, was reading as a stray red line); `.tier.lead` graphite fill also dropped (v1.5) so Silver matches Bronze/Gold on plain paper; added an explicit contrast floor for `--fog-500` on paper, a white-78%-on-dark rule for eyebrow/tagline text, and a type-scale floor that applies to any team document, not just the site |
+| `src/styles/site.css` | `.tier.lead` no longer sets `border-top`, `background`, or any of its text-colour overrides; added `.tier-value` caption style |
+| `src/data/sponsorship.json` | Tiers lede and per-tier `value` field generalized to "sponsorship value ... in monetary donations, discounts or products"; standalone `inKind` field removed |
+| `src/pages/sponsors.astro` | Renders each tier's new `value` line; dropped the standalone "In-kind support" paragraph |
+| `.cursor/rules/design.mdc` | Version reference bumped to v1.5 |
 
-**Sponsorship package:** the draft source (`sponsorship.html`, held outside the repo in a scratchpad) was rebuilt against v1.4 — dark Silver tier with no red border, `graphite-700` swapped in for `fog-500` captions on paper, body/caption sizes raised off the old 9–14px range, tagline colour fixed to white-78% wherever it sits on a dark ground. Not yet re-shipped to `public/docs/sponsorship-package-2026-2027.pdf` — that PDF still reflects the pre-2026-08-29 design.
+**Sponsorship package:** the draft source was rebuilt against v1.5 — white Silver tier (no fill, no border), generalized tier/value wording matching the site, in-kind paragraph removed, `graphite-700` swapped in for `fog-500` captions on paper, body/caption sizes raised off the old 9–14px range, tagline colour fixed to white-78% wherever it sits on a dark ground, Osiris team photo on page 2 re-cropped. Re-shipped to `public/docs/sponsorship-package-2026-2027.pdf` 2026-08-29.
 
 **Remote claude.ai/design:** push the gitignored spec with Claude Code (below) after pulling these edits.
 
@@ -30,7 +32,7 @@ From this repo in **Claude Code** (not Cursor):
 2. Run `/design-login` if needed.
 3. Run **`/design-sync`** — pushes `McMaster_Rocketry_Design_System_Spec.md` → remote `spec.md`.
 
-Verify on claude.ai/design that `spec.md` shows **v1.4 · 2026-08-29** and matches the tier, contrast-floor, and type-scale-floor sections above.
+Verify on claude.ai/design that `spec.md` shows **v1.5 · 2026-08-29** and matches the tier, contrast-floor, and type-scale-floor sections above.
 
 ## Subteam heroes
 

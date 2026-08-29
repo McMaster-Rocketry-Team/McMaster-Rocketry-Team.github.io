@@ -13,7 +13,7 @@
    stacked under --paper's own slight cream, was reading as brown across
    large surfaces. Robin's call: red, white and black only, nothing else
    should carry a hue. Ignition is a fill/accent colour, not a wash —
-   full-bleed grounds (.hero, .phead, .cta, .tier.lead) use graphite, and
+   full-bleed grounds (.hero, .phead, .cta) use graphite, and
    ignition is reserved for buttons, hairline accents, icons on paper and the
    corner-crosshair device. Photographic and video heroes stay full colour:
    never grayscale the media, never wash it with a colour veil. Copy sits in
@@ -26,9 +26,11 @@
    grounds, where it clears 5.38:1. v1.3 adds: .link-fleet, product-shot
    white backlight (.ph-is-product ::before), .payload-lineup, .dl>div direct-
    child hairline fix, Payloads nav + /payloads page rhythm. v1.4 (2026-08-29)
-   removes .tier.lead's ignition border-top — it read as a stray red line
-   over Silver, on the site and in the sponsorship-package doc; the dark
-   fill alone carries the "lead tier" distinction. Full spec:
+   removed .tier.lead's ignition border-top — it read as a stray red line
+   over Silver. v1.5 (2026-08-29) drops .tier.lead's graphite fill too:
+   Silver now renders as plain paper like Bronze and Gold, on the site and
+   in the sponsorship-package doc — the tier cards no longer single out a
+   "lead" option visually. Full spec:
    McMaster_Rocketry_Design_System_Spec.md and docs/design-system.md.
    ========================================================================== */
 :root{
@@ -625,14 +627,11 @@ tbody tr:last-child td{border-bottom:0}
    ancestor, since it can be dropped into a dark or paper section either way. */
 .tier{background:var(--paper);color:var(--graphite-900);padding:clamp(24px,3vw,36px);display:flex;
   flex-direction:column;gap:16px}
-.tier.lead{background:var(--graphite-900);color:var(--white)}
-.tier.lead .amount,.tier.lead h3{color:var(--white)}
-.tier.lead li{color:rgba(255,255,255,.90)}
-.tier.lead li::before{background:var(--white)}
 .tier h3{font-family:var(--font-display);font-weight:600;font-size:25px;letter-spacing:-.005em;
   margin:0}
 .tier .amount{font-family:var(--font-display);font-weight:600;font-size:clamp(30px,4vw,46px);
   line-height:1;letter-spacing:0;font-variant-numeric:tabular-nums}
+.tier .tier-value{margin:-8px 0 0;font-size:14px;line-height:1.5;color:var(--muted-on-paper)}
 .tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;flex:1}
 .tier li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.6;
   color:var(--muted-on-paper)}

@@ -17,7 +17,7 @@
     "tiers": {
       "tag": "Tiers",
       "headline": "What you get.",
-      "lede": "Three tiers, and a fourth option if you'd rather give materials or machine time than money. That is often more useful to us."
+      "lede": "Three tiers, based on total sponsorship value in monetary donations, discounts, or products."
     },
     "partners": {
       "tag": "Current partners",
@@ -34,7 +34,6 @@
     "headline": "Get package",
     "body": "The 2026-27 sponsorship package: tiers, benefits, and what we fly."
   },
-  "inKind": "We'll take materials, machine shop CNC time, PCBs, connectors, or test equipment in place of cash. Tell us what you have and we'll say whether we can use it.",
   "buttons": { "talk": "Talk to us", "package": "Get package" },
   "packagePdf": "/docs/sponsorship-package-2026-2027.pdf",
   "budget": [
@@ -52,6 +51,7 @@
     {
       "name": "Bronze",
       "amount": "$500+",
+      "value": "Sponsorship value greater than $500 in monetary donations, discounts or products.",
       "lead": false,
       "benefits": [
         "Small logo placement on the website and T-shirts",
@@ -62,6 +62,7 @@
     {
       "name": "Silver",
       "amount": "$2,000+",
+      "value": "Sponsorship value greater than $2,000 in monetary donations, discounts or products.",
       "lead": true,
       "benefits": [
         "Medium logo placement on the website, banner, T-shirts and rocket",
@@ -73,6 +74,7 @@
     {
       "name": "Gold",
       "amount": "$3,000+",
+      "value": "Sponsorship value greater than $3,000 in monetary donations, discounts or products.",
       "lead": false,
       "benefits": [
         "Large logo placement on the website, banner, T-shirt and rocket",

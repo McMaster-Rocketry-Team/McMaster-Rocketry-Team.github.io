@@ -76,6 +76,7 @@ const contacts = sponsorship.contacts.map((c) => ({
         <div class={'tier' + (t.lead ? ' lead' : '')}>
           <h3>{t.name}</h3>
           <div class="amount">{t.amount || 'TODO'}</div>
+          <p class="tier-value">{t.value}</p>
           <ul role="list">
             {t.benefits.map((b) => <li>{b}</li>)}
           </ul>
@@ -85,9 +86,6 @@ const contacts = sponsorship.contacts.map((c) => ({
     </div>
   </div>
   <div class="wrap">
-    <div class="prose prose--follow">
-      <p><b>In-kind support.</b> {sponsorship.inKind}</p>
-    </div>
     <div class="btnrow">
       <a class="btn solid" href={mailHref()}>{sponsorship.buttons.talk}</a>
       <a class="btn" href={sponsorship.packagePdf} download>{sponsorship.buttons.package}</a>
