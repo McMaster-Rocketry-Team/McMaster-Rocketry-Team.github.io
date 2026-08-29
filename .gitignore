@@ -14,10 +14,6 @@ hero_video.m3u8
 # the PDF itself stays local until it's revised.
 Rocketry Sponsorship Package 2026-2027.pdf
 
-# Design system spec: superseded local copy. Canonical version lives at
-# claude.ai/design (project 3fe61467-ca14-4c72-80a1-d4bd7fe18e79); see PLAN.md.
-McMaster_Rocketry_Design_System_Spec.md
-
 # OS / editor noise
 .DS_Store
 Thumbs.db

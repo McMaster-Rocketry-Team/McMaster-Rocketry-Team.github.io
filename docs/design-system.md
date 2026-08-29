@@ -1,38 +1,18 @@
 # Design system — repo pointer
 
-**Canonical spec (v1.5):** [`McMaster_Rocketry_Design_System_Spec.md`](../McMaster_Rocketry_Design_System_Spec.md) in the repo root (gitignored — sync source for claude.ai/design).
+**Canonical spec:** [`github.com/McMaster-Rocketry-Team/design`](https://github.com/McMaster-Rocketry-Team/design) → `spec/design-system.md`. That repo is the single source of truth (declared 2026-08-29) — this repo does not keep its own copy of the spec prose. Propose spec changes there as a pull request, not here.
 
-**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens (references v1.3 · 2026-08-27; `.tier.lead` accent border removed 2026-08-29, graphite fill removed 2026-08-29, see below).
+**Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens — implements the spec, doesn't restate it.
 
-**Agent rules:** [`.cursor/rules/design.mdc`](../.cursor/rules/design.mdc)
+**Agent rules:** [`.cursor/rules/design.mdc`](../.cursor/rules/design.mdc) — a condensed, code-facing subset of the spec for the coding agent, with a pointer to the full spec.
 
-**Live remote:** [claude.ai/design](https://claude.ai/design) → project **McMaster Rocketry Design System** (`3fe61467-ca14-4c72-80a1-d4bd7fe18e79`), file `spec.md`.
+**`claude.ai/design`** → project "McMaster Rocketry Design System" is **archived**: it holds the last synced copy of the spec (through v1.6) for search/reference only. It is no longer edited and nothing pushes to it.
 
-## Local sync status (2026-08-29)
+## Why one source of truth
 
-These repo files were aligned to `McMaster_Rocketry_Design_System_Spec.md` v1.5:
+Through 2026-08-29 the spec was hand-mirrored across three places: a gitignored file in this repo, `spec/design-system.md` in the design repo, and `spec.md` on `claude.ai/design`. That drifted stale more than once (see `git log` on this file for the old sync-status entries) and directly caused a real bug: the design repo's `README.md` cited "the measured clear-space rule in `spec/design-system.md`" for a section that didn't exist in any copy — the one real, measured number lived only in a brand-kit mockup file, flagged as a proposal. Fixed 2026-08-29 (design repo PRs #1 and #2): the spec now lives in exactly one place.
 
-| File | What changed |
-|---|---|
-| `McMaster_Rocketry_Design_System_Spec.md` | `.tier.lead` accent border removed (v1.4, was reading as a stray red line); `.tier.lead` graphite fill also dropped (v1.5) so Silver matches Bronze/Gold on plain paper; added an explicit contrast floor for `--fog-500` on paper, a white-78%-on-dark rule for eyebrow/tagline text, and a type-scale floor that applies to any team document, not just the site |
-| `src/styles/site.css` | `.tier.lead` no longer sets `border-top`, `background`, or any of its text-colour overrides; added `.tier-value` caption style |
-| `src/data/sponsorship.json` | Tiers lede and per-tier `value` field generalized to "sponsorship value ... in monetary donations, discounts or products"; standalone `inKind` field removed |
-| `src/pages/sponsors.astro` | Renders each tier's new `value` line; dropped the standalone "In-kind support" paragraph |
-| `.cursor/rules/design.mdc` | Version reference bumped to v1.5 |
-
-**Sponsorship package:** the draft source was rebuilt against v1.5 — white Silver tier (no fill, no border), generalized tier/value wording matching the site, in-kind paragraph removed, `graphite-700` swapped in for `fog-500` captions on paper, body/caption sizes raised off the old 9–14px range, tagline colour fixed to white-78% wherever it sits on a dark ground, Osiris team photo on page 2 re-cropped. Re-shipped to `public/docs/sponsorship-package-2026-2027.pdf` 2026-08-29.
-
-**Remote claude.ai/design:** push the gitignored spec with Claude Code (below) after pulling these edits.
-
-## Sync claude.ai/design after local edits
-
-From this repo in **Claude Code** (not Cursor):
-
-1. Ensure design MCP is connected: `claude mcp add --scope user --transport http claude-design https://api.anthropic.com/v1/design/mcp`
-2. Run `/design-login` if needed.
-3. Run **`/design-sync`** — pushes `McMaster_Rocketry_Design_System_Spec.md` → remote `spec.md`.
-
-Verify on claude.ai/design that `spec.md` shows **v1.5 · 2026-08-29** and matches the tier, contrast-floor, and type-scale-floor sections above.
+If a change here needs a matching spec update, open the PR in the design repo first, then update `site.css` / `design.mdc` here to match — never write spec prose directly into this repo again.
 
 ## Subteam heroes
 

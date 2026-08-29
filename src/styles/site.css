@@ -892,12 +892,19 @@ h1,h2,h3,h4,p,dd,dt,td,th,li,.card,.tier,.roster .person,.event-block{overflow-w
    widths, i.e. the same ghost cells one row further down. Explicit counts stay;
    the rules move onto the cards so an empty cell shows nothing at all. */
 .cards,.tiers{background:none;gap:0;border:0}
-.cards>*,.tiers>*{border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}
-.cards,.tiers{border-right:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark)}
-section.paper .cards>*,section.paper .tiers>*{border-top-color:var(--rule-light);
+.cards>*{border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}
+.cards{border-right:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark)}
+section.paper .cards>*{border-top-color:var(--rule-light);
   border-left-color:var(--rule-light)}
-section.paper .cards,section.paper .tiers{border-right-color:var(--rule-light);
+section.paper .cards{border-right-color:var(--rule-light);
   border-bottom-color:var(--rule-light)}
+/* .tier tiles are always --paper (see the TIERS comment above), even when the
+   section itself isn't .paper, so the grid line has to stay the dark
+   (rule-light) variant unconditionally. Keying it off section.paper like
+   .cards does was giving Bronze/Silver/Gold a white rule-dark line meant for
+   dark tiles on a dark section — invisible against paper on paper. */
+.tiers>*{border-top:1px solid var(--rule-light);border-left:1px solid var(--rule-light)}
+.tiers{border-right:1px solid var(--rule-light);border-bottom:1px solid var(--rule-light)}
 .dl{background:none;gap:0;border-right:1px solid var(--rule-dark);
   border-bottom:1px solid var(--rule-dark)}
 .dl>div,.dl>a.card,.dl-cta{border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}

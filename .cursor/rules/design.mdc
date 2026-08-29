@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Visual identity
 
-Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video, and never a running text colour (not even for numbers/amounts). On dark grounds, eyebrow/tagline text is white at 78% opacity, not ignition — ignition on `--graphite-700`/`--graphite-900` fails contrast. Full spec: `McMaster_Rocketry_Design_System_Spec.md` v1.5 (sync to claude.ai/design via `/design-sync`).
+Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never a wash on a photograph or a video, and never a running text colour (not even for numbers/amounts). On dark grounds, eyebrow/tagline text is white at 78% opacity, not ignition — ignition on `--graphite-700`/`--graphite-900` fails contrast. This file is a condensed, code-facing subset. Full spec (single source of truth): `spec/design-system.md` in [github.com/McMaster-Rocketry-Team/design](https://github.com/McMaster-Rocketry-Team/design), currently v1.6 — see `docs/design-system.md` for why it lives there and not here.
 
 ## Heroes
 
@@ -43,6 +43,10 @@ Copy on a photographic/video hero sits in `.herobox` (translucent graphite panel
 3. Home hero `.herobox` (full name + tagline, above the altitude)
 
 Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the tagline on section eyebrows, interior pageheads, Join, or Sponsors.
+
+## Logo & lockups
+
+Standalone lockup PNGs (not the site's own `.lockup` component) live in the design repo's `assets/lockups/`, not this repo. Team name + tagline stack directly, tagline beneath the name — never side by side. Clear space around the whole mark or lockup is 1x mark peak-height on every side (measured 406px on the 1654px-tall canvas). Full detail, minimum sizes, and the file matrix: spec **Logo & lockups**.
 
 ## Page rhythm
 
