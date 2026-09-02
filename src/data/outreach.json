@@ -78,13 +78,22 @@
       "photoAlt": "Nimbus laid out in two sections on a table with the avionics bay open between them, during an on-campus info session."
     },
     {
-      "slug": "facultyfest",
+      "slug": "facultyfest-past",
       "name": "Facultyfest",
-      "blurb": "A table for incoming first-year engineers at the start of term. August 31, 12:30 to 17:00.",
+      "blurb": "A table for incoming first-year engineers at the start of a previous term.",
       "detail": null,
       "todo": null,
       "photo": "/media/outreach/facultyfest.webp",
       "photoAlt": "Three team members and the McMaster mascot beside the team banner and a standing Luminis airframe at Facultyfest."
+    },
+    {
+      "slug": "facultyfest-2026",
+      "name": "Facultyfest",
+      "blurb": "A table for incoming first-year engineers at the start of term. August 31, 12:30 to 17:00.",
+      "detail": null,
+      "todo": null,
+      "photo": "/media/outreach/facultyfest-2026.webp",
+      "photoAlt": "Five team members beside the Osiris and Void Lake airframes and two standing rockets at the Facultyfest 2026 table."
     },
     {
       "slug": "clubsfest",
