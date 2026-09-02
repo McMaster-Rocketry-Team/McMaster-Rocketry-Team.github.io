@@ -125,6 +125,8 @@ ReviewMode was removed 2026-08-27; this pass is independent. Read every line of 
 
 **Earlier `osiris.mach` regression (2026-08-26).** Had silently reverted to `1.92` in `7ccfd55`, was set to `null` during launch review, then republished after Robin confirmed trusting the FDR simulation over the Void Lake velocity KF.
 
+**Blue Raven SN1717 ingest (2026-09-01, Claude).** Ingested the Blue Raven flight-summary CSV (`scripts/ingest-blue-raven-summary.py`). Apogee cross-checked within 23 ft of the published Void Lake figure, now noted in `osiris.build`. Mach and accel intentionally not republished from this file, both Robin's call: Blue Raven's velocity has no altitude attached in the summary, and a barometrically-reconstructed burnout altitude puts Mach at 1.97 (band 1.92-2.02), not confidently over 2.0, so `mach` stays `1.92` pending tighter data; Blue Raven's 74.9-75.3 G accel reading is roughly 4.6x the published 16.1 G and Robin doesn't trust the Blue Raven IMU for this figure, so `specs.accel` is unchanged. See `docs/data-layer.md`.
+
 - [x] Read every `.astro` page, every prose field in every `src/data/*.json` file, and every component with visible copy (`Nav.astro`, `Footer.astro`, `CtaBand.astro`) top to bottom. No stilted rhythm or uniform sentence length found; voice is consistently close to the `/join`/`/outreach` baseline across the whole site, including the newer payloads/subteams/sponsors pages the doc flagged as highest-risk.
 - [x] Throat-clearing openers: none found anywhere (`rg` for the listed patterns across `src/pages`, `src/data`, `src/components` returns zero hits).
 - [x] Hollow closers: none found (same zero-hit grep).

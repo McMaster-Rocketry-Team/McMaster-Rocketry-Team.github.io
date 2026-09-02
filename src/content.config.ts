@@ -54,6 +54,20 @@ const vehicles = defineCollection({
     summary: z.string(),
     specs: vehicleSpecs,
     build: z.string().nullable(),
+    // Cross-check record from scripts/ingest-blue-raven-summary.py. Audit
+    // trail only, not currently rendered: apogee/mach/accel stay under
+    // Robin's editorial call per docs/data-layer.md, this just documents
+    // what the primary altimeter's own summary said.
+    blueRaven: z.object({
+      source: z.string(),
+      serial_number: z.string(),
+      launch_date: z.string(),
+      max_altitude_ft: z.number(),
+      max_velocity_ft_s: z.number(),
+      max_velocity_m_s: z.number(),
+      apogee_delta_vs_published_ft: z.number().nullable(),
+      note: z.string(),
+    }).optional(),
   }),
 });
 

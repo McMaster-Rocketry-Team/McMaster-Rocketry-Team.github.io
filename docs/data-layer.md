@@ -39,3 +39,32 @@ python scripts/ingest-flight-log.py media-source/osiris-void-lake-flight-log.zip
 ```
 
 Extracted CSV cache: `media-source/.osiris-void-lake-flight-log-extract/` (gitignored).
+
+`scripts/ingest-blue-raven-summary.py` parses the Blue Raven flight-summary CSV
+(`BlRv_SN*_summary_*.csv`, a flat label/value export, no time-series telemetry).
+`--check` prints a `blueRaven` cross-check block to paste into `vehicles.json`
+by hand (the file is hand-formatted compact-per-vehicle; a `json.dumps`
+rewrite would reformat the whole file's whitespace). It never computes
+`apogee`, `mach`, or `specs.accel`.
+
+Blue Raven SN1717 ingested 2026-09-01 for the 2026-04-06 Osiris flight:
+apogee (33,528 ft) landed within 23 ft of the published Void Lake figure,
+already reflected in `vehicles.json`'s `osiris.build` text. Two figures were
+deliberately **not** adopted from this file, both Robin's call:
+
+- **Velocity/Mach:** Blue Raven's max velocity (669.24 m/s, 2195.67 ft/s) has
+  no altitude or temperature attached in the summary export. A burnout
+  altitude reconstructed from Void Lake's raw pressure trace (barometric
+  formula, pad temperature from Blue Raven's own reading) gives Mach 1.97,
+  uncertainty band roughly 1.92-2.02, not confidently above 2.0. Robin wants a
+  tighter number before publishing a new Mach figure; `mach` stays `1.92`
+  until then.
+- **Acceleration:** Blue Raven reports max motor-burn accel 74.9 G and peak
+  drag deceleration 75.3 G, roughly 4.6x the published `specs.accel` (16.1 G,
+  from Void Lake's accelerometer trace). Robin does not trust the Blue Raven
+  IMU for this figure; `specs.accel` is unchanged.
+
+```bash
+python scripts/ingest-blue-raven-summary.py path/to/BlRv_SN1717_summary.csv
+python scripts/ingest-blue-raven-summary.py path/to/summary.csv --check
+```
