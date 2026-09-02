@@ -67,8 +67,8 @@
     "id": "payload",
     "slug": "payload",
     "name": "Payload",
-    "blurb": "The experiment we fly, and most years the reason the rocket exists at all. CAD, electrical and software all sit on it.",
-    "detail": "Payload designs, builds, and integrates the experiment or technical demonstration the rocket carries each year, most years the reason the rocket flies at all. It sits alongside Airframe, which has to make the payload fit and survive flight, and Avionics, which handles triggering over the CAN bus. Recent payloads: Magpie (2026), an SRAD fracture test module carrying epoxy test articles to measure how a self-healing polymer performs in flight, which took first place in the Payload Challenge at Launch Canada; Sparrow (2025), a 360-degree camera with a recovery beacon that also took first place at Launch Canada; and a 2024 first-person-view camera system recording flight at 2K and 60 frames per second.",
+    "blurb": "The experiment we fly. CAD, electrical and software all sit on it.",
+    "detail": "Payload designs, builds, and integrates the experiment or technical demonstration the rocket carries each year. It sits alongside Airframe, which has to make the payload fit and survive flight, and Avionics, which handles triggering over the CAN bus. Recent payloads: Magpie (2026), an SRAD fracture test module carrying epoxy test articles to measure how a self-healing polymer performs in flight, which took first place in the Payload Challenge at Launch Canada; Sparrow (2025), a 360-degree camera with a recovery beacon that also took first place at Launch Canada; and a 2024 first-person-view camera system recording flight at 2K and 60 frames per second.",
     "first": "Help build and test one part of the current payload, whether that's the mechanical housing, the electronics, or the software that runs it. The payload changes every year, so the first project you touch is whatever that season's experiment needs.",
     "skills": "Depends on the year's payload: CAD and machining for the housing, embedded C for the electronics, or materials science for an experiment like Magpie's polymer test. No single background is required.",
     "hours": "About 6 h / week",
@@ -90,8 +90,8 @@
     "hours": "About 6 h / week",
     "heroImage": "/media/subteams/composites-hero.webp",
     "photo": "/media/subteams/composites-work.webp",
-    "photoAlt": "Team members around a vacuum chamber in the composites bay: one films the setup on a phone while others monitor the laptop and gauge.",
-    "photoCaption": "Vacuum bagging a layup. Pressure pulls the bag tight so every ply bonds without voids.",
+    "photoAlt": "Team members around a vacuum chamber in the composites bay: one films the setup on a phone while others monitor a laptop and the chamber gauge.",
+    "photoCaption": "Vacuum chamber testing an EasyMini altimeter. Pulling a vacuum simulates the pressure drop of flight before it ever leaves the ground.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {

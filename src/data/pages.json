@@ -14,7 +14,7 @@
     },
     "payloads": {
       "tag": "Payloads",
-      "ledeSuffix": "Most years, the payload is the reason the rocket exists at all.",
+      "ledeSuffix": "CAD, electrical and software all sit on it.",
       "allWinsNote": ", every one first place in the Payload Challenge at Launch Canada",
       "cta": "All {count} payloads"
     },
@@ -60,7 +60,7 @@
       "title": "Payloads",
       "description": "The experiments the McMaster Rocketry Team has designed, built and flown.",
       "tag": "Payloads",
-      "lede": "Most years, the payload is the reason the rocket exists at all. Every one the team has flown.",
+      "lede": "Every one the team has designed, built, and flown.",
       "section": { "tag": "All payloads", "headline": "By year." }
     },
     "template": {
