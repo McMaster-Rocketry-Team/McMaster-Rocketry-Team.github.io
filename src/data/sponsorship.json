@@ -115,7 +115,8 @@
       "name": "Origin Innovations",
       "tier": "Silver",
       "href": "https://origininnovations.ca/",
-      "logo": "/media/sponsors/origin-innovations.svg"
+      "logo": "/media/sponsors/origin-innovations.svg",
+      "logoDark": true
     },
     {
       "name": "SOLIDWORKS",

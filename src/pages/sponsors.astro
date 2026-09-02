@@ -107,7 +107,7 @@ const contacts = sponsorship.contacts.map((c) => ({
             {partners.map((p) => (
               <li>
                 <a
-                  class="partner-logo"
+                  class={'partner-logo' + (p.logoDark ? ' partner-logo--dark' : '')}
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"

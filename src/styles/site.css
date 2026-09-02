@@ -702,8 +702,13 @@ section:not(.paper):not(.cta) .note--roster{color:var(--muted-on-ink)}
   max-height:64px;object-fit:contain}
 .partner-tier--gold .partner-logo{min-height:156px;padding:clamp(22px,3vw,34px)}
 .partner-tier--gold .partner-logo img{max-width:min(100%,240px);max-height:80px}
+/* A sponsor's only supplied logo is sometimes white-only artwork (no
+   background baked in), invisible on --paper. Tag that partner logoDark in
+   sponsorship.json to seat it on a dark tile instead. */
+.partner-logo--dark{background:var(--graphite-900)}
 @media(hover:hover){
   .partner-logo:hover{background:var(--fog-100)}
+  .partner-logo--dark:hover{background:var(--graphite-700)}
   .partner-logo:focus-visible{outline:2px solid var(--ignition);outline-offset:-2px}
 }
 .callout{border-left:3px solid var(--ignition);padding:4px 0 4px 20px;margin:26px 0;
