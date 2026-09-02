@@ -33,6 +33,60 @@
 
 1. Sponsorship legal recipient, trademark clearance, AODA applicability: still need answers from Robin or McMaster staff (`LAUNCH_REVIEW.md` §12). Member consent for `members.json` names/photos confirmed by Robin 2026-08-29, no longer open.
 
+## Public face improvement plan (2026-08-29)
+
+Launch checklist and sponsorship PDF are effectively closed (see Sign-off above; the
+4th/5th-rocket contradiction and maroon color the review flagged are already fixed).
+The design repo (`McMaster-Rocketry-Team/design`, v1.7, synced 2026-08-29) is now the
+canonical source for spec/assets, and its `examples/brand-kit.html` carries its own
+ranked collateral gap list, folded into "Later" below. What's left that a visitor,
+parent, or sponsor would actually notice is content, not checklist items.
+
+**Do now, ranked by who would notice:**
+
+1. **Safety/operations page.** `src/data/safety.json` is fully scaffolded (sanctioning
+   body, faculty advisor, RSO, certification level, ground-test practice) but every
+   field is `null` and no page renders it — `PLAN.md` currently files this under "can
+   wait," but the parent and student reviewers called it the highest-leverage single
+   page on the site. Claude builds `src/pages/safety.astro` off the existing JSON;
+   Robin supplies the five facts (see closing item below).
+2. **Fix the `/rockets` overclaim.** The "Apogee, every flight." heading and a blank
+   `.val` span (not the site's own "Not published" fallback) both ship for the three
+   vehicles with `apogee: null` (Marauder I, Marauder II, Luminis). No decision needed:
+   make the lineup match the vehicle pages' existing honest fallback.
+3. **Publish prediction vs. actual for the two vehicles with a verified predicted
+   number.** `.onedrive-extract/ROCKET-FACT-CANDIDATES.md` has real OpenRocket figures:
+   Marauder II predicted 11,058 ft, Luminis predicted 9,444 ft (target 10,000). Do not
+   extend this to Osiris: the "31,200 predicted" figure in §8 above is the review
+   panel's illustrative example, not a sourced number, and needs Robin or an OpenRocket
+   file before it ships.
+4. **State the scoring rule.** Neither Launch Canada nor Spaceport America Cup scores
+   on maximum altitude, both score against a declared target, and the site never says
+   so. Without it, Osiris's 33,551 ft reads as an unexplained overshoot to anyone who
+   knows the rules and as an unjudgeable number to everyone else.
+5. **Write up the two real failures.** Luminis → Luminis V2, and the Nimbus recovery
+   rewrite (single-barometer trigger → voted decision across three sensors). The
+   external review called the Nimbus rewrite the most substantive technical claim on
+   the site; it currently gets 21 words under a paragraph flagged for deletion.
+
+**Later:**
+
+1. Ship the brand kit's own gap list: Instagram post/story templates (1080×1080,
+   1080×1920), a slide deck template, a printed banner or step-and-repeat, email
+   signature and business cards. Brand kit's own note: "nothing blocks these."
+2. Publish the raw Void Lake flight CSV (`media-source/.osiris-void-lake-flight-log-extract/flight_log.csv`)
+   with a short methodology note. A competition judge and a blind developer flagged
+   this independently in the launch review.
+3. Mechanical QA Claude can finish without anyone's input: full 375/768/1440 sweep
+   across all 24 pages, alt-text audit, heading-hierarchy audit (all currently marked
+   not-done in `LAUNCH_REVIEW.md` §2/§4).
+4. External/administrative, needs Robin's access or a decision: Cloudflare DNS + real
+   security headers, Search Console/Bing sitemap submission, McMaster trademark
+   clearance, tax-receipt wording with Financial Affairs, AODA applicability, uptime
+   monitoring (`LAUNCH_REVIEW.md` §5/§3/§12/§13).
+5. Logo geometry refresh (embroidery-safe stroke weight): flagged open in the design
+   repo's README, no deadline attached.
+
 **Done 2026-08-27 night — Claude Code (commits `93eb3cd`, `4cded4b` + uncommitted launch pass):**
 
 | Area | What |
