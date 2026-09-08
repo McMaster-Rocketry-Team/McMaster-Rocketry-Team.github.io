@@ -6,11 +6,14 @@ import site from '../data/site.json';
 import sponsorship from '../data/sponsorship.json';
 import members from '../data/members.json';
 
+type Partner = { name: string; tier: string; href: string; logo: string; logoDark?: boolean };
+
 const page = sponsorship.page;
 const sections = sponsorship.sections;
+const partners = sponsorship.partners as Partner[];
 const partnersByTier = sponsorship.tierOrder.map((tier) => ({
   tier,
-  partners: sponsorship.partners.filter((p) => p.tier === tier),
+  partners: partners.filter((p) => p.tier === tier),
 }));
 const contacts = sponsorship.contacts.map((c) => ({
   ...c,

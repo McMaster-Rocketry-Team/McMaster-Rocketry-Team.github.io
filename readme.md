@@ -20,8 +20,8 @@ Open http://127.0.0.1:4321/. `pnpm astro build` writes `dist/`. `pnpm astro prev
 |---|---|
 | Pages | `src/pages/` |
 | Data the team edits | `src/data/*.json` |
-| Tokens, layout, hero pattern | `src/styles/site.css` (header comment) + `.cursor/rules/design.mdc` |
-| Design system spec (v1.6) | Canonical at [github.com/McMaster-Rocketry-Team/design](https://github.com/McMaster-Rocketry-Team/design) → `spec/design-system.md` (single source of truth) · `docs/design-system.md` (pointer, not a copy) |
+| Tokens, layout, hero pattern | `src/styles/site.css` (header comment) + `CLAUDE.md` |
+| Design system spec | Canonical at [github.com/McMaster-Rocketry-Team/design](https://github.com/McMaster-Rocketry-Team/design) → `spec/design-system.md` (single source of truth) · `docs/design-system.md` (pointer, not a copy) |
 | Vehicle photos (source) | `rockets/<slug>/` + `SHORTLIST.md` |
 | Fleet cutouts (shipped) | `public/media/rockets/` |
 | Lead portraits (shipped) | `public/media/leads/` |
@@ -44,4 +44,4 @@ pnpm check:todo && pnpm astro check && pnpm build && pnpm check:todo
 rg -i 'data-rv|data-review|rv-panel' dist/ || echo "OK: no ReviewMode leaks"
 ```
 
-See `LAUNCH_REVIEW.md` § "Verification audit" for the full double-check list. Known gap: `pnpm astro check` reports 6 type errors in `join.astro` (`todo` fields); production build still passes.
+See `LAUNCH_REVIEW.md` § "Verification audit" for the full double-check list.

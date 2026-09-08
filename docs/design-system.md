@@ -4,7 +4,7 @@
 
 **Shipped CSS:** [`src/styles/site.css`](../src/styles/site.css) header comment + tokens — implements the spec, doesn't restate it.
 
-**Agent rules:** [`.cursor/rules/design.mdc`](../.cursor/rules/design.mdc) — a condensed, code-facing subset of the spec for the coding agent, with a pointer to the full spec.
+**Agent rules:** [`CLAUDE.md`](../CLAUDE.md) — a condensed, code-facing subset of the spec for the coding agent, with a pointer to the full spec.
 
 **`claude.ai/design`** → project "McMaster Rocketry Design System" is **archived**: it holds the last synced copy of the spec (through v1.6) for search/reference only. It is no longer edited and nothing pushes to it.
 
@@ -12,7 +12,7 @@
 
 Through 2026-08-29 the spec was hand-mirrored across three places: a gitignored file in this repo, `spec/design-system.md` in the design repo, and `spec.md` on `claude.ai/design`. That drifted stale more than once (see `git log` on this file for the old sync-status entries) and directly caused a real bug: the design repo's `README.md` cited "the measured clear-space rule in `spec/design-system.md`" for a section that didn't exist in any copy — the one real, measured number lived only in a brand-kit mockup file, flagged as a proposal. Fixed 2026-08-29 (design repo PRs #1 and #2): the spec now lives in exactly one place.
 
-If a change here needs a matching spec update, open the PR in the design repo first, then update `site.css` / `design.mdc` here to match — never write spec prose directly into this repo again.
+If a change here needs a matching spec update, open the PR in the design repo first, then update `site.css` / `CLAUDE.md` here to match — never write spec prose directly into this repo again.
 
 ## Subteam heroes
 

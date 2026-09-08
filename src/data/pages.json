@@ -4,7 +4,7 @@
       "apogeeLabel": "Highest flight to date: ",
       "flightEver": "Our highest flight ever.",
       "fleetBlurb": "airframe, avionics and recovery designed and built by students, flown on commercial motors.",
-      "cta": { "join": "Join the team", "rockets": "See the rockets" }
+      "cta": { "join": "Join us", "rockets": "See the rockets" }
     },
     "fleet": {
       "tag": "The fleet",

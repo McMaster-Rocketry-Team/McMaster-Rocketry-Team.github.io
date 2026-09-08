@@ -4,7 +4,7 @@
     "description": "The students who build and fly McMaster Rocketry's vehicles.",
     "tag": "Members",
     "headline": ["The people", "who build it."],
-    "lede": "Over {members} students across {subteams} and {faculties} faculties. These are the leads. The rest of the team is on the subteam pages.",
+    "lede": "{members} students across {subteams} and {faculties} faculties. These are the leads. The rest of the team is on the subteam pages.",
     "leadershipTerm": "2026-27 leadership",
     "rosterLabels": { "executive": "Executive", "subteamLeads": "Subteam leads" },
     "about": {

@@ -48,7 +48,7 @@ const next = i < vehicles.length - 1 ? vehicles[i + 1].data : null;
       <div><div class="tag">{template.flightRecord.tag}</div><h2>{template.flightRecord.headline}</h2></div>
       <p>{template.flightRecord.note}</p>
     </div>
-    <dl class="dl">
+    <dl class="dl c4">
       {template.specs.map((spec) => {
         const val = vehicleSpecValue(v, spec.field);
         return (
