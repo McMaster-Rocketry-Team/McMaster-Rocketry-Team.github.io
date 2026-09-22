@@ -113,7 +113,7 @@
     "heroImage": "/media/payloads/sparrow/hero.webp",
     "heroImagePosition": "center 65%",
     "summary": "A 360-degree camera paired with a recovery beacon, flown on Nimbus. Won first place in the Payload Challenge at Launch Canada 2025.",
-    "detail": "Sparrow paired a 360-degree camera with a recovery beacon: full-flight footage in every direction, plus a way to find the airframe faster after it lands. It flew on Nimbus and won first place in the Payload Challenge at Launch Canada 2025.",
+    "detail": "Sparrow paired a 360-degree camera with a recovery beacon: designed to capture full-flight footage in every direction, plus a way to find the airframe faster after it lands. It flew on Nimbus and won first place in the Payload Challenge at Launch Canada 2025, though its camera data was not recovered after the flight.",
     "render": {
       "src": "/media/payloads/sparrow/assembly.webp",
       "alt": "Sparrow payload assembly on its display base: 360-degree camera, recovery beacon, and SRAD electronics in an open aluminum frame."
@@ -136,8 +136,8 @@
       },
       {
         "src": "/media/payloads/sparrow/flight.webp",
-        "alt": "360-degree camera view from Sparrow in flight: cloud deck and blue sky through the circular lens.",
-        "caption": "Footage from the 360-degree camera during flight on Nimbus."
+        "alt": "View from the Nimbus avionics bay camera in flight, not from Sparrow: cloud deck and blue sky through a circular lens.",
+        "caption": "On-board footage from the Nimbus avionics bay. Sparrow's own camera data was not recovered."
       }
     ],
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
