@@ -18,7 +18,7 @@
     "lengthIn": 100.6,
     "summary": "The first vehicle the team ever flew, and the one that proved we could get off the pad at all.",
     "specs": { "length": "2.6 m (100.6 in)", "mass": null, "motor": null, "recovery": null, "result": null, "accel": null },
-    "build": "Marauder I was the team's first competition vehicle, built for Launch Canada's 10k COTS division in 2022. A 6 in fiberglass airframe with in-house structures, dual-deploy recovery, and student avionics, it carried McMaster 23 lettering on the pad. The rocket left the rail cleanly; we never recovered the airframe from the bush. The flight still proved the team could integrate subsystems and get off the pad.",
+    "build": "Marauder I was the team's first competition vehicle, built for Launch Canada's 10k COTS division in 2022. A 6 in fibreglass airframe with in-house structures, dual-deploy recovery, and student avionics, it carried McMaster 23 lettering on the pad. The rocket left the rail cleanly; we never recovered the airframe from the bush. The flight still proved the team could integrate subsystems and get off the pad.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
   },
   {
@@ -40,7 +40,7 @@
     "lengthIn": 105,
     "summary": "Our first international competition vehicle.",
     "specs": { "length": "2.7 m (105 in)", "mass": "22.7 kg dry / 26.5 kg wet", "motor": "CTI M2150", "recovery": "2 ft drogue @ apogee · 12 ft main @ 1300 ft", "result": null, "accel": null },
-    "build": "Marauder II was the team's first Spaceport America Cup vehicle: a 5 in fiberglass airframe with clipped-delta fins, dual-deploy recovery, and an SRAD avionics suite flying as backup to COTS altimeters. It flew on a CTI M2150 (7,455 N·s).",
+    "build": "Marauder II was the team's first Spaceport America Cup vehicle: a 5 in fibreglass airframe with clipped-delta fins, dual-deploy recovery, and an SRAD avionics suite flying as backup to COTS altimeters. It flew on a CTI M2150 (7,455 N·s).",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
   },
   {
@@ -55,7 +55,7 @@
     "photos": [
       { "src": "/media/rockets/luminis-gallery-team.webp", "alt": "The Luminis team poses with the completed airframe under the range tent, LUMINIS lettering and bib 58 visible.", "caption": "The Luminis crew under the range tent before flight. LUMINIS lettering and bib 58 on the airframe." },
       { "src": "/media/rockets/luminis-gallery-pad.webp", "alt": "Luminis lies horizontal on the launch rail at Spaceport America Cup, team 58 making final checks before flight.", "caption": "On the rail at Spaceport America Cup. Final checks before launch." },
-      { "src": "/media/rockets/luminis-gallery-liftoff.webp", "alt": "The Luminis avionics sled wired for dual-deploy recovery, VL pyro and main/drogue channels labeled on the harness.", "caption": "The avionics sled wired for dual-deploy recovery. VL pyro and main/drogue channels labeled on the harness." },
+      { "src": "/media/rockets/luminis-gallery-liftoff.webp", "alt": "The Luminis avionics sled wired for dual-deploy recovery, VL pyro and main/drogue channels labelled on the harness.", "caption": "The avionics sled wired for dual-deploy recovery. VL pyro and main/drogue channels labelled on the harness." },
       { "src": "/media/rockets/luminis-gallery-recovery.webp", "alt": "A team member kneels beside the recovered Luminis airframe after landing, bib 58 and signed fins visible beside the parachute.", "caption": "After landing in the scrub. Signed fins and the parachute beside the recovered airframe." }
     ],
     "apogee": null,
@@ -63,7 +63,7 @@
     "lengthIn": 110,
     "summary": "The first airframe designed around its payload rather than the other way round.",
     "specs": { "length": "2.8 m (110 in)", "mass": "16.8 kg dry / 22.6 kg wet", "motor": "CTI 6800M3700-P", "recovery": "2 ft drogue @ apogee · 12 ft main @ 1400 ft", "result": null, "accel": null },
-    "build": "Luminis kept the 5 in fiberglass layout from Marauder II (Von Karman nose, three clipped-delta carbon fins) and added the team's first functional payload: an onboard camera for flight video. Dual-deploy recovery used a COTS EasyMini with Void Lake 4 as SRAD backup. It flew on a CTI 6800M3700-P (6,800 N·s).",
+    "build": "Luminis kept the 5 in fibreglass layout from Marauder II (Von Karman nose, three clipped-delta carbon fins) and added the team's first functional payload: an onboard camera for flight video. Dual-deploy recovery used a COTS EasyMini with Void Lake 4 as SRAD backup. It flew on a CTI 6800M3700-P (6,800 N·s).",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
   },
   {
@@ -134,7 +134,7 @@
     "lengthIn": 124.8,
     "summary": "Our highest and fastest vehicle to date.",
     "specs": { "length": "3.2 m (124.8 in)", "mass": "13.4 kg dry / 29.9 kg wet", "motor": "CTI O3400", "recovery": "3 ft drogue @ apogee · 10 ft main @ 1373 ft", "result": "1st, Payload Challenge", "accel": "16.1 G" },
-    "build": "Osiris introduced two firsts for the team: functional airbrakes, and a student-designed flight computer that had already been flight-tested before competition, so we could fly it as a backup with confidence. The 101.6 mm (4 in) minimum-diameter airframe used fiberglass tubes rolled in-house, with carbon fibre tip-to-tip fin layups. It flew on a CTI O3400 (21,062 N·s), the most powerful motor in team history. Blue Raven flew as primary with Void Lake as SRAD backup, logging an apogee within 23 ft of the published figure. Dual-deploy recovery fired drogue near apogee and main at 1,373 ft AGL. Peak velocity was 642.5 m/s (Mach 1.92 at burnout).",
+    "build": "Osiris introduced two firsts for the team: functional airbrakes, and a student-designed flight computer that had already been flight-tested before competition, so we could fly it as a backup with confidence. The 101.6 mm (4 in) minimum-diameter airframe used fibreglass tubes rolled in-house, with carbon fibre tip-to-tip fin layups. It flew on a CTI O3400 (21,062 N·s), the most powerful motor in team history. Blue Raven flew as primary with Void Lake as SRAD backup, logging an apogee within 23 ft of the published figure. Dual-deploy recovery fired drogue near apogee and main at 1,373 ft AGL. Peak velocity was 642.5 m/s (Mach 1.92 at burnout).",
     "blueRaven": { "source": "Blue Raven summary CSV", "serial_number": "SN1717 BlRv_SN1717", "launch_date": "06-Apr-26", "max_altitude_ft": 33528, "max_velocity_ft_s": 2195.67, "max_velocity_m_s": 669.24, "apogee_delta_vs_published_ft": -23.0, "note": "Apogee cross-checked against the published Void Lake figure; velocity/Mach and accel intentionally not adopted from this file pending a tighter burnout-altitude figure and IMU accel trust, see docs/data-layer.md." }
   }
 ]

@@ -69,8 +69,8 @@
       "hidden": true
     },
     {
-      "slug": "info-nights",
-      "name": "Info nights",
+      "slug": "info-night-2025",
+      "name": "Info night 2025",
       "blurb": "Hosted each fall semester so any McMaster student can learn about the club and talk directly with team leads.",
       "detail": null,
       "todo": null,
@@ -78,9 +78,18 @@
       "photoAlt": "Nimbus laid out in two sections on a table with the avionics bay open between them, during an on-campus info session."
     },
     {
-      "slug": "facultyfest-past",
-      "name": "Facultyfest",
-      "blurb": "A table for incoming first-year engineers at the start of a previous term.",
+      "slug": "info-night-2026",
+      "name": "Info night 2026",
+      "blurb": "Students came to meet the team, ask questions, and talk directly with subteam leads.",
+      "detail": null,
+      "todo": null,
+      "photo": "/media/outreach/info-night-2026.webp",
+      "photoAlt": "Two team members in black McMaster Rocketry polos talking with two students at the fall 2026 info night."
+    },
+    {
+      "slug": "facultyfest-2025",
+      "name": "Facultyfest 2025",
+      "blurb": "A table for incoming first-year engineers at the start of term.",
       "detail": null,
       "todo": null,
       "photo": "/media/outreach/facultyfest.webp",
@@ -88,21 +97,30 @@
     },
     {
       "slug": "facultyfest-2026",
-      "name": "Facultyfest",
-      "blurb": "A table for incoming first-year engineers at the start of term. August 31, 12:30 to 17:00.",
+      "name": "Facultyfest 2026",
+      "blurb": "A table for incoming first-year engineers at the start of term, held August 31.",
       "detail": null,
       "todo": null,
       "photo": "/media/outreach/facultyfest-2026.webp",
       "photoAlt": "Five team members beside the Osiris and Void Lake airframes and two standing rockets at the Facultyfest 2026 table."
     },
     {
-      "slug": "clubsfest",
-      "name": "Clubsfest",
-      "blurb": "A table on the JHE field during B2S week. September 14, 16:30 to 19:30.",
+      "slug": "clubsfest-2025",
+      "name": "Clubsfest 2025",
+      "blurb": "A table on the JHE field during B2S week.",
       "detail": null,
       "todo": null,
       "photo": "/media/outreach/clubsfest.webp",
       "photoAlt": "A team member at the outdoor Clubsfest table with the Osiris airframe open on stands, a rocket against the wall, and Nimbus standing beside the booth."
+    },
+    {
+      "slug": "clubsfest-2026",
+      "name": "Clubsfest 2026",
+      "blurb": "A table on the JHE field during B2S week, held September 14.",
+      "detail": null,
+      "todo": null,
+      "photo": "/media/outreach/clubsfest-2026.webp",
+      "photoAlt": "Four team members in black McMaster Rocketry shirts standing behind the Osiris airframe on stands at the Clubsfest 2026 table, with two rockets upright to the left."
     },
     {
       "slug": "launch-canada-youth",

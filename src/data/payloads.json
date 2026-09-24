@@ -40,7 +40,7 @@
         "heading": "Fracture test modules.",
         "body": "TDCB samples are cast in custom SLA 3D-printed molds from 105 epoxy resin. Each fracture test module combines machined 6061 aluminum (baseplate, mount, couplers), a Delrin guide, an Actuonix P8-10-165-3-ST linear actuator (165:1 gear ratio, 10 mm stroke), and a DMYH-113 bidirectional 10 kg load cell.",
         "image": "/media/payloads/magpie/ftm-module.webp",
-        "imageAlt": "CAD render of a fracture test module with actuator, load cell, and colored fixture blocks."
+        "imageAlt": "CAD render of a fracture test module with actuator, load cell, and coloured fixture blocks."
       }
     ],
     "render": {
