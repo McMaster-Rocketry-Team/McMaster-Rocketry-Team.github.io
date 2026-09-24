@@ -6,7 +6,7 @@ import site from '../data/site.json';
 import sponsorship from '../data/sponsorship.json';
 import members from '../data/members.json';
 
-type Partner = { name: string; tier: string; href: string; logo: string; logoDark?: boolean };
+type Partner = { name: string; tier: string; href: string; logo: string; logoDark?: boolean; writeup?: string };
 
 const page = sponsorship.page;
 const sections = sponsorship.sections;
@@ -120,6 +120,13 @@ const contacts = sponsorship.contacts.map((c) => ({
               </li>
             ))}
           </ul>
+          {partners.some((p) => p.writeup) && (
+            <ul class={'partner-notes' + (tier === 'Gold' ? ' partner-notes--long' : '')} role="list">
+              {partners.filter((p) => p.writeup).map((p) => (
+                <li><h3>{p.name}</h3><p>{p.writeup}</p></li>
+              ))}
+            </ul>
+          )}
         </div>
       ))}
     </div>

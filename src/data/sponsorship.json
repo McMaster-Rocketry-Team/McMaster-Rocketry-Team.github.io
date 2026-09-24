@@ -22,7 +22,7 @@
     "partners": {
       "tag": "Current partners",
       "headline": "Who backs us.",
-      "lede": "Logo placement follows tier: larger on paper for Gold, medium for Silver, compact for Bronze. Each links to the partner's site."
+      "lede": "Logo placement follows tier: larger on paper for Gold, medium for Silver, compact for Bronze. Gold and Silver partners get a write-up. Each logo links to the partner's site."
     },
     "contact": {
       "tag": "Contact",
@@ -91,49 +91,43 @@
       "name": "MDA Space",
       "tier": "Gold",
       "href": "https://mda.space/",
-      "logo": "/media/sponsors/mda-space.svg"
+      "logo": "/media/sponsors/mda-space.svg",
+      "writeup": "MDA Space is a Canadian space company working in robotics, satellite systems and geointelligence, the people behind the Canadarm. Its support goes into what a student rocket actually needs: materials, motors, and getting the crew to Launch Canada. For a team full of people who want to work in space, it's a partner that looks a lot like where they're headed."
     },
     {
       "name": "McMaster Engineering",
       "tier": "Gold",
       "href": "https://www.eng.mcmaster.ca/",
-      "logo": "/media/sponsors/mcmaster-engineering.svg"
+      "logo": "/media/sponsors/mcmaster-engineering.svg",
+      "writeup": "McMaster Engineering is the team's home faculty. Its backing helps cover the materials, tooling and competition costs behind every vehicle on this site, and its tent is where the crew breaks down and integrates the rocket at Launch Canada."
     },
     {
       "name": "McMaster Engineering Society",
       "tier": "Gold",
       "href": "https://macengsociety.ca/",
-      "logo": "/media/sponsors/mes.webp"
+      "logo": "/media/sponsors/mes.webp",
+      "writeup": "The McMaster Engineering Society represents every engineering student at McMaster and funds the clubs and teams they run, this one included. That support keeps a student-run team designing, building and flying a new vehicle every year."
     },
     {
       "name": "Isaac Operations",
       "tier": "Silver",
       "href": "https://isaacteam.com/",
-      "logo": "/media/sponsors/isaac-operations.svg"
+      "logo": "/media/sponsors/isaac-operations.svg",
+      "writeup": "An operations consulting firm that also hosted a networking dinner for our members."
     },
     {
       "name": "Origin Innovations",
       "tier": "Silver",
       "href": "https://origininnovations.ca/",
-      "logo": "/media/sponsors/origin-innovations.png"
-    },
-    {
-      "name": "SOLIDWORKS",
-      "tier": "Silver",
-      "href": "https://www.solidworks.com/",
-      "logo": "/media/sponsors/solidworks.webp"
+      "logo": "/media/sponsors/origin-innovations.png",
+      "writeup": "A family-owned investment office in southwestern Ontario, backing energy and technology businesses, and a student rocket team."
     },
     {
       "name": "Onshape",
       "tier": "Silver",
       "href": "https://www.onshape.com/",
-      "logo": "/media/sponsors/onshape.svg"
-    },
-    {
-      "name": "Altium",
-      "tier": "Silver",
-      "href": "https://www.altium.com/",
-      "logo": "/media/sponsors/altium.png"
+      "logo": "/media/sponsors/onshape.svg",
+      "writeup": "Cloud CAD from PTC. Airframe models parts in it before they're machined or laid up."
     },
     {
       "name": "Aversan",
