@@ -7,6 +7,8 @@ import PayloadLineup from '../components/PayloadLineup.astro';
 import PayloadStat from '../components/PayloadStat.astro';
 import SubteamCards from '../components/SubteamCards.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ClosedBtn from '../components/ClosedBtn.astro';
+import join from '../data/join.json';
 import { fill, payloadsHeadline, subteamsHeadline } from '../lib/copy';
 import { numberWord } from '../lib/site';
 import site from '../data/site.json';
@@ -76,7 +78,9 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
         <div class="who">{site.org}<br>{site.city}</div>
       </div>
       <div class="btnrow">
-        <a class="btn solid" href="/join">{home.hero.cta.join}</a>
+        {join.applicationsOpen
+          ? <a class="btn solid" href="/join">{home.hero.cta.join}</a>
+          : <ClosedBtn label={home.hero.cta.join} />}
         <a class="btn" href="/rockets">{home.hero.cta.rockets}</a>
       </div>
     </div>

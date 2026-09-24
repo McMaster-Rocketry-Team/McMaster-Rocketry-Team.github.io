@@ -1,5 +1,6 @@
 ---
 import TodoBadge from './TodoBadge.astro';
+import ClosedBtn from './ClosedBtn.astro';
 import { mailHref, hasRealEmail } from '../lib/site';
 import join from '../data/join.json';
 ---
@@ -11,7 +12,9 @@ import join from '../data/join.json';
     <p>{join.cta.body}</p>
     <p class="fine">{join.cta.fine}</p>
     <div class="btnrow">
-      <a class="btn solid" href="/join">{join.cta.buttons.join}</a>
+      {join.applicationsOpen
+        ? <a class="btn solid" href="/join">{join.cta.buttons.join}</a>
+        : <ClosedBtn label={join.cta.buttons.join} />}
       <a class="btn" href="/sponsors">{join.cta.buttons.sponsors}</a>
       <a class="btn" href={mailHref()}>{join.cta.buttons.email}</a>
       {!hasRealEmail() && <TodoBadge label="real team email" />}

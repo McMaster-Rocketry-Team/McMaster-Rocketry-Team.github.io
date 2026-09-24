@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ClosedBtn from '../components/ClosedBtn.astro';
 import join from '../data/join.json';
 import site from '../data/site.json';
 
@@ -37,7 +38,10 @@ const sections = join.sections;
       ))}
     </ol>
     <div class="btnrow">
-      <a class="btn solid" href={join.applyHref}>{join.buttons.apply}</a>
+      {join.applicationsOpen
+        ? <a class="btn solid" href={join.applyHref}>{join.buttons.apply}</a>
+        : <ClosedBtn label={join.buttons.apply} />}
+      <a class="btn" href={site.social.instagram}>{join.buttons.instagram}</a>
       <a class="btn" href={site.social.discord}>{join.buttons.discord}</a>
     </div>
   </div>

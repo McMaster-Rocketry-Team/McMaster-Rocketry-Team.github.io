@@ -1,0 +1,8 @@
+---
+// Primary button shown while applications are shut (join.applicationsOpen = false).
+import join from '../data/join.json';
+
+interface Props { label: string }
+const { label } = Astro.props;
+---
+<span class="btn solid is-closed" aria-disabled="true"><s>{label}</s><span class="btn-flag">{join.buttons.closed}</span></span>
