@@ -9,8 +9,8 @@
     "result": "1st, Payload Challenge",
     "image": "/media/payloads/magpie/assembly.webp",
     "heroImage": "/media/payloads/magpie/bench.webp",
-    "summary": "McMaster Rocketry's first scientific payload: an SRAD fracture-test module that flew on Osiris to test how a self-healing polymer performs under real flight loads.",
-    "detail": "Self-healing polymers have the potential to address critical durability needs in reusable launch vehicles, which face extreme acceleration, intense aerodynamic loads, and repeated thermal cycling. Magpie studies that problem directly: it characterizes TDCB epoxy test articles with microencapsulated DGEBA and boron-trifluoride hardener in sisal fibre strands, measuring how a sounding-rocket launch environment affects the healing structure.\n\nMagpie carries exactly three test articles. Two samples are fractured on the pad (one roughly thirty minutes before liftoff, one as close to launch as practical); the third stays intact to measure flight effects on the healing structure itself. A linear actuator on a Delrin guide loads the samples under tension while SRAD boards record strain, temperature, and pressure data over CAN bus. The module is fully passive once initiated: no pyrotechnics, pressurized parts, or active deployment that could affect the vehicle. It flew on Osiris and won first place in the Payload Challenge at Launch Canada 2026.",
+    "summary": "McMaster Rocketry's first scientific payload: an SRAD fracture-test module that flew on Osiris to characterize how epoxy test samples fracture under real flight loads, groundwork for a self-healing polymer payload.",
+    "detail": "Self-healing polymers could address critical durability needs in reusable launch vehicles, which face extreme acceleration, intense aerodynamic loads, and repeated thermal cycling. Magpie is the first step toward flying one: it characterizes the fracture mechanism of TDCB epoxy test articles and how a sounding-rocket launch environment affects it. That baseline feeds this year's payload, which aims to fly a self-healing polymer.\n\nMagpie carries three test articles. A linear actuator on a Delrin guide loads the samples under tension while SRAD boards record strain, temperature, and pressure data over CAN bus. The module is fully passive once initiated: no pyrotechnics, pressurized parts, or active deployment that could affect the vehicle. It flew on Osiris and won first place in the Payload Challenge at Launch Canada 2026.",
     "blocks": [
       {
         "tag": "Mechanical",
@@ -94,8 +94,8 @@
       },
       {
         "src": "/media/payloads/magpie/integration.webp",
-        "alt": "A team member fastens hardware on the Magpie stack beside the Osiris nose cone at the range.",
-        "caption": "Final integration checks on the pad, Osiris nose cone in the background.",
+        "alt": "A team member works on the Magpie stack with a screwdriver after recovery, with the Osiris aft section, fins and motor casing on the table behind it.",
+        "caption": "Post-recovery inspection, with the Osiris aft section, fins and motor casing in the background.",
         "ratio": "2/3"
       }
     ],
