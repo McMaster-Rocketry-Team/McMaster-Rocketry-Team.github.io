@@ -50,7 +50,7 @@ a solid graphite `.phead` and do **not** grow a box.
 
 1. Nav brand (logo + short name + tagline)
 2. Footer brand column (short name + tagline)
-3. Home hero `.herobox` (short name + tagline, above the altitude)
+3. Home hero `.herobox` (logo + short name + tagline, above the altitude)
 
 Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the tagline
 on section eyebrows, interior pageheads, Join, or Sponsors.

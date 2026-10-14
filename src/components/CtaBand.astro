@@ -15,7 +15,7 @@ import join from '../data/join.json';
       {join.applicationsOpen
         ? <a class="btn solid" href="/join">{join.cta.buttons.join}</a>
         : <ClosedBtn label={join.cta.buttons.join} />}
-      <a class="btn" href="/sponsors">{join.cta.buttons.sponsors}</a>
+      <a class="btn solid" href="/sponsors">{join.cta.buttons.sponsors}</a>
       <a class="btn" href={mailHref()}>{join.cta.buttons.email}</a>
       {!hasRealEmail() && <TodoBadge label="real team email" />}
     </div>

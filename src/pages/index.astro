@@ -8,6 +8,7 @@ import PayloadStat from '../components/PayloadStat.astro';
 import SubteamCards from '../components/SubteamCards.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ClosedBtn from '../components/ClosedBtn.astro';
+import Logo from '../components/Logo.astro';
 import join from '../data/join.json';
 import { fill, payloadsHeadline, subteamsHeadline } from '../lib/copy';
 import { numberWord } from '../lib/site';
@@ -68,9 +69,12 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
   </video>
   <div class="wrap hero-in">
     <div class="herobox">
-      <div class="lockup lockup--hero">
-        <p class="lockup-name">{site.short}</p>
-        <p class="lockup-tag">{site.tagline}</p>
+      <div class="hero-brand">
+        <Logo />
+        <div class="lockup lockup--hero">
+          <p class="lockup-name">{site.short}</p>
+          <p class="lockup-tag">{site.tagline}</p>
+        </div>
       </div>
       <h1 class="bignum"><span class="vh">{home.hero.apogeeLabel}</span><span class="n">{highestFlight?.apogee?.toLocaleString() ?? '—'}</span> <span class="u">ft</span></h1>
       <div class="subline">
@@ -81,7 +85,7 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
         {join.applicationsOpen
           ? <a class="btn solid" href="/join">{home.hero.cta.join}</a>
           : <ClosedBtn label={home.hero.cta.join} />}
-        <a class="btn" href="/rockets">{home.hero.cta.rockets}</a>
+        <a class="btn solid" href="/rockets">{home.hero.cta.rockets}</a>
       </div>
     </div>
   </div>
@@ -124,7 +128,7 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
       <div class="statline"><FleetStat /></div>
     </div>
     <FleetLineup />
-    <div class="btnrow"><a class="btn" href="/rockets">{fill(home.fleet.cta, { count: vCountWord })}</a></div>
+    <div class="btnrow"><a class="btn solid" href="/rockets">{fill(home.fleet.cta, { count: vCountWord })}</a></div>
   </div>
 </section>
 
