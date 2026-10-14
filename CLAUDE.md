@@ -49,13 +49,17 @@ a solid graphite `.phead` and do **not** grow a box.
 `.lockup` (display name + mono tagline) in three places only:
 
 1. Nav brand (logo + short name + tagline)
-2. Footer brand column (full name + tagline)
-3. Home hero `.herobox` (full name + tagline, above the altitude)
+2. Footer brand column (short name + tagline)
+3. Home hero `.herobox` (short name + tagline, above the altitude)
 
 Home document title stays `Get blasted · McMaster Rocketry`. Do not stamp the tagline
 on section eyebrows, interior pageheads, Join, or Sponsors.
 
 ## Logo & lockups
+
+Every mark, lockup, and wordmark uses the short name, `site.short` ("McMaster
+Rocketry"). The full name, `site.name` ("McMaster Rocketry Team"), appears only in
+running text: sentences, meta descriptions, structured data, and the copyright line.
 
 Standalone lockup PNGs live in the design repo's `assets/lockups/`, not this repo. Team
 name + tagline stack directly, tagline beneath the name, never side by side. Clear
