@@ -84,8 +84,8 @@ parent, or sponsor would actually notice is content, not checklist items.
    security headers, Search Console/Bing sitemap submission, McMaster trademark
    clearance, tax-receipt wording with Financial Affairs, AODA applicability, uptime
    monitoring (`LAUNCH_REVIEW.md` §5/§3/§12/§13).
-5. Logo geometry refresh (embroidery-safe stroke weight): flagged open in the design
-   repo's README, no deadline attached.
+5. Logo geometry refresh: done 2026-10-21 (design repo v1.10). Arc drawing errors
+   repaired in `public/brand/`, embroidery variant lives in the design repo only.
 
 **Done 2026-08-27 night — Claude Code (commits `93eb3cd`, `4cded4b` + uncommitted launch pass):**
 
