@@ -97,6 +97,9 @@ const subteams = defineCollection({
     photoAlt: z.string().nullable().optional(),
     photoCaption: z.string().nullable().optional(),
     photoTag: z.string().nullable().optional(),
+    // 2026-27 group photo of the subteam, shown above the leads.
+    teamPhoto: z.string().nullable().optional(),
+    teamPhotoAlt: z.string().nullable().optional(),
     reviewLocked: z.array(z.number()).optional(),
   }),
 });

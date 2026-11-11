@@ -145,6 +145,11 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
       <div><div class="tag">{template.leads.tag}</div><h2>{template.leads.headline}</h2></div>
       <p>{template.leads.lede}</p>
     </div>
+    {t.teamPhoto ? (
+      <figure class="team-shot">
+        <img src={t.teamPhoto} alt={t.teamPhotoAlt || ''} width="1800" height="1440" loading="lazy" />
+      </figure>
+    ) : null}
     <div class={`cards ${leadCols}`}>
       {leads.length ? leads.map((lead) => (
         <div class="card"><div>

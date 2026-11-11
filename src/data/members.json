@@ -6,6 +6,11 @@
     "headline": ["The people", "who build it."],
     "lede": "{members} students across {subteams} and {faculties} faculties. These are the leads. The rest of the team is on the subteam pages.",
     "leadershipTerm": "2026-27 leadership",
+    "teamPhoto": {
+      "src": "/media/team/team-2026.webp",
+      "alt": "The full 2026-27 team gathered behind the 25 rocket laid across the Iron Ring sculpture outside the John Hodgins Engineering building.",
+      "caption": "The 2026-27 team outside John Hodgins Engineering."
+    },
     "rosterLabels": { "executive": "Executive", "subteamLeads": "Subteam leads" },
     "about": {
       "tag": "Who we are",
@@ -95,7 +100,7 @@
       "name": "Abigail Rosehart",
       "programme": "Chemical Engineering",
       "year": "3rd year",
-      "photo": null
+      "photo": "/media/leads/abigail-rosehart.webp"
     },
     {
       "role": "Recovery lead",
@@ -103,7 +108,7 @@
       "name": "Erik Filippetti",
       "programme": "Engineering 1",
       "year": "2nd year",
-      "photo": null,
+      "photo": "/media/leads/erik-filippetti.webp",
       "yearReview": true
     },
     {

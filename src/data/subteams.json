@@ -13,6 +13,8 @@
     "photo": "/media/subteams/airframe-work.webp",
     "photoAlt": "A team member at the lathe, one hand on the Colchester carriage handwheel and safety glasses on, with the tool post and swarf on the bed in front of him.",
     "photoCaption": "Machining a fitting on the lathe. Most structural hardware starts here before it goes in the tube.",
+    "teamPhoto": "/media/subteams/airframe-team.webp",
+    "teamPhotoAlt": "The Airframe subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {
@@ -28,6 +30,8 @@
     "photo": "/media/subteams/avionics-work.webp",
     "photoAlt": "Hands wiring an open avionics bay on the workbench: coloured harnesses, a circuit board with red indicator LEDs, and tools laid out beside it.",
     "photoCaption": "Wiring the bay on the bench. The harnesses go in before the tube closes.",
+    "teamPhoto": "/media/subteams/avionics-team.webp",
+    "teamPhotoAlt": "The Avionics subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {
@@ -45,6 +49,8 @@
     "photoIsProduct": true,
     "photoAlt": "CAD render of the Icarus hybrid engine test stand: 80/20 aluminum extrusion frame with a horizontal oxidizer tank and vertical combustion chamber assembly.",
     "photoCaption": "Icarus test stand in CAD. Propulsion bolts the fill system, chamber, and instrumentation here before cold-flow and static-fire tests.",
+    "teamPhoto": "/media/subteams/propulsion-team.webp",
+    "teamPhotoAlt": "The Propulsion subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
   },
   {
@@ -61,6 +67,8 @@
     "photoIsProduct": true,
     "photoAlt": "CAD wireframe of the airbrake mechanism: a cylindrical housing with linkage arms and two curved drag plates extended from the sides.",
     "photoCaption": "Airbrake assembly for Nimbus and Osiris. Recovery designed the mechanism; Avionics commands deployment.",
+    "teamPhoto": "/media/subteams/recovery-team.webp",
+    "teamPhotoAlt": "The Recovery subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {
@@ -77,6 +85,8 @@
     "photoVideo": "/media/subteams/payload-work.mp4",
     "photoAlt": "Magpie electronics stack on the bench: three SRAD boards in a nylon frame, powered on with status LEDs lit.",
     "photoCaption": "Bench bring-up on the Magpie SRAD stack. The boards talk over CAN before the tube closes.",
+    "teamPhoto": "/media/subteams/payload-team.webp",
+    "teamPhotoAlt": "The Payload subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
   },
   {
@@ -92,6 +102,8 @@
     "photo": "/media/subteams/composites-work.webp",
     "photoAlt": "Team members around a vacuum chamber in the composites bay: one films the setup on a phone while others monitor a laptop and the chamber gauge.",
     "photoCaption": "Vacuum chamber testing an EasyMini altimeter. Pulling a vacuum simulates the pressure drop of flight before it ever leaves the ground.",
+    "teamPhoto": "/media/subteams/composites-team.webp",
+    "teamPhotoAlt": "The Composites subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {
@@ -108,6 +120,8 @@
     "photo": "/media/subteams/operations-work.webp",
     "photoAlt": "Osiris carbon-fibre fins covered in gold team signatures on the competition table.",
     "photoCaption": "Signed fins at Launch Canada. Merch and graphics start with moments like this.",
+    "teamPhoto": "/media/subteams/operations-team.webp",
+    "teamPhotoAlt": "The Operations subteam standing with the 25 rocket beside the Iron Ring sculpture outside the John Hodgins Engineering building.",
     "reviewLocked": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   }
 ]
