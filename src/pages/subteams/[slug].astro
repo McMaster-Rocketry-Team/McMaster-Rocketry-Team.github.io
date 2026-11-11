@@ -147,7 +147,6 @@ const leadCols = leadSlots % 3 === 0 ? 'c3' : 'c2';
     </div>
     {t.teamPhoto ? (
       <figure class="team-shot">
-        <div class="tag">{template.teamPhotoTag}</div>
         <img src={t.teamPhoto} alt={t.teamPhotoAlt || ''} width="1800" height="1440" loading="lazy" />
       </figure>
     ) : null}

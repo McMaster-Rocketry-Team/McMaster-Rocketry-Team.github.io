@@ -106,8 +106,7 @@
         "roleTag": "Subteam lead",
         "recruiting": { "tag": "Recruiting", "headline": "Join us", "body": "How to apply, and when." }
       },
-      "defaultPhotoTag": "In the shop",
-      "teamPhotoTag": "The 2026-27 subteam"
+      "defaultPhotoTag": "In the shop"
     }
   },
   "notFound": {
