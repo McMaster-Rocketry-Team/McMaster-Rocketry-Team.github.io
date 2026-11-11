@@ -1,4 +1,5 @@
 ---
+import { imageSize } from '../lib/imagesize';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FleetLineup from '../components/FleetLineup.astro';
@@ -61,8 +62,6 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
 >
 <script type="application/ld+json" is:inline set:html={JSON.stringify(orgJsonLd)} />
 <header class="hero">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
   <video class="bgvid" id="bgvid" muted loop playsinline preload="metadata"
          aria-hidden="true" tabindex="-1" poster="/media/hero-poster.jpg" data-src-sm="/media/hero-720.mp4" data-src-lg="/media/hero.mp4">
     <source src="/media/hero-720.mp4" type="video/mp4" />
@@ -76,7 +75,7 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
           <p class="lockup-tag">{site.tagline}</p>
         </div>
       </div>
-      <h1 class="bignum"><span class="vh">{home.hero.apogeeLabel}</span><span class="n">{highestFlight?.apogee?.toLocaleString() ?? '—'}</span> <span class="u">ft</span></h1>
+      <h1 class="bignum"><span class="vh">{home.hero.apogeeLabel}</span><span class="n">{highestFlight?.apogee?.toLocaleString() ?? 'Pending'}</span> <span class="u">ft</span></h1>
       <div class="subline">
         <p>{highestFlight ? `${highestFlight.name} · ${highestFlight.comp} ${highestFlight.year}. ${home.hero.flightEver}` : home.hero.flightEver}<br>{cap(vCountWord)} vehicles in {yearSpanWord} years: {home.hero.fleetBlurb}</p>
         <div class="who">{site.org}<br>{site.city}</div>
@@ -96,8 +95,7 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">{hadfield.tag}</div>
-        <h2>{hadfield.headline[0]}<br>{hadfield.headline[1]}</h2>
+        <h2>{hadfield.headline}</h2>
       </div>
       <p>{hadfield.lede}</p>
     </div>
@@ -105,7 +103,7 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
       {hadfield.photos.map((photo) => (
         <figure>
           <div class="ph" style={photo.ratio ? `--ph-ratio:${photo.ratio}` : undefined}>
-            <img src={photo.src} alt={photo.alt} loading="lazy" />
+            <img src={photo.src} {...imageSize(photo.src)} alt={photo.alt} loading="lazy" />
           </div>
           {photo.caption && <figcaption>{photo.caption}</figcaption>}
         </figure>
@@ -116,13 +114,10 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
 </section>
 
 <section class="paper fleet" id="fleet">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">{home.fleet.tag}</div>
-        <h2>{home.fleet.headline[0]}<br>{home.fleet.headline[1]}</h2>
+        <h2>{home.fleet.headline}</h2>
       </div>
       <p>{fleetCountNote}</p>
       <div class="statline"><FleetStat /></div>
@@ -133,12 +128,9 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
 </section>
 
 <section class="paper fleet" id="payloads">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">{home.payloads.tag}</div>
         <h2>{payloadsHeadline(payloads.length, pWins)}</h2>
       </div>
       <p>{cap(pCountWord)} payloads flown{pWins === payloads.length && payloads.length > 0 ? home.payloads.allWinsNote : ''}. {home.payloads.ledeSuffix}</p>
@@ -153,8 +145,7 @@ const subteamsHeadlineText = subteamsHeadline(subteams.length, home.subteams.hea
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="tag">{home.subteams.tag}</div>
-        <h2 set:html={subteamsHeadlineText.replace('\n', '<br>')} />
+        <h2>{subteamsHeadlineText}</h2>
       </div>
       <p>{home.subteams.lede}</p>
     </div>

@@ -1,4 +1,5 @@
 ---
+import PageHead from '../components/PageHead.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ClosedBtn from '../components/ClosedBtn.astro';
@@ -14,22 +15,12 @@ const sections = join.sections;
   current="/join"
   reviewLocked={Array.from({ length: 33 }, (_, i) => i)}
 >
-<header class="phead has-hero has-hero--wide" style="--hero-img:url(/media/join-hero.webp)">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
-  <div class="wrap">
-    <div class="herobox">
-      <div class="tag">{join.hero.tag}</div>
-      <h1>{join.hero.headline[0]}<br>{join.hero.headline[1]}</h1>
-      <p class="lede">{join.hero.lede}</p>
-    </div>
-  </div>
-</header>
+<PageHead title={join.hero.headline} lede={join.hero.lede} image="/media/join-hero.webp" wide />
 
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{sections.howItWorks.tag}</div><h2>{sections.howItWorks.headline}</h2></div>
+      <div><h2>{sections.howItWorks.headline}</h2></div>
       <p>{sections.howItWorks.lede}</p>
     </div>
     <ol class="steps" role="list">
@@ -50,7 +41,7 @@ const sections = join.sections;
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{sections.dates.tag}</div><h2>{sections.dates.headline}</h2></div>
+      <div><h2>{sections.dates.headline}</h2></div>
       <p>{sections.dates.lede}</p>
     </div>
     <dl class="dl c4">
@@ -70,7 +61,7 @@ const sections = join.sections;
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{sections.faq.tag}</div><h2>{sections.faq.headline}</h2></div>
+      <div><h2>{sections.faq.headline}</h2></div>
       <p>{sections.faq.lede}</p>
     </div>
     <div class="faq">

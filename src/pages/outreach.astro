@@ -1,4 +1,5 @@
 ---
+import PageHead from '../components/PageHead.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import OutreachEvent from '../components/OutreachEvent.astro';
@@ -16,20 +17,12 @@ const sponsorPitch = outreach.sponsorPitch;
   current="/outreach"
   reviewLocked={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
 >
-<header class="phead">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
-  <div class="wrap">
-    <div class="tag">{page.tag}</div>
-    <h1>{page.headline[0]}<br>{page.headline[1]}</h1>
-    <p class="lede">{page.lede}</p>
-  </div>
-</header>
+<PageHead title={page.headline} lede={page.lede} />
 
 <section class="paper">
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{sections.events.tag}</div><h2>{sections.events.headline}</h2></div>
+      <div><h2>{sections.events.headline}</h2></div>
     </div>
     <div class="event-blocks">
       {outreach.events.filter((e) => !('hidden' in e && e.hidden)).map((e) => <OutreachEvent {...e} />)}
@@ -44,7 +37,7 @@ const sponsorPitch = outreach.sponsorPitch;
 <section>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{sponsorPitch.tag}</div><h2>{sponsorPitch.headline}</h2></div>
+      <div><h2>{sponsorPitch.headline}</h2></div>
     </div>
     <div class="prose">
       {sponsorPitch.body.map((paragraph) => <p>{paragraph}</p>)}

@@ -1,1 +1,4 @@
-<img class="logo" src="/brand/logo-mark-white-red.png" alt="" decoding="async" />
+---
+import { imageSize } from '../lib/imagesize';
+---
+<img class="logo" src="/brand/logo-mark-white-red.png" {...imageSize("/brand/logo-mark-white-red.png")} alt="" decoding="async" />

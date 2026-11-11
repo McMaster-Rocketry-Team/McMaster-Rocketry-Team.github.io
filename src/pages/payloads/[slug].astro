@@ -1,4 +1,6 @@
 ---
+import { imageSize } from '../../lib/imagesize';
+import PageHead from '../../components/PageHead.astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TodoBadge from '../../components/TodoBadge.astro';
@@ -34,31 +36,13 @@ function sectionClass(): string | undefined {
 ---
 
 <BaseLayout title={p.name} description={`${p.name}: McMaster Rocketry's ${p.year} ${p.comp} payload.`} current="/payloads" reviewLocked={p.reviewLocked}>
-<header class={p.heroImage ? 'phead has-hero' : 'phead'} style={p.heroImage ? `--hero-img:url(${p.heroImage})${p.heroImagePosition ? `;--hero-pos:${p.heroImagePosition}` : ''}` : undefined}>
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
-  <div class="wrap">
-    {p.heroImage ? (
-      <div class="herobox">
-        <div class="tag">Payload · {p.year} · {p.comp}</div>
-        <h1>{p.name}</h1>
-        <p class="lede">{p.summary}</p>
-      </div>
-    ) : (
-      <>
-        <div class="tag">Payload · {p.year} · {p.comp}</div>
-        <h1>{p.name}</h1>
-        <p class="lede">{p.summary}</p>
-      </>
-    )}
-  </div>
-</header>
+<PageHead title={p.name} lede={`${p.comp} ${p.year}. ${p.summary}`} image={p.heroImage} imagePos={p.heroImagePosition} />
 
 <section class="paper">
   <div class="wrap">
   {p.specs && p.specs.length > 0 ? (
     <div class="shead">
-      <div><div class="tag">{template.specs.tag}</div><h2>{template.specs.headline}</h2></div>
+      <div><h2>{template.specs.headline}</h2></div>
     </div>
   ) : null}
     <dl class="dl">
@@ -85,7 +69,7 @@ function sectionClass(): string | undefined {
     <div class="subteam-intro payload-intro">
       <div>
         <div class="shead" style="margin-top:0">
-          <div><div class="tag">{template.payload.tag}</div><h2>{template.payload.headline}</h2></div>
+          <div><h2>{template.payload.headline}</h2></div>
         </div>
         <div class="prose prose--follow">
           {detailParagraphs.length > 0 ? detailParagraphs.map((para) => <p>{para}</p>) : (
@@ -95,7 +79,7 @@ function sectionClass(): string | undefined {
       </div>
       {p.render && (
         <figure class="subteam-shot payload-render">
-          <img src={p.render.src} alt={p.render.alt} loading="lazy" />
+          <img src={p.render.src} {...imageSize(p.render.src)} alt={p.render.alt} loading="lazy" />
         </figure>
       )}
     </div>
@@ -108,7 +92,7 @@ function sectionClass(): string | undefined {
       <div class="subteam-intro">
         <div>
           <div class="shead" style="margin-top:0">
-            <div><div class="tag">{block.tag}</div><h2>{block.heading}</h2></div>
+            <div><h2>{block.heading}</h2></div>
           </div>
           <div class="prose prose--follow">
             <p>{block.body}</p>
@@ -119,7 +103,7 @@ function sectionClass(): string | undefined {
             <div class="bus-parts__bulkheads">
               {block.parts.filter((part) => part.role === 'bulkhead').map((part) => (
                 <figure class="bus-part">
-                  <img src={part.src} alt={part.alt} loading="lazy" />
+                  <img src={part.src} {...imageSize(part.src)} alt={part.alt} loading="lazy" />
                 </figure>
               ))}
             </div>
@@ -127,7 +111,7 @@ function sectionClass(): string | undefined {
               <div class="bus-parts__struts">
                 {Array.from({ length: part.count ?? 1 }).map(() => (
                   <figure class="bus-part bus-part--strut">
-                    <img src={part.src} alt={part.alt} loading="lazy" />
+                    <img src={part.src} {...imageSize(part.src)} alt={part.alt} loading="lazy" />
                   </figure>
                 ))}
               </div>
@@ -135,7 +119,7 @@ function sectionClass(): string | undefined {
           </div>
         ) : block.image ? (
           <figure class="product-aside">
-            <img src={block.image} alt={block.imageAlt ?? ''} loading="lazy" />
+            <img src={block.image} {...imageSize(block.image)} alt={block.imageAlt ?? ''} loading="lazy" />
           </figure>
         ) : null}
       </div>
@@ -147,7 +131,7 @@ function sectionClass(): string | undefined {
   <section class={sectionClass()}>
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">{template.procedure.tag}</div><h2>{template.procedure.headline}</h2></div>
+        <div><h2>{template.procedure.headline}</h2></div>
       </div>
       <ol class="procedure-list">
         {p.procedure.map((step) => <li>{step}</li>)}
@@ -160,12 +144,12 @@ function sectionClass(): string | undefined {
   <section class={sectionClass()}>
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">{template.electronics.tag}</div><h2>{template.electronics.headline}</h2></div>
+        <div><h2>{template.electronics.headline}</h2></div>
       </div>
       <ul class="module-grid">
         {p.electronics.map((mod) => (
           <li class="module-card">
-            <div class="module-card__ph"><img src={mod.image} alt={mod.alt} loading="lazy" /></div>
+            <div class="module-card__ph"><img src={mod.image} {...imageSize(mod.image)} alt={mod.alt} loading="lazy" /></div>
             <div class="module-card__body">
               <h3>{mod.name}</h3>
               <p>{mod.role}</p>
@@ -181,10 +165,10 @@ function sectionClass(): string | undefined {
   <section class={sectionClass()}>
     <div class="wrap">
       <div class="shead">
-        <div><div class="tag">{template.poster.tag}</div><h2>{template.poster.headline}</h2></div>
+        <div><h2>{template.poster.headline}</h2></div>
       </div>
       <figure class="poster-figure">
-        <img src={p.poster} alt={p.posterAlt ?? `${p.name} competition poster`} loading="lazy" />
+        <img src={p.poster} {...imageSize(p.poster)} alt={p.posterAlt ?? `${p.name} competition poster`} loading="lazy" />
       </figure>
     </div>
   </section>
@@ -193,11 +177,11 @@ function sectionClass(): string | undefined {
 <section class={sectionClass()}>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{template.gallery.tag}</div><h2>{template.gallery.headline}</h2></div>
+      <div><h2>{template.gallery.headline}</h2></div>
     </div>
     <div class="gallery">
       {p.photos && p.photos.length > 0 ? p.photos.map((photo) => (
-        <figure><div class={`ph${photo.contain ? ' ph-is-product' : ''}`} style={photo.ratio ? `--ph-ratio:${photo.ratio}` : undefined}><img src={photo.src} alt={photo.alt} loading="lazy" /></div>
+        <figure><div class={`ph${photo.contain ? ' ph-is-product' : ''}`} style={photo.ratio ? `--ph-ratio:${photo.ratio}` : undefined}><img src={photo.src} {...imageSize(photo.src)} alt={photo.alt} loading="lazy" /></div>
           {photo.caption && <figcaption>{photo.caption}</figcaption>}</figure>
       )) : (<>
         <figure><div class="ph"><span>Photo slot: bench testing<br />TODO</span></div>

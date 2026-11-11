@@ -82,26 +82,6 @@ h1,h2,h3,h4{text-wrap:balance}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter);width:100%}
 .mono{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase}
 
-/* ---------- corner registration crosshairs ----------
-   Signature device #2: thin open-corner brackets framing a hero section or key
-   block. One pair on .phead / .hero; home and /rockets add a second pair on
-   .paper.fleet where the lineup lives. On dark grounds the lines pick up
-   ignition; everywhere else they stay graphite-700, since a decorative 1px line
-   carries no text-contrast requirement either way. */
-.crosshair{position:absolute;width:18px;height:18px;pointer-events:none}
-.crosshair::before,.crosshair::after{content:"";position:absolute;background:var(--graphite-700)}
-.crosshair::before{width:100%;height:1px;top:0;left:0}
-.crosshair::after{width:1px;height:100%;top:0;left:0}
-.crosshair.tl{top:14px;left:calc(var(--gutter) - 4px)}
-.crosshair.br{bottom:14px;right:calc(var(--gutter) - 4px);transform:rotate(180deg)}
-.phead .crosshair::before,.phead .crosshair::after,
-.hero .crosshair::before,.hero .crosshair::after{background:var(--ignition)}
-/* .phead and .hero are the first element after the fixed nav and pad
-   themselves down by --navh so their content clears it — but that padding
-   doesn't move their own top edge, which still starts at the same point the
-   nav covers. A plain top:14px crosshair.tl landed underneath the nav,
-   invisible. */
-.phead .crosshair.tl,.hero .crosshair.tl{top:calc(var(--navh) + 14px)}
 .fleet{position:relative}
 
 /* ---------- NAV ---------- */
@@ -235,14 +215,13 @@ nav[data-scrolled="true"]{
 /* ---------- PAGE HEAD (interior pages) ---------- */
 .phead{background:var(--graphite-900);padding:calc(var(--navh) + clamp(46px,9vh,104px)) 0 clamp(38px,7vh,84px);
   position:relative;overflow:hidden}
-.phead .tag{color:rgba(255,255,255,.78)}
 .phead h1{font-family:var(--font-display);font-weight:700;
   font-size:clamp(44px,9vw,116px);line-height:.92;letter-spacing:-.01em;
-  margin:14px 0 0;color:var(--white)}
+  margin:0;color:var(--white)}
 .phead .lede{margin:22px 0 0;max-width:56ch;font-size:clamp(16px,1.7vw,19px);
   line-height:1.62;color:rgba(255,255,255,.90)}
-.phead.has-hero::before{content:"";position:absolute;inset:0;z-index:0;
-  background-image:var(--hero-img);background-size:cover;background-position:var(--hero-pos,center)}
+/* Hero photo is a real <img> so it loads first and reserves its space. */
+.phead-img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
 .phead.has-hero .wrap{position:relative;z-index:2}
 /* Wide product / logo heroes (e.g. /sponsors): match the photo's landscape
    ratio so cover does not zoom into a tight centre crop. */
@@ -256,25 +235,23 @@ nav[data-scrolled="true"]{
   background:rgba(26,26,26,.62);border:1px solid rgba(255,255,255,.38);
   backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
   padding:clamp(20px,4vw,40px) clamp(22px,4vw,44px)}
-.herobox .tag{color:rgba(255,255,255,.78)}
 .herobox .btnrow{margin-bottom:0}
 
 /* ---------- SECTIONS ---------- */
 section{padding:clamp(56px,10vh,124px) 0}
 section.paper{background:var(--paper);color:var(--graphite-900)}
-section.paper .tag{color:var(--ignition)}
 .shead{display:flex;flex-direction:column;gap:14px;
   margin-bottom:clamp(28px,5vh,54px)}
 .shead h2{font-family:var(--font-display);font-weight:700;
   font-size:clamp(30px,5vw,64px);line-height:1;letter-spacing:-.01em;
-  margin:10px 0 0}
+  margin:0}
 .shead p{margin:0;max-width:44ch;font-size:16.5px;line-height:1.65;
   color:var(--muted-on-ink)}
 section.paper .shead p{color:var(--muted-on-paper)}
-/* Dark interior sections: eyebrows match .phead / .cta (78% white), not fog-300. */
-section:not(.paper):not(.cta) .shead .tag{color:rgba(255,255,255,.78)}
-.tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--fog-300)}
+/* Card label: names what a card holds, in normal case. Never above a page or
+   section heading. */
+.tag{font-size:15px;line-height:1.4;color:rgba(255,255,255,.78)}
+section.paper .tag,.tier .tag{color:var(--muted-on-paper)}
 
 /* ---------- BUTTONS ---------- */
 .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
@@ -337,10 +314,9 @@ a.card.card-cta:hover h3,a.card.card-cta:focus-visible h3{color:var(--white)}
 
 /* ---------- CTA PANEL (from C.2's Stage 04 — the only block that asked) ---------- */
 .cta{background:var(--graphite-700);padding:clamp(56px,11vh,132px) 0;position:relative}
-.cta .tag{color:rgba(255,255,255,.78)}
 .cta h2{font-family:var(--font-display);font-weight:700;
   font-size:clamp(34px,6.5vw,86px);line-height:.98;letter-spacing:-.01em;
-  margin:14px 0 0}
+  margin:0}
 .cta p{margin:20px 0 0;max-width:52ch;font-size:clamp(16px,1.7vw,19px);line-height:1.62;
   color:rgba(255,255,255,.90)}
 .cta .fine{margin-top:22px;font-size:15.5px;color:rgba(255,255,255,.74);max-width:52ch}
@@ -506,9 +482,6 @@ tbody tr:last-child td{border-bottom:0}
   font-size:clamp(12px,1vw,13px);letter-spacing:.1em;text-transform:uppercase;
   color:var(--ignition);margin-top:5px}
 .craft:hover .nm .go,.craft:focus-visible .nm .go{color:var(--ignition-deep)}
-/* No .fleet .tag override: the spec's updated altimeter rule restricts it to
-   a single chart series or the GO dot, never an eyebrow, so this eyebrow
-   falls through to the same ignition section.paper .tag already sets. */
 .baseline{height:1px;background:var(--graphite-900)}
 .fleetnote{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   padding-top:16px;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;
@@ -791,7 +764,7 @@ section.paper .procedure-list{background:var(--rule-light);border-color:var(--ru
   color:rgba(255,255,255,.78);counter-increment:procedure}
 section.paper .procedure-list li{background:var(--paper);color:var(--graphite-900)}
 .procedure-list{counter-reset:procedure}
-.procedure-list li::before{content:counter(procedure,decimal-leading-zero);
+.procedure-list li::before{content:counter(procedure);
   display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;
   color:var(--ignition);margin-bottom:8px}
 section:not(.paper) .procedure-list li::before{color:rgba(255,255,255,.78)}
@@ -949,13 +922,19 @@ section.paper .dl>div,section.paper .dl>a.card,section.paper .dl-cta{border-top-
   .steps li::before{top:18px}
 }
 
-/* Small uppercase mono was the house voice at 10–11px. Floors at 12 then 13
-   still read tight; raise to 14px and ease tracking so labels stay the house
-   voice without becoming microtype.
-   Deliberately NOT .navlinks a — that rule would land after the mobile nav
-   block and shrink the touch targets. The nav is floored at its own
-   declaration. Fleet scale ticks stay smaller — chart chrome, not reading copy. */
-.mono,.tag,.lockup-tag,.roster-label,.dl dt,.roster .person .role,.gallery .ph span,.roster .shot span,.event-block .ph span,
-.foot-grid h2.fh,.foot-note,th,.btn,.subline .who,.hero .vidtoggle,.statline .lbl,
-.fleetnote,.skip,.navtoggle,.craft .nm .meta,.craft .nm .go{font-size:14px;letter-spacing:.11em}
+/* Label voice: UI labels (nav, buttons, table heads, captions, roles) are
+   IBM Plex Sans in normal case. Mono is for numbers with units only. The
+   lockup tagline keeps its mono caps because it is part of the logo lockup.
+   The nav keeps its own declaration so mobile touch targets stay intact. */
+.mono,.roster-label,.dl dt,.roster .person .role,.gallery .ph span,.roster .shot span,.event-block .ph span,
+.foot-grid h2.fh,.foot-grid h4,.foot-note,th,.btn,.subline .who,.vidtoggle,.statline .lbl,
+.skip,.navtoggle,.craft .nm .meta,.craft .nm .go,.partner-tier-label,.navlinks > a,.navitem-top,.navmenu a,.hero .vidtoggle,.subteam-shot .vidtoggle,
+.rise-ph,.subteam-shot .ph span,.todo{font-family:var(--font-body);text-transform:none;letter-spacing:0}
+.mono,.roster-label,.dl dt,.gallery .ph span,.roster .shot span,.event-block .ph span,
+.foot-grid h2.fh,.foot-note,th,.subline .who,.statline .lbl,.craft .nm .meta,.craft .nm .go,
+.partner-tier-label{font-size:15px}
+.btn,.hero .vidtoggle,.skip,.navtoggle{font-size:15px;font-weight:500}
+.navlinks > a,.navitem-top{font-size:15px}
+.roster .person .role{font-size:15px;font-weight:500;color:var(--graphite-900)}
+.fleetnote{font-size:14px;letter-spacing:.02em}
 .card .idx,.steps li::before{font-size:14px}

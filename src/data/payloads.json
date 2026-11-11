@@ -13,8 +13,7 @@
     "detail": "Self-healing polymers could address critical durability needs in reusable launch vehicles, which face extreme acceleration, intense aerodynamic loads, and repeated thermal cycling. Magpie is the first step toward flying one: it characterizes the fracture mechanism of TDCB epoxy test articles and how a sounding-rocket launch environment affects it. That baseline feeds this year's payload, which aims to fly a self-healing polymer.\n\nMagpie carries three test articles. A linear actuator on a Delrin guide loads the samples under tension while SRAD boards record strain, temperature, and pressure data over CAN bus. The module is fully passive once initiated: no pyrotechnics, pressurized parts, or active deployment that could affect the vehicle. It flew on Osiris and won first place in the Payload Challenge at Launch Canada 2026.",
     "blocks": [
       {
-        "tag": "Mechanical",
-        "heading": "The Magpie bus.",
+        "heading": "The Magpie bus",
         "body": "SLS nylon mounts house three SRAD PCBs and four 14500 Li-ion cells. A CNC-machined 6061-aluminum bus forms the skeleton: a ring-and-rod frame that carries the experiment modules and electronics stack, secured to the payload bay via a U-bolt on the top plate.",
         "parts": [
           {
@@ -36,8 +35,7 @@
         ]
       },
       {
-        "tag": "Hardware",
-        "heading": "Fracture test modules.",
+        "heading": "Fracture test modules",
         "body": "TDCB samples are cast in custom SLA 3D-printed molds from 105 epoxy resin. Each fracture test module combines machined 6061 aluminum (baseplate, mount, couplers), a Delrin guide, an Actuonix P8-10-165-3-ST linear actuator (165:1 gear ratio, 10 mm stroke), and a DMYH-113 bidirectional 10 kg load cell.",
         "image": "/media/payloads/magpie/ftm-module.webp",
         "imageAlt": "CAD render of a fracture test module with actuator, load cell, and coloured fixture blocks."

@@ -1,6 +1,5 @@
 {
-  "tag": "Launch Canada 2026",
-  "headline": ["Chris Hadfield", "signed Osiris."],
+  "headline": "Chris Hadfield signed Osiris",
   "lede": "At the range in Timmins, Chris Hadfield stopped by to meet the team and signed the nosecone before our highest flight ever.",
   "cta": { "label": "Osiris", "href": "/rockets/osiris" },
   "photos": [
@@ -19,7 +18,7 @@
     {
       "src": "/media/chris-hadfield/lc26-signed-nosecone-chris-hadfield-signature.webp",
       "alt": "Osiris's white nosecone with Chris Hadfield's signature in black marker, resting on a truck tailgate.",
-      "caption": "The signed nosecone before integration."
+      "caption": "The signed nosecone before flight."
     },
     {
       "src": "/media/chris-hadfield/lc26-signed-nosecone-signature-closeup.webp",

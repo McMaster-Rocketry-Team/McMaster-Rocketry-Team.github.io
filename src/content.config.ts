@@ -96,7 +96,6 @@ const subteams = defineCollection({
     photoIsProduct: z.boolean().optional(),
     photoAlt: z.string().nullable().optional(),
     photoCaption: z.string().nullable().optional(),
-    photoTag: z.string().nullable().optional(),
     // 2026-27 group photo of the subteam, shown above the leads.
     teamPhoto: z.string().nullable().optional(),
     teamPhotoAlt: z.string().nullable().optional(),
@@ -135,7 +134,6 @@ const payloads = defineCollection({
     })).optional(),
     // Extra prose blocks rendered as alternating sections after the main detail.
     blocks: z.array(z.object({
-      tag: z.string(),
       heading: z.string(),
       body: z.string(),
       image: z.string().optional(),
@@ -155,7 +153,7 @@ const payloads = defineCollection({
     // Full competition poster image.
     poster: z.string().optional(),
     posterAlt: z.string().optional(),
-    // Full product/CAD render — shown below the main detail prose, uncropped.
+    // Full product/CAD render, shown below the main detail prose, uncropped.
     render: z.object({
       src: z.string(),
       alt: z.string(),
