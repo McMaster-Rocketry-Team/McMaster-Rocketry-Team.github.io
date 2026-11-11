@@ -2,15 +2,13 @@
   "applicationsOpen": false,
   "applyHref": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=B2M3RCm0rUKMJSjNSW9HchhskgGNdnhJm_6LuuhnTuxUOU1OQVNTUjA4OVVKVE41OEhFTzdTTkJXVi4u",
   "hero": {
-    "tag": "Join us",
-    "headline": ["No experience", "required."],
-    "lede": "We hire first years. We hire people who have never touched a rocket. We hire people who aren't in engineering. Come ready to learn. We'll teach the rest."
+    "headline": "You don't need rocket experience to join",
+    "lede": "We take first years, students outside engineering, and people who have never built a rocket."
   },
   "cta": {
-    "tag": "Build the next one",
-    "headline": "We hire first years.",
-    "body": "We hire people who have never touched a rocket. Come ready to learn. We'll teach the rest.",
-    "fine": "Applications for this term are closed. Stay tuned to our Instagram for future opportunities. You don't need to be an engineer: we need people on operations as much as on airframe.",
+    "headline": "Build the next rocket with us",
+    "body": "Every subteam takes members with no rocket experience.",
+    "fine": "Applications for this term are closed. Follow our Instagram to hear when they reopen. You don't need to be an engineer: operations needs people as much as airframe does.",
     "buttons": { "join": "Join us", "sponsors": "Sponsor the team", "email": "Email us" }
   },
   "recruitCta": {
@@ -19,19 +17,16 @@
   },
   "sections": {
     "howItWorks": {
-      "tag": "How it works",
-      "headline": "Four steps.",
+      "headline": "Joining takes four steps",
       "lede": "Applications are closed for now. When they reopen: meet us at a recruiting event, fill in the form, then have a short interview with the subteam you want to join."
     },
     "dates": {
-      "tag": "Key dates",
-      "headline": "When.",
+      "headline": "Key dates",
       "lede": "Applications for this term closed September 18. We hire during a set window, not on a rolling basis. Stay tuned to our Instagram for future opportunities."
     },
     "faq": {
-      "tag": "Straight answers",
-      "headline": "Questions people ask.",
-      "lede": "If your question isn't here, email us. We would rather answer it than have you talk yourself out of applying."
+      "headline": "Questions about joining",
+      "lede": "If your question isn't here, email us."
     }
   },
   "buttons": { "apply": "Apply now", "closed": "Closed", "discord": "Join the Discord", "instagram": "Follow on Instagram" },

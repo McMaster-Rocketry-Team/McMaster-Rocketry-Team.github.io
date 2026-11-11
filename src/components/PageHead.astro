@@ -1,0 +1,30 @@
+---
+// Page head for every interior route. With a photo, the image is a real <img>
+// loaded first, and the copy sits in .herobox. Without one, a solid graphite
+// head holds the h1 and lede.
+import { imageSize } from '../lib/imagesize';
+
+interface Props {
+  title: string;
+  lede?: string;
+  image?: string | null;
+  imagePos?: string | null;
+  wide?: boolean;
+}
+const { title, lede, image, imagePos, wide = false } = Astro.props;
+const size = image ? imageSize(image) : null;
+---
+<header class:list={['phead', { 'has-hero': image, 'has-hero--wide': image && wide }]}>
+  {image && (
+    <img class="phead-img" src={image} alt="" fetchpriority="high" decoding="async"
+         width={size?.width} height={size?.height}
+         style={imagePos ? `object-position:${imagePos}` : undefined} />
+  )}
+  <div class="wrap">
+    <div class:list={{ herobox: image }}>
+      <h1>{title}</h1>
+      {lede && <p class="lede">{lede}</p>}
+      <slot />
+    </div>
+  </div>
+</header>

@@ -10,8 +10,16 @@ version number here; it goes stale. Check the spec file itself for the current o
 
 Red, white and black only. Ignition (`#BF2026`) is a fill and a hairline accent, never
 a wash on a photograph or a video, and never a running text colour (not even for
-numbers/amounts). On dark grounds, eyebrow/tagline text is white at 78% opacity, not
-ignition — ignition on `--graphite-700`/`--graphite-900` fails contrast.
+numbers/amounts). On dark grounds, the tagline is white at 78% opacity, not ignition.
+Ignition on `--graphite-700`/`--graphite-900` fails contrast.
+
+## Headings and labels
+
+- No eyebrows: never put a small label above a page, section or card heading.
+- Headings are plain topic titles or full sentences, on one line in the data, with no
+  trailing period and no forced `<br>` split.
+- UI labels (nav, buttons, table heads, captions, roles) are IBM Plex Sans in normal
+  case. Mono is for numbers with units. The lockup tagline is the one mono-caps line.
 
 ## Heroes
 
@@ -27,21 +35,17 @@ a solid graphite `.phead` and do **not** grow a box.
 | Home | `.hero` + `.bgvid` + `.herobox` |
 | Vehicle / subteam with photo | `.phead.has-hero` + `.herobox` (all six vehicles, all seven subteams) |
 | Sponsors landscape hero | `.phead.has-hero.has-hero--wide` + `.herobox` |
-| Everything else (Join, Members, pages without a hero photo) | `.phead` only — tag, h1, lede in `.wrap` |
+| Everything else (Members, Outreach, index pages) | `.phead` only: h1 and lede in `.wrap` |
 
-```html
-<!-- correct: photo hero -->
-<header class="phead has-hero" style="--hero-img:url(...)">
-  <div class="wrap"><div class="herobox">...</div></div>
-</header>
+Every interior page head is `src/components/PageHead.astro`. Pass `image` for a photo
+hero (rendered as `<img fetchpriority="high">` with `.herobox`) and `wide` for the
+landscape heroes (Join, Sponsors, 404).
 
-<!-- correct: interior page -->
-<header class="phead">
-  <div class="wrap"><div class="tag">...</div><h1>...</h1><p class="lede">...</p></div>
-</header>
-
-<!-- wrong: herobox without heroImage; grayscale/duotone/veil on footage -->
+```astro
+<PageHead title={v.name} lede={`${v.comp} ${v.year}. ${v.summary}`} image={v.heroImage} />
 ```
+
+Every `<img>` carries width and height from `imageSize()` in `src/lib/imagesize.ts`.
 
 ## Tagline
 
@@ -70,8 +74,8 @@ detail, minimum sizes, and the file matrix: spec **Logo & lockups**.
 
 Alternate `section.paper` (light) and plain `<section>` (dark) for visual breathing
 room — this is a deliberate signature device, not something to flatten to one theme.
-`.shead` (the shared section-header component: tag, then headline, then lede, then an
-optional right-aligned `.statline`) always stacks in a single vertical column. Never a
+`.shead` (the shared section-header component: headline, then lede, then an optional
+right-aligned `.statline`) always stacks in a single vertical column. Never a
 left-headline/right-paragraph split. Every page ends with `CtaBand`. Prefer CSS
 utilities (`.prose`, `.prose--follow`, `.note`, `.link-fleet`, `.link-underline`) over
 inline colour/spacing.
@@ -112,10 +116,6 @@ backlight behind the asset, not ignition. Implemented on `.module-card__ph::befo
 (SRAD board grid), `.payload-render::before` (full payload CAD beside prose), and
 `.product-aside::before` (inline CAD beside payload block copy). Use `object-fit:
 contain` (`.ph-is-product`) so cutouts are never cropped.
-
-## Crosshairs
-
-One pair on `.phead` / `.hero`. Home and `/rockets` add a second pair on `.paper.fleet`.
 
 ## Nav
 

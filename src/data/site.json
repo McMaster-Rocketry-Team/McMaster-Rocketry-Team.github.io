@@ -11,7 +11,7 @@
   "logo": { "width": 1654, "height": 1654 },
   "copyrightYear": 2026,
   "footerIntro": "A student club at {org} in {city}. We design, build and fly our own rockets, and we compete at Launch Canada.",
-  "abbreviations": "LC = Launch Canada · SAC = Spaceport America Cup (now IREC)",
+  "abbreviations": "LC is Launch Canada. SAC is Spaceport America Cup, now IREC.",
   "copy": { "notPublished": "Not published" },
   "a11y": { "pauseVideo": "Pause video", "skipToContent": "Skip to content", "menu": "Menu" },
   "stats": {

@@ -4,30 +4,25 @@
   "page": {
     "title": "Sponsors",
     "description": "Sponsor the McMaster Rocketry Team: tiers, what your support buys, and who to contact.",
-    "tag": "Sponsors",
-    "headline": ["Put your name", "on a rocket."],
+    "headline": "Put your name on a rocket",
     "lede": "We're a student team that designs, builds and flies its own vehicles. Sponsorship pays for materials, motors and getting our roughly 20-person competition crew to a launch site. It also puts your company in front of them while they decide where to work."
   },
   "sections": {
     "budget": {
-      "tag": "What it buys",
-      "headline": "Where the money goes.",
-      "lede": "We publish this because sponsors ask. A team that won't say where the money goes isn't a team worth funding."
+      "headline": "Where the money goes",
+      "lede": "Projected 2026-27 expenses by category."
     },
     "tiers": {
-      "tag": "Tiers",
-      "headline": "What you get.",
+      "headline": "Sponsorship tiers",
       "lede": "Three tiers, based on total sponsorship value in monetary donations, discounts, or products."
     },
     "partners": {
-      "tag": "Current partners",
-      "headline": "Who backs us.",
+      "headline": "Current partners",
       "lede": "Logo placement follows tier: larger on paper for Gold, medium for Silver, compact for Bronze. Gold and Silver partners get a write-up. Each logo links to the partner's site."
     },
     "contact": {
-      "tag": "Contact",
-      "headline": "Who to ask.",
-      "lede": "Email someone, and hear back from someone."
+      "headline": "Contacts",
+      "lede": "Email either lead about sponsorship."
     }
   },
   "packageCard": {

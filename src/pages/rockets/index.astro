@@ -1,4 +1,5 @@
 ---
+import PageHead from '../../components/PageHead.astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FleetLineup from '../../components/FleetLineup.astro';
@@ -24,22 +25,12 @@ const headline = fill(page.headline, { count: cap(vCountWord), years: cap(yearSp
   current="/rockets"
   reviewLocked={Array.from({ length: 6 }, (_, i) => i)}
 >
-<header class="phead">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
-  <div class="wrap">
-    <div class="tag">{page.tag}</div>
-    <h1 set:html={headline.replace('\n', '<br>')} />
-    <p class="lede">{page.lede}</p>
-  </div>
-</header>
+<PageHead title={headline} lede={page.lede} />
 
 <section class="paper fleet">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
   <div class="wrap">
     <div class="shead">
-      <div><div class="tag">{page.section.tag}</div><h2>{page.section.headline}</h2></div>
+      <div><h2>{page.section.headline}</h2></div>
       <div class="statline"><FleetStat /></div>
     </div>
     <FleetLineup />

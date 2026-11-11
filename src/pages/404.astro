@@ -1,4 +1,5 @@
 ---
+import PageHead from '../components/PageHead.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pages from '../data/pages.json';
 ---
@@ -9,19 +10,10 @@ import pages from '../data/pages.json';
   current="/404"
   reviewLocked={[0, 1]}
 >
-<header class="phead has-hero has-hero--wide" style="--hero-img:url(/media/404-sunset.webp)">
-  <span class="crosshair tl" aria-hidden="true"></span>
-  <span class="crosshair br" aria-hidden="true"></span>
-  <div class="wrap">
-    <div class="herobox">
-      <div class="tag">{pages.notFound.tag}</div>
-      <h1>{pages.notFound.headline[0]}<br>{pages.notFound.headline[1]}</h1>
-      <p class="lede">{pages.notFound.lede}</p>
-      <div class="btnrow">
-        <a class="btn solid" href="/">{pages.notFound.cta.home}</a>
-        <a class="btn" href="/join">{pages.notFound.cta.join}</a>
-      </div>
-    </div>
+<PageHead title={pages.notFound.headline} lede={pages.notFound.lede} image="/media/404-sunset.webp" wide>
+  <div class="btnrow">
+    <a class="btn solid" href="/">{pages.notFound.cta.home}</a>
+    <a class="btn" href="/join">{pages.notFound.cta.join}</a>
   </div>
-</header>
+</PageHead>
 </BaseLayout>

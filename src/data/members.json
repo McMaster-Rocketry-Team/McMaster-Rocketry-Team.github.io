@@ -2,10 +2,9 @@
   "page": {
     "title": "Members",
     "description": "The students who build and fly McMaster Rocketry's vehicles.",
-    "tag": "Members",
-    "headline": ["The people", "who build it."],
+    "headline": "The people who build it",
     "lede": "{members} students across {subteams} and {faculties} faculties. These are the leads. The rest of the team is on the subteam pages.",
-    "leadershipTerm": "2026-27 leadership",
+    "leadershipTerm": "Leads for 2026-27",
     "teamPhoto": {
       "src": "/media/team/team-2026.webp",
       "alt": "The full 2026-27 team gathered behind the 25 rocket laid across the Iron Ring sculpture outside the John Hodgins Engineering building.",
@@ -13,9 +12,8 @@
     },
     "rosterLabels": { "executive": "Executive", "subteamLeads": "Subteam leads" },
     "about": {
-      "tag": "Who we are",
-      "headline": "Not only engineers.",
-      "lede": "The team runs on more than airframes. These are the numbers behind the roster.",
+      "headline": "Members come from four faculties",
+      "lede": "Engineering, science, commerce and humanities students all build the rockets.",
       "body": "Most of the people on this page had never touched a rocket before joining. Several are not in engineering at all. The operations leads run sponsorship, the budget and everything we do on campus."
     },
     "cta": "Join them"
