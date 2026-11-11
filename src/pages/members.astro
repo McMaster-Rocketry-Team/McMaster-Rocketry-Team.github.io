@@ -54,6 +54,11 @@ const subteamLeads = leadsWithPhoto
       <div><div class="tag">{page.leadershipTerm}</div><h2>Leads.</h2></div>
     </div>
 
+    <figure class="team-shot">
+      <img src={page.teamPhoto.src} alt={page.teamPhoto.alt} width="2400" height="1200" loading="lazy" />
+      <figcaption>{page.teamPhoto.caption}</figcaption>
+    </figure>
+
     <div class="roster-block">
       <p class="roster-label">{page.rosterLabels.executive}</p>
       <div class="roster roster--exec">
