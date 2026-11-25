@@ -30,7 +30,7 @@
     "body": "The 2026-27 sponsorship package: tiers, benefits, and what we fly."
   },
   "buttons": { "talk": "Talk to us", "package": "Get package" },
-  "packagePdf": "/docs/sponsorship-package-2026-2027.pdf",
+  "packagePdf": "/docs/sponsorship-package-2026-2027.pdf?v=2",
   "budget": [
     { "label": "Airframe", "note": "commercial motor fuel and casing assembly, stock metal and fasteners for structural components", "amount": "$7,882" },
     { "label": "Payload", "note": "technical experiment, control PCBs, metal stock and fasteners, workspace equipment", "amount": "$5,875" },
