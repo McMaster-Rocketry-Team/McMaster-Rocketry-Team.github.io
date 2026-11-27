@@ -151,28 +151,12 @@
       "photo": "/media/leads/tim-manukian.webp"
     },
     {
-      "role": "Propulsion lead",
-      "subteam": "propulsion",
-      "name": "Sebastian Carter",
-      "programme": "Engineering Physics",
-      "year": "PhD",
-      "photo": "/media/leads/sebastian-carter.webp"
-    },
-    {
       "role": "Operations lead",
       "subteam": "operations",
       "name": "Kendra Osa Nayanka",
       "programme": "Electrical Engineering + Minor in Nuclear",
       "year": "3rd year",
       "photo": "/media/leads/kendra-osa-nayanka.webp"
-    },
-    {
-      "role": "Operations lead",
-      "subteam": "operations",
-      "name": "Lea Tejeda",
-      "programme": "JPPL",
-      "year": "4th year",
-      "photo": "/media/leads/lea-tejeda.webp"
     },
     {
       "role": "Chief safety officer",
